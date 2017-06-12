@@ -1,0 +1,42 @@
+﻿@using TbsGroup.Models;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="stylesheet" type="text/css" href="~/Content/CommonStyle.css" />
+    <title>TBS Group</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="container-navbar" style="margin-top:0px;">
+        <a href="/GridView">Dashboard</a>
+        <a href="/Liveboard">Sản Lượng Online</a>
+        <a onclick="myFunction()">Hide Top</a>
+            @if (Session["UserName"] != null)
+            {
+                var loguser = Session["UserName"] as BI_USER;
+                <div class="dropdown">
+                    <button class="dropbtn">Welcome: @loguser.Username!</button>
+                    <div class="dropdown-content">
+                        <a href="/Login/ChangePassword">Change Password</a>
+                        <a href="/Login">Log Out</a>
+                    </div>
+                </div>
+            }
+
+</div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - TBS Group KPIs Control</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

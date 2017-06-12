@@ -1,0 +1,868 @@
+﻿@using System.Web.UI.HtmlControls
+@using TbsGroup.ViewModels;
+@model TbsGroup.Models.FilterCoditionModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" defer async></script>
+<script src="//www.google.com/jsapi"></script>
+
+@*<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>*@
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<!---JavaScript Cascade Dropdownlist-->
+<script type="text/javascript" src="~/Scripts/jquery.1.7.2.min.js"></script>
+<link rel="stylesheet" type="text/css" href="~/Content/CommonStyle.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/DashboardStyle.css" />
+
+<!--Buttons Toggle display table-->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btn1").click(function () {
+            $("#toggle_SlNgay").slideToggle();
+        });
+    });
+    $(document).ready(function () {
+        $("#btn2").click(function () {
+            $("#toggle_Status").slideToggle();
+        });
+    });
+    $(document).ready(function () {
+        $("#btn3").click(function () {
+            $("#toggle_Tkld").slideToggle();
+        });
+    });
+
+    $(document).ready(function () {
+        $("#btn4").click(function () {
+            $("#toggle_Nsld").slideToggle();
+        });
+    });
+</script>
+
+
+
+<!--DRAWING CHARTS-->
+<script type="text/javascript">
+
+    google.load('visualization', '1.0', { 'packages': ['corechart', 'controls'] });
+    google.setOnLoadCallback(apiLoaded);
+
+    var dataCommon = JSON.parse('@ViewBag.DataCommon');
+
+    var controlWrapper;
+    function apiLoaded() {
+        var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_common'));
+
+        var dataAll = new google.visualization.DataTable();
+        //array chua cot se hien thi cho chart san luong
+        var viewColSl = [];
+
+        //array chua cot se hien thi cho chart trang thai chuyen
+        var viewColSt = [];
+
+        // array view col Nang Suat
+        var viewColNs = [];
+
+        //Thong ke lao dong
+        var viewColLd = [];
+
+        viewColSl.push(0);
+        viewColSt.push(0);
+        viewColNs.push(0);
+        viewColLd.push(0);
+
+        dataAll.addColumn('date', "Ngày");
+
+        for (c = 1; c < dataCommon[0].length; c++) {
+            var strCol = dataCommon[0][c];      //Lay ten cot
+            var prefix = strCol.substring(0, 2);
+            var strLen = strCol.length;
+            var colName = strCol.substring(3, strLen);
+            dataAll.addColumn('number', colName);
+            if (prefix === 'SL') {
+                viewColSl.push(c);
+            }
+            else if (prefix === 'ST') {
+                viewColSt.push(c);
+            }
+            else if (prefix === 'NS') {
+                viewColNs.push(c);
+            }
+            else if (prefix === "LD") {
+                viewColLd.push(c);
+            }
+        }
+
+        for (i = 1 ; i < dataCommon.length ; i++) {
+            var str = dataCommon[i][0];
+            var yr = str.substring(6, 10);
+            var mo = str.substring(3, 5) - 1;
+            var dy = str.substring(0, 2);
+            var lineRow = [];
+            lineRow.push(new Date(yr, mo, dy));
+            for (c = 1; c < dataCommon[0].length; c++) {
+                lineRow[c] = dataCommon[i][c];
+            }
+            dataAll.addRow(lineRow);
+        }
+
+        controlWrapper = new google.visualization.ControlWrapper({
+            controlType: 'ChartRangeFilter',
+            containerId: 'filter_common',
+            options: {
+                snapToData: true,
+                filterColumnIndex: 0,
+                height: 150,
+                ui: {
+                    chartType: 'LineChart',
+                    step : 1,
+                    chartOptions: {
+                        title: 'Range Date Filter',
+                        chartArea: {
+                            width: '100%',
+                            height: '100%'
+                        },
+                        hAxis: {
+                            baselineColor: '#4A5B69'
+                        },
+                        chartArea: { top: 0, bottom: 0, left: 7, right: 7, backgroundColor: '#F0F0F0' },
+                        lineWidth: 0,
+                        series: {
+                            0: { color: '#66C088', pointShape: 'circle' },
+                            //1: { color: '#4A5B69', pointShape: 'triangle' },
+                            //2: { color: '#F06362', pointShape: 'square' },
+                            //3: { color: '#43C5F1', pointShape: 'diamond' },
+                        },
+                        hAxis: {
+                            format: 'd/M/yy',
+                            showTextEvery: 1,
+                            slantedText: true,
+                            slantedTextAngle: 45,
+                            textStyle: {
+                                fontSize: 11 // or the number you want
+                            },
+                        },
+                    },
+                    // 1 day in milliseconds = 24 * 60 * 60 * 1000 = 86,400,000
+                    minRangeSize: 86400000
+                }
+            }
+        });
+        var chartSanLuong = new google.visualization.ChartWrapper({
+            chartType: 'ColumnChart',
+            containerId: 'chart_sanluong',
+            options: {
+                focusTarget: 'category',
+                width: '100%',
+                height: 170,
+                crosshair: { trigger: 'both' },
+                chartArea: { top: 10, bottom: 50, left: 50, right: 50 },
+                series: {
+                    0: { color: '#66C088', pointShape: 'circle' },
+                    1: { color: '#4A5B69', pointShape: 'triangle' },
+                    2: { color: '#F06362', pointShape: 'square' },
+                    3: { color: '#43C5F1', pointShape: 'diamond' },
+                },
+                legend: 'bottom',
+                hAxis: {
+                    format: 'd/M'
+                },
+                vAxis: {
+                    minValue: 0,
+                    format: 'decimal',
+                    label: "Sản Phẩm"
+                },
+                animation: {
+                    duration: 500,
+                    easing: 'out',
+                },
+                tooltip: { isHtml: true },
+                displayAnnotations: true
+
+            },
+            view: {
+                columns: viewColSl
+            }
+        });
+
+        dashboard.bind(controlWrapper, chartSanLuong)
+        dashboard.draw(dataAll);
+
+        var chartStatus = new google.visualization.ChartWrapper({
+            chartType: 'ColumnChart',
+            containerId: 'chart_status_ch',
+            options: {
+                isStacked: 'percent',
+                focusTarget: 'category',
+                width: '100%',
+                height: 170,
+                chartArea: { top: 10, bottom: 50, left: 50, right: 50 },
+                series: {
+                    0: { color: '#E51400', pointShape: 'circle' },
+                    1: { color: '#FEAA0F', pointShape: 'triangle' },
+                    2: { color: '#4CAF50', pointShape: 'square' },
+                    3: { color: '#1565C0', pointShape: 'diamond' },
+                },
+                legend: 'bottom',
+                hAxis: {
+                    format: 'd/M'
+                },
+                vAxis: {
+                    minValue: 0
+                },
+                animation: {
+                    duration: 500,
+                    easing: 'out',
+                },
+                title: 'Trạng Thái Chuyền'
+            },
+            view: {
+                columns: viewColSt
+            }
+        });
+
+        dashboard.bind(controlWrapper, chartStatus)
+        dashboard.draw(dataAll);
+
+        var chartNsld = new google.visualization.ChartWrapper({
+            chartType: 'ColumnChart',
+            containerId: 'chart_nsld',
+            options: {
+                focusTarget: 'category',
+                width: '100%',
+                height: 170,
+                crosshair: { trigger: 'both' },
+                chartArea: { top: 10, bottom: 50, left: 50, right: 50 },
+                series: {
+                    0: { color: '#EA0E8C', pointShape: 'circle' },
+                    1: { color: '#0691C1', pointShape: 'triangle' },
+                    2: { color: '#925CA7', pointShape: 'square' },
+                    3: { color: '#69BD5B', pointShape: 'diamond' },
+                },
+                legend: 'bottom',
+                hAxis: {
+                    format: 'd/M'
+                    //maxTextLines: 30,
+                    //minTextSpacing: 50,
+                    //slantedText: true,
+                    //slantedTextAngle: 45
+                },
+                vAxis: {
+                    minValue: 0
+                },
+                animation: {
+                    duration: 500,
+                    easing: 'out',
+                },
+                tooltip: { isHtml: true }
+            },
+            view: {
+                columns: viewColNs
+            }
+        });
+        var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_common'));
+        dashboard
+			.bind(controlWrapper, chartNsld)
+			.draw(dataAll);
+
+        var chartTkld = new google.visualization.ChartWrapper({
+            chartType: 'ColumnChart',
+            containerId: 'chart_tkld',
+            options: {
+                focusTarget: 'category',
+                width: '100%',
+                height: 170,
+                chartArea: { top: 10, bottom: 50, left: 50, right: 50 },
+                lineWidth: 2,
+                //curveType: 'function',
+                crosshair: { trigger: 'both' },
+                pointSize: 3,
+                series: {
+                    0: { color: '#034f84', pointShape: 'circle', targetAxisIndex: 0, type: 'line' },
+                    1: { color: '#92a8d1', pointShape: 'triangle', targetAxisIndex: 1, displayAnnotations: true },
+                    2: { color: '#33cc33', pointShape: 'square' },
+                    3: { color: '#3333ff', pointShape: 'diamond' },
+                },
+                annotations: {
+                    alwaysOutside: true,
+                    //stemColor : 'none',
+                    textStyle: {
+                        //fontName: 'Times-Roman',
+                        fontSize: 10,
+                        //bold: true,
+                        //italic: true,
+                        color: '#0033cc',     // The color of the text.
+                        //auraColor: '#d799ae', // The color of the text outline.
+                        //opacity: 0.8          // The transparency of the text.
+                    }
+                },
+                legend: 'bottom',
+                hAxis: {
+                    format: 'd/M'
+                    //maxTextLines: 30,
+                    //minTextSpacing: 50,
+                    //slantedText: true,
+                    //slantedTextAngle: 45
+                },
+                vAxis: {                    
+                    format: 'decimal',
+                    minValue: 0                    
+                },
+                animation: {
+                    duration: 500,
+                    easing: 'out',
+                }
+            },
+            view: {
+                columns: viewColLd
+            }
+        });
+
+        var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_common'));
+        dashboard
+			.bind(controlWrapper, chartTkld)
+			.draw(dataAll);
+        // include within drawDashboard
+        $(window).resize(function () {
+            // reference dashboard instance
+            dashboard
+                .bind(controlWrapper, chartTkld)
+                .draw(dataAll);
+        });
+    }
+</script>
+
+<!--drawing chart co cau gia thanh-->
+<script type="text/javascript">
+    //google.charts.load('current', { packages: ['corechart'] });
+    google.load('visualization', '1.0', { 'packages': ['corechart', 'controls'] });
+    function drawChart() {
+        var dataGiaThanh = JSON.parse('@ViewBag.DataGtpx');
+        // Define the chart to be drawn.
+        var dataGtpx = new google.visualization.DataTable();
+        dataGtpx.addColumn('string', 'CongDoan');
+        dataGtpx.addColumn('number', 'Vật Tư');
+        dataGtpx.addColumn({ type: 'number', role: 'annotation' });
+        dataGtpx.addColumn('number', 'Tài Sản');
+        dataGtpx.addColumn({ type: 'number', role: 'annotation' });
+        dataGtpx.addColumn('number', 'Nhân Công');
+        dataGtpx.addColumn({ type: 'number', role: 'annotation' });
+        debugger;
+        for (i = 1 ; i < dataGiaThanh.length; i++ )
+        {
+            var line = [];
+            line.push(dataGiaThanh[i][0]);
+            line.push(dataGiaThanh[i][1]);
+            line.push(dataGiaThanh[i][1]);
+            line.push(dataGiaThanh[i][2]);
+            line.push(dataGiaThanh[i][2]);
+            line.push(dataGiaThanh[i][3]);
+            line.push(dataGiaThanh[i][3]);
+            dataGtpx.addRow(line);
+        }
+
+        var options = {
+            focusTarget: 'category',
+            width: '100%',
+            height: 200,
+            bar: { groupWidth: '30%' },
+            crosshair: { trigger: 'both' },
+            chartArea: { top: 10, bottom: 50, left: 50, right: 50 },
+            series: {
+                0: { color: '#3366CC', pointShape: 'circle', displayAnnotations: true },
+                1: { color: '#DC3912', pointShape: 'triangle', displayAnnotations: true },
+                2: { color: '#FF9900', pointShape: 'square', displayAnnotations: true },
+                3: { color: '618685', pointShape: 'diamond', displayAnnotations: true },
+            },
+            annotations: {
+                //alwaysOutside: true,
+                stemColor : 'none',
+                textStyle: {
+                    //fontName: 'Times-Roman',
+                    fontSize: 10,
+                    //bold: true,
+                    //italic: true,
+                    color: '#0033cc',     // The color of the text.
+                    //auraColor: '#d799ae', // The color of the text outline.
+                    //opacity: 0.8          // The transparency of the text.
+                }
+            },
+            legend: 'bottom',
+            hAxis: {
+                format: 'd/M'
+            },
+            vAxis: {
+                minValue: 0,
+                format: 'percent',
+                label: "Sản Phẩm"
+            },
+            animation: {
+                duration: 500,
+                easing: 'out',
+            },
+            tooltip: { isHtml: true },
+            displayAnnotations: true,
+            isStacked: 'percent'
+        };
+
+        // Instantiate and draw the chart.
+        var chart = new google.visualization.ColumnChart(document.getElementById('Chart_Gtpx'));
+        chart.draw(dataGtpx, options);
+    }
+    google.setOnLoadCallback(drawChart);
+</script>
+
+
+@if (ViewData["SanLuongNgay"] != null)
+{
+    <!--Selection controls-->
+    <div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <table align="center" class="table-condition">
+                <tr>
+                    <td>
+                        Level:
+                    </td>
+                    <td>
+                        @Html.DropDownList("SelectedCapDo", (IEnumerable<SelectListItem>)ViewBag.SelectedCapDo)
+                    </td>
+                    <td>
+                        Value:
+                    </td>
+                    <td>
+                        @Html.DropDownList("SelectedGiaTriCapDo", (IEnumerable<SelectListItem>)ViewBag.SelectedGiaTriCapDo)
+                    </td>
+                    <td>
+                        Công Đoạn:
+                    </td>
+                    <td>
+                        @Html.DropDownList("SelectedCongDoan", (IEnumerable<SelectListItem>)ViewBag.SelectedCongDoan)
+                    </td>
+                    <td>
+                        From:
+                    </td>
+                    <td>
+                        @Html.EditorFor(Model => Model.DateFrom, new { htmlAttributes = new { style = "width:80px; text-align:center", @placeholder = "dd/MM/yyyy" } })
+                        @Html.ValidationMessageFor(model => model.DateTo, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        To:
+                    </td>
+                    <td>
+                        @Html.EditorFor(Model => Model.DateTo, new { htmlAttributes = new { style = "width:80px;text-align:center", @placeholder = "dd/MM/yyyy" } })
+                        @Html.ValidationMessageFor(model => model.DateTo, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        <button type="submit">Get Data</button>
+                        @*<button id="getdata-button" class="btn btn-lg btn-success btn-block">Get Data</button>*@
+
+                    </td>
+                </tr>
+            </table>
+            <hr />
+        }
+        <script type="text/javascript">
+            $(function () {
+                $("#SelectedCapDo").change(function () {
+                    var val = $(this).val();
+                    var subItems = "";
+                    $.getJSON("@Url.Action("GetSub", "GridView")", { CapDoID: val }, function (data) {
+                        $.each(data, function (index, item) {
+                            subItems += "<option value='" + item.Value + "'>" + item.Text + "</option>"
+                        });
+                        $("#SelectedGiaTriCapDo").html(subItems)
+                    });
+                });
+            });
+        </script>
+    </div>
+}
+else
+{
+    <div class="col-lg-12">
+        <h1 class="page-header">@ViewBag.MessagePQ</h1>
+        <a href="javascript:void(0);" onclick="history.go(-1);">Trở lại</a>
+    </div>
+}
+<!--Title data-->
+<div id="dashboard_common">
+    <table style="width:100%">
+        <tbody>
+            <tr style="height:30px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;">
+                <td no-wrap style="min-width:120px;max-width:120px;">
+                    From @Model.DateFrom.ToShortDateString()            
+                </td>
+                <td no-wrap style="width:90%; min-width:800px;">
+                    <div id="filter_common" style="height:30px;"></div>
+                </td>
+                <td no-wrap style="min-width:120px;max-width:120px;">
+                    To @Model.DateTo.ToShortDateString()        
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <hr />
+    <table class="boundary-table" style="width:100%">
+        <tr style="background-color:#034f84;color:white;">
+            <!--Title San Luong-->
+            <td style="width:50%;">
+                <table style="width:100%">
+                    <tr>
+                        <td style="border:none; text-align:left;">
+                            <div class="title-chart">SẢN LƯỢNG @ViewBag.CapDo: @ViewBag.GiatriCapDo</div>
+                        </td>
+                        <td style="border:none;text-align:right; padding-right:2px;">
+                            <button id="btn1">Xem Dữ Liệu</button>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <!-- Title Trang Thai Chuyen-->
+            <td style="width:50%;">
+                <table style="width:100%">
+                    <tr>
+                        <td style="border:none;">
+                            <div class="title-chart">TRẠNG THÁI CHUYỀN @ViewBag.CapDo: @ViewBag.GiatriCapDo</div>
+                        </td>
+                        <td style="border:none;text-align:right; padding-right:2px;">
+                            <button id="btn2">Xem Dữ Liệu</button>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <!--Chart San Luong-->
+            <td style="width:50%;">
+                <!--Chart data-->
+                <div id="chart_sanluong"></div>
+            </td>
+            <!--Chart Trang Thai Chuyen-->
+            <td style="width:50%;">
+                <div id="chart_status_ch"></div>
+            </td>
+        </tr>
+        <tr>
+            <!--table San Luong-->
+            <td>
+                <div id="toggle_SlNgay" style="display:none; padding-left:40px; padding-right:40px;">
+                    <table class="table-data">
+                        <thead class="header-table" style="position:sticky;">
+                            <tr>
+                                <th class="col-1">
+                                    Ngày
+                                </th>
+                                <th class="col-2">
+                                    Công Đoạn
+                                </th>
+                                <th class="col-3">
+                                    Kế Hoạch
+                                </th>
+                                <th class="col-4">
+                                    Thực Hiện
+                                </th>
+                                <th class="col-5">
+                                    % TH/KH
+                                </th>
+                                <th class="col-6"></th>
+                                <th style="max-width:16px; min-width:16px;background-color:white;"></th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <table class="table-data" style="height: 200px; overflow-y: scroll; display:block;">
+                        <tbody style="position:inherit;width:100%">
+                            @if (ViewData["SanLuongNgay"] != null)
+                            {
+                                foreach (TbsGroup.ViewModels.SanLuongNgay slsx in (List<TbsGroup.ViewModels.SanLuongNgay>)ViewData["SanLuongNgay"])
+                                {
+                                    <tr style="height:35px;">
+                                        <td class="col-1" style="background-color:inherit;">
+                                            @slsx.Ngay.ToShortDateString()
+                                        </td>
+                                        <td class="col-2" style="background-color:inherit;">
+                                            @slsx.CongDoan
+                                        </td>
+                                        <td class=" col-3" style="background-color:inherit;">
+                                            @slsx.KeHoach.ToString("#,#")
+                                        </td>
+                                        <td class="col-4" style="background-color:inherit;">
+                                            @slsx.ThucHien.ToString("#,#")
+                                        </td>
+                                        <td class="col-5" style="background-color:inherit;">
+                                            @slsx.Percent
+                                        </td>
+                                        <td class="col-6" style="background-color:inherit;">
+                                            <a href="@Url.Action("Details", "GridView", new {   mandt = Model.MANDT, sysid = Model.SYSID,
+                                                                                CapDo = Model.SelectedCapDo, GiaTriCapDo = Model.SelectedGiaTriCapDo,
+                                                                                CongDoan = slsx.CongDoan, Date = slsx.Ngay})">Chi Tiết</a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <!--table Trang Thai Chuyen-->
+            <td>
+                <div id="toggle_Status" style="display:none; padding-left:40px; padding-right:40px;">
+                    <table class="table-data">
+                        <thead class="header-table" style="position:sticky;">
+                            <tr>
+                                <th class="col-1">
+                                    Ngày
+                                </th>
+                                <th class="col-2">
+                                    Red
+                                </th>
+                                <th class="col-3">
+                                    Yellow
+                                </th>
+                                <th class="col-4">
+                                    Green
+                                </th>
+                                <th class="col-5">
+                                    Other
+                                </th>
+                                <th style="max-width:16px; min-width:16px;background-color:white;"></th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <table class="table-data" style="height: 200px; overflow-y: scroll; display:inline-block;">
+                        <tbody style="position:inherit;width:100%">
+                            @if (ViewData["StatusChuyen"] != null)
+                            {
+                                foreach (TrangThaiChuyen ttc in (List<TrangThaiChuyen>)ViewData["StatusChuyen"])
+                                {
+                                    <tr style="height:35px;">
+                                        <td class="col-1" style="background-color:inherit;">
+                                            @ttc.Ngay.ToShortDateString()
+                                        </td>
+                                        <td class="col-2" style="background-color:inherit;">
+                                            @ttc.redStatus.ToString("#,#")
+                                        </td>
+                                        <td class=" col-3" style="background-color:inherit;">
+                                            @ttc.yellowStatus.ToString("#,#")
+                                        </td>
+                                        <td class="col-4" style="background-color:inherit;">
+                                            @ttc.greenStatus.ToString("#,#")
+                                        </td>
+                                        <td class="col-5" style="background-color:inherit;">
+                                            @ttc.otherStatus.ToString("#,#")
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+        </tr>
+        <!--Nang Suat / Thong Ke Lao Dong-->
+        <tr style="background-color:#034f84;color:white;">
+            <!-- Title Năng Suất Theo Sản lượng-->
+            <td style="width:50%;">
+                <table style="width:100%">
+                    <tr>
+                        <td style="border:none;">
+                            <div class="title-chart">NĂNG SUẤT @ViewBag.CapDo: @ViewBag.GiatriCapDo</div>
+                        </td>
+                        <td style="border:none;text-align:right; padding-right:2px;">
+                            <button id="btn4">Xem Dữ Liệu</button>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <!--Title Thong ke Lao Dong-->
+            <td style="width:50%;">
+                <table style="width:100%">
+                    <tr>
+                        <td style="border:none;">
+                            <div class="title-chart">THỐNG KÊ LAO ĐỘNG @ViewBag.CapDo: @ViewBag.GiatriCapDo</div>
+                        </td>
+                        <td style="border:none;text-align:right; padding-right:2px;">
+                            <button id="btn3">Xem Dữ Liệu</button>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <!--Chart nang suat lao dongs-->
+            <td style="width:50%;">
+                <div id="chart_nsld"></div>
+            </td>
+            <!--Chart Thong Ke Lao Dong-->
+            <td style="width:50%;">
+                <div id="chart_tkld"></div>
+            </td>
+        </tr>
+        <tr>
+            <!--data table-->
+            <td style="width:50%;">
+                <div id="toggle_Nsld" style="display:none;margin:auto;width:460px;">
+                    <table class="table-data">
+                        <thead class="header-table" style="position:sticky;">
+                            <tr>
+                                <th class="col-tkld-1">Ngày</th>
+                                @if (Model.SelectedCapDo == "NGANH")
+                                {
+                                    <th class="col-tkld-2">Ngành</th>
+                                }
+                                else if (Model.SelectedCapDo == "KHVUC")
+                                {
+                                    <th class="col-tkld-2">Khu Vực</th>
+                                }
+                                else
+                                {
+                                    <th class="col-tkld-2">Workcenter</th>
+                                }
+                                <th class="col-nsld-3">Công Đoạn</th>
+                                <th class="col-tkld-4">Năng Suất</th>
+                                <th style="max-width:16px; min-width:16px;background-color:white;"></th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <table class="table-data" style="height: 200px; overflow-y: scroll; display:inline-block;">
+                        <tbody>
+                            @if (ViewData["NSLD"] != null)
+                            {
+                                foreach (NangSuatLaoDong nsld in (List<NangSuatLaoDong>)ViewData["NSLD"])
+                                {
+                                    <tr style="height:35px;">
+                                        <td class="col-tkld-1" style="background-color:inherit;">
+                                            @nsld.Ngay.ToShortDateString()
+                                        </td>
+                                        <td class="col-tkld-2" style="background-color:inherit;text-align:center !important;">
+                                            @nsld.GiaTriCapDo
+                                        </td>
+                                        <td class="col-nsld-3" style="background-color:inherit;">
+                                            @nsld.CongDoan
+                                        </td>
+                                        <td class="col-tkld-4" style="background-color:inherit;">
+                                            @nsld.NangSuat.ToString("###,###.##")
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <!--table Thong Ke Lao Dong-->
+            <td style="width:50%;margin: 0 auto;">
+                <div id="toggle_Tkld" style="display:none;margin: 0 auto;width:550px;">
+                    <table class="table-data">
+                        <thead class="header-table" style="position:sticky;">
+                            <tr>
+                                <th class="col-tkld-1">Ngày</th>
+                                @if (Model.SelectedCapDo == "NGANH")
+                                {
+                                    <th class="col-tkld-2">Ngành</th>
+                                }
+                                else if (Model.SelectedCapDo == "KHVUC")
+                                {
+                                    <th class="col-tkld-2">Khu Vực</th>
+                                }
+                                else
+                                {
+                                    <th class="col-tkld-2">Workcenter</th>
+                                }
+                                <th class="col-tkld-3">SL Đi Làm</th>
+                                <th class="col-tkld-4">SL Nghỉ</th>
+                                <th class="col-tkld-5">Tổng LĐ</th>
+                                <th style="max-width:16px; min-width:16px;background-color:white;"></th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <table class="table-data" style="height: 200px; overflow-y: scroll; display:inline-block;">
+                        <tbody>
+                            @if (ViewData["ThongKeLD"] != null)
+                            {
+                                foreach (ThongKeLaoDong tkld in (List<ThongKeLaoDong>)ViewData["ThongKeLD"])
+                                {
+                                    <tr style="height:35px;">
+                                        <td class="col-tkld-1" style="background-color:inherit;">
+                                            @tkld.Ngay.ToShortDateString()
+                                        </td>
+                                        <td class="col-tkld-2" style="background-color:inherit;">
+                                            @tkld.GiaTriCapDo
+                                        </td>
+                                        <td class="col-tkld-3" style="background-color:inherit;">
+                                            @tkld.SoLuongDiLam.ToString("#,#")
+                                        </td>
+                                        <td class="col-tkld-4" style="background-color:inherit;">
+                                            @tkld.SoLuongNghi.ToString("#,#")
+                                        </td>
+                                        <td class="col-tkld-5" style="background-color:inherit;">
+                                            @tkld.TongSoLuong.ToString("#,#")
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+        </tr>
+        <tr style="background-color:#034f84;color:white;">
+            <!--Row 3 - Header-->
+            <td style="width:50%">
+                <table >
+                    <tr>
+                        <td style="border:none;">
+                            <div class="title-chart">CƠ CẤU GIÁ THÀNH PHÂN XƯỞNG @ViewBag.CapDo: @ViewBag.GiatriCapDo</div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td style="width:50%" >
+                <div class="title-chart">SUMMARY @ViewBag.CapDo: @ViewBag.GiatriCapDo FROM @Model.DateFrom.ToShortDateString() TO @Model.DateTo.ToShortDateString()</div>                
+            </tr>
+        <tr>
+            <!--Row 3 - Chart-->
+            <td>
+                <div id="Chart_Gtpx"></div>                
+            </td>
+            <td >
+                <table class="table-summanry" style="margin:auto;">
+                    <thead>
+                        <tr>
+                            <th style="width:8%;text-align:center;">C.Đoạn</th>                            
+                            <th style="width:10%;text-align:center;">% CP Vật Tư</th>
+                            <th style="width:10%;text-align:center;">% CP Tài Sản</th>
+                            <th style="width:10%;text-align:center;">% CP Nhân Công</th>
+                            <th style="width:10%;text-align:center;">N.Suất Theo SL</th>
+                            <th style="width:10%;text-align:center;">N.Suất Tổng thể</th>
+                        </tr>
+                    </thead>
+                    <tbody>                        
+                        @foreach(NangSuatTongThe nstt in (List<NangSuatTongThe>)ViewData["NSTT"])
+                        {
+                            <tr>
+                                <td style="width:8%;text-align:center;padding-right:10px;font-weight:bold;">@nstt.CongDoan</td>                                
+                                <td style="width:10%;text-align:right;padding-right:10px;">@nstt.ptChiPhiVt.ToString("#,#.##") %</td>
+                                <td style="width:10%;text-align:right;padding-right:10px;">@nstt.ptChiPhiTs.ToString("#,#.##") %</td>
+                                <td style="width:10%;text-align:right;padding-right:10px;">@nstt.ptChiPhiNc.ToString("#,#.##") %</td>
+                                <td style="width:10%;text-align:right;padding-right:10px;font-weight:bold;color:#40a4bc">
+                                    @nstt.NangSuatSL.ToString("#,#.##")
+                                </td>
+                                <td style="width:10%;text-align:right;padding-right:10px;font-weight:bold;color:#ff6a00">
+                                    @nstt.NangSuatTT.ToString("#,#.##")
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>    
+</div>

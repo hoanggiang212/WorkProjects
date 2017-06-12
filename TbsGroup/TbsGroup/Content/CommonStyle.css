@@ -1,0 +1,129 @@
+﻿
+/*Navigation bar*/
+.container-navbar {
+    margin-top:0px;
+    overflow: hidden;
+    background-color: #235631;
+    font-family: Arial;
+}
+
+.container-navbar a {
+    float: left;
+    font-size: 13px;
+    color: white;
+    text-align: center;
+    padding: 10px 10px;
+    text-decoration: none;
+}
+
+.dropdown {    
+    float: right;
+    min-width: 160px;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    font-size: 13px;    
+    border: none;
+    outline: none;
+    color: white;
+    padding: 10px 15px;
+    background-color: inherit;
+}
+
+.container-navbar a:hover, .dropdown:hover .dropbtn {
+    background-color: #235631;
+    color: #CCFFFF;
+    font-weight:bold;
+}
+
+.dropdown-content {     
+    display: none;
+    position: absolute;
+    background-color: #235631;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    /*background-color: #ddd;*/
+}
+
+/*table selections*/
+.table-selection {
+    border-collapse: collapse;
+    font-family: Helvetica,Arial,Sans-Serif;
+    border: none;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/*Form Style*/
+.form-center{
+    font-family:Tahoma, 'Times New Roman', Arial;
+    font-size: 12px;
+    margin: auto;
+    width: 20%;
+    min-width: 250px;
+    padding: 10px;
+    text-align:center;
+}
+.form-title{
+    font-family:Tahoma, 'Times New Roman', Arial;
+    font-size: 12px;    
+    padding: 5px;
+}
+.form-control{
+    font-family:Tahoma, 'Times New Roman', Arial;
+    text-align: left;
+    font-size: 12px;
+    width:100%;    
+    padding: 5px;
+    position:relative;
+}
+.form-title{
+    vertical-align: middle;
+    font-family:Tahoma, 'Times New Roman', Arial;
+    text-align: center;
+    font-size: 120%;
+    margin: auto;
+    width: 20%;
+    min-width: 250px;
+    padding: 10px;
+}
+.btn-control{
+    position:center ;   
+    padding: 8px 8px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    background-color: inherit;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;   
+    min-width:75px;
+}
+.btn-control:hover{
+    background-color: #00BF4D;
+    
+}
+footer{
+    text-align: center;
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 85%;
+    color: #B7B7B7
+
+}

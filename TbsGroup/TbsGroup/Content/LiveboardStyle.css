@@ -1,0 +1,170 @@
+﻿body {
+  padding-top: 50px;
+}
+
+.navbar {
+  height: 35px;
+  padding: 0px 0px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+}
+
+.navbar a {
+  color: white;
+  line-height: 3em;
+}
+
+table.table-selection td{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+table.responsive-table {
+  display: table;
+  /* required for table-layout to be used (not normally necessary; included for completeness) */
+  table-layout:  fixed;
+  /* this keeps your columns with fixed with exactly the right width */
+  width: 100%;
+  /* table must have width set for fixed layout to work as expected */
+  /*height: 100%;*/
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 85%;
+}
+
+table.responsive-table .col-chuyen{
+    min-width: 800px;
+    width: 12%;
+}
+
+table.responsive-table .col-congdoan{
+    width: 5%;
+}
+table.responsive-table .col-slld{
+    width: 4%;
+}
+table.responsive-table .col-num-long{
+    width: 5%;
+}
+table.responsive-table .col-num-short{
+    width: 3.5%;
+}
+
+.table-area {
+  position: relative;
+  z-index: 0;
+  min-width: 1200px;
+  margin-top: 40px;
+}
+
+
+table.responsive-table thead {  
+  min-width: 1200px;
+  position: fixed;
+  table-layout: fixed;
+  display: table;
+
+  margin-top: -35px;
+  left: 0;
+  right: 0;
+  width: 100%;
+
+
+
+  height: 35px;
+  line-height: 2em;
+
+
+  background: #004029;
+  text-align:center;
+  font-size: 100%;
+  vertical-align: middle;
+}
+
+table.responsive-table th {
+    background: #003399;
+    color: white;
+}
+
+table.responsive-table td {
+    line-height: 35px;;
+}
+
+table.responsive-table tr > td,
+table.responsive-table th {
+  text-align: left;  
+  border: 0.5px solid #B1B1B1;
+}
+
+/*nhom 1*/
+table.responsive-table tr:nth-of-type(even) td:nth-of-type(3) ,
+table.responsive-table tr:nth-of-type(even) td:nth-of-type(4) ,
+table.responsive-table tr:nth-of-type(even) td:nth-of-type(5) ,
+table.responsive-table tr:nth-of-type(even) td:nth-of-type(6) 
+{
+    background: #E7D9C6;
+}
+
+/*nhom 2*/
+table.responsive-table tr:nth-of-type(even) td:nth-of-type(7) ,
+table.responsive-table tr:nth-of-type(even) td:nth-of-type(8) ,
+table.responsive-table tr:nth-of-type(even) td:nth-of-type(9) ,
+table.responsive-table tr:nth-of-type(even) td:nth-of-type(10) 
+{
+    background: #C9DCF0;
+}
+table.responsive-table > tbody > tr:hover > td, 
+table.responsive-table > tbody > tr:hover > th
+ {
+    background-color: #CCEFFF;
+}
+
+.ten-bo-phan-normal {
+
+}
+
+.ten-bo-phan-red {
+    color: #BB0000;
+}
+
+.ten-bo-phan-yellow {    
+    color: #DEC200;   
+}
+
+.ten-bo-phan-green {    
+    color: #008A00;    
+}
+
+.cell-control{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+@-webkit-keyframes ChangeValue {
+  from { background-color: red; }
+  to { background-color: inherit; }
+}
+@-moz-keyframes ChangeValue {
+  from { background-color: red; }
+  to { background-color: inherit; }
+}
+@-o-keyframes ChangeValue {
+  from { background-color: red; }
+  to { background-color: inherit; }
+}
+/*Highlight change data*/
+@keyframes ChangeValue {
+  from { background-color: #F1FF7B; }
+  to { background-color: inherit; }
+}
+.ChangeValue {
+  -webkit-animation: ChangeValue 1s infinite; /* Safari 4+ */
+  -moz-animation:    ChangeValue 1s infinite; /* Fx 5+ */
+  -o-animation:      ChangeValue 1s infinite; /* Opera 12+ */
+  animation: ChangeValue 1s infinite;
+}
+
+/*td {
+    padding: 1em;
+}*/

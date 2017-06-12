@@ -1,0 +1,136 @@
+﻿@model TbsGroup.ViewModels.SanLuongNgay
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-lg-12">
+    <h1 class="page-header">Sản Lượng Chi Tiết @ViewBag.CapDoCha - @ViewBag.Ngay</h1>
+    <a href="javascript:void(0);" onclick="history.go(-1);">Trở lại</a>
+</div>
+<table class="table table-bordered table-striped table-responsive">
+    <thead>
+        <tr>
+            <th>
+                @ViewBag.CapDoCon
+            </th>
+            <th>
+                Công Đoạn
+            </th>
+            <th>
+                Kế hoạch
+            </th>
+            <th>
+                Thực hiện
+            </th>
+            <th>
+                % Đạt Kế Hoạch
+            </th>
+            <th>
+                0h - 7h
+            </th>
+            <th>
+                8h
+            </th>
+            <th>
+                9h
+            </th>
+            <th>
+                10h
+            </th>
+            <th>
+                11h
+            </th>
+            <th>
+                12h
+            </th>
+            <th>
+                13h
+            </th>
+            <th>
+                14h
+            </th>
+            <th>
+                15h
+            </th>
+            <th>
+                16h
+            </th>
+            <th>
+                17h
+            </th>
+            <th>
+                18h
+            </th>
+            <th>
+                19h
+            </th>
+            <th>
+                20h - 24h
+            </th>           
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (TbsGroup.ViewModels.SanLuongNgay sln in (List<TbsGroup.ViewModels.SanLuongNgay>)ViewData["SLDetails"])
+        {
+        <tr>
+            <td align="center">
+                @sln.GiaTriCapDo
+            </td>
+            <td align="center">
+                @sln.CongDoan
+            </td>
+            <td align="right">
+                @sln.KeHoach.ToString("#,#")
+            </td>
+            <td align="right">
+                @sln.ThucHien.ToString("#,#")
+            </td>
+            <td align="right" class="@sln.TrangThai">
+                @sln.Percent %
+            </td>
+            <td align="right">
+                @sln.Gio07.ToString("#,#")
+            </td>
+            <td align="right">
+                @sln.Gio08.ToString("#,#")
+            </td>
+            <td align="right">
+                @sln.Gio09.ToString("#,#")
+            </td>
+            <td align="right">
+                @sln.Gio10.ToString("#,#")
+            </td>
+            <td align="right">
+                @sln.Gio11.ToString("#,#")
+            </td>
+            <td align="right">
+                @sln.Gio12.ToString("#,#")
+            </td>
+            <td align="right">
+                @sln.Gio13.ToString("#,#")
+            </td>
+            <td align="right">
+                @sln.Gio14.ToString("#,#")
+            </td>
+            <td align="right">
+                @sln.Gio15.ToString("#,#")
+            </td>
+            <td align="right">
+                @sln.Gio16.ToString("#,#")
+            </td>
+            <td align="right">
+                @sln.Gio17.ToString("#,#")
+            </td>
+            <td align="right">
+                @sln.Gio18.ToString("#,#")
+            </td>
+            <td align="right">
+                @sln.Gio19.ToString("#,#")
+            </td>
+            <td align="right">
+                @sln.Gio20.ToString("#,#")
+            </td>            
+        </tr>
+        }
+    </tbody>
+</table>

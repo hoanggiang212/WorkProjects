@@ -1,0 +1,47 @@
+﻿@using Microsoft.AspNet.Identity
+@using TbsGroup.Models
+<script>
+    function ShowDiv() {
+        var x = document.getElementById('Select-Group');
+        if (x.style.display == 'none') {
+            x.style.display = 'block';
+        }
+        else {
+            x.style.display = 'none';
+        }
+    }
+</script>
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+    }
+}
+else
+{
+    <div class="nav navbar-nav navbar-right">
+        @*<li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>*@
+        @if (Session["UserName"] != null)
+        {
+            var loguser = Session["UserName"] as BI_USER;
+            <div class="dropdown">
+                <button class="drop-btn">@loguser.Username</button>
+                <div class="dropdown-menu">
+                    <a href="#">@Html.ActionLink("Change Password", "ChangePassword", "Login")</a>
+                    <a href="#">@Html.ActionLink("Log out", "Index", "Login")</a>
+                </div>
+
+            </div>
+            @*<li>@Html.ActionLink("Change Password", "ChangePassword", "Login")</li>
+                <li>@Html.ActionLink("Log out", "Index", "Login")</li>*@
+        }
+    </div>
+}

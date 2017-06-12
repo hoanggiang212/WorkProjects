@@ -1,0 +1,2091 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TKTDSXModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BI_COLOR_CDOAN">
+          <Key>
+            <PropertyRef Name="CDOAN" />
+          </Key>
+          <Property Name="CDOAN" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="COLORCODE" Type="nvarchar" MaxLength="9" Nullable="false" />
+          <Property Name="COLORCODEKH" Type="nvarchar" MaxLength="9" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BI_CPTH">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="ZYEAR" />
+            <PropertyRef Name="ZMONTH" />
+            <PropertyRef Name="ZWEEK" />
+            <PropertyRef Name="ZDATE" />
+            <PropertyRef Name="CNTCD" />
+            <PropertyRef Name="ZZCNT" />
+          </Key>
+          <Property Name="MANDT" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="SYSID" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="ZYEAR" Type="nchar" MaxLength="4" Nullable="false" />
+          <Property Name="ZMONTH" Type="nchar" MaxLength="2" Nullable="false" />
+          <Property Name="ZWEEK" Type="nchar" MaxLength="2" Nullable="false" />
+          <Property Name="ZDATE" Type="smalldatetime" Nullable="false" />
+          <Property Name="CNTCD" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="ZZCNT" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="ZCHUYN" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ZWRKCT" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ZKHVUC" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ZNGANH" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ZCDOAN" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="MENGE" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="MEINS" Type="nvarchar" MaxLength="10" />
+          <Property Name="DSOSX" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="DSFOB" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="WAERS" Type="nvarchar" MaxLength="10" />
+          <Property Name="DSOSX_USD" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="DSFOB_USD" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="WAERS_USD" Type="nvarchar" MaxLength="10" />
+          <Property Name="ZVTKH" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="ZNCKH" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="ZTSKH" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="ZCLKH_SX" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="ZCLKH_FOB" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="ZVTTH" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="ZNCTH" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="ZTSTH" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="ZCLTH_SX" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="ZCLTH_FOB" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="ERNAM" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="BI_PHAN_QUYEN">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="CapDo" />
+            <PropertyRef Name="GiaTri" />
+          </Key>
+          <Property Name="MANDT" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="SYSID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CapDo" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="GiaTri" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DGCapDo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DGGiaTri" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Ghi chu" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="BI_SANLUONG_ONLINE">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="NGAY" />
+            <PropertyRef Name="ZZCNT" />
+            <PropertyRef Name="CNTCD" />
+          </Key>
+          <Property Name="MANDT" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="SYSID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="NGAY" Type="smalldatetime" Nullable="false" />
+          <Property Name="ZZCNT" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="CNTCD" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="SLLD" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSUAT" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="GIOLV" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="KHGIO" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="KHNGAY" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="THNGAY" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="CHLECH" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="DATKH" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="MEINS" Type="nvarchar" MaxLength="10" />
+          <Property Name="GIO01" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO02" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO03" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO04" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO05" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO06" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO07" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO08" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO09" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO10" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO11" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO12" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO13" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO14" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO15" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO16" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO17" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO18" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO19" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO20" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO21" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO22" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO23" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO24" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="ZIACT" Type="char" MaxLength="1" />
+          <Property Name="gio_dalam" Type="numeric" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="BI_SANLUONG_ONLINE_TEMP">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="NGAY" />
+            <PropertyRef Name="ZZCNT" />
+            <PropertyRef Name="CNTCD" />
+          </Key>
+          <Property Name="MANDT" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="SYSID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="NGAY" Type="smalldatetime" Nullable="false" />
+          <Property Name="ZZCNT" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="CNTCD" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="SLLD" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSUAT" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="GIOLV" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="KHGIO" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="KHNGAY" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="THNGAY" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="CHLECH" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="DATKH" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="MEINS" Type="nvarchar" MaxLength="10" />
+          <Property Name="GIO01" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO02" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO03" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO04" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO05" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO06" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO07" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO08" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO09" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO10" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO11" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO12" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO13" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO14" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO15" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO16" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO17" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO18" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO19" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO20" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO21" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO22" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO23" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO24" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="ZIACT" Type="char" MaxLength="1" />
+          <Property Name="gio_dalam" Type="numeric" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="BI_SLKH_CH">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="NAM" />
+            <PropertyRef Name="THANG" />
+            <PropertyRef Name="ZZCNT" />
+            <PropertyRef Name="NGANH" />
+            <PropertyRef Name="KHVUC" />
+            <PropertyRef Name="WRKCT" />
+            <PropertyRef Name="CNTCD" />
+          </Key>
+          <Property Name="MANDT" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="SYSID" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="NAM" Type="nchar" MaxLength="4" Nullable="false" />
+          <Property Name="THANG" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="ZZCNT" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="NGANH" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="KHVUC" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="WRKCT" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CNTCD" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="CHUYN" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="XUONG" Type="nvarchar" MaxLength="20" />
+          <Property Name="CDOAN" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="FIRSTDAY" Type="smalldatetime" Nullable="false" />
+          <Property Name="DONVI" Type="nvarchar" MaxLength="20" />
+          <Property Name="SLTONG" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY01" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY02" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY03" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY04" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY05" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY06" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY07" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY08" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY09" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY10" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY11" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY12" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY13" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY14" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY15" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY16" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY17" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY18" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY19" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY20" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY21" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY22" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY23" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY24" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY25" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY26" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY27" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY28" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY29" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY30" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY31" Type="numeric" Precision="10" Scale="0" />
+        </EntityType>
+        <EntityType Name="BI_SLKH_WC">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="NAM" />
+            <PropertyRef Name="THANG" />
+            <PropertyRef Name="KHVUC" />
+            <PropertyRef Name="WRKCT" />
+            <PropertyRef Name="CNTCD" />
+          </Key>
+          <Property Name="MANDT" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="SYSID" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="NAM" Type="nchar" MaxLength="4" Nullable="false" />
+          <Property Name="THANG" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="KHVUC" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="WRKCT" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CNTCD" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="FIRSTDAY" Type="smalldatetime" Nullable="false" />
+          <Property Name="NGANH" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="XUONG" Type="nvarchar" MaxLength="20" />
+          <Property Name="CDOAN" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DONVI" Type="nvarchar" MaxLength="20" />
+          <Property Name="SLTONG" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY01" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY02" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY03" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY04" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY05" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY06" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY07" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY08" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY09" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY10" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY11" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY12" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY13" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY14" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY15" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY16" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY17" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY18" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY19" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY20" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY21" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY22" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY23" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY24" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY25" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY26" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY27" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY28" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY29" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY30" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="NGAY31" Type="numeric" Precision="10" Scale="0" />
+        </EntityType>
+        <EntityType Name="BI_SLLD_CHUYEN">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="PDATUM" />
+            <PropertyRef Name="ZZCNT" />
+          </Key>
+          <Property Name="MANDT" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="SYSID" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="PDATUM" Type="smalldatetime" Nullable="false" />
+          <Property Name="ZZCNT" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="XUONG" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="WRKCT" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="KHVUC" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="NGANH" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="SLLD" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BI_SLLDNS">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="PDATUM" />
+            <PropertyRef Name="CAPDO" />
+            <PropertyRef Name="BOPHAN" />
+            <PropertyRef Name="CDOAN" />
+          </Key>
+          <Property Name="MANDT" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="SYSID" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="PDATUM" Type="smalldatetime" Nullable="false" />
+          <Property Name="CAPDO" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="BOPHAN" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CDOAN" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="LTEXT" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SANLUONG" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SLLD" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NANGSUAT" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="ZYEAR" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="ZMONTH" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="ZWEEK" Type="nvarchar" MaxLength="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BI_SLSX_CHUYEN_NGAY">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="PDATUM" />
+            <PropertyRef Name="ZZCNT" />
+            <PropertyRef Name="CNTCD" />
+          </Key>
+          <Property Name="MANDT" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="SYSID" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="PDATUM" Type="smalldatetime" Nullable="false" />
+          <Property Name="ZZCNT" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="CNTCD" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="NGANH" Type="nvarchar" MaxLength="20" />
+          <Property Name="KHVUC" Type="nvarchar" MaxLength="20" />
+          <Property Name="WRKCT" Type="nvarchar" MaxLength="20" />
+          <Property Name="ZXUONG" Type="nvarchar" MaxLength="20" />
+          <Property Name="CHUYN" Type="nvarchar" MaxLength="20" />
+          <Property Name="CDOAN" Type="nvarchar" MaxLength="20" />
+          <Property Name="LTEXT" Type="nvarchar" MaxLength="50" />
+          <Property Name="DAURA_WC" Type="nvarchar" MaxLength="20" />
+          <Property Name="DAURA_KV" Type="nvarchar" MaxLength="20" />
+          <Property Name="COLOR_CH" Type="nvarchar" MaxLength="50" />
+          <Property Name="ZYEAR" Type="nchar" MaxLength="4" />
+          <Property Name="ZMONTH" Type="nchar" MaxLength="2" />
+          <Property Name="ZWEEK" Type="nchar" MaxLength="2" />
+          <Property Name="SLLD" Type="numeric" Precision="5" Scale="0" />
+          <Property Name="SLLD_FULL" Type="numeric" Precision="5" Scale="0" />
+          <Property Name="NSUAT" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="LK_NGAY" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO01" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO02" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO03" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO04" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO05" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO06" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO07" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO08" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO09" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO10" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO11" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO12" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO13" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO14" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO15" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO16" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO17" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO18" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO19" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO20" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO21" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO22" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO23" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO24" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="MEINS" Type="nvarchar" MaxLength="10" />
+          <Property Name="LSTDATE" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="BI_SLSX_CHUYEN_TUAN">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="ZYEAR" />
+            <PropertyRef Name="ZWEEK" />
+            <PropertyRef Name="ZZCNT" />
+            <PropertyRef Name="CNTCD" />
+          </Key>
+          <Property Name="MANDT" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="SYSID" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="ZYEAR" Type="nchar" MaxLength="4" Nullable="false" />
+          <Property Name="ZWEEK" Type="nchar" MaxLength="2" Nullable="false" />
+          <Property Name="ZZCNT" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="CNTCD" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="NGANH" Type="nvarchar" MaxLength="20" />
+          <Property Name="KHVUC" Type="nvarchar" MaxLength="20" />
+          <Property Name="WRKCT" Type="nvarchar" MaxLength="20" />
+          <Property Name="XUONG" Type="nvarchar" MaxLength="20" />
+          <Property Name="CHUYN" Type="nvarchar" MaxLength="20" />
+          <Property Name="CDOAN" Type="nvarchar" MaxLength="20" />
+          <Property Name="LTEXT" Type="nvarchar" MaxLength="50" />
+          <Property Name="DAURA_WC" Type="nvarchar" MaxLength="20" />
+          <Property Name="DAURA_KV" Type="nvarchar" MaxLength="20" />
+          <Property Name="LK_TUAN" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLDBQ" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY01" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD01" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY02" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD02" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY03" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD03" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY04" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD04" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY05" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD05" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY06" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD06" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY07" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD07" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="MEINS" Type="nvarchar" MaxLength="10" />
+          <Property Name="LSTDATE" Type="smalldatetime" />
+          <Property Name="FRSTDAYWK" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BI_SLSX_CHUYEN_THANG">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="ZYEAR" />
+            <PropertyRef Name="ZMONTH" />
+            <PropertyRef Name="ZZCNT" />
+            <PropertyRef Name="CNTCD" />
+          </Key>
+          <Property Name="MANDT" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="SYSID" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="ZYEAR" Type="nchar" MaxLength="4" Nullable="false" />
+          <Property Name="ZMONTH" Type="nchar" MaxLength="2" Nullable="false" />
+          <Property Name="ZZCNT" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="CNTCD" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="NGANH" Type="nvarchar" MaxLength="20" />
+          <Property Name="KHVUC" Type="nvarchar" MaxLength="20" />
+          <Property Name="WRKCT" Type="nvarchar" MaxLength="20" />
+          <Property Name="XUONG" Type="nvarchar" MaxLength="20" />
+          <Property Name="CHUYN" Type="nvarchar" MaxLength="20" />
+          <Property Name="CDOAN" Type="nvarchar" MaxLength="20" />
+          <Property Name="LTEXT" Type="nvarchar" MaxLength="50" />
+          <Property Name="DAURA_WC" Type="nvarchar" MaxLength="20" />
+          <Property Name="DAURA_KV" Type="nvarchar" MaxLength="20" />
+          <Property Name="LK_THANG" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLDBQ" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY01" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD01" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY02" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD02" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY03" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD03" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY04" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD04" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY05" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD05" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY06" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD06" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY07" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD07" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY08" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD08" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY09" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD09" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY10" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD10" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY11" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD11" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY12" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD12" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY13" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD13" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY14" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD14" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY15" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD15" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY16" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD16" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY17" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD17" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY18" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD18" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY19" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD19" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY20" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD20" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY21" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD21" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY22" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD22" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY23" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD23" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY24" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD24" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY25" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD25" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY26" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD26" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY27" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD27" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY28" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD28" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY29" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD29" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY30" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD30" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NGAY31" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSLD31" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="MEINS" Type="nvarchar" MaxLength="10" />
+          <Property Name="LSTDATE" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="BI_TONGLD">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="PDATUM" />
+            <PropertyRef Name="CAPDO" />
+            <PropertyRef Name="BOPHAN" />
+          </Key>
+          <Property Name="MANDT" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="SYSID" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="PDATUM" Type="smalldatetime" Nullable="false" />
+          <Property Name="CAPDO" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="BOPHAN" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="TONGLD" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="ZYEAR" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="ZMONTH" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="ZWEEK" Type="nvarchar" MaxLength="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BI_USER">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="MANDT" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="SYSID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="GhiChu" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="BI_ZQLSX">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="ZZCNT" />
+          </Key>
+          <Property Name="MANDT" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="SYSID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="ZZCNT" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="NGANH" Type="nvarchar" MaxLength="20" />
+          <Property Name="KHVUC" Type="nvarchar" MaxLength="20" />
+          <Property Name="WRKCT" Type="nvarchar" MaxLength="20" />
+          <Property Name="XUONG" Type="nvarchar" MaxLength="20" />
+          <Property Name="CHUYN" Type="nvarchar" MaxLength="20" />
+          <Property Name="TNNG" Type="nvarchar" MaxLength="50" />
+          <Property Name="TNKV" Type="nvarchar" MaxLength="50" />
+          <Property Name="TNWC" Type="nvarchar" MaxLength="50" />
+          <Property Name="TNXG" Type="nvarchar" MaxLength="50" />
+          <Property Name="TNCH" Type="nvarchar" MaxLength="50" />
+          <Property Name="QLCH" Type="nvarchar" MaxLength="50" />
+          <Property Name="QLWC" Type="nvarchar" MaxLength="50" />
+          <Property Name="QLKV" Type="nvarchar" MaxLength="50" />
+          <Property Name="CDOAN" Type="nvarchar" MaxLength="20" />
+          <Property Name="CH_CHAT" Type="nvarchar" MaxLength="1" />
+          <Property Name="DAURA_WC" Type="nvarchar" MaxLength="20" />
+          <Property Name="DAURA_KV" Type="nvarchar" MaxLength="20" />
+          <Property Name="ZGROUP" Type="nvarchar" MaxLength="20" />
+          <Property Name="GIACONG" Type="nvarchar" MaxLength="1" />
+          <Property Name="MUANGOAI" Type="nvarchar" MaxLength="1" />
+          <Property Name="ZDB_CH" Type="nvarchar" MaxLength="1" />
+          <Property Name="ZGCNG" Type="nvarchar" MaxLength="1" />
+          <Property Name="ZIACT" Type="nvarchar" MaxLength="1" />
+          <Property Name="TENCD" Type="nvarchar" MaxLength="50" />
+          <Property Name="NCOLOR" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TKTDSX.dbo.VW_SL_ONLINE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_SL_ONLINE">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="NGAY" />
+            <PropertyRef Name="ZZCNT" />
+            <PropertyRef Name="CNTCD" />
+          </Key>
+          <Property Name="MANDT" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="SYSID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="NGAY" Type="smalldatetime" Nullable="false" />
+          <Property Name="ZZCNT" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="CNTCD" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="SLLD" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NSUAT" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="GIOLV" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="KHGIO" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="KHNGAY" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="THNGAY" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="CHLECH" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="DATKH" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="MEINS" Type="nvarchar" MaxLength="10" />
+          <Property Name="GIO01" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO02" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO03" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO04" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO05" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO06" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO07" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO08" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO09" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO10" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO11" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO12" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO13" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO14" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO15" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO16" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO17" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO18" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO19" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO20" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO21" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO22" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO23" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIO24" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="ZIACT" Type="char" MaxLength="1" />
+          <Property Name="TENCD" Type="nvarchar" MaxLength="50" />
+          <Property Name="NGANH" Type="nvarchar" MaxLength="20" />
+          <Property Name="WRKCT" Type="nvarchar" MaxLength="20" />
+          <Property Name="XUONG" Type="nvarchar" MaxLength="20" />
+          <Property Name="CHUYN" Type="nvarchar" MaxLength="20" />
+          <Property Name="TNNG" Type="nvarchar" MaxLength="50" />
+          <Property Name="TNKV" Type="nvarchar" MaxLength="50" />
+          <Property Name="TNWC" Type="nvarchar" MaxLength="50" />
+          <Property Name="TNXG" Type="nvarchar" MaxLength="50" />
+          <Property Name="TNCH" Type="nvarchar" MaxLength="50" />
+          <Property Name="QLCH" Type="nvarchar" MaxLength="50" />
+          <Property Name="QLWC" Type="nvarchar" MaxLength="50" />
+          <Property Name="QLKV" Type="nvarchar" MaxLength="50" />
+          <Property Name="CDOAN" Type="nvarchar" MaxLength="20" />
+          <Property Name="DAURA_WC" Type="nvarchar" MaxLength="20" />
+          <Property Name="DAURA_KV" Type="nvarchar" MaxLength="20" />
+          <Property Name="KHVUC" Type="nvarchar" MaxLength="20" />
+          <Property Name="gio_dalam" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NCOLOR" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TKTDSX.dbo.VW_TKLD' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_TKLD">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="PDATUM" />
+            <PropertyRef Name="CAPDO" />
+            <PropertyRef Name="BOPHAN" />
+            <PropertyRef Name="SLLD" />
+            <PropertyRef Name="CDOAN" />
+          </Key>
+          <Property Name="MANDT" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="SYSID" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="PDATUM" Type="smalldatetime" Nullable="false" />
+          <Property Name="CAPDO" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="BOPHAN" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="SLLD" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="TONGLD" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="CDOAN" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="TKTDSXModelStoreContainer">
+          <EntitySet Name="BI_COLOR_CDOAN" EntityType="Self.BI_COLOR_CDOAN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BI_CPTH" EntityType="Self.BI_CPTH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BI_PHAN_QUYEN" EntityType="Self.BI_PHAN_QUYEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BI_SANLUONG_ONLINE" EntityType="Self.BI_SANLUONG_ONLINE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BI_SANLUONG_ONLINE_TEMP" EntityType="Self.BI_SANLUONG_ONLINE_TEMP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BI_SLKH_CH" EntityType="Self.BI_SLKH_CH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BI_SLKH_WC" EntityType="Self.BI_SLKH_WC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BI_SLLD_CHUYEN" EntityType="Self.BI_SLLD_CHUYEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BI_SLLDNS" EntityType="Self.BI_SLLDNS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BI_SLSX_CHUYEN_NGAY" EntityType="Self.BI_SLSX_CHUYEN_NGAY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BI_SLSX_CHUYEN_TUAN" EntityType="Self.BI_SLSX_CHUYEN_TUAN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BI_SLSX_CHUYEN_THANG" EntityType="Self.BI_SLSX_CHUYEN_THANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BI_TONGLD" EntityType="Self.BI_TONGLD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BI_USER" EntityType="Self.BI_USER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BI_ZQLSX" EntityType="Self.BI_ZQLSX" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VW_SL_ONLINE" EntityType="Self.VW_SL_ONLINE" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_SL_ONLINE].[MANDT] AS [MANDT], 
+    [VW_SL_ONLINE].[SYSID] AS [SYSID], 
+    [VW_SL_ONLINE].[NGAY] AS [NGAY], 
+    [VW_SL_ONLINE].[ZZCNT] AS [ZZCNT], 
+    [VW_SL_ONLINE].[CNTCD] AS [CNTCD], 
+    [VW_SL_ONLINE].[SLLD] AS [SLLD], 
+    [VW_SL_ONLINE].[NSUAT] AS [NSUAT], 
+    [VW_SL_ONLINE].[GIOLV] AS [GIOLV], 
+    [VW_SL_ONLINE].[KHGIO] AS [KHGIO], 
+    [VW_SL_ONLINE].[KHNGAY] AS [KHNGAY], 
+    [VW_SL_ONLINE].[THNGAY] AS [THNGAY], 
+    [VW_SL_ONLINE].[CHLECH] AS [CHLECH], 
+    [VW_SL_ONLINE].[DATKH] AS [DATKH], 
+    [VW_SL_ONLINE].[MEINS] AS [MEINS], 
+    [VW_SL_ONLINE].[GIO01] AS [GIO01], 
+    [VW_SL_ONLINE].[GIO02] AS [GIO02], 
+    [VW_SL_ONLINE].[GIO03] AS [GIO03], 
+    [VW_SL_ONLINE].[GIO04] AS [GIO04], 
+    [VW_SL_ONLINE].[GIO05] AS [GIO05], 
+    [VW_SL_ONLINE].[GIO06] AS [GIO06], 
+    [VW_SL_ONLINE].[GIO07] AS [GIO07], 
+    [VW_SL_ONLINE].[GIO08] AS [GIO08], 
+    [VW_SL_ONLINE].[GIO09] AS [GIO09], 
+    [VW_SL_ONLINE].[GIO10] AS [GIO10], 
+    [VW_SL_ONLINE].[GIO11] AS [GIO11], 
+    [VW_SL_ONLINE].[GIO12] AS [GIO12], 
+    [VW_SL_ONLINE].[GIO13] AS [GIO13], 
+    [VW_SL_ONLINE].[GIO14] AS [GIO14], 
+    [VW_SL_ONLINE].[GIO15] AS [GIO15], 
+    [VW_SL_ONLINE].[GIO16] AS [GIO16], 
+    [VW_SL_ONLINE].[GIO17] AS [GIO17], 
+    [VW_SL_ONLINE].[GIO18] AS [GIO18], 
+    [VW_SL_ONLINE].[GIO19] AS [GIO19], 
+    [VW_SL_ONLINE].[GIO20] AS [GIO20], 
+    [VW_SL_ONLINE].[GIO21] AS [GIO21], 
+    [VW_SL_ONLINE].[GIO22] AS [GIO22], 
+    [VW_SL_ONLINE].[GIO23] AS [GIO23], 
+    [VW_SL_ONLINE].[GIO24] AS [GIO24], 
+    [VW_SL_ONLINE].[ZIACT] AS [ZIACT], 
+    [VW_SL_ONLINE].[TENCD] AS [TENCD], 
+    [VW_SL_ONLINE].[NGANH] AS [NGANH], 
+    [VW_SL_ONLINE].[WRKCT] AS [WRKCT], 
+    [VW_SL_ONLINE].[XUONG] AS [XUONG], 
+    [VW_SL_ONLINE].[CHUYN] AS [CHUYN], 
+    [VW_SL_ONLINE].[TNNG] AS [TNNG], 
+    [VW_SL_ONLINE].[TNKV] AS [TNKV], 
+    [VW_SL_ONLINE].[TNWC] AS [TNWC], 
+    [VW_SL_ONLINE].[TNXG] AS [TNXG], 
+    [VW_SL_ONLINE].[TNCH] AS [TNCH], 
+    [VW_SL_ONLINE].[QLCH] AS [QLCH], 
+    [VW_SL_ONLINE].[QLWC] AS [QLWC], 
+    [VW_SL_ONLINE].[QLKV] AS [QLKV], 
+    [VW_SL_ONLINE].[CDOAN] AS [CDOAN], 
+    [VW_SL_ONLINE].[DAURA_WC] AS [DAURA_WC], 
+    [VW_SL_ONLINE].[DAURA_KV] AS [DAURA_KV], 
+    [VW_SL_ONLINE].[KHVUC] AS [KHVUC], 
+    [VW_SL_ONLINE].[gio_dalam] AS [gio_dalam], 
+    [VW_SL_ONLINE].[NCOLOR] AS [NCOLOR]
+    FROM [dbo].[VW_SL_ONLINE] AS [VW_SL_ONLINE]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_TKLD" EntityType="Self.VW_TKLD" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_TKLD].[MANDT] AS [MANDT], 
+    [VW_TKLD].[SYSID] AS [SYSID], 
+    [VW_TKLD].[PDATUM] AS [PDATUM], 
+    [VW_TKLD].[CAPDO] AS [CAPDO], 
+    [VW_TKLD].[BOPHAN] AS [BOPHAN], 
+    [VW_TKLD].[SLLD] AS [SLLD], 
+    [VW_TKLD].[TONGLD] AS [TONGLD], 
+    [VW_TKLD].[CDOAN] AS [CDOAN]
+    FROM [dbo].[VW_TKLD] AS [VW_TKLD]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TKTDSXModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BI_COLOR_CDOAN">
+          <Key>
+            <PropertyRef Name="CDOAN" />
+          </Key>
+          <Property Name="CDOAN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="COLORCODE" Type="String" MaxLength="9" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="COLORCODEKH" Type="String" MaxLength="9" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BI_CPTH">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="ZYEAR" />
+            <PropertyRef Name="ZMONTH" />
+            <PropertyRef Name="ZWEEK" />
+            <PropertyRef Name="ZDATE" />
+            <PropertyRef Name="CNTCD" />
+            <PropertyRef Name="ZZCNT" />
+          </Key>
+          <Property Name="MANDT" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="SYSID" Type="String" MaxLength="8" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ZYEAR" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ZMONTH" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ZWEEK" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ZDATE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CNTCD" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ZZCNT" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ZCHUYN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ZWRKCT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ZKHVUC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ZNGANH" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ZCDOAN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MENGE" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MEINS" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DSOSX" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DSFOB" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="WAERS" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DSOSX_USD" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DSFOB_USD" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="WAERS_USD" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ZVTKH" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ZNCKH" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ZTSKH" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ZCLKH_SX" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ZCLKH_FOB" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ZVTTH" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ZNCTH" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ZTSTH" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ZCLTH_SX" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ZCLTH_FOB" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ERNAM" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BI_PHAN_QUYEN">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="CapDo" />
+            <PropertyRef Name="GiaTri" />
+          </Key>
+          <Property Name="MANDT" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SYSID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CapDo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GiaTri" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DGCapDo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DGGiaTri" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ghi_chu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BI_SLKH_WC">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="NAM" />
+            <PropertyRef Name="THANG" />
+            <PropertyRef Name="KHVUC" />
+            <PropertyRef Name="WRKCT" />
+            <PropertyRef Name="CNTCD" />
+          </Key>
+          <Property Name="MANDT" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="SYSID" Type="String" MaxLength="8" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="NAM" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="THANG" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KHVUC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WRKCT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CNTCD" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FIRSTDAY" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="NGANH" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="XUONG" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CDOAN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DONVI" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SLTONG" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY01" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY02" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY03" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY04" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY05" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY06" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY07" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY08" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY09" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY10" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY11" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY12" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY13" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY14" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY15" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY16" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY17" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY18" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY19" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY20" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY21" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY22" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY23" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY24" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY25" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY26" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY27" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY28" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY29" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY30" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY31" Type="Decimal" Precision="10" Scale="0" />
+        </EntityType>
+        <EntityType Name="BI_SLLD_CHUYEN">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="PDATUM" />
+            <PropertyRef Name="ZZCNT" />
+          </Key>
+          <Property Name="MANDT" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="SYSID" Type="String" MaxLength="8" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="PDATUM" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ZZCNT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="XUONG" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WRKCT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KHVUC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NGANH" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SLLD" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BI_SLLDNS">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="PDATUM" />
+            <PropertyRef Name="CAPDO" />
+            <PropertyRef Name="BOPHAN" />
+            <PropertyRef Name="CDOAN" />
+          </Key>
+          <Property Name="MANDT" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="SYSID" Type="String" MaxLength="8" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="PDATUM" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CAPDO" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BOPHAN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CDOAN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LTEXT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SANLUONG" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SLLD" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NANGSUAT" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="ZYEAR" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ZMONTH" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ZWEEK" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BI_SLSX_CHUYEN_NGAY">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="PDATUM" />
+            <PropertyRef Name="ZZCNT" />
+            <PropertyRef Name="CNTCD" />
+          </Key>
+          <Property Name="MANDT" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="SYSID" Type="String" MaxLength="8" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="PDATUM" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ZZCNT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CNTCD" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NGANH" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="KHVUC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="WRKCT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ZXUONG" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CHUYN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CDOAN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LTEXT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DAURA_WC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DAURA_KV" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="COLOR_CH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ZYEAR" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
+          <Property Name="ZMONTH" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+          <Property Name="ZWEEK" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+          <Property Name="SLLD" Type="Decimal" Precision="5" Scale="0" />
+          <Property Name="SLLD_FULL" Type="Decimal" Precision="5" Scale="0" />
+          <Property Name="NSUAT" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="LK_NGAY" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO01" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO02" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO03" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO04" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO05" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO06" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO07" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO08" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO09" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO10" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO11" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO12" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO13" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO14" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO15" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO16" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO17" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO18" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO19" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO20" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO21" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO22" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO23" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO24" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MEINS" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="LSTDATE" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="BI_SLSX_CHUYEN_THANG">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="ZYEAR" />
+            <PropertyRef Name="ZMONTH" />
+            <PropertyRef Name="ZZCNT" />
+            <PropertyRef Name="CNTCD" />
+          </Key>
+          <Property Name="MANDT" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="SYSID" Type="String" MaxLength="8" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ZYEAR" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ZMONTH" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ZZCNT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CNTCD" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NGANH" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="KHVUC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="WRKCT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="XUONG" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CHUYN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CDOAN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LTEXT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DAURA_WC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DAURA_KV" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LK_THANG" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLDBQ" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY01" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD01" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY02" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD02" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY03" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD03" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY04" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD04" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY05" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD05" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY06" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD06" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY07" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD07" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY08" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD08" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY09" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD09" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY10" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD10" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY11" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD11" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY12" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD12" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY13" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD13" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY14" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD14" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY15" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD15" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY16" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD16" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY17" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD17" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY18" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD18" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY19" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD19" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY20" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD20" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY21" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD21" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY22" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD22" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY23" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD23" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY24" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD24" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY25" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD25" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY26" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD26" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY27" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD27" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY28" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD28" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY29" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD29" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY30" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD30" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY31" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD31" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="MEINS" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="LSTDATE" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="BI_SLSX_CHUYEN_TUAN">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="ZYEAR" />
+            <PropertyRef Name="ZWEEK" />
+            <PropertyRef Name="ZZCNT" />
+            <PropertyRef Name="CNTCD" />
+          </Key>
+          <Property Name="MANDT" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="SYSID" Type="String" MaxLength="8" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ZYEAR" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ZWEEK" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ZZCNT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CNTCD" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NGANH" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="KHVUC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="WRKCT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="XUONG" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CHUYN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CDOAN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LTEXT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DAURA_WC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DAURA_KV" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LK_TUAN" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLDBQ" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY01" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD01" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY02" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD02" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY03" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD03" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY04" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD04" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY05" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD05" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY06" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD06" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY07" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSLD07" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="MEINS" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="LSTDATE" Type="DateTime" Precision="0" />
+          <Property Name="FRSTDAYWK" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="BI_TONGLD">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="PDATUM" />
+            <PropertyRef Name="CAPDO" />
+            <PropertyRef Name="BOPHAN" />
+          </Key>
+          <Property Name="MANDT" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="SYSID" Type="String" MaxLength="8" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="PDATUM" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CAPDO" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BOPHAN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TONGLD" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ZYEAR" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ZMONTH" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ZWEEK" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BI_ZQLSX">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="ZZCNT" />
+          </Key>
+          <Property Name="MANDT" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="SYSID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ZZCNT" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="NGANH" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="KHVUC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="WRKCT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="XUONG" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CHUYN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TNNG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TNKV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TNWC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TNXG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TNCH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="QLCH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="QLWC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="QLKV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CDOAN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CH_CHAT" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="DAURA_WC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DAURA_KV" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ZGROUP" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="GIACONG" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="MUANGOAI" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="ZDB_CH" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="ZGCNG" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="ZIACT" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="TENCD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NCOLOR" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="TKTDSXEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BI_COLOR_CDOAN" EntityType="Self.BI_COLOR_CDOAN" />
+          <EntitySet Name="BI_CPTH" EntityType="Self.BI_CPTH" />
+          <EntitySet Name="BI_PHAN_QUYEN" EntityType="Self.BI_PHAN_QUYEN" />
+          <EntitySet Name="BI_SLKH_WC" EntityType="Self.BI_SLKH_WC" />
+          <EntitySet Name="BI_SLLD_CHUYEN" EntityType="Self.BI_SLLD_CHUYEN" />
+          <EntitySet Name="BI_SLLDNS" EntityType="Self.BI_SLLDNS" />
+          <EntitySet Name="BI_SLSX_CHUYEN_NGAY" EntityType="Self.BI_SLSX_CHUYEN_NGAY" />
+          <EntitySet Name="BI_SLSX_CHUYEN_THANG" EntityType="Self.BI_SLSX_CHUYEN_THANG" />
+          <EntitySet Name="BI_SLSX_CHUYEN_TUAN" EntityType="Self.BI_SLSX_CHUYEN_TUAN" />
+          <EntitySet Name="BI_TONGLD" EntityType="Self.BI_TONGLD" />
+          <EntitySet Name="BI_ZQLSX" EntityType="Self.BI_ZQLSX" />
+          <EntitySet Name="BI_SLKH_CH" EntityType="TKTDSXModel.BI_SLKH_CH" />
+          <EntitySet Name="BI_SANLUONG_ONLINE" EntityType="TKTDSXModel.BI_SANLUONG_ONLINE" />
+          <EntitySet Name="VW_SL_ONLINE" EntityType="TKTDSXModel.VW_SL_ONLINE" />
+          <EntitySet Name="BI_USER" EntityType="TKTDSXModel.BI_USER" />
+          <EntitySet Name="VW_TKLD" EntityType="TKTDSXModel.VW_TKLD" />
+          <EntitySet Name="BI_SANLUONG_ONLINE_TEMP" EntityType="TKTDSXModel.BI_SANLUONG_ONLINE_TEMP" />
+        </EntityContainer>
+        <EntityType Name="BI_SLKH_CH">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="NAM" />
+            <PropertyRef Name="THANG" />
+            <PropertyRef Name="ZZCNT" />
+            <PropertyRef Name="NGANH" />
+            <PropertyRef Name="KHVUC" />
+            <PropertyRef Name="WRKCT" />
+            <PropertyRef Name="CNTCD" />
+          </Key>
+          <Property Name="MANDT" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="SYSID" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="true" />
+          <Property Name="NAM" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="true" />
+          <Property Name="THANG" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="ZZCNT" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="NGANH" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="KHVUC" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="WRKCT" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CNTCD" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="CHUYN" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="XUONG" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CDOAN" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FIRSTDAY" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DONVI" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SLTONG" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY01" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY02" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY03" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY04" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY05" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY06" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY07" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY08" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY09" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY10" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY11" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY12" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY13" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY14" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY15" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY16" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY17" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY18" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY19" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY20" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY21" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY22" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY23" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY24" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY25" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY26" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY27" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY28" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY29" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY30" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NGAY31" Type="Decimal" Precision="10" Scale="0" />
+        </EntityType>
+        <EntityType Name="BI_SANLUONG_ONLINE">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="NGAY" />
+            <PropertyRef Name="ZZCNT" />
+            <PropertyRef Name="CNTCD" />
+          </Key>
+          <Property Name="MANDT" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="SYSID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="NGAY" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ZZCNT" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="CNTCD" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="SLLD" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSUAT" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="GIOLV" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KHGIO" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="KHNGAY" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="THNGAY" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CHLECH" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DATKH" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="MEINS" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="GIO01" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO02" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO03" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO04" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO05" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO06" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO07" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO08" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO09" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO10" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO11" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO12" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO13" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO14" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO15" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO16" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO17" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO18" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO19" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO20" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO21" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO22" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO23" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO24" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ZIACT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="gio_dalam" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="VW_SL_ONLINE">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="NGAY" />
+            <PropertyRef Name="ZZCNT" />
+            <PropertyRef Name="CNTCD" />
+          </Key>
+          <Property Name="MANDT" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="SYSID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="NGAY" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ZZCNT" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="CNTCD" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="SLLD" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSUAT" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="GIOLV" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KHGIO" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="KHNGAY" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="THNGAY" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CHLECH" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DATKH" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="MEINS" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="GIO01" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO02" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO03" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO04" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO05" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO06" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO07" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO08" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO09" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO10" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO11" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO12" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO13" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO14" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO15" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO16" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO17" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO18" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO19" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO20" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO21" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO22" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO23" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO24" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ZIACT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="TENCD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NGANH" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="WRKCT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="XUONG" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CHUYN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TNNG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TNKV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TNWC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TNXG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TNCH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="QLCH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="QLWC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="QLKV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CDOAN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DAURA_WC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DAURA_KV" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="KHVUC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="gio_dalam" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NCOLOR" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="BI_USER">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="MANDT" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="SYSID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="GhiChu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="VW_TKLD">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="PDATUM" />
+            <PropertyRef Name="CAPDO" />
+            <PropertyRef Name="BOPHAN" />
+            <PropertyRef Name="SLLD" />
+            <PropertyRef Name="CDOAN" />
+          </Key>
+          <Property Name="MANDT" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="SYSID" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="true" />
+          <Property Name="PDATUM" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CAPDO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="BOPHAN" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SLLD" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="TONGLD" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CDOAN" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BI_SANLUONG_ONLINE_TEMP">
+          <Key>
+            <PropertyRef Name="MANDT" />
+            <PropertyRef Name="SYSID" />
+            <PropertyRef Name="NGAY" />
+            <PropertyRef Name="ZZCNT" />
+            <PropertyRef Name="CNTCD" />
+          </Key>
+          <Property Name="MANDT" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="SYSID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="NGAY" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ZZCNT" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="CNTCD" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="SLLD" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NSUAT" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="GIOLV" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KHGIO" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="KHNGAY" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="THNGAY" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CHLECH" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DATKH" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="MEINS" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="GIO01" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO02" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO03" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO04" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO05" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO06" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO07" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO08" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO09" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO10" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO11" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO12" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO13" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO14" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO15" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO16" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO17" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO18" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO19" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO20" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO21" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO22" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO23" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIO24" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ZIACT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="gio_dalam" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TKTDSXModelStoreContainer" CdmEntityContainer="TKTDSXEntities">
+          <EntitySetMapping Name="BI_COLOR_CDOAN">
+            <EntityTypeMapping TypeName="TKTDSXModel.BI_COLOR_CDOAN">
+              <MappingFragment StoreEntitySet="BI_COLOR_CDOAN">
+                <ScalarProperty Name="CDOAN" ColumnName="CDOAN" />
+                <ScalarProperty Name="COLORCODE" ColumnName="COLORCODE" />
+                <ScalarProperty Name="COLORCODEKH" ColumnName="COLORCODEKH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BI_CPTH">
+            <EntityTypeMapping TypeName="TKTDSXModel.BI_CPTH">
+              <MappingFragment StoreEntitySet="BI_CPTH">
+                <ScalarProperty Name="MANDT" ColumnName="MANDT" />
+                <ScalarProperty Name="SYSID" ColumnName="SYSID" />
+                <ScalarProperty Name="ZYEAR" ColumnName="ZYEAR" />
+                <ScalarProperty Name="ZMONTH" ColumnName="ZMONTH" />
+                <ScalarProperty Name="ZWEEK" ColumnName="ZWEEK" />
+                <ScalarProperty Name="ZDATE" ColumnName="ZDATE" />
+                <ScalarProperty Name="CNTCD" ColumnName="CNTCD" />
+                <ScalarProperty Name="ZZCNT" ColumnName="ZZCNT" />
+                <ScalarProperty Name="ZCHUYN" ColumnName="ZCHUYN" />
+                <ScalarProperty Name="ZWRKCT" ColumnName="ZWRKCT" />
+                <ScalarProperty Name="ZKHVUC" ColumnName="ZKHVUC" />
+                <ScalarProperty Name="ZNGANH" ColumnName="ZNGANH" />
+                <ScalarProperty Name="ZCDOAN" ColumnName="ZCDOAN" />
+                <ScalarProperty Name="MENGE" ColumnName="MENGE" />
+                <ScalarProperty Name="MEINS" ColumnName="MEINS" />
+                <ScalarProperty Name="DSOSX" ColumnName="DSOSX" />
+                <ScalarProperty Name="DSFOB" ColumnName="DSFOB" />
+                <ScalarProperty Name="WAERS" ColumnName="WAERS" />
+                <ScalarProperty Name="DSOSX_USD" ColumnName="DSOSX_USD" />
+                <ScalarProperty Name="DSFOB_USD" ColumnName="DSFOB_USD" />
+                <ScalarProperty Name="WAERS_USD" ColumnName="WAERS_USD" />
+                <ScalarProperty Name="ZVTKH" ColumnName="ZVTKH" />
+                <ScalarProperty Name="ZNCKH" ColumnName="ZNCKH" />
+                <ScalarProperty Name="ZTSKH" ColumnName="ZTSKH" />
+                <ScalarProperty Name="ZCLKH_SX" ColumnName="ZCLKH_SX" />
+                <ScalarProperty Name="ZCLKH_FOB" ColumnName="ZCLKH_FOB" />
+                <ScalarProperty Name="ZVTTH" ColumnName="ZVTTH" />
+                <ScalarProperty Name="ZNCTH" ColumnName="ZNCTH" />
+                <ScalarProperty Name="ZTSTH" ColumnName="ZTSTH" />
+                <ScalarProperty Name="ZCLTH_SX" ColumnName="ZCLTH_SX" />
+                <ScalarProperty Name="ZCLTH_FOB" ColumnName="ZCLTH_FOB" />
+                <ScalarProperty Name="ERNAM" ColumnName="ERNAM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BI_PHAN_QUYEN">
+            <EntityTypeMapping TypeName="TKTDSXModel.BI_PHAN_QUYEN">
+              <MappingFragment StoreEntitySet="BI_PHAN_QUYEN">
+                <ScalarProperty Name="MANDT" ColumnName="MANDT" />
+                <ScalarProperty Name="SYSID" ColumnName="SYSID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="CapDo" ColumnName="CapDo" />
+                <ScalarProperty Name="GiaTri" ColumnName="GiaTri" />
+                <ScalarProperty Name="DGCapDo" ColumnName="DGCapDo" />
+                <ScalarProperty Name="DGGiaTri" ColumnName="DGGiaTri" />
+                <ScalarProperty Name="Ghi_chu" ColumnName="Ghi chu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BI_SLKH_WC">
+            <EntityTypeMapping TypeName="TKTDSXModel.BI_SLKH_WC">
+              <MappingFragment StoreEntitySet="BI_SLKH_WC">
+                <ScalarProperty Name="MANDT" ColumnName="MANDT" />
+                <ScalarProperty Name="SYSID" ColumnName="SYSID" />
+                <ScalarProperty Name="NAM" ColumnName="NAM" />
+                <ScalarProperty Name="THANG" ColumnName="THANG" />
+                <ScalarProperty Name="KHVUC" ColumnName="KHVUC" />
+                <ScalarProperty Name="WRKCT" ColumnName="WRKCT" />
+                <ScalarProperty Name="CNTCD" ColumnName="CNTCD" />
+                <ScalarProperty Name="FIRSTDAY" ColumnName="FIRSTDAY" />
+                <ScalarProperty Name="NGANH" ColumnName="NGANH" />
+                <ScalarProperty Name="XUONG" ColumnName="XUONG" />
+                <ScalarProperty Name="CDOAN" ColumnName="CDOAN" />
+                <ScalarProperty Name="DONVI" ColumnName="DONVI" />
+                <ScalarProperty Name="SLTONG" ColumnName="SLTONG" />
+                <ScalarProperty Name="NGAY01" ColumnName="NGAY01" />
+                <ScalarProperty Name="NGAY02" ColumnName="NGAY02" />
+                <ScalarProperty Name="NGAY03" ColumnName="NGAY03" />
+                <ScalarProperty Name="NGAY04" ColumnName="NGAY04" />
+                <ScalarProperty Name="NGAY05" ColumnName="NGAY05" />
+                <ScalarProperty Name="NGAY06" ColumnName="NGAY06" />
+                <ScalarProperty Name="NGAY07" ColumnName="NGAY07" />
+                <ScalarProperty Name="NGAY08" ColumnName="NGAY08" />
+                <ScalarProperty Name="NGAY09" ColumnName="NGAY09" />
+                <ScalarProperty Name="NGAY10" ColumnName="NGAY10" />
+                <ScalarProperty Name="NGAY11" ColumnName="NGAY11" />
+                <ScalarProperty Name="NGAY12" ColumnName="NGAY12" />
+                <ScalarProperty Name="NGAY13" ColumnName="NGAY13" />
+                <ScalarProperty Name="NGAY14" ColumnName="NGAY14" />
+                <ScalarProperty Name="NGAY15" ColumnName="NGAY15" />
+                <ScalarProperty Name="NGAY16" ColumnName="NGAY16" />
+                <ScalarProperty Name="NGAY17" ColumnName="NGAY17" />
+                <ScalarProperty Name="NGAY18" ColumnName="NGAY18" />
+                <ScalarProperty Name="NGAY19" ColumnName="NGAY19" />
+                <ScalarProperty Name="NGAY20" ColumnName="NGAY20" />
+                <ScalarProperty Name="NGAY21" ColumnName="NGAY21" />
+                <ScalarProperty Name="NGAY22" ColumnName="NGAY22" />
+                <ScalarProperty Name="NGAY23" ColumnName="NGAY23" />
+                <ScalarProperty Name="NGAY24" ColumnName="NGAY24" />
+                <ScalarProperty Name="NGAY25" ColumnName="NGAY25" />
+                <ScalarProperty Name="NGAY26" ColumnName="NGAY26" />
+                <ScalarProperty Name="NGAY27" ColumnName="NGAY27" />
+                <ScalarProperty Name="NGAY28" ColumnName="NGAY28" />
+                <ScalarProperty Name="NGAY29" ColumnName="NGAY29" />
+                <ScalarProperty Name="NGAY30" ColumnName="NGAY30" />
+                <ScalarProperty Name="NGAY31" ColumnName="NGAY31" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BI_SLLD_CHUYEN">
+            <EntityTypeMapping TypeName="TKTDSXModel.BI_SLLD_CHUYEN">
+              <MappingFragment StoreEntitySet="BI_SLLD_CHUYEN">
+                <ScalarProperty Name="MANDT" ColumnName="MANDT" />
+                <ScalarProperty Name="SYSID" ColumnName="SYSID" />
+                <ScalarProperty Name="PDATUM" ColumnName="PDATUM" />
+                <ScalarProperty Name="ZZCNT" ColumnName="ZZCNT" />
+                <ScalarProperty Name="XUONG" ColumnName="XUONG" />
+                <ScalarProperty Name="WRKCT" ColumnName="WRKCT" />
+                <ScalarProperty Name="KHVUC" ColumnName="KHVUC" />
+                <ScalarProperty Name="NGANH" ColumnName="NGANH" />
+                <ScalarProperty Name="SLLD" ColumnName="SLLD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BI_SLLDNS">
+            <EntityTypeMapping TypeName="TKTDSXModel.BI_SLLDNS">
+              <MappingFragment StoreEntitySet="BI_SLLDNS">
+                <ScalarProperty Name="MANDT" ColumnName="MANDT" />
+                <ScalarProperty Name="SYSID" ColumnName="SYSID" />
+                <ScalarProperty Name="PDATUM" ColumnName="PDATUM" />
+                <ScalarProperty Name="CAPDO" ColumnName="CAPDO" />
+                <ScalarProperty Name="BOPHAN" ColumnName="BOPHAN" />
+                <ScalarProperty Name="CDOAN" ColumnName="CDOAN" />
+                <ScalarProperty Name="LTEXT" ColumnName="LTEXT" />
+                <ScalarProperty Name="SANLUONG" ColumnName="SANLUONG" />
+                <ScalarProperty Name="SLLD" ColumnName="SLLD" />
+                <ScalarProperty Name="NANGSUAT" ColumnName="NANGSUAT" />
+                <ScalarProperty Name="ZYEAR" ColumnName="ZYEAR" />
+                <ScalarProperty Name="ZMONTH" ColumnName="ZMONTH" />
+                <ScalarProperty Name="ZWEEK" ColumnName="ZWEEK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BI_SLSX_CHUYEN_NGAY">
+            <EntityTypeMapping TypeName="TKTDSXModel.BI_SLSX_CHUYEN_NGAY">
+              <MappingFragment StoreEntitySet="BI_SLSX_CHUYEN_NGAY">
+                <ScalarProperty Name="MANDT" ColumnName="MANDT" />
+                <ScalarProperty Name="SYSID" ColumnName="SYSID" />
+                <ScalarProperty Name="PDATUM" ColumnName="PDATUM" />
+                <ScalarProperty Name="ZZCNT" ColumnName="ZZCNT" />
+                <ScalarProperty Name="CNTCD" ColumnName="CNTCD" />
+                <ScalarProperty Name="NGANH" ColumnName="NGANH" />
+                <ScalarProperty Name="KHVUC" ColumnName="KHVUC" />
+                <ScalarProperty Name="WRKCT" ColumnName="WRKCT" />
+                <ScalarProperty Name="ZXUONG" ColumnName="ZXUONG" />
+                <ScalarProperty Name="CHUYN" ColumnName="CHUYN" />
+                <ScalarProperty Name="CDOAN" ColumnName="CDOAN" />
+                <ScalarProperty Name="LTEXT" ColumnName="LTEXT" />
+                <ScalarProperty Name="DAURA_WC" ColumnName="DAURA_WC" />
+                <ScalarProperty Name="DAURA_KV" ColumnName="DAURA_KV" />
+                <ScalarProperty Name="COLOR_CH" ColumnName="COLOR_CH" />
+                <ScalarProperty Name="ZYEAR" ColumnName="ZYEAR" />
+                <ScalarProperty Name="ZMONTH" ColumnName="ZMONTH" />
+                <ScalarProperty Name="ZWEEK" ColumnName="ZWEEK" />
+                <ScalarProperty Name="SLLD" ColumnName="SLLD" />
+                <ScalarProperty Name="SLLD_FULL" ColumnName="SLLD_FULL" />
+                <ScalarProperty Name="NSUAT" ColumnName="NSUAT" />
+                <ScalarProperty Name="LK_NGAY" ColumnName="LK_NGAY" />
+                <ScalarProperty Name="GIO01" ColumnName="GIO01" />
+                <ScalarProperty Name="GIO02" ColumnName="GIO02" />
+                <ScalarProperty Name="GIO03" ColumnName="GIO03" />
+                <ScalarProperty Name="GIO04" ColumnName="GIO04" />
+                <ScalarProperty Name="GIO05" ColumnName="GIO05" />
+                <ScalarProperty Name="GIO06" ColumnName="GIO06" />
+                <ScalarProperty Name="GIO07" ColumnName="GIO07" />
+                <ScalarProperty Name="GIO08" ColumnName="GIO08" />
+                <ScalarProperty Name="GIO09" ColumnName="GIO09" />
+                <ScalarProperty Name="GIO10" ColumnName="GIO10" />
+                <ScalarProperty Name="GIO11" ColumnName="GIO11" />
+                <ScalarProperty Name="GIO12" ColumnName="GIO12" />
+                <ScalarProperty Name="GIO13" ColumnName="GIO13" />
+                <ScalarProperty Name="GIO14" ColumnName="GIO14" />
+                <ScalarProperty Name="GIO15" ColumnName="GIO15" />
+                <ScalarProperty Name="GIO16" ColumnName="GIO16" />
+                <ScalarProperty Name="GIO17" ColumnName="GIO17" />
+                <ScalarProperty Name="GIO18" ColumnName="GIO18" />
+                <ScalarProperty Name="GIO19" ColumnName="GIO19" />
+                <ScalarProperty Name="GIO20" ColumnName="GIO20" />
+                <ScalarProperty Name="GIO21" ColumnName="GIO21" />
+                <ScalarProperty Name="GIO22" ColumnName="GIO22" />
+                <ScalarProperty Name="GIO23" ColumnName="GIO23" />
+                <ScalarProperty Name="GIO24" ColumnName="GIO24" />
+                <ScalarProperty Name="MEINS" ColumnName="MEINS" />
+                <ScalarProperty Name="LSTDATE" ColumnName="LSTDATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BI_SLSX_CHUYEN_THANG">
+            <EntityTypeMapping TypeName="TKTDSXModel.BI_SLSX_CHUYEN_THANG">
+              <MappingFragment StoreEntitySet="BI_SLSX_CHUYEN_THANG">
+                <ScalarProperty Name="MANDT" ColumnName="MANDT" />
+                <ScalarProperty Name="SYSID" ColumnName="SYSID" />
+                <ScalarProperty Name="ZYEAR" ColumnName="ZYEAR" />
+                <ScalarProperty Name="ZMONTH" ColumnName="ZMONTH" />
+                <ScalarProperty Name="ZZCNT" ColumnName="ZZCNT" />
+                <ScalarProperty Name="CNTCD" ColumnName="CNTCD" />
+                <ScalarProperty Name="NGANH" ColumnName="NGANH" />
+                <ScalarProperty Name="KHVUC" ColumnName="KHVUC" />
+                <ScalarProperty Name="WRKCT" ColumnName="WRKCT" />
+                <ScalarProperty Name="XUONG" ColumnName="XUONG" />
+                <ScalarProperty Name="CHUYN" ColumnName="CHUYN" />
+                <ScalarProperty Name="CDOAN" ColumnName="CDOAN" />
+                <ScalarProperty Name="LTEXT" ColumnName="LTEXT" />
+                <ScalarProperty Name="DAURA_WC" ColumnName="DAURA_WC" />
+                <ScalarProperty Name="DAURA_KV" ColumnName="DAURA_KV" />
+                <ScalarProperty Name="LK_THANG" ColumnName="LK_THANG" />
+                <ScalarProperty Name="NSLDBQ" ColumnName="NSLDBQ" />
+                <ScalarProperty Name="NGAY01" ColumnName="NGAY01" />
+                <ScalarProperty Name="NSLD01" ColumnName="NSLD01" />
+                <ScalarProperty Name="NGAY02" ColumnName="NGAY02" />
+                <ScalarProperty Name="NSLD02" ColumnName="NSLD02" />
+                <ScalarProperty Name="NGAY03" ColumnName="NGAY03" />
+                <ScalarProperty Name="NSLD03" ColumnName="NSLD03" />
+                <ScalarProperty Name="NGAY04" ColumnName="NGAY04" />
+                <ScalarProperty Name="NSLD04" ColumnName="NSLD04" />
+                <ScalarProperty Name="NGAY05" ColumnName="NGAY05" />
+                <ScalarProperty Name="NSLD05" ColumnName="NSLD05" />
+                <ScalarProperty Name="NGAY06" ColumnName="NGAY06" />
+                <ScalarProperty Name="NSLD06" ColumnName="NSLD06" />
+                <ScalarProperty Name="NGAY07" ColumnName="NGAY07" />
+                <ScalarProperty Name="NSLD07" ColumnName="NSLD07" />
+                <ScalarProperty Name="NGAY08" ColumnName="NGAY08" />
+                <ScalarProperty Name="NSLD08" ColumnName="NSLD08" />
+                <ScalarProperty Name="NGAY09" ColumnName="NGAY09" />
+                <ScalarProperty Name="NSLD09" ColumnName="NSLD09" />
+                <ScalarProperty Name="NGAY10" ColumnName="NGAY10" />
+                <ScalarProperty Name="NSLD10" ColumnName="NSLD10" />
+                <ScalarProperty Name="NGAY11" ColumnName="NGAY11" />
+                <ScalarProperty Name="NSLD11" ColumnName="NSLD11" />
+                <ScalarProperty Name="NGAY12" ColumnName="NGAY12" />
+                <ScalarProperty Name="NSLD12" ColumnName="NSLD12" />
+                <ScalarProperty Name="NGAY13" ColumnName="NGAY13" />
+                <ScalarProperty Name="NSLD13" ColumnName="NSLD13" />
+                <ScalarProperty Name="NGAY14" ColumnName="NGAY14" />
+                <ScalarProperty Name="NSLD14" ColumnName="NSLD14" />
+                <ScalarProperty Name="NGAY15" ColumnName="NGAY15" />
+                <ScalarProperty Name="NSLD15" ColumnName="NSLD15" />
+                <ScalarProperty Name="NGAY16" ColumnName="NGAY16" />
+                <ScalarProperty Name="NSLD16" ColumnName="NSLD16" />
+                <ScalarProperty Name="NGAY17" ColumnName="NGAY17" />
+                <ScalarProperty Name="NSLD17" ColumnName="NSLD17" />
+                <ScalarProperty Name="NGAY18" ColumnName="NGAY18" />
+                <ScalarProperty Name="NSLD18" ColumnName="NSLD18" />
+                <ScalarProperty Name="NGAY19" ColumnName="NGAY19" />
+                <ScalarProperty Name="NSLD19" ColumnName="NSLD19" />
+                <ScalarProperty Name="NGAY20" ColumnName="NGAY20" />
+                <ScalarProperty Name="NSLD20" ColumnName="NSLD20" />
+                <ScalarProperty Name="NGAY21" ColumnName="NGAY21" />
+                <ScalarProperty Name="NSLD21" ColumnName="NSLD21" />
+                <ScalarProperty Name="NGAY22" ColumnName="NGAY22" />
+                <ScalarProperty Name="NSLD22" ColumnName="NSLD22" />
+                <ScalarProperty Name="NGAY23" ColumnName="NGAY23" />
+                <ScalarProperty Name="NSLD23" ColumnName="NSLD23" />
+                <ScalarProperty Name="NGAY24" ColumnName="NGAY24" />
+                <ScalarProperty Name="NSLD24" ColumnName="NSLD24" />
+                <ScalarProperty Name="NGAY25" ColumnName="NGAY25" />
+                <ScalarProperty Name="NSLD25" ColumnName="NSLD25" />
+                <ScalarProperty Name="NGAY26" ColumnName="NGAY26" />
+                <ScalarProperty Name="NSLD26" ColumnName="NSLD26" />
+                <ScalarProperty Name="NGAY27" ColumnName="NGAY27" />
+                <ScalarProperty Name="NSLD27" ColumnName="NSLD27" />
+                <ScalarProperty Name="NGAY28" ColumnName="NGAY28" />
+                <ScalarProperty Name="NSLD28" ColumnName="NSLD28" />
+                <ScalarProperty Name="NGAY29" ColumnName="NGAY29" />
+                <ScalarProperty Name="NSLD29" ColumnName="NSLD29" />
+                <ScalarProperty Name="NGAY30" ColumnName="NGAY30" />
+                <ScalarProperty Name="NSLD30" ColumnName="NSLD30" />
+                <ScalarProperty Name="NGAY31" ColumnName="NGAY31" />
+                <ScalarProperty Name="NSLD31" ColumnName="NSLD31" />
+                <ScalarProperty Name="MEINS" ColumnName="MEINS" />
+                <ScalarProperty Name="LSTDATE" ColumnName="LSTDATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BI_SLSX_CHUYEN_TUAN">
+            <EntityTypeMapping TypeName="TKTDSXModel.BI_SLSX_CHUYEN_TUAN">
+              <MappingFragment StoreEntitySet="BI_SLSX_CHUYEN_TUAN">
+                <ScalarProperty Name="MANDT" ColumnName="MANDT" />
+                <ScalarProperty Name="SYSID" ColumnName="SYSID" />
+                <ScalarProperty Name="ZYEAR" ColumnName="ZYEAR" />
+                <ScalarProperty Name="ZWEEK" ColumnName="ZWEEK" />
+                <ScalarProperty Name="ZZCNT" ColumnName="ZZCNT" />
+                <ScalarProperty Name="CNTCD" ColumnName="CNTCD" />
+                <ScalarProperty Name="NGANH" ColumnName="NGANH" />
+                <ScalarProperty Name="KHVUC" ColumnName="KHVUC" />
+                <ScalarProperty Name="WRKCT" ColumnName="WRKCT" />
+                <ScalarProperty Name="XUONG" ColumnName="XUONG" />
+                <ScalarProperty Name="CHUYN" ColumnName="CHUYN" />
+                <ScalarProperty Name="CDOAN" ColumnName="CDOAN" />
+                <ScalarProperty Name="LTEXT" ColumnName="LTEXT" />
+                <ScalarProperty Name="DAURA_WC" ColumnName="DAURA_WC" />
+                <ScalarProperty Name="DAURA_KV" ColumnName="DAURA_KV" />
+                <ScalarProperty Name="LK_TUAN" ColumnName="LK_TUAN" />
+                <ScalarProperty Name="NSLDBQ" ColumnName="NSLDBQ" />
+                <ScalarProperty Name="NGAY01" ColumnName="NGAY01" />
+                <ScalarProperty Name="NSLD01" ColumnName="NSLD01" />
+                <ScalarProperty Name="NGAY02" ColumnName="NGAY02" />
+                <ScalarProperty Name="NSLD02" ColumnName="NSLD02" />
+                <ScalarProperty Name="NGAY03" ColumnName="NGAY03" />
+                <ScalarProperty Name="NSLD03" ColumnName="NSLD03" />
+                <ScalarProperty Name="NGAY04" ColumnName="NGAY04" />
+                <ScalarProperty Name="NSLD04" ColumnName="NSLD04" />
+                <ScalarProperty Name="NGAY05" ColumnName="NGAY05" />
+                <ScalarProperty Name="NSLD05" ColumnName="NSLD05" />
+                <ScalarProperty Name="NGAY06" ColumnName="NGAY06" />
+                <ScalarProperty Name="NSLD06" ColumnName="NSLD06" />
+                <ScalarProperty Name="NGAY07" ColumnName="NGAY07" />
+                <ScalarProperty Name="NSLD07" ColumnName="NSLD07" />
+                <ScalarProperty Name="MEINS" ColumnName="MEINS" />
+                <ScalarProperty Name="LSTDATE" ColumnName="LSTDATE" />
+                <ScalarProperty Name="FRSTDAYWK" ColumnName="FRSTDAYWK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BI_TONGLD">
+            <EntityTypeMapping TypeName="TKTDSXModel.BI_TONGLD">
+              <MappingFragment StoreEntitySet="BI_TONGLD">
+                <ScalarProperty Name="MANDT" ColumnName="MANDT" />
+                <ScalarProperty Name="SYSID" ColumnName="SYSID" />
+                <ScalarProperty Name="PDATUM" ColumnName="PDATUM" />
+                <ScalarProperty Name="CAPDO" ColumnName="CAPDO" />
+                <ScalarProperty Name="BOPHAN" ColumnName="BOPHAN" />
+                <ScalarProperty Name="TONGLD" ColumnName="TONGLD" />
+                <ScalarProperty Name="ZYEAR" ColumnName="ZYEAR" />
+                <ScalarProperty Name="ZMONTH" ColumnName="ZMONTH" />
+                <ScalarProperty Name="ZWEEK" ColumnName="ZWEEK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BI_ZQLSX">
+            <EntityTypeMapping TypeName="TKTDSXModel.BI_ZQLSX">
+              <MappingFragment StoreEntitySet="BI_ZQLSX">
+                <ScalarProperty Name="NCOLOR" ColumnName="NCOLOR" />
+                <ScalarProperty Name="TENCD" ColumnName="TENCD" />
+                <ScalarProperty Name="MANDT" ColumnName="MANDT" />
+                <ScalarProperty Name="SYSID" ColumnName="SYSID" />
+                <ScalarProperty Name="ZZCNT" ColumnName="ZZCNT" />
+                <ScalarProperty Name="NGANH" ColumnName="NGANH" />
+                <ScalarProperty Name="KHVUC" ColumnName="KHVUC" />
+                <ScalarProperty Name="WRKCT" ColumnName="WRKCT" />
+                <ScalarProperty Name="XUONG" ColumnName="XUONG" />
+                <ScalarProperty Name="CHUYN" ColumnName="CHUYN" />
+                <ScalarProperty Name="TNNG" ColumnName="TNNG" />
+                <ScalarProperty Name="TNKV" ColumnName="TNKV" />
+                <ScalarProperty Name="TNWC" ColumnName="TNWC" />
+                <ScalarProperty Name="TNXG" ColumnName="TNXG" />
+                <ScalarProperty Name="TNCH" ColumnName="TNCH" />
+                <ScalarProperty Name="QLCH" ColumnName="QLCH" />
+                <ScalarProperty Name="QLWC" ColumnName="QLWC" />
+                <ScalarProperty Name="QLKV" ColumnName="QLKV" />
+                <ScalarProperty Name="CDOAN" ColumnName="CDOAN" />
+                <ScalarProperty Name="CH_CHAT" ColumnName="CH_CHAT" />
+                <ScalarProperty Name="DAURA_WC" ColumnName="DAURA_WC" />
+                <ScalarProperty Name="DAURA_KV" ColumnName="DAURA_KV" />
+                <ScalarProperty Name="ZGROUP" ColumnName="ZGROUP" />
+                <ScalarProperty Name="GIACONG" ColumnName="GIACONG" />
+                <ScalarProperty Name="MUANGOAI" ColumnName="MUANGOAI" />
+                <ScalarProperty Name="ZDB_CH" ColumnName="ZDB_CH" />
+                <ScalarProperty Name="ZGCNG" ColumnName="ZGCNG" />
+                <ScalarProperty Name="ZIACT" ColumnName="ZIACT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BI_SLKH_CH">
+            <EntityTypeMapping TypeName="TKTDSXModel.BI_SLKH_CH">
+              <MappingFragment StoreEntitySet="BI_SLKH_CH">
+                <ScalarProperty Name="NGAY31" ColumnName="NGAY31" />
+                <ScalarProperty Name="NGAY30" ColumnName="NGAY30" />
+                <ScalarProperty Name="NGAY29" ColumnName="NGAY29" />
+                <ScalarProperty Name="NGAY28" ColumnName="NGAY28" />
+                <ScalarProperty Name="NGAY27" ColumnName="NGAY27" />
+                <ScalarProperty Name="NGAY26" ColumnName="NGAY26" />
+                <ScalarProperty Name="NGAY25" ColumnName="NGAY25" />
+                <ScalarProperty Name="NGAY24" ColumnName="NGAY24" />
+                <ScalarProperty Name="NGAY23" ColumnName="NGAY23" />
+                <ScalarProperty Name="NGAY22" ColumnName="NGAY22" />
+                <ScalarProperty Name="NGAY21" ColumnName="NGAY21" />
+                <ScalarProperty Name="NGAY20" ColumnName="NGAY20" />
+                <ScalarProperty Name="NGAY19" ColumnName="NGAY19" />
+                <ScalarProperty Name="NGAY18" ColumnName="NGAY18" />
+                <ScalarProperty Name="NGAY17" ColumnName="NGAY17" />
+                <ScalarProperty Name="NGAY16" ColumnName="NGAY16" />
+                <ScalarProperty Name="NGAY15" ColumnName="NGAY15" />
+                <ScalarProperty Name="NGAY14" ColumnName="NGAY14" />
+                <ScalarProperty Name="NGAY13" ColumnName="NGAY13" />
+                <ScalarProperty Name="NGAY12" ColumnName="NGAY12" />
+                <ScalarProperty Name="NGAY11" ColumnName="NGAY11" />
+                <ScalarProperty Name="NGAY10" ColumnName="NGAY10" />
+                <ScalarProperty Name="NGAY09" ColumnName="NGAY09" />
+                <ScalarProperty Name="NGAY08" ColumnName="NGAY08" />
+                <ScalarProperty Name="NGAY07" ColumnName="NGAY07" />
+                <ScalarProperty Name="NGAY06" ColumnName="NGAY06" />
+                <ScalarProperty Name="NGAY05" ColumnName="NGAY05" />
+                <ScalarProperty Name="NGAY04" ColumnName="NGAY04" />
+                <ScalarProperty Name="NGAY03" ColumnName="NGAY03" />
+                <ScalarProperty Name="NGAY02" ColumnName="NGAY02" />
+                <ScalarProperty Name="NGAY01" ColumnName="NGAY01" />
+                <ScalarProperty Name="SLTONG" ColumnName="SLTONG" />
+                <ScalarProperty Name="DONVI" ColumnName="DONVI" />
+                <ScalarProperty Name="FIRSTDAY" ColumnName="FIRSTDAY" />
+                <ScalarProperty Name="CDOAN" ColumnName="CDOAN" />
+                <ScalarProperty Name="XUONG" ColumnName="XUONG" />
+                <ScalarProperty Name="CHUYN" ColumnName="CHUYN" />
+                <ScalarProperty Name="CNTCD" ColumnName="CNTCD" />
+                <ScalarProperty Name="WRKCT" ColumnName="WRKCT" />
+                <ScalarProperty Name="KHVUC" ColumnName="KHVUC" />
+                <ScalarProperty Name="NGANH" ColumnName="NGANH" />
+                <ScalarProperty Name="ZZCNT" ColumnName="ZZCNT" />
+                <ScalarProperty Name="THANG" ColumnName="THANG" />
+                <ScalarProperty Name="NAM" ColumnName="NAM" />
+                <ScalarProperty Name="SYSID" ColumnName="SYSID" />
+                <ScalarProperty Name="MANDT" ColumnName="MANDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BI_SANLUONG_ONLINE">
+            <EntityTypeMapping TypeName="TKTDSXModel.BI_SANLUONG_ONLINE">
+              <MappingFragment StoreEntitySet="BI_SANLUONG_ONLINE">
+                <ScalarProperty Name="gio_dalam" ColumnName="gio_dalam" />
+                <ScalarProperty Name="ZIACT" ColumnName="ZIACT" />
+                <ScalarProperty Name="GIO24" ColumnName="GIO24" />
+                <ScalarProperty Name="GIO23" ColumnName="GIO23" />
+                <ScalarProperty Name="GIO22" ColumnName="GIO22" />
+                <ScalarProperty Name="GIO21" ColumnName="GIO21" />
+                <ScalarProperty Name="GIO20" ColumnName="GIO20" />
+                <ScalarProperty Name="GIO19" ColumnName="GIO19" />
+                <ScalarProperty Name="GIO18" ColumnName="GIO18" />
+                <ScalarProperty Name="GIO17" ColumnName="GIO17" />
+                <ScalarProperty Name="GIO16" ColumnName="GIO16" />
+                <ScalarProperty Name="GIO15" ColumnName="GIO15" />
+                <ScalarProperty Name="GIO14" ColumnName="GIO14" />
+                <ScalarProperty Name="GIO13" ColumnName="GIO13" />
+                <ScalarProperty Name="GIO12" ColumnName="GIO12" />
+                <ScalarProperty Name="GIO11" ColumnName="GIO11" />
+                <ScalarProperty Name="GIO10" ColumnName="GIO10" />
+                <ScalarProperty Name="GIO09" ColumnName="GIO09" />
+                <ScalarProperty Name="GIO08" ColumnName="GIO08" />
+                <ScalarProperty Name="GIO07" ColumnName="GIO07" />
+                <ScalarProperty Name="GIO06" ColumnName="GIO06" />
+                <ScalarProperty Name="GIO05" ColumnName="GIO05" />
+                <ScalarProperty Name="GIO04" ColumnName="GIO04" />
+                <ScalarProperty Name="GIO03" ColumnName="GIO03" />
+                <ScalarProperty Name="GIO02" ColumnName="GIO02" />
+                <ScalarProperty Name="GIO01" ColumnName="GIO01" />
+                <ScalarProperty Name="MEINS" ColumnName="MEINS" />
+                <ScalarProperty Name="DATKH" ColumnName="DATKH" />
+                <ScalarProperty Name="CHLECH" ColumnName="CHLECH" />
+                <ScalarProperty Name="THNGAY" ColumnName="THNGAY" />
+                <ScalarProperty Name="KHNGAY" ColumnName="KHNGAY" />
+                <ScalarProperty Name="KHGIO" ColumnName="KHGIO" />
+                <ScalarProperty Name="GIOLV" ColumnName="GIOLV" />
+                <ScalarProperty Name="NSUAT" ColumnName="NSUAT" />
+                <ScalarProperty Name="SLLD" ColumnName="SLLD" />
+                <ScalarProperty Name="CNTCD" ColumnName="CNTCD" />
+                <ScalarProperty Name="ZZCNT" ColumnName="ZZCNT" />
+                <ScalarProperty Name="NGAY" ColumnName="NGAY" />
+                <ScalarProperty Name="SYSID" ColumnName="SYSID" />
+                <ScalarProperty Name="MANDT" ColumnName="MANDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_SL_ONLINE">
+            <EntityTypeMapping TypeName="TKTDSXModel.VW_SL_ONLINE">
+              <MappingFragment StoreEntitySet="VW_SL_ONLINE">
+                <ScalarProperty Name="NCOLOR" ColumnName="NCOLOR" />
+                <ScalarProperty Name="gio_dalam" ColumnName="gio_dalam" />
+                <ScalarProperty Name="KHVUC" ColumnName="KHVUC" />
+                <ScalarProperty Name="DAURA_KV" ColumnName="DAURA_KV" />
+                <ScalarProperty Name="DAURA_WC" ColumnName="DAURA_WC" />
+                <ScalarProperty Name="CDOAN" ColumnName="CDOAN" />
+                <ScalarProperty Name="QLKV" ColumnName="QLKV" />
+                <ScalarProperty Name="QLWC" ColumnName="QLWC" />
+                <ScalarProperty Name="QLCH" ColumnName="QLCH" />
+                <ScalarProperty Name="TNCH" ColumnName="TNCH" />
+                <ScalarProperty Name="TNXG" ColumnName="TNXG" />
+                <ScalarProperty Name="TNWC" ColumnName="TNWC" />
+                <ScalarProperty Name="TNKV" ColumnName="TNKV" />
+                <ScalarProperty Name="TNNG" ColumnName="TNNG" />
+                <ScalarProperty Name="CHUYN" ColumnName="CHUYN" />
+                <ScalarProperty Name="XUONG" ColumnName="XUONG" />
+                <ScalarProperty Name="WRKCT" ColumnName="WRKCT" />
+                <ScalarProperty Name="NGANH" ColumnName="NGANH" />
+                <ScalarProperty Name="TENCD" ColumnName="TENCD" />
+                <ScalarProperty Name="ZIACT" ColumnName="ZIACT" />
+                <ScalarProperty Name="GIO24" ColumnName="GIO24" />
+                <ScalarProperty Name="GIO23" ColumnName="GIO23" />
+                <ScalarProperty Name="GIO22" ColumnName="GIO22" />
+                <ScalarProperty Name="GIO21" ColumnName="GIO21" />
+                <ScalarProperty Name="GIO20" ColumnName="GIO20" />
+                <ScalarProperty Name="GIO19" ColumnName="GIO19" />
+                <ScalarProperty Name="GIO18" ColumnName="GIO18" />
+                <ScalarProperty Name="GIO17" ColumnName="GIO17" />
+                <ScalarProperty Name="GIO16" ColumnName="GIO16" />
+                <ScalarProperty Name="GIO15" ColumnName="GIO15" />
+                <ScalarProperty Name="GIO14" ColumnName="GIO14" />
+                <ScalarProperty Name="GIO13" ColumnName="GIO13" />
+                <ScalarProperty Name="GIO12" ColumnName="GIO12" />
+                <ScalarProperty Name="GIO11" ColumnName="GIO11" />
+                <ScalarProperty Name="GIO10" ColumnName="GIO10" />
+                <ScalarProperty Name="GIO09" ColumnName="GIO09" />
+                <ScalarProperty Name="GIO08" ColumnName="GIO08" />
+                <ScalarProperty Name="GIO07" ColumnName="GIO07" />
+                <ScalarProperty Name="GIO06" ColumnName="GIO06" />
+                <ScalarProperty Name="GIO05" ColumnName="GIO05" />
+                <ScalarProperty Name="GIO04" ColumnName="GIO04" />
+                <ScalarProperty Name="GIO03" ColumnName="GIO03" />
+                <ScalarProperty Name="GIO02" ColumnName="GIO02" />
+                <ScalarProperty Name="GIO01" ColumnName="GIO01" />
+                <ScalarProperty Name="MEINS" ColumnName="MEINS" />
+                <ScalarProperty Name="DATKH" ColumnName="DATKH" />
+                <ScalarProperty Name="CHLECH" ColumnName="CHLECH" />
+                <ScalarProperty Name="THNGAY" ColumnName="THNGAY" />
+                <ScalarProperty Name="KHNGAY" ColumnName="KHNGAY" />
+                <ScalarProperty Name="KHGIO" ColumnName="KHGIO" />
+                <ScalarProperty Name="GIOLV" ColumnName="GIOLV" />
+                <ScalarProperty Name="NSUAT" ColumnName="NSUAT" />
+                <ScalarProperty Name="SLLD" ColumnName="SLLD" />
+                <ScalarProperty Name="CNTCD" ColumnName="CNTCD" />
+                <ScalarProperty Name="ZZCNT" ColumnName="ZZCNT" />
+                <ScalarProperty Name="NGAY" ColumnName="NGAY" />
+                <ScalarProperty Name="SYSID" ColumnName="SYSID" />
+                <ScalarProperty Name="MANDT" ColumnName="MANDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BI_USER">
+            <EntityTypeMapping TypeName="TKTDSXModel.BI_USER">
+              <MappingFragment StoreEntitySet="BI_USER">
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="SYSID" ColumnName="SYSID" />
+                <ScalarProperty Name="MANDT" ColumnName="MANDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_TKLD">
+            <EntityTypeMapping TypeName="TKTDSXModel.VW_TKLD">
+              <MappingFragment StoreEntitySet="VW_TKLD">
+                <ScalarProperty Name="CDOAN" ColumnName="CDOAN" />
+                <ScalarProperty Name="TONGLD" ColumnName="TONGLD" />
+                <ScalarProperty Name="SLLD" ColumnName="SLLD" />
+                <ScalarProperty Name="BOPHAN" ColumnName="BOPHAN" />
+                <ScalarProperty Name="CAPDO" ColumnName="CAPDO" />
+                <ScalarProperty Name="PDATUM" ColumnName="PDATUM" />
+                <ScalarProperty Name="SYSID" ColumnName="SYSID" />
+                <ScalarProperty Name="MANDT" ColumnName="MANDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BI_SANLUONG_ONLINE_TEMP">
+            <EntityTypeMapping TypeName="TKTDSXModel.BI_SANLUONG_ONLINE_TEMP">
+              <MappingFragment StoreEntitySet="BI_SANLUONG_ONLINE_TEMP">
+                <ScalarProperty Name="gio_dalam" ColumnName="gio_dalam" />
+                <ScalarProperty Name="ZIACT" ColumnName="ZIACT" />
+                <ScalarProperty Name="GIO24" ColumnName="GIO24" />
+                <ScalarProperty Name="GIO23" ColumnName="GIO23" />
+                <ScalarProperty Name="GIO22" ColumnName="GIO22" />
+                <ScalarProperty Name="GIO21" ColumnName="GIO21" />
+                <ScalarProperty Name="GIO20" ColumnName="GIO20" />
+                <ScalarProperty Name="GIO19" ColumnName="GIO19" />
+                <ScalarProperty Name="GIO18" ColumnName="GIO18" />
+                <ScalarProperty Name="GIO17" ColumnName="GIO17" />
+                <ScalarProperty Name="GIO16" ColumnName="GIO16" />
+                <ScalarProperty Name="GIO15" ColumnName="GIO15" />
+                <ScalarProperty Name="GIO14" ColumnName="GIO14" />
+                <ScalarProperty Name="GIO13" ColumnName="GIO13" />
+                <ScalarProperty Name="GIO12" ColumnName="GIO12" />
+                <ScalarProperty Name="GIO11" ColumnName="GIO11" />
+                <ScalarProperty Name="GIO10" ColumnName="GIO10" />
+                <ScalarProperty Name="GIO09" ColumnName="GIO09" />
+                <ScalarProperty Name="GIO08" ColumnName="GIO08" />
+                <ScalarProperty Name="GIO07" ColumnName="GIO07" />
+                <ScalarProperty Name="GIO06" ColumnName="GIO06" />
+                <ScalarProperty Name="GIO05" ColumnName="GIO05" />
+                <ScalarProperty Name="GIO04" ColumnName="GIO04" />
+                <ScalarProperty Name="GIO03" ColumnName="GIO03" />
+                <ScalarProperty Name="GIO02" ColumnName="GIO02" />
+                <ScalarProperty Name="GIO01" ColumnName="GIO01" />
+                <ScalarProperty Name="MEINS" ColumnName="MEINS" />
+                <ScalarProperty Name="DATKH" ColumnName="DATKH" />
+                <ScalarProperty Name="CHLECH" ColumnName="CHLECH" />
+                <ScalarProperty Name="THNGAY" ColumnName="THNGAY" />
+                <ScalarProperty Name="KHNGAY" ColumnName="KHNGAY" />
+                <ScalarProperty Name="KHGIO" ColumnName="KHGIO" />
+                <ScalarProperty Name="GIOLV" ColumnName="GIOLV" />
+                <ScalarProperty Name="NSUAT" ColumnName="NSUAT" />
+                <ScalarProperty Name="SLLD" ColumnName="SLLD" />
+                <ScalarProperty Name="CNTCD" ColumnName="CNTCD" />
+                <ScalarProperty Name="ZZCNT" ColumnName="ZZCNT" />
+                <ScalarProperty Name="NGAY" ColumnName="NGAY" />
+                <ScalarProperty Name="SYSID" ColumnName="SYSID" />
+                <ScalarProperty Name="MANDT" ColumnName="MANDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
