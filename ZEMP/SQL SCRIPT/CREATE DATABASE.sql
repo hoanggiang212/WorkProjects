@@ -711,10 +711,6 @@ CREATE TABLE ZEMP_PQ(
 	[Username]			[varchar](20)	NOT NULL,
 	[CapDo]				[varchar](20)	NOT NULL,		--NGANH / KHUVUC / WORKCENTER
 	[GiaTriCapDo]		[varchar](20)	NOT NULL,		-- GIAY / KV01 / WC01 OR ALL
-	[LastMode]			[varchar](20)	NULL,		
-	[LastCapDo]			[varchar](20)	NULL,
-	[LastGiaTriCapDo]	[varchar](20)	NULL,
-	[LastCongDoan]		[varchar](20)	NULL,
 	CONSTRAINT [PK_ZEMP_PQ] PRIMARY KEY CLUSTERED (
 	[SystemId]		ASC,
 	[Username]		ASC,
