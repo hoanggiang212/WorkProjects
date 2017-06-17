@@ -1,0 +1,1334 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TKTDSXModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ZEMP_CF_MODE">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="Mode" />
+          </Key>
+          <Property Name="SystemId" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Mode" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="DienGiai" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ZEMP_CONGDOAN">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="CongDoan" />
+          </Key>
+          <Property Name="SystemId" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="CongDoan" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TenCongDoan" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Stt" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ZEMP_CH">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="IdChuyen" />
+          </Key>
+          <Property Name="SystemId" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="IdChuyen" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Xuong" Type="nvarchar" MaxLength="20" />
+          <Property Name="Wrkct" Type="varchar" MaxLength="20" />
+          <Property Name="KhuVuc" Type="varchar" MaxLength="20" />
+          <Property Name="Nganh" Type="varchar" MaxLength="20" />
+          <Property Name="MaChuyen" Type="varchar" MaxLength="20" />
+          <Property Name="TenChuyen" Type="nvarchar" MaxLength="50" />
+          <Property Name="QlChuyen" Type="nvarchar" MaxLength="50" />
+          <Property Name="CongDoan" Type="varchar" MaxLength="20" />
+          <Property Name="ZIACT" Type="nvarchar" MaxLength="1" />
+          <Property Name="IsNoColor" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="ZEMP_DAURA_KV">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="KhuVuc" />
+            <PropertyRef Name="Nganh" />
+            <PropertyRef Name="CongDoan" />
+          </Key>
+          <Property Name="SystemId" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="KhuVuc" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nganh" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CongDoan" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ZEMP_DAURA_NG">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="Nganh" />
+            <PropertyRef Name="CongDoan" />
+          </Key>
+          <Property Name="SystemId" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Nganh" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CongDoan" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ZEMP_DAURA_WC">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="Wrkct" />
+            <PropertyRef Name="KhuVuc" />
+            <PropertyRef Name="Nganh" />
+            <PropertyRef Name="CongDoan" />
+          </Key>
+          <Property Name="SystemId" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Wrkct" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="KhuVuc" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nganh" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CongDoan" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ZEMP_KV">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="KhuVuc" />
+          </Key>
+          <Property Name="SystemId" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="KhuVuc" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TenKhuVuc" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nganh" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="QlKhuVuc" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ZEMP_LOG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SystemId" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Ngay" Type="smalldatetime" Nullable="false" />
+          <Property Name="LogKey" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LogDescription" Type="ntext" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ZEMP_NG">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="Nganh" />
+          </Key>
+          <Property Name="SystemId" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Nganh" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TenNganh" Type="nvarchar" MaxLength="50" />
+          <Property Name="QlNganh" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ZEMP_PQ">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="CapDo" />
+            <PropertyRef Name="GiaTriCapDo" />
+          </Key>
+          <Property Name="SystemId" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CapDo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="GiaTriCapDo" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ZEMP_SL_CH">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="IdChuyen" />
+            <PropertyRef Name="Ngay" />
+            <PropertyRef Name="CongDoan" />
+          </Key>
+          <Property Name="SystemId" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="IdChuyen" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Ngay" Type="smalldatetime" Nullable="false" />
+          <Property Name="CongDoan" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="SoLuongLD" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NangSuat" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="GioLamViec" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="KeHoachGio" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="KeHoachNgay" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="ThucHienNgay" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="ChenhLech" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="DatKeHoach" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Gio01" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio02" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio03" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio04" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio05" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio06" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio07" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio08" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio09" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio10" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio11" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio12" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio13" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio14" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio15" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio16" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio17" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio18" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio19" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio20" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio21" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio22" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio23" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio24" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Tuan" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Thang" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Quy" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Nam" Type="numeric" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="ZEMP_SL_KV">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="KhuVuc" />
+            <PropertyRef Name="Ngay" />
+            <PropertyRef Name="CongDoan" />
+          </Key>
+          <Property Name="SystemId" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="KhuVuc" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Ngay" Type="smalldatetime" Nullable="false" />
+          <Property Name="CongDoan" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="SoLuongLD" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NangSuat" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="GioLamViec" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="KeHoachGio" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="KeHoachNgay" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="ThucHienNgay" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="ChenhLech" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="DatKeHoach" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Gio01" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio02" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio03" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio04" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio05" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio06" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio07" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio08" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio09" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio10" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio11" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio12" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio13" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio14" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio15" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio16" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio17" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio18" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio19" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio20" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio21" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio22" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio23" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio24" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Tuan" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Thang" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Quy" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Nam" Type="numeric" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="ZEMP_SL_NG">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="Nganh" />
+            <PropertyRef Name="Ngay" />
+            <PropertyRef Name="CongDoan" />
+          </Key>
+          <Property Name="SystemId" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Nganh" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Ngay" Type="smalldatetime" Nullable="false" />
+          <Property Name="CongDoan" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="SoLuongLD" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NangSuat" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="GioLamViec" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="KeHoachGio" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="KeHoachNgay" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="ThucHienNgay" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="ChenhLech" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="DatKeHoach" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Gio01" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio02" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio03" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio04" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio05" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio06" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio07" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio08" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio09" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio10" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio11" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio12" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio13" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio14" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio15" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio16" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio17" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio18" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio19" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio20" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio21" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio22" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio23" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio24" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Tuan" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Thang" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Quy" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Nam" Type="numeric" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="ZEMP_SL_WC">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="Wrkct" />
+            <PropertyRef Name="Ngay" />
+            <PropertyRef Name="CongDoan" />
+          </Key>
+          <Property Name="SystemId" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Wrkct" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Ngay" Type="smalldatetime" Nullable="false" />
+          <Property Name="CongDoan" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="SoLuongLD" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NangSuat" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="GioLamViec" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="KeHoachGio" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="KeHoachNgay" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="ThucHienNgay" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="ChenhLech" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="DatKeHoach" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Gio01" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio02" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio03" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio04" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio05" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio06" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio07" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio08" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio09" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio10" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio11" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio12" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio13" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio14" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio15" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio16" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio17" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio18" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio19" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio20" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio21" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio22" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio23" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gio24" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Tuan" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Thang" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Quy" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Nam" Type="numeric" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="ZEMP_TK_KV">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="Ngay" />
+            <PropertyRef Name="KhuVuc" />
+            <PropertyRef Name="CongDoan" />
+          </Key>
+          <Property Name="SystemId" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Ngay" Type="smalldatetime" Nullable="false" />
+          <Property Name="KhuVuc" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CongDoan" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TongLaoDong" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="ChuyenXanh" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="ChuyenVang" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="ChuyenDo" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="VatTuKeHoach" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="VatTuThucHien" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="TaiSanKeHoach" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="TaiSanThucHien" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NhanCongKeHoach" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NhanCongThucHien" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Tuan" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Thang" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Quy" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Nam" Type="numeric" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="ZEMP_TK_NG">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="Ngay" />
+            <PropertyRef Name="Nganh" />
+            <PropertyRef Name="CongDoan" />
+          </Key>
+          <Property Name="SystemId" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Ngay" Type="smalldatetime" Nullable="false" />
+          <Property Name="Nganh" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CongDoan" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TongLaoDong" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="ChuyenXanh" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="ChuyenVang" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="ChuyenDo" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="VatTuKeHoach" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="VatTuThucHien" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="TaiSanKeHoach" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="TaiSanThucHien" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NhanCongKeHoach" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NhanCongThucHien" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Tuan" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Thang" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Quy" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Nam" Type="numeric" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="ZEMP_TK_WC">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="Ngay" />
+            <PropertyRef Name="Wrkct" />
+            <PropertyRef Name="CongDoan" />
+          </Key>
+          <Property Name="SystemId" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Ngay" Type="smalldatetime" Nullable="false" />
+          <Property Name="Wrkct" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CongDoan" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TongLaoDong" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="ChuyenXanh" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="ChuyenVang" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="ChuyenDo" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="VatTuKeHoach" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="VatTuThucHien" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="TaiSanKeHoach" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="TaiSanThucHien" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NhanCongKeHoach" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NhanCongThucHien" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Tuan" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Thang" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Quy" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Nam" Type="numeric" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="ZEMP_USER">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="SystemId" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="50" />
+          <Property Name="ChucVu" Type="nvarchar" MaxLength="20" />
+          <Property Name="LastMode" Type="varchar" MaxLength="20" />
+          <Property Name="LastCapDo" Type="varchar" MaxLength="20" />
+          <Property Name="LastGiaTriCapDo" Type="varchar" MaxLength="20" />
+          <Property Name="LastCongDoan" Type="varchar" MaxLength="20" />
+          <Property Name="InActive" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="ZEMP_WC">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="Wrkct" />
+          </Key>
+          <Property Name="SystemId" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Wrkct" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TenWrkct" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KhuVuc" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nganh" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="QlWrkct" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Function Name="GetListCapDo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetSanLuongOnline" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="mode" Type="varchar" Mode="In" />
+          <Parameter Name="capdo" Type="varchar" Mode="In" />
+          <Parameter Name="giatricapdo" Type="varchar" Mode="In" />
+          <Parameter Name="congdoan" Type="varchar" Mode="In" />
+          <Parameter Name="ngay" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="TKTDSXModelStoreContainer">
+          <EntitySet Name="ZEMP_CF_MODE" EntityType="Self.ZEMP_CF_MODE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZEMP_CONGDOAN" EntityType="Self.ZEMP_CONGDOAN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZEMP_CH" EntityType="Self.ZEMP_CH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZEMP_DAURA_KV" EntityType="Self.ZEMP_DAURA_KV" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZEMP_DAURA_NG" EntityType="Self.ZEMP_DAURA_NG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZEMP_DAURA_WC" EntityType="Self.ZEMP_DAURA_WC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZEMP_KV" EntityType="Self.ZEMP_KV" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZEMP_LOG" EntityType="Self.ZEMP_LOG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZEMP_NG" EntityType="Self.ZEMP_NG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZEMP_PQ" EntityType="Self.ZEMP_PQ" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZEMP_SL_CH" EntityType="Self.ZEMP_SL_CH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZEMP_SL_KV" EntityType="Self.ZEMP_SL_KV" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZEMP_SL_NG" EntityType="Self.ZEMP_SL_NG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZEMP_SL_WC" EntityType="Self.ZEMP_SL_WC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZEMP_TK_KV" EntityType="Self.ZEMP_TK_KV" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZEMP_TK_NG" EntityType="Self.ZEMP_TK_NG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZEMP_TK_WC" EntityType="Self.ZEMP_TK_WC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZEMP_USER" EntityType="Self.ZEMP_USER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZEMP_WC" EntityType="Self.ZEMP_WC" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TKTDSXModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ZEMP_CONGDOAN">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="CongDoan" />
+          </Key>
+          <Property Name="SystemId" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CongDoan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenCongDoan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Stt" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ZEMP_CH">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="IdChuyen" />
+          </Key>
+          <Property Name="SystemId" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdChuyen" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Xuong" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Wrkct" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="KhuVuc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Nganh" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MaChuyen" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TenChuyen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="QlChuyen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CongDoan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ZIACT" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="IsNoColor" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ZEMP_DAURA_KV">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="KhuVuc" />
+            <PropertyRef Name="Nganh" />
+            <PropertyRef Name="CongDoan" />
+          </Key>
+          <Property Name="SystemId" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="KhuVuc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nganh" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CongDoan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ZEMP_DAURA_NG">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="Nganh" />
+            <PropertyRef Name="CongDoan" />
+          </Key>
+          <Property Name="SystemId" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nganh" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CongDoan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ZEMP_DAURA_WC">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="Wrkct" />
+            <PropertyRef Name="KhuVuc" />
+            <PropertyRef Name="Nganh" />
+            <PropertyRef Name="CongDoan" />
+          </Key>
+          <Property Name="SystemId" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Wrkct" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="KhuVuc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nganh" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CongDoan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ZEMP_KV">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="KhuVuc" />
+          </Key>
+          <Property Name="SystemId" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="KhuVuc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenKhuVuc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nganh" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QlKhuVuc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ZEMP_NG">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="Nganh" />
+          </Key>
+          <Property Name="SystemId" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nganh" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenNganh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="QlNganh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ZEMP_PQ">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="CapDo" />
+            <PropertyRef Name="GiaTriCapDo" />
+          </Key>
+          <Property Name="SystemId" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CapDo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GiaTriCapDo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ZEMP_SL_CH">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="IdChuyen" />
+            <PropertyRef Name="Ngay" />
+            <PropertyRef Name="CongDoan" />
+          </Key>
+          <Property Name="SystemId" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdChuyen" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ngay" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CongDoan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SoLuongLD" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NangSuat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="GioLamViec" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KeHoachGio" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="KeHoachNgay" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ThucHienNgay" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ChenhLech" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DatKeHoach" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Gio01" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio02" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio03" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio04" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio05" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio06" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio07" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio08" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio09" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio10" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio11" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio12" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio13" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio14" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio15" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio16" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio17" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio18" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio19" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio20" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio21" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio22" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio23" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio24" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Tuan" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Thang" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Quy" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Nam" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="ZEMP_SL_KV">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="KhuVuc" />
+            <PropertyRef Name="Ngay" />
+            <PropertyRef Name="CongDoan" />
+          </Key>
+          <Property Name="SystemId" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="KhuVuc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ngay" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CongDoan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SoLuongLD" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NangSuat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="GioLamViec" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KeHoachGio" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="KeHoachNgay" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ThucHienNgay" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ChenhLech" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DatKeHoach" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Gio01" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio02" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio03" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio04" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio05" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio06" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio07" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio08" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio09" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio10" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio11" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio12" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio13" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio14" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio15" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio16" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio17" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio18" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio19" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio20" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio21" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio22" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio23" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio24" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Tuan" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Thang" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Quy" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Nam" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="ZEMP_SL_NG">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="Nganh" />
+            <PropertyRef Name="Ngay" />
+            <PropertyRef Name="CongDoan" />
+          </Key>
+          <Property Name="SystemId" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nganh" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ngay" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CongDoan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SoLuongLD" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NangSuat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="GioLamViec" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KeHoachGio" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="KeHoachNgay" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ThucHienNgay" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ChenhLech" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DatKeHoach" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Gio01" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio02" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio03" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio04" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio05" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio06" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio07" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio08" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio09" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio10" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio11" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio12" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio13" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio14" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio15" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio16" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio17" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio18" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio19" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio20" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio21" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio22" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio23" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio24" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Tuan" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Thang" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Quy" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Nam" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="ZEMP_SL_WC">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="Wrkct" />
+            <PropertyRef Name="Ngay" />
+            <PropertyRef Name="CongDoan" />
+          </Key>
+          <Property Name="SystemId" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Wrkct" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ngay" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CongDoan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SoLuongLD" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NangSuat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="GioLamViec" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KeHoachGio" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="KeHoachNgay" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ThucHienNgay" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ChenhLech" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DatKeHoach" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Gio01" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio02" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio03" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio04" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio05" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio06" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio07" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio08" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio09" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio10" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio11" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio12" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio13" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio14" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio15" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio16" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio17" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio18" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio19" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio20" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio21" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio22" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio23" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gio24" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Tuan" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Thang" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Quy" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Nam" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="ZEMP_TK_KV">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="Ngay" />
+            <PropertyRef Name="KhuVuc" />
+            <PropertyRef Name="CongDoan" />
+          </Key>
+          <Property Name="SystemId" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ngay" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="KhuVuc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CongDoan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TongLaoDong" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ChuyenXanh" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ChuyenVang" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ChuyenDo" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="VatTuKeHoach" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="VatTuThucHien" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TaiSanKeHoach" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TaiSanThucHien" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NhanCongKeHoach" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NhanCongThucHien" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Tuan" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Thang" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Quy" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Nam" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="ZEMP_TK_NG">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="Ngay" />
+            <PropertyRef Name="Nganh" />
+            <PropertyRef Name="CongDoan" />
+          </Key>
+          <Property Name="SystemId" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ngay" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Nganh" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CongDoan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TongLaoDong" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ChuyenXanh" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ChuyenVang" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ChuyenDo" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="VatTuKeHoach" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="VatTuThucHien" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TaiSanKeHoach" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TaiSanThucHien" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NhanCongKeHoach" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NhanCongThucHien" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Tuan" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Thang" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Quy" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Nam" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="ZEMP_TK_WC">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="Ngay" />
+            <PropertyRef Name="Wrkct" />
+            <PropertyRef Name="CongDoan" />
+          </Key>
+          <Property Name="SystemId" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ngay" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Wrkct" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CongDoan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TongLaoDong" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ChuyenXanh" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ChuyenVang" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ChuyenDo" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="VatTuKeHoach" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="VatTuThucHien" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TaiSanKeHoach" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TaiSanThucHien" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NhanCongKeHoach" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NhanCongThucHien" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Tuan" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Thang" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Quy" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Nam" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="ZEMP_USER">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="SystemId" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ChucVu" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastMode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LastCapDo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LastGiaTriCapDo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LastCongDoan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="InActive" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ZEMP_WC">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="Wrkct" />
+          </Key>
+          <Property Name="SystemId" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Wrkct" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenWrkct" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KhuVuc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nganh" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QlWrkct" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="TKTDSXEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ZEMP_CONGDOAN" EntityType="Self.ZEMP_CONGDOAN" />
+          <EntitySet Name="ZEMP_CH" EntityType="Self.ZEMP_CH" />
+          <EntitySet Name="ZEMP_DAURA_KV" EntityType="Self.ZEMP_DAURA_KV" />
+          <EntitySet Name="ZEMP_DAURA_NG" EntityType="Self.ZEMP_DAURA_NG" />
+          <EntitySet Name="ZEMP_DAURA_WC" EntityType="Self.ZEMP_DAURA_WC" />
+          <EntitySet Name="ZEMP_KV" EntityType="Self.ZEMP_KV" />
+          <EntitySet Name="ZEMP_NG" EntityType="Self.ZEMP_NG" />
+          <EntitySet Name="ZEMP_PQ" EntityType="Self.ZEMP_PQ" />
+          <EntitySet Name="ZEMP_SL_CH" EntityType="Self.ZEMP_SL_CH" />
+          <EntitySet Name="ZEMP_SL_KV" EntityType="Self.ZEMP_SL_KV" />
+          <EntitySet Name="ZEMP_SL_NG" EntityType="Self.ZEMP_SL_NG" />
+          <EntitySet Name="ZEMP_SL_WC" EntityType="Self.ZEMP_SL_WC" />
+          <EntitySet Name="ZEMP_TK_KV" EntityType="Self.ZEMP_TK_KV" />
+          <EntitySet Name="ZEMP_TK_NG" EntityType="Self.ZEMP_TK_NG" />
+          <EntitySet Name="ZEMP_TK_WC" EntityType="Self.ZEMP_TK_WC" />
+          <EntitySet Name="ZEMP_USER" EntityType="Self.ZEMP_USER" />
+          <EntitySet Name="ZEMP_WC" EntityType="Self.ZEMP_WC" />
+          <EntitySet Name="ZEMP_CF_MODE" EntityType="TKTDSXModel.ZEMP_CF_MODE" />
+          <FunctionImport Name="GetSanLuongOnline">
+            <Parameter Name="mode" Mode="In" Type="String" />
+            <Parameter Name="capdo" Mode="In" Type="String" />
+            <Parameter Name="giatricapdo" Mode="In" Type="String" />
+            <Parameter Name="congdoan" Mode="In" Type="String" />
+            <Parameter Name="ngay" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetListCapDo" ReturnType="Collection(TKTDSXModel.ListCapDo)">
+          <Parameter Name="username" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="ZEMP_LOG" EntityType="TKTDSXModel.ZEMP_LOG" />
+        </EntityContainer>
+        <EntityType Name="ZEMP_CF_MODE">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="Mode" />
+          </Key>
+          <Property Name="SystemId" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Mode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DienGiai" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="ListCapDo" >
+          <Property Type="String" Name="CapDo" Nullable="false" />
+          <Property Type="String" Name="DienGiai" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="ZEMP_LOG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SystemId" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Ngay" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="LogKey" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LogDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TKTDSXModelStoreContainer" CdmEntityContainer="TKTDSXEntities">
+          <EntitySetMapping Name="ZEMP_CONGDOAN">
+            <EntityTypeMapping TypeName="TKTDSXModel.ZEMP_CONGDOAN">
+              <MappingFragment StoreEntitySet="ZEMP_CONGDOAN">
+                <ScalarProperty Name="SystemId" ColumnName="SystemId" />
+                <ScalarProperty Name="CongDoan" ColumnName="CongDoan" />
+                <ScalarProperty Name="TenCongDoan" ColumnName="TenCongDoan" />
+                <ScalarProperty Name="Stt" ColumnName="Stt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZEMP_CH">
+            <EntityTypeMapping TypeName="TKTDSXModel.ZEMP_CH">
+              <MappingFragment StoreEntitySet="ZEMP_CH">
+                <ScalarProperty Name="SystemId" ColumnName="SystemId" />
+                <ScalarProperty Name="IdChuyen" ColumnName="IdChuyen" />
+                <ScalarProperty Name="Xuong" ColumnName="Xuong" />
+                <ScalarProperty Name="Wrkct" ColumnName="Wrkct" />
+                <ScalarProperty Name="KhuVuc" ColumnName="KhuVuc" />
+                <ScalarProperty Name="Nganh" ColumnName="Nganh" />
+                <ScalarProperty Name="MaChuyen" ColumnName="MaChuyen" />
+                <ScalarProperty Name="TenChuyen" ColumnName="TenChuyen" />
+                <ScalarProperty Name="QlChuyen" ColumnName="QlChuyen" />
+                <ScalarProperty Name="CongDoan" ColumnName="CongDoan" />
+                <ScalarProperty Name="ZIACT" ColumnName="ZIACT" />
+                <ScalarProperty Name="IsNoColor" ColumnName="IsNoColor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZEMP_DAURA_KV">
+            <EntityTypeMapping TypeName="TKTDSXModel.ZEMP_DAURA_KV">
+              <MappingFragment StoreEntitySet="ZEMP_DAURA_KV">
+                <ScalarProperty Name="SystemId" ColumnName="SystemId" />
+                <ScalarProperty Name="KhuVuc" ColumnName="KhuVuc" />
+                <ScalarProperty Name="Nganh" ColumnName="Nganh" />
+                <ScalarProperty Name="CongDoan" ColumnName="CongDoan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZEMP_DAURA_NG">
+            <EntityTypeMapping TypeName="TKTDSXModel.ZEMP_DAURA_NG">
+              <MappingFragment StoreEntitySet="ZEMP_DAURA_NG">
+                <ScalarProperty Name="SystemId" ColumnName="SystemId" />
+                <ScalarProperty Name="Nganh" ColumnName="Nganh" />
+                <ScalarProperty Name="CongDoan" ColumnName="CongDoan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZEMP_DAURA_WC">
+            <EntityTypeMapping TypeName="TKTDSXModel.ZEMP_DAURA_WC">
+              <MappingFragment StoreEntitySet="ZEMP_DAURA_WC">
+                <ScalarProperty Name="SystemId" ColumnName="SystemId" />
+                <ScalarProperty Name="Wrkct" ColumnName="Wrkct" />
+                <ScalarProperty Name="KhuVuc" ColumnName="KhuVuc" />
+                <ScalarProperty Name="Nganh" ColumnName="Nganh" />
+                <ScalarProperty Name="CongDoan" ColumnName="CongDoan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZEMP_KV">
+            <EntityTypeMapping TypeName="TKTDSXModel.ZEMP_KV">
+              <MappingFragment StoreEntitySet="ZEMP_KV">
+                <ScalarProperty Name="SystemId" ColumnName="SystemId" />
+                <ScalarProperty Name="KhuVuc" ColumnName="KhuVuc" />
+                <ScalarProperty Name="TenKhuVuc" ColumnName="TenKhuVuc" />
+                <ScalarProperty Name="Nganh" ColumnName="Nganh" />
+                <ScalarProperty Name="QlKhuVuc" ColumnName="QlKhuVuc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZEMP_NG">
+            <EntityTypeMapping TypeName="TKTDSXModel.ZEMP_NG">
+              <MappingFragment StoreEntitySet="ZEMP_NG">
+                <ScalarProperty Name="SystemId" ColumnName="SystemId" />
+                <ScalarProperty Name="Nganh" ColumnName="Nganh" />
+                <ScalarProperty Name="TenNganh" ColumnName="TenNganh" />
+                <ScalarProperty Name="QlNganh" ColumnName="QlNganh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZEMP_PQ">
+            <EntityTypeMapping TypeName="TKTDSXModel.ZEMP_PQ">
+              <MappingFragment StoreEntitySet="ZEMP_PQ">
+                <ScalarProperty Name="SystemId" ColumnName="SystemId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="CapDo" ColumnName="CapDo" />
+                <ScalarProperty Name="GiaTriCapDo" ColumnName="GiaTriCapDo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZEMP_SL_CH">
+            <EntityTypeMapping TypeName="TKTDSXModel.ZEMP_SL_CH">
+              <MappingFragment StoreEntitySet="ZEMP_SL_CH">
+                <ScalarProperty Name="SystemId" ColumnName="SystemId" />
+                <ScalarProperty Name="IdChuyen" ColumnName="IdChuyen" />
+                <ScalarProperty Name="Ngay" ColumnName="Ngay" />
+                <ScalarProperty Name="CongDoan" ColumnName="CongDoan" />
+                <ScalarProperty Name="SoLuongLD" ColumnName="SoLuongLD" />
+                <ScalarProperty Name="NangSuat" ColumnName="NangSuat" />
+                <ScalarProperty Name="GioLamViec" ColumnName="GioLamViec" />
+                <ScalarProperty Name="KeHoachGio" ColumnName="KeHoachGio" />
+                <ScalarProperty Name="KeHoachNgay" ColumnName="KeHoachNgay" />
+                <ScalarProperty Name="ThucHienNgay" ColumnName="ThucHienNgay" />
+                <ScalarProperty Name="ChenhLech" ColumnName="ChenhLech" />
+                <ScalarProperty Name="DatKeHoach" ColumnName="DatKeHoach" />
+                <ScalarProperty Name="Gio01" ColumnName="Gio01" />
+                <ScalarProperty Name="Gio02" ColumnName="Gio02" />
+                <ScalarProperty Name="Gio03" ColumnName="Gio03" />
+                <ScalarProperty Name="Gio04" ColumnName="Gio04" />
+                <ScalarProperty Name="Gio05" ColumnName="Gio05" />
+                <ScalarProperty Name="Gio06" ColumnName="Gio06" />
+                <ScalarProperty Name="Gio07" ColumnName="Gio07" />
+                <ScalarProperty Name="Gio08" ColumnName="Gio08" />
+                <ScalarProperty Name="Gio09" ColumnName="Gio09" />
+                <ScalarProperty Name="Gio10" ColumnName="Gio10" />
+                <ScalarProperty Name="Gio11" ColumnName="Gio11" />
+                <ScalarProperty Name="Gio12" ColumnName="Gio12" />
+                <ScalarProperty Name="Gio13" ColumnName="Gio13" />
+                <ScalarProperty Name="Gio14" ColumnName="Gio14" />
+                <ScalarProperty Name="Gio15" ColumnName="Gio15" />
+                <ScalarProperty Name="Gio16" ColumnName="Gio16" />
+                <ScalarProperty Name="Gio17" ColumnName="Gio17" />
+                <ScalarProperty Name="Gio18" ColumnName="Gio18" />
+                <ScalarProperty Name="Gio19" ColumnName="Gio19" />
+                <ScalarProperty Name="Gio20" ColumnName="Gio20" />
+                <ScalarProperty Name="Gio21" ColumnName="Gio21" />
+                <ScalarProperty Name="Gio22" ColumnName="Gio22" />
+                <ScalarProperty Name="Gio23" ColumnName="Gio23" />
+                <ScalarProperty Name="Gio24" ColumnName="Gio24" />
+                <ScalarProperty Name="Tuan" ColumnName="Tuan" />
+                <ScalarProperty Name="Thang" ColumnName="Thang" />
+                <ScalarProperty Name="Quy" ColumnName="Quy" />
+                <ScalarProperty Name="Nam" ColumnName="Nam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZEMP_SL_KV">
+            <EntityTypeMapping TypeName="TKTDSXModel.ZEMP_SL_KV">
+              <MappingFragment StoreEntitySet="ZEMP_SL_KV">
+                <ScalarProperty Name="SystemId" ColumnName="SystemId" />
+                <ScalarProperty Name="KhuVuc" ColumnName="KhuVuc" />
+                <ScalarProperty Name="Ngay" ColumnName="Ngay" />
+                <ScalarProperty Name="CongDoan" ColumnName="CongDoan" />
+                <ScalarProperty Name="SoLuongLD" ColumnName="SoLuongLD" />
+                <ScalarProperty Name="NangSuat" ColumnName="NangSuat" />
+                <ScalarProperty Name="GioLamViec" ColumnName="GioLamViec" />
+                <ScalarProperty Name="KeHoachGio" ColumnName="KeHoachGio" />
+                <ScalarProperty Name="KeHoachNgay" ColumnName="KeHoachNgay" />
+                <ScalarProperty Name="ThucHienNgay" ColumnName="ThucHienNgay" />
+                <ScalarProperty Name="ChenhLech" ColumnName="ChenhLech" />
+                <ScalarProperty Name="DatKeHoach" ColumnName="DatKeHoach" />
+                <ScalarProperty Name="Gio01" ColumnName="Gio01" />
+                <ScalarProperty Name="Gio02" ColumnName="Gio02" />
+                <ScalarProperty Name="Gio03" ColumnName="Gio03" />
+                <ScalarProperty Name="Gio04" ColumnName="Gio04" />
+                <ScalarProperty Name="Gio05" ColumnName="Gio05" />
+                <ScalarProperty Name="Gio06" ColumnName="Gio06" />
+                <ScalarProperty Name="Gio07" ColumnName="Gio07" />
+                <ScalarProperty Name="Gio08" ColumnName="Gio08" />
+                <ScalarProperty Name="Gio09" ColumnName="Gio09" />
+                <ScalarProperty Name="Gio10" ColumnName="Gio10" />
+                <ScalarProperty Name="Gio11" ColumnName="Gio11" />
+                <ScalarProperty Name="Gio12" ColumnName="Gio12" />
+                <ScalarProperty Name="Gio13" ColumnName="Gio13" />
+                <ScalarProperty Name="Gio14" ColumnName="Gio14" />
+                <ScalarProperty Name="Gio15" ColumnName="Gio15" />
+                <ScalarProperty Name="Gio16" ColumnName="Gio16" />
+                <ScalarProperty Name="Gio17" ColumnName="Gio17" />
+                <ScalarProperty Name="Gio18" ColumnName="Gio18" />
+                <ScalarProperty Name="Gio19" ColumnName="Gio19" />
+                <ScalarProperty Name="Gio20" ColumnName="Gio20" />
+                <ScalarProperty Name="Gio21" ColumnName="Gio21" />
+                <ScalarProperty Name="Gio22" ColumnName="Gio22" />
+                <ScalarProperty Name="Gio23" ColumnName="Gio23" />
+                <ScalarProperty Name="Gio24" ColumnName="Gio24" />
+                <ScalarProperty Name="Tuan" ColumnName="Tuan" />
+                <ScalarProperty Name="Thang" ColumnName="Thang" />
+                <ScalarProperty Name="Quy" ColumnName="Quy" />
+                <ScalarProperty Name="Nam" ColumnName="Nam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZEMP_SL_NG">
+            <EntityTypeMapping TypeName="TKTDSXModel.ZEMP_SL_NG">
+              <MappingFragment StoreEntitySet="ZEMP_SL_NG">
+                <ScalarProperty Name="SystemId" ColumnName="SystemId" />
+                <ScalarProperty Name="Nganh" ColumnName="Nganh" />
+                <ScalarProperty Name="Ngay" ColumnName="Ngay" />
+                <ScalarProperty Name="CongDoan" ColumnName="CongDoan" />
+                <ScalarProperty Name="SoLuongLD" ColumnName="SoLuongLD" />
+                <ScalarProperty Name="NangSuat" ColumnName="NangSuat" />
+                <ScalarProperty Name="GioLamViec" ColumnName="GioLamViec" />
+                <ScalarProperty Name="KeHoachGio" ColumnName="KeHoachGio" />
+                <ScalarProperty Name="KeHoachNgay" ColumnName="KeHoachNgay" />
+                <ScalarProperty Name="ThucHienNgay" ColumnName="ThucHienNgay" />
+                <ScalarProperty Name="ChenhLech" ColumnName="ChenhLech" />
+                <ScalarProperty Name="DatKeHoach" ColumnName="DatKeHoach" />
+                <ScalarProperty Name="Gio01" ColumnName="Gio01" />
+                <ScalarProperty Name="Gio02" ColumnName="Gio02" />
+                <ScalarProperty Name="Gio03" ColumnName="Gio03" />
+                <ScalarProperty Name="Gio04" ColumnName="Gio04" />
+                <ScalarProperty Name="Gio05" ColumnName="Gio05" />
+                <ScalarProperty Name="Gio06" ColumnName="Gio06" />
+                <ScalarProperty Name="Gio07" ColumnName="Gio07" />
+                <ScalarProperty Name="Gio08" ColumnName="Gio08" />
+                <ScalarProperty Name="Gio09" ColumnName="Gio09" />
+                <ScalarProperty Name="Gio10" ColumnName="Gio10" />
+                <ScalarProperty Name="Gio11" ColumnName="Gio11" />
+                <ScalarProperty Name="Gio12" ColumnName="Gio12" />
+                <ScalarProperty Name="Gio13" ColumnName="Gio13" />
+                <ScalarProperty Name="Gio14" ColumnName="Gio14" />
+                <ScalarProperty Name="Gio15" ColumnName="Gio15" />
+                <ScalarProperty Name="Gio16" ColumnName="Gio16" />
+                <ScalarProperty Name="Gio17" ColumnName="Gio17" />
+                <ScalarProperty Name="Gio18" ColumnName="Gio18" />
+                <ScalarProperty Name="Gio19" ColumnName="Gio19" />
+                <ScalarProperty Name="Gio20" ColumnName="Gio20" />
+                <ScalarProperty Name="Gio21" ColumnName="Gio21" />
+                <ScalarProperty Name="Gio22" ColumnName="Gio22" />
+                <ScalarProperty Name="Gio23" ColumnName="Gio23" />
+                <ScalarProperty Name="Gio24" ColumnName="Gio24" />
+                <ScalarProperty Name="Tuan" ColumnName="Tuan" />
+                <ScalarProperty Name="Thang" ColumnName="Thang" />
+                <ScalarProperty Name="Quy" ColumnName="Quy" />
+                <ScalarProperty Name="Nam" ColumnName="Nam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZEMP_SL_WC">
+            <EntityTypeMapping TypeName="TKTDSXModel.ZEMP_SL_WC">
+              <MappingFragment StoreEntitySet="ZEMP_SL_WC">
+                <ScalarProperty Name="SystemId" ColumnName="SystemId" />
+                <ScalarProperty Name="Wrkct" ColumnName="Wrkct" />
+                <ScalarProperty Name="Ngay" ColumnName="Ngay" />
+                <ScalarProperty Name="CongDoan" ColumnName="CongDoan" />
+                <ScalarProperty Name="SoLuongLD" ColumnName="SoLuongLD" />
+                <ScalarProperty Name="NangSuat" ColumnName="NangSuat" />
+                <ScalarProperty Name="GioLamViec" ColumnName="GioLamViec" />
+                <ScalarProperty Name="KeHoachGio" ColumnName="KeHoachGio" />
+                <ScalarProperty Name="KeHoachNgay" ColumnName="KeHoachNgay" />
+                <ScalarProperty Name="ThucHienNgay" ColumnName="ThucHienNgay" />
+                <ScalarProperty Name="ChenhLech" ColumnName="ChenhLech" />
+                <ScalarProperty Name="DatKeHoach" ColumnName="DatKeHoach" />
+                <ScalarProperty Name="Gio01" ColumnName="Gio01" />
+                <ScalarProperty Name="Gio02" ColumnName="Gio02" />
+                <ScalarProperty Name="Gio03" ColumnName="Gio03" />
+                <ScalarProperty Name="Gio04" ColumnName="Gio04" />
+                <ScalarProperty Name="Gio05" ColumnName="Gio05" />
+                <ScalarProperty Name="Gio06" ColumnName="Gio06" />
+                <ScalarProperty Name="Gio07" ColumnName="Gio07" />
+                <ScalarProperty Name="Gio08" ColumnName="Gio08" />
+                <ScalarProperty Name="Gio09" ColumnName="Gio09" />
+                <ScalarProperty Name="Gio10" ColumnName="Gio10" />
+                <ScalarProperty Name="Gio11" ColumnName="Gio11" />
+                <ScalarProperty Name="Gio12" ColumnName="Gio12" />
+                <ScalarProperty Name="Gio13" ColumnName="Gio13" />
+                <ScalarProperty Name="Gio14" ColumnName="Gio14" />
+                <ScalarProperty Name="Gio15" ColumnName="Gio15" />
+                <ScalarProperty Name="Gio16" ColumnName="Gio16" />
+                <ScalarProperty Name="Gio17" ColumnName="Gio17" />
+                <ScalarProperty Name="Gio18" ColumnName="Gio18" />
+                <ScalarProperty Name="Gio19" ColumnName="Gio19" />
+                <ScalarProperty Name="Gio20" ColumnName="Gio20" />
+                <ScalarProperty Name="Gio21" ColumnName="Gio21" />
+                <ScalarProperty Name="Gio22" ColumnName="Gio22" />
+                <ScalarProperty Name="Gio23" ColumnName="Gio23" />
+                <ScalarProperty Name="Gio24" ColumnName="Gio24" />
+                <ScalarProperty Name="Tuan" ColumnName="Tuan" />
+                <ScalarProperty Name="Thang" ColumnName="Thang" />
+                <ScalarProperty Name="Quy" ColumnName="Quy" />
+                <ScalarProperty Name="Nam" ColumnName="Nam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZEMP_TK_KV">
+            <EntityTypeMapping TypeName="TKTDSXModel.ZEMP_TK_KV">
+              <MappingFragment StoreEntitySet="ZEMP_TK_KV">
+                <ScalarProperty Name="SystemId" ColumnName="SystemId" />
+                <ScalarProperty Name="Ngay" ColumnName="Ngay" />
+                <ScalarProperty Name="KhuVuc" ColumnName="KhuVuc" />
+                <ScalarProperty Name="CongDoan" ColumnName="CongDoan" />
+                <ScalarProperty Name="TongLaoDong" ColumnName="TongLaoDong" />
+                <ScalarProperty Name="ChuyenXanh" ColumnName="ChuyenXanh" />
+                <ScalarProperty Name="ChuyenVang" ColumnName="ChuyenVang" />
+                <ScalarProperty Name="ChuyenDo" ColumnName="ChuyenDo" />
+                <ScalarProperty Name="VatTuKeHoach" ColumnName="VatTuKeHoach" />
+                <ScalarProperty Name="VatTuThucHien" ColumnName="VatTuThucHien" />
+                <ScalarProperty Name="TaiSanKeHoach" ColumnName="TaiSanKeHoach" />
+                <ScalarProperty Name="TaiSanThucHien" ColumnName="TaiSanThucHien" />
+                <ScalarProperty Name="NhanCongKeHoach" ColumnName="NhanCongKeHoach" />
+                <ScalarProperty Name="NhanCongThucHien" ColumnName="NhanCongThucHien" />
+                <ScalarProperty Name="Tuan" ColumnName="Tuan" />
+                <ScalarProperty Name="Thang" ColumnName="Thang" />
+                <ScalarProperty Name="Quy" ColumnName="Quy" />
+                <ScalarProperty Name="Nam" ColumnName="Nam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZEMP_TK_NG">
+            <EntityTypeMapping TypeName="TKTDSXModel.ZEMP_TK_NG">
+              <MappingFragment StoreEntitySet="ZEMP_TK_NG">
+                <ScalarProperty Name="SystemId" ColumnName="SystemId" />
+                <ScalarProperty Name="Ngay" ColumnName="Ngay" />
+                <ScalarProperty Name="Nganh" ColumnName="Nganh" />
+                <ScalarProperty Name="CongDoan" ColumnName="CongDoan" />
+                <ScalarProperty Name="TongLaoDong" ColumnName="TongLaoDong" />
+                <ScalarProperty Name="ChuyenXanh" ColumnName="ChuyenXanh" />
+                <ScalarProperty Name="ChuyenVang" ColumnName="ChuyenVang" />
+                <ScalarProperty Name="ChuyenDo" ColumnName="ChuyenDo" />
+                <ScalarProperty Name="VatTuKeHoach" ColumnName="VatTuKeHoach" />
+                <ScalarProperty Name="VatTuThucHien" ColumnName="VatTuThucHien" />
+                <ScalarProperty Name="TaiSanKeHoach" ColumnName="TaiSanKeHoach" />
+                <ScalarProperty Name="TaiSanThucHien" ColumnName="TaiSanThucHien" />
+                <ScalarProperty Name="NhanCongKeHoach" ColumnName="NhanCongKeHoach" />
+                <ScalarProperty Name="NhanCongThucHien" ColumnName="NhanCongThucHien" />
+                <ScalarProperty Name="Tuan" ColumnName="Tuan" />
+                <ScalarProperty Name="Thang" ColumnName="Thang" />
+                <ScalarProperty Name="Quy" ColumnName="Quy" />
+                <ScalarProperty Name="Nam" ColumnName="Nam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZEMP_TK_WC">
+            <EntityTypeMapping TypeName="TKTDSXModel.ZEMP_TK_WC">
+              <MappingFragment StoreEntitySet="ZEMP_TK_WC">
+                <ScalarProperty Name="SystemId" ColumnName="SystemId" />
+                <ScalarProperty Name="Ngay" ColumnName="Ngay" />
+                <ScalarProperty Name="Wrkct" ColumnName="Wrkct" />
+                <ScalarProperty Name="CongDoan" ColumnName="CongDoan" />
+                <ScalarProperty Name="TongLaoDong" ColumnName="TongLaoDong" />
+                <ScalarProperty Name="ChuyenXanh" ColumnName="ChuyenXanh" />
+                <ScalarProperty Name="ChuyenVang" ColumnName="ChuyenVang" />
+                <ScalarProperty Name="ChuyenDo" ColumnName="ChuyenDo" />
+                <ScalarProperty Name="VatTuKeHoach" ColumnName="VatTuKeHoach" />
+                <ScalarProperty Name="VatTuThucHien" ColumnName="VatTuThucHien" />
+                <ScalarProperty Name="TaiSanKeHoach" ColumnName="TaiSanKeHoach" />
+                <ScalarProperty Name="TaiSanThucHien" ColumnName="TaiSanThucHien" />
+                <ScalarProperty Name="NhanCongKeHoach" ColumnName="NhanCongKeHoach" />
+                <ScalarProperty Name="NhanCongThucHien" ColumnName="NhanCongThucHien" />
+                <ScalarProperty Name="Tuan" ColumnName="Tuan" />
+                <ScalarProperty Name="Thang" ColumnName="Thang" />
+                <ScalarProperty Name="Quy" ColumnName="Quy" />
+                <ScalarProperty Name="Nam" ColumnName="Nam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZEMP_USER">
+            <EntityTypeMapping TypeName="TKTDSXModel.ZEMP_USER">
+              <MappingFragment StoreEntitySet="ZEMP_USER">
+                <ScalarProperty Name="SystemId" ColumnName="SystemId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="ChucVu" ColumnName="ChucVu" />
+                <ScalarProperty Name="LastMode" ColumnName="LastMode" />
+                <ScalarProperty Name="LastCapDo" ColumnName="LastCapDo" />
+                <ScalarProperty Name="LastGiaTriCapDo" ColumnName="LastGiaTriCapDo" />
+                <ScalarProperty Name="LastCongDoan" ColumnName="LastCongDoan" />
+                <ScalarProperty Name="InActive" ColumnName="InActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZEMP_WC">
+            <EntityTypeMapping TypeName="TKTDSXModel.ZEMP_WC">
+              <MappingFragment StoreEntitySet="ZEMP_WC">
+                <ScalarProperty Name="SystemId" ColumnName="SystemId" />
+                <ScalarProperty Name="Wrkct" ColumnName="Wrkct" />
+                <ScalarProperty Name="TenWrkct" ColumnName="TenWrkct" />
+                <ScalarProperty Name="KhuVuc" ColumnName="KhuVuc" />
+                <ScalarProperty Name="Nganh" ColumnName="Nganh" />
+                <ScalarProperty Name="QlWrkct" ColumnName="QlWrkct" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZEMP_CF_MODE">
+            <EntityTypeMapping TypeName="TKTDSXModel.ZEMP_CF_MODE">
+              <MappingFragment StoreEntitySet="ZEMP_CF_MODE">
+                <ScalarProperty Name="DienGiai" ColumnName="DienGiai" />
+                <ScalarProperty Name="Mode" ColumnName="Mode" />
+                <ScalarProperty Name="SystemId" ColumnName="SystemId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetSanLuongOnline" FunctionName="TKTDSXModel.Store.GetSanLuongOnline" />
+          <FunctionImportMapping FunctionImportName="GetListCapDo" FunctionName="TKTDSXModel.Store.GetListCapDo" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TKTDSXModel.ListCapDo" />
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="ZEMP_LOG">
+            <EntityTypeMapping TypeName="TKTDSXModel.ZEMP_LOG">
+              <MappingFragment StoreEntitySet="ZEMP_LOG">
+                <ScalarProperty Name="LogDescription" ColumnName="LogDescription" />
+                <ScalarProperty Name="LogKey" ColumnName="LogKey" />
+                <ScalarProperty Name="Ngay" ColumnName="Ngay" />
+                <ScalarProperty Name="SystemId" ColumnName="SystemId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

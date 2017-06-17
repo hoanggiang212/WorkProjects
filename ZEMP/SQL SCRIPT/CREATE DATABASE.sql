@@ -677,7 +677,7 @@ CREATE TABLE ZEMP_USER(
 	[Username]			[varchar](20)	NOT NULL,
 	[Password]			[varchar](50)	NOT NULL,
 	[HoTen]				[nvarchar](50)	NULL,
-	[ChucVu]			[varchar](20)	NULL,
+	[ChucVu]			[nvarchar](50)	NULL,
 	[LastMode]			[varchar](20)	NULL,
 	[LastCapDo]			[varchar](20)	NULL,
 	[LastGiaTriCapDo]	[varchar](20)	NULL,
@@ -716,6 +716,32 @@ CREATE TABLE ZEMP_PQ(
 	[Username]		ASC,
 	[CapDo]			ASC,
 	[GiaTriCapDo]	ASC )
+WITH (	PAD_INDEX = OFF, 
+		STATISTICS_NORECOMPUTE = OFF, 
+		IGNORE_DUP_KEY = OFF, 
+		ALLOW_ROW_LOCKS = ON, 
+		ALLOW_PAGE_LOCKS = ON ) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+--PHAN QUYEN USER
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = N'ZEMP_LOG')
+BEGIN
+  DROP TABLE [dbo].[ZEMP_LOG]
+END
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+--CREATE TABLE 
+CREATE TABLE ZEMP_LOG(
+	[ID]				[bigint] IDENTITY(1,1) NOT NULL ,
+	[SystemId]			[varchar](15)	NOT NULL,
+	[Ngay]				[smalldatetime] NOT NULL,
+	[LogKey]			[varchar](50)	NOT NULL,
+	[LogDescription]	[NTEXT]			NOT NULL,		--NGANH / KHUVUC / WORKCENTER
+	CONSTRAINT [PK_ZEMP_LOG] PRIMARY KEY CLUSTERED ( [ID] ASC )
 WITH (	PAD_INDEX = OFF, 
 		STATISTICS_NORECOMPUTE = OFF, 
 		IGNORE_DUP_KEY = OFF, 

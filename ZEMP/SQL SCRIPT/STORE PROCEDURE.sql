@@ -15,9 +15,9 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
--- Author:		<Author,,Name>
--- Create date: <Create Date,,>
--- Description:	<Description,,>
+-- Author:		<Nguyen Hoang Giang>
+-- Create date: <16 / 06 / 2017>
+-- Description:	<Get San Luong>
 -- =============================================
 CREATE PROCEDURE GetSanLuongOnline
 	@mode VARCHAR(20),
@@ -56,7 +56,7 @@ IF @capdo = 'WRKCT'
 	SET @where = 'tb2.Wrkct = ';
 
 ELSE IF @capdo = 'KHVUC'
-	SET @where = 'tb2.KhuVuc ';
+	SET @where = 'tb2.KhuVuc = ';
 
 ELSE IF @capdo = 'NGANH'
 	SET @where = 'tb2.Nganh = ';
@@ -69,9 +69,38 @@ ELSE IF @capdo = 'NGANH'
 END
 GO
 
+-- ================================================
+-- GET LIST CAP DO
+-- ================================================
+IF EXISTS ( SELECT * FROM   sysobjects WHERE  id = object_id(N'[dbo].[GetListCapDo]') and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
+BEGIN
+    DROP PROCEDURE [dbo].[GetListCapDo]
+END
 
-EXEC dbo.GetSanLuongOnline @mode = 'WRKCT', -- varchar(20)
-    @capdo = 'WRKCT', -- varchar(20)
-    @giatricapdo = 'WC02', -- varchar(20)
-    @congdoan = 'SMAy', -- varchar(20)
-    @ngay = '2017-06-15' -- varchar(10)
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Nguyen Hoang Giang>
+-- Create date: <16 / 06 / 2017>
+-- Description:	<Get List Cap Do>
+-- =============================================
+CREATE PROCEDURE GetListCapDo
+	@username VARCHAR(20)	
+AS
+BEGIN
+DECLARE @command NVARCHAR(MAX);
+SET FMTONLY OFF
+SET NOCOUNT ON;
+SET @command = 'SELECT distinct(tb1.CapDo), tb2.DienGiai from ZEMP_PQ as tb1 
+				INNER JOIN zemp_cf_mode as tb2
+				ON tb1.SystemId = tb2.SystemId AND tb1.CapDo = tb2.Mode WHERE tb1.username = ' + '''' + @username + '''';
+
+	EXECUTE sys.sp_executesql @command
+END
+GO
+
+
+exec GetListCapDo 'giangnh'
