@@ -22,7 +22,7 @@ namespace ZEMP.Models
 
         public string SelectedCapDo { set; get; }
 
-        public IEnumerable<SelectListItem> ListGiaTriCapDo { set; get; }
+        public List<SelectListItem> ListGiaTriCapDo { set; get; }
 
         public string SelectedGiaTriCapDo { set; get; }
 

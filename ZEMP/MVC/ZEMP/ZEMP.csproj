@@ -133,7 +133,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\LiveboardController.cs" />
-    <Compile Include="DAO\ListCapDo.cs">
+    <Compile Include="DAO\SelectListReturn.cs">
       <DependentUpon>ZempEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="DAO\ZempEntities.Context.cs">

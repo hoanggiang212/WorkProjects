@@ -17,5 +17,9 @@ namespace ZEMP.Header
         public const string ctlAccount = "Account";
         public const string mtdAccountIndex = "Index";
 
+
+        //result function 
+        public const string ResultOK = "OK";
+
     }
 }

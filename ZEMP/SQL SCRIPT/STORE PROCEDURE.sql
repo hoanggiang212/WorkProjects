@@ -103,4 +103,44 @@ END
 GO
 
 
-exec GetListCapDo 'giangnh'
+-- ================================================
+-- GET LIST GIA TRI CAP DO
+-- ================================================
+IF EXISTS ( SELECT * FROM   sysobjects WHERE  id = object_id(N'[dbo].[GetListGiaTriCapDo]') and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
+BEGIN
+    DROP PROCEDURE [dbo].[GetListGiaTriCapDo]
+END
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE GetListGiaTriCapDo
+	@username	VARCHAR(20),
+	@capdo		VARCHAR(20)
+AS
+BEGIN
+DECLARE @command NVARCHAR(MAX);
+SET FMTONLY OFF
+SET NOCOUNT ON;
+
+if @capdo = 'WRKCT'
+	SET @command = 'SELECT TB2.Wrkct as Value, TB2.TenWrkct as Text FROM ZEMP_PQ AS TB1 
+					INNER JOIN ZEMP_WC AS TB2 ON TB1.GiaTriCapDo = TB2.Wrkct AND TB1.SystemId = TB2.SystemId
+					WHERE TB1.Username =' + '''' + @username + '''';
+else if @capdo = 'KHVUC'
+	SET @command = 'SELECT TB2.KhuVuc as Value, TB2.TenKhuVuc as Text FROM ZEMP_PQ AS TB1 
+					INNER JOIN ZEMP_KV AS TB2 ON TB1.GiaTriCapDo = TB2.KhuVuc AND TB1.SystemId = TB2.SystemId
+					WHERE TB1.Username =' + '''' + @username + '''';
+else if @capdo = 'NGANH'
+	SET @command = 'SELECT TB2.Nganh as Value, TB2.TenNganh as Text FROM ZEMP_PQ AS TB1 
+					INNER JOIN ZEMP_NG AS TB2 ON TB1.GiaTriCapDo = TB2.Nganh AND TB1.SystemId = TB2.SystemId
+					WHERE TB1.Username =' + '''' + @username + '''';
+	EXECUTE sys.sp_executesql @command
+END
+GO
+
+exec GetListGiaTriCapDo 'GIANGNH', 'WRKCT'
+exec GetListGiaTriCapDo 'GIANGNH', 'KHVUC'
+exec GetListGiaTriCapDo 'GIANGNH', 'NGANH'

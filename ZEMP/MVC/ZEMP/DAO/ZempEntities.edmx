@@ -422,6 +422,10 @@
         <Function Name="GetListCapDo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="username" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="GetListGiaTriCapDo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="capdo" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="GetSanLuongOnline" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="mode" Type="varchar" Mode="In" />
           <Parameter Name="capdo" Type="varchar" Mode="In" />
@@ -875,10 +879,14 @@
             <Parameter Name="congdoan" Mode="In" Type="String" />
             <Parameter Name="ngay" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="GetListCapDo" ReturnType="Collection(TKTDSXModel.ListCapDo)">
+          <FunctionImport Name="GetListCapDo" ReturnType="Collection(TKTDSXModel.SelectListReturn)">
           <Parameter Name="username" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="ZEMP_LOG" EntityType="TKTDSXModel.ZEMP_LOG" />
+          <FunctionImport Name="GetListGiaTriCapDo" ReturnType="Collection(TKTDSXModel.SelectListReturn)">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="capdo" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="ZEMP_CF_MODE">
           <Key>
@@ -889,10 +897,6 @@
           <Property Name="Mode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="DienGiai" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
         </EntityType>
-        <ComplexType Name="ListCapDo" >
-          <Property Type="String" Name="CapDo" Nullable="false" />
-          <Property Type="String" Name="DienGiai" Nullable="false" />
-        </ComplexType>
         <EntityType Name="ZEMP_LOG">
           <Key>
             <PropertyRef Name="ID" />
@@ -903,6 +907,10 @@
           <Property Name="LogKey" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="LogDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
+        <ComplexType Name="SelectListReturn" >
+          <Property Type="String" Name="Value" Nullable="false" />
+          <Property Type="String" Name="Text" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1294,7 +1302,8 @@
           <FunctionImportMapping FunctionImportName="GetSanLuongOnline" FunctionName="TKTDSXModel.Store.GetSanLuongOnline" />
           <FunctionImportMapping FunctionImportName="GetListCapDo" FunctionName="TKTDSXModel.Store.GetListCapDo" >
             <ResultMapping>
-              <ComplexTypeMapping TypeName="TKTDSXModel.ListCapDo" />
+              <ComplexTypeMapping TypeName="TKTDSXModel.SelectListReturn">
+                </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
           <EntitySetMapping Name="ZEMP_LOG">
@@ -1308,6 +1317,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetListGiaTriCapDo" FunctionName="TKTDSXModel.Store.GetListGiaTriCapDo" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TKTDSXModel.SelectListReturn">
+                </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

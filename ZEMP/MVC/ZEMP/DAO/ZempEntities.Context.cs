@@ -72,13 +72,26 @@ namespace ZEMP.DAO
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetSanLuongOnline", modeParameter, capdoParameter, giatricapdoParameter, congdoanParameter, ngayParameter);
         }
     
-        public virtual ObjectResult<ListCapDo> GetListCapDo(string username)
+        public virtual ObjectResult<SelectListReturn> GetListCapDo(string username)
         {
             var usernameParameter = username != null ?
                 new ObjectParameter("username", username) :
                 new ObjectParameter("username", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ListCapDo>("GetListCapDo", usernameParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectListReturn>("GetListCapDo", usernameParameter);
+        }
+    
+        public virtual ObjectResult<SelectListReturn> GetListGiaTriCapDo(string username, string capdo)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            var capdoParameter = capdo != null ?
+                new ObjectParameter("capdo", capdo) :
+                new ObjectParameter("capdo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectListReturn>("GetListGiaTriCapDo", usernameParameter, capdoParameter);
         }
     }
 }

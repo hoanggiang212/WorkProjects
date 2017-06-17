@@ -11,9 +11,9 @@ namespace ZEMP.DAO
 {
     using System;
     
-    public partial class ListCapDo
+    public partial class SelectListReturn
     {
-        public string CapDo { get; set; }
-        public string DienGiai { get; set; }
+        public string Value { get; set; }
+        public string Text { get; set; }
     }
 }

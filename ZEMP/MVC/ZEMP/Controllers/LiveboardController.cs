@@ -33,6 +33,13 @@ namespace ZEMP.Controllers
             filter.DateTo = DateTime.Now;
 
             string strResult = cm.GetPhanQuyen(ref filter, account);
+            if (strResult != CommonHeader.ResultOK)
+            {
+                ViewBag.Result = strResult;
+                return View("Index", filter);
+            }
+
+
             ViewBag.Result = strResult;
             return View("Index", filter);
         }

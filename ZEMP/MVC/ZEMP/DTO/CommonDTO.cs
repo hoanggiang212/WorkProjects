@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using ZEMP.Models;
 using ZEMP.DAO;
+using ZEMP.Header;
 namespace ZEMP.DTO
 {
     public class CommonDTO
@@ -11,45 +12,38 @@ namespace ZEMP.DTO
 
         public string GetPhanQuyen(ref FilterCondition filter, ZEMP_USER account)
         {
-            string strResult = "OK";
-            FilterCondition lv_filter = filter;
-            //lay cap do dau tien
-            string sCapDoID = string.Empty; ;
-            string sCapDoName = string.Empty;
+            string strResult = CommonHeader.ResultOK;
+            AccountDTO accDto = new AccountDTO();
 
             using (TKTDSXEntities dc = new TKTDSXEntities())
             {
 
-                string FirstGiaTriCapDoID = string.Empty;
-                try
-                {
-                    AccountDTO accDto = new AccountDTO();
-                    filter.ListCapDo = accDto.GetListCapDoByUsername(account.Username, account.LastCapDo);
-                }
-                catch (Exception ex)
-                {
+                filter.ListCapDo = accDto.GetListCapDoByUsername(account.Username, account.LastCapDo);
 
-                    string errMsg = string.Format("ERROR MSG: {0} ; CONDITION [ username: {1} , LASTCAPDO: {2} ]",
-                                            ex.Message, account.Username ,account.LastCapDo);
-
-                    ZEMP_LOG zLog = new ZEMP_LOG()
+                for(int i = 0; i < filter.ListCapDo.Count; i++)
+                {
+                    if (filter.ListCapDo[i].Selected)
                     {
-                        SystemId = account.SystemId,
-                        LogKey = "GetPhanQuyen",
-                        LogDescription = errMsg,
-                        Ngay = DateTime.Now
-                    };
-                    dc.ZEMP_LOG.Add(zLog);
-                    dc.SaveChanges();
-                    strResult = "Có lỗi xảy ra, vui lòng liên hệ Admin.";
-                    return strResult;
+                        filter.SelectedCapDo = filter.ListCapDo[i].Value;
+                        break;
+                    }
                 }
-
                 if ( filter.ListCapDo.Count() == 0 )
                 {
                     strResult = "Chưa được phân quyền";
                 }
 
+                //Get list gia tri cap do theo selected cap do
+                filter.ListGiaTriCapDo = accDto.GetListGiaTriCapDo(account.Username, 
+                                                filter.SelectedCapDo, account.LastGiaTriCapDo);
+                for (int i = 0; i < filter.ListGiaTriCapDo.Count; i++)
+                {
+                    if (filter.ListGiaTriCapDo[i].Selected)
+                    {
+                        filter.SelectedGiaTriCapDo = filter.ListGiaTriCapDo[i].Value;
+                        break;
+                    }
+                }
                 return strResult;
             }
         }
