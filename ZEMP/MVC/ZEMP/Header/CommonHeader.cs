@@ -35,5 +35,10 @@ namespace ZEMP.Header
         public const string NGANH   = "NGANH";
 
 
+
+        //CSS
+        public const string CSS_TEXT_RED    = "ten-bo-phan-red";
+        public const string CSS_TEXT_YELLOW = "ten-bo-phan-yellow";
+        public const string CSS_TEXT_GREEN  = "ten-bo-phan-green";
     }
 }

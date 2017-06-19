@@ -15,6 +15,16 @@
           <Property Name="DienGiai" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="STT" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="ZEMP_CONGDOAN">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="CongDoan" />
+          </Key>
+          <Property Name="SystemId" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="CongDoan" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TenCongDoan" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Stt" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
         <EntityType Name="ZEMP_CH">
           <Key>
             <PropertyRef Name="SystemId" />
@@ -32,16 +42,6 @@
           <Property Name="CongDoan" Type="varchar" MaxLength="20" />
           <Property Name="ZIACT" Type="nvarchar" MaxLength="1" />
           <Property Name="IsNoColor" Type="varchar" MaxLength="1" />
-        </EntityType>
-        <EntityType Name="ZEMP_CONGDOAN">
-          <Key>
-            <PropertyRef Name="SystemId" />
-            <PropertyRef Name="CongDoan" />
-          </Key>
-          <Property Name="SystemId" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="CongDoan" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="TenCongDoan" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Stt" Type="numeric" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="ZEMP_DAURA_KV">
           <Key>
@@ -445,8 +445,8 @@
         </Function>
         <EntityContainer Name="TKTDSXModelStoreContainer">
           <EntitySet Name="ZEMP_CF_MODE" EntityType="Self.ZEMP_CF_MODE" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ZEMP_CH" EntityType="Self.ZEMP_CH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ZEMP_CONGDOAN" EntityType="Self.ZEMP_CONGDOAN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZEMP_CH" EntityType="Self.ZEMP_CH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ZEMP_DAURA_KV" EntityType="Self.ZEMP_DAURA_KV" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ZEMP_DAURA_NG" EntityType="Self.ZEMP_DAURA_NG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ZEMP_DAURA_WC" EntityType="Self.ZEMP_DAURA_WC" Schema="dbo" store:Type="Tables" />
@@ -932,7 +932,30 @@
           <Property Type="String" Name="text" Nullable="false" />
         </ComplexType>
         <ComplexType Name="SanLuongOnlineReturn" >
-          <Property Type="String" Name="BoPhan" Nullable="false" />
+          <Property Type="String" Name="BoPhan" Nullable="true" />
+          <Property Type="String" Name="TenCongDoan" Nullable="false" DefaultValue=" " />
+          <Property Type="Decimal" Name="SoLuongLD" Nullable="false" />
+          <Property Type="Decimal" Name="NangSuat" Nullable="false" />
+          <Property Type="Decimal" Name="GioLamViec" Nullable="false" />
+          <Property Type="Decimal" Name="KeHoachGio" Nullable="false" />
+          <Property Type="Decimal" Name="KeHoachNgay" Nullable="false" />
+          <Property Type="Decimal" Name="ThucHienNgay" Nullable="false" />
+          <Property Type="Decimal" Name="ChenhLech" Nullable="false" DefaultValue="0" />
+          <Property Type="Decimal" Name="DatKeHoach" Nullable="false" DefaultValue="0" />
+          <Property Type="Decimal" Name="Truoc8h" Nullable="false" />
+          <Property Type="Decimal" Name="Gio08" Nullable="false" DefaultValue="0" />
+          <Property Type="Decimal" Name="Gio09" Nullable="false" />
+          <Property Type="Decimal" Name="Gio10" Nullable="false" />
+          <Property Type="Decimal" Name="Gio11" Nullable="false" />
+          <Property Type="Decimal" Name="Gio12" Nullable="false" />
+          <Property Type="Decimal" Name="Gio13" Nullable="false" />
+          <Property Type="Decimal" Name="Gio14" Nullable="false" />
+          <Property Type="Decimal" Name="Gio15" Nullable="false" />
+          <Property Type="Decimal" Name="Gio16" Nullable="false" />
+          <Property Type="Decimal" Name="Gio17" Nullable="false" />
+          <Property Type="Decimal" Name="Gio18" Nullable="false" />
+          <Property Type="Decimal" Name="Sau18h" Nullable="false" />
+          <Property Type="String" Name="IsNoColor" Nullable="true" DefaultValue=" " />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>

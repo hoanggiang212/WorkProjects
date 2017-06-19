@@ -35,43 +35,55 @@ SET NOCOUNT ON;
 
 -- Define table source
 IF @mode = 'CHUYEN'
-	SET @command = N'SELECT tb2.TenChuyen as BoPhan,tb3.TenCongDoan, tb1.SoLuongLD, tb1.NangSuat, tb1.GioLamViec, tb1.KeHoachGio, '
-				+ ' tb1.KeHoachNgay, tb1.ThucHienNgay, tb1.ChenhLech, tb1.DatKeHoach, '
-				+ ' (tb1.Gio01 + tb1.Gio02 + tb1.Gio03 + tb1.Gio04 + tb1.Gio05 + tb1.Gio06 + tb1.Gio07 ) As Truoc8h, ' +
-				+ ' tb1.Gio08, tb1.Gio09, tb1.Gio10,tb1.Gio11,tb1.Gio12,tb1.Gio13,tb1.Gio14,tb1.Gio15,tb1.Gio16,tb1.Gio17,tb1.Gio18,'
-				+ ' (tb1.Gio19 + tb1.Gio20 + tb1.Gio21 + tb1.Gio22 + tb1.Gio23) As Sau18h, tb2.isNoColor ' +
-				+ ' FROM dbo.ZEMP_SL_CH AS tb1 INNER JOIN ZEMP_CH AS '
-				+ ' tb2 ON tb1.IdChuyen = tb2.IdChuyen AND tb1.SystemId = tb2.SystemId INNER JOIN dbo.ZEMP_CONGDOAN '
-				+ ' AS tb3 ON tb1.CongDoan = tb3.CongDoan AND tb1.SystemId = tb3.SystemId '		
+	SET @command = N'SELECT ISNULL(tb2.TenChuyen, SPACE(1)) as BoPhan,	ISNULL(tb3.TenCongDoan,SPACE(1)) as TenCongDoan, ISNULL(tb1.SoLuongLD, 0) as SoLuongLD, '
+					+ ' ISNULL( tb1.NangSuat , 0 ) as NangSuat,			ISNULL( tb1.GioLamViec, 0 ) as GioLamViec,		ISNULL( tb1.KeHoachGio, 0 ) as KeHoachGio, '
+					+ '	ISNULL( tb1.KeHoachNgay, 0 ) as KeHoachNgay,	ISNULL( tb1.ThucHienNgay, 0 ) as ThucHienNgay,	ISNULL( tb1.ChenhLech, 0 ) as ChenhLech, '
+					+ '	ISNULL( tb1.DatKeHoach, 0 ) as DatKeHoach,		ISNULL((tb1.Gio01 + tb1.Gio02 + tb1.Gio03 + tb1.Gio04 + tb1.Gio05 + tb1.Gio06 + tb1.Gio07 ),0) As Truoc8h, ' 
+					+ ' ISNULL(tb1.Gio08, 0 ) as Gio08,					ISNULL( tb1.Gio09, 0 ) as Gio09,				ISNULL( tb1.Gio10, 0 ) as Gio10, '
+					+ ' ISNULL(tb1.Gio11, 0 ) as Gio11,					ISNULL(tb1.Gio12, 0 ) as Gio12,					ISNULL(tb1.Gio13, 0 ) as Gio13, '
+					+ ' ISNULL(tb1.Gio14, 0 ) as Gio14,					ISNULL(tb1.Gio15, 0 ) as Gio15,					ISNULL(tb1.Gio16, 0 ) as Gio16, ' 
+					+ ' ISNULL(tb1.Gio17, 0 ) as Gio17,					ISNULL(tb1.Gio18, 0 ) as Gio18, '
+					+ ' ISNULL( (tb1.Gio19 + tb1.Gio20 + tb1.Gio21 + tb1.Gio22 + tb1.Gio23),0) As Sau18h,				ISNULL(tb2.isNoColor, SPACE(1) ) as IsNoColor' +
+					+ ' FROM dbo.ZEMP_SL_CH AS tb1 INNER JOIN ZEMP_CH AS tb2 ON tb1.IdChuyen = tb2.IdChuyen AND tb1.SystemId = tb2.SystemId '
+					+ ' INNER JOIN dbo.ZEMP_CONGDOAN AS tb3 ON tb1.CongDoan = tb3.CongDoan AND tb1.SystemId = tb3.SystemId '		
 ELSE IF @mode = 'WRKCT'
-	SET @command = N'SELECT tb2.TenWrkct as BoPhan,tb3.TenCongDoan, tb1.SoLuongLD, tb1.NangSuat, tb1.GioLamViec, tb1.KeHoachGio, '
-					+ ' tb1.KeHoachNgay, tb1.ThucHienNgay, tb1.ChenhLech, tb1.DatKeHoach, '
-					+ ' (tb1.Gio01 + tb1.Gio02 + tb1.Gio03 + tb1.Gio04 + tb1.Gio05 + tb1.Gio06 + tb1.Gio07 ) As Truoc8h, ' +
-					+ ' tb1.Gio08, tb1.Gio09, tb1.Gio10,tb1.Gio11,tb1.Gio12,tb1.Gio13,tb1.Gio14,tb1.Gio15,tb1.Gio16,tb1.Gio17,tb1.Gio18,'
-					+ ' (tb1.Gio19 + tb1.Gio20 + tb1.Gio21 + tb1.Gio22 + tb1.Gio23) As Sau18h, ' + '''' + ' '  + '''' + ' as isNoColor '
-					+ 'FROM dbo.ZEMP_SL_WC AS tb1 '
-					+ ' INNER JOIN dbo.ZEMP_WC AS tb2 ON tb1.Wrkct = tb2.Wrkct AND tb1.SystemId = tb2.SystemId '
+	SET @command = N'SELECT ISNULL(tb2.TenWrkct, SPACE(1)) as BoPhan,	ISNULL(tb3.TenCongDoan,SPACE(1)) as TenCongDoan, ISNULL(tb1.SoLuongLD, 0) as SoLuongLD, '
+					+ ' ISNULL( tb1.NangSuat , 0 ) as NangSuat,			ISNULL( tb1.GioLamViec, 0 ) as GioLamViec,		ISNULL( tb1.KeHoachGio, 0 ) as KeHoachGio, '
+					+ '	ISNULL( tb1.KeHoachNgay, 0 ) as KeHoachNgay,	ISNULL( tb1.ThucHienNgay, 0 ) as ThucHienNgay,	ISNULL( tb1.ChenhLech, 0 ) as ChenhLech, '
+					+ '	ISNULL( tb1.DatKeHoach, 0 ) as DatKeHoach,		ISNULL((tb1.Gio01 + tb1.Gio02 + tb1.Gio03 + tb1.Gio04 + tb1.Gio05 + tb1.Gio06 + tb1.Gio07 ),0) As Truoc8h, ' 
+					+ ' ISNULL(tb1.Gio08, 0 ) as Gio08,					ISNULL( tb1.Gio09, 0 ) as Gio09,				ISNULL( tb1.Gio10, 0 ) as Gio10, '
+					+ ' ISNULL(tb1.Gio11, 0 ) as Gio11,					ISNULL(tb1.Gio12, 0 ) as Gio12,					ISNULL(tb1.Gio13, 0 ) as Gio13, '
+					+ ' ISNULL(tb1.Gio14, 0 ) as Gio14,					ISNULL(tb1.Gio15, 0 ) as Gio15,					ISNULL(tb1.Gio16, 0 ) as Gio16, ' 
+					+ ' ISNULL(tb1.Gio17, 0 ) as Gio17,					ISNULL(tb1.Gio18, 0 ) as Gio18, '
+					+ ' ISNULL( (tb1.Gio19 + tb1.Gio20 + tb1.Gio21 + tb1.Gio22 + tb1.Gio23),0) As Sau18h,				SPACE(1) as IsNoColor' +
+					+ ' FROM dbo.ZEMP_SL_WC AS tb1 INNER JOIN dbo.ZEMP_WC AS tb2 ON tb1.Wrkct = tb2.Wrkct AND tb1.SystemId = tb2.SystemId '
 					+ ' INNER JOIN dbo.ZEMP_CONGDOAN AS tb3 ON tb1.CongDoan = tb3.CongDoan AND tb1.SystemId = tb3.SystemId '
 
 ELSE IF @mode = 'KHVUC'
-	SET @command = N'SELECT tb2.TenKhuVuc as BoPhan,tb3.TenCongDoan, tb1.SoLuongLD, tb1.NangSuat, tb1.GioLamViec, tb1.KeHoachGio, '
-					+ ' tb1.KeHoachNgay, tb1.ThucHienNgay, tb1.ChenhLech, tb1.DatKeHoach, '
-					+ ' (tb1.Gio01 + tb1.Gio02 + tb1.Gio03 + tb1.Gio04 + tb1.Gio05 + tb1.Gio06 + tb1.Gio07 ) As Truoc8h, ' +
-					+ ' tb1.Gio08, tb1.Gio09, tb1.Gio10,tb1.Gio11,tb1.Gio12,tb1.Gio13,tb1.Gio14,tb1.Gio15,tb1.Gio16,tb1.Gio17,tb1.Gio18,'
-					+ ' (tb1.Gio19 + tb1.Gio20 + tb1.Gio21 + tb1.Gio22 + tb1.Gio23) As Sau18h, ' + '''' + ' '  + '''' + ' as isNoColor '
-					+ ' FROM dbo.ZEMP_SL_KV AS tb1 '
-					+ ' INNER JOIN dbo.ZEMP_KV AS tb2 ON tb1.KhuVuc = tb2.KhuVuc AND tb1.SystemId = tb2.SystemId '
+	SET @command = N'SELECT ISNULL(tb2.TenKhuVuc, SPACE(1)) as BoPhan,	ISNULL(tb3.TenCongDoan,SPACE(1)) as TenCongDoan, ISNULL(tb1.SoLuongLD, 0) as SoLuongLD, '
+					+ ' ISNULL( tb1.NangSuat , 0 ) as NangSuat,			ISNULL( tb1.GioLamViec, 0 ) as GioLamViec,		ISNULL( tb1.KeHoachGio, 0 ) as KeHoachGio, '
+					+ '	ISNULL( tb1.KeHoachNgay, 0 ) as KeHoachNgay,	ISNULL( tb1.ThucHienNgay, 0 ) as ThucHienNgay,	ISNULL( tb1.ChenhLech, 0 ) as ChenhLech, '
+					+ '	ISNULL( tb1.DatKeHoach, 0 ) as DatKeHoach,		ISNULL((tb1.Gio01 + tb1.Gio02 + tb1.Gio03 + tb1.Gio04 + tb1.Gio05 + tb1.Gio06 + tb1.Gio07 ),0) As Truoc8h, ' 
+					+ ' ISNULL(tb1.Gio08, 0 ) as Gio08,					ISNULL( tb1.Gio09, 0 ) as Gio09,				ISNULL( tb1.Gio10, 0 ) as Gio10, '
+					+ ' ISNULL(tb1.Gio11, 0 ) as Gio11,					ISNULL(tb1.Gio12, 0 ) as Gio12,					ISNULL(tb1.Gio13, 0 ) as Gio13, '
+					+ ' ISNULL(tb1.Gio14, 0 ) as Gio14,					ISNULL(tb1.Gio15, 0 ) as Gio15,					ISNULL(tb1.Gio16, 0 ) as Gio16, ' 
+					+ ' ISNULL(tb1.Gio17, 0 ) as Gio17,					ISNULL(tb1.Gio18, 0 ) as Gio18, '
+					+ ' ISNULL( (tb1.Gio19 + tb1.Gio20 + tb1.Gio21 + tb1.Gio22 + tb1.Gio23),0) As Sau18h,				SPACE(1) as IsNoColor' +
+					+ ' FROM dbo.ZEMP_SL_KV AS tb1 INNER JOIN dbo.ZEMP_KV AS tb2 ON tb1.KhuVuc = tb2.KhuVuc AND tb1.SystemId = tb2.SystemId '
 					+ ' INNER JOIN dbo.ZEMP_CONGDOAN AS tb3 ON tb1.CongDoan = tb3.CongDoan AND tb1.SystemId = tb3.SystemId '
 ELSE IF @mode = 'NGANH'
-	SET @command = N'SELECT tb2.Nganh as BoPhan,tb3.TenCongDoan, tb1.SoLuongLD, tb1.NangSuat, tb1.GioLamViec, tb1.KeHoachGio, '
-					+ ' tb1.KeHoachNgay, tb1.ThucHienNgay, tb1.ChenhLech, tb1.DatKeHoach, '
-					+ ' (tb1.Gio01 + tb1.Gio02 + tb1.Gio03 + tb1.Gio04 + tb1.Gio05 + tb1.Gio06 + tb1.Gio07 ) As Truoc8h, ' +
-					+ ' tb1.Gio08, tb1.Gio09, tb1.Gio10,tb1.Gio11,tb1.Gio12,tb1.Gio13,tb1.Gio14,tb1.Gio15,tb1.Gio16,tb1.Gio17,tb1.Gio18,'
-					+ ' (tb1.Gio19 + tb1.Gio20 + tb1.Gio21 + tb1.Gio22 + tb1.Gio23) As Sau18h, ' + '''' + ' '  + '''' + ' as isNoColor '
-					+ ' FROM dbo.ZEMP_SL_NG AS tb1 '
-					+ 'INNER JOIN dbo.ZEMP_KV AS tb2 ON tb1.Nganh = tb2.Nganh AND tb1.SystemId = tb2.SystemId '
-					+ 'INNER JOIN dbo.ZEMP_CONGDOAN AS tb3 ON tb1.CongDoan = tb3.CongDoan AND tb1.SystemId = tb3.SystemId '
 
+	SET @command = N'SELECT ISNULL(tb2.TenNganh, SPACE(1)) as BoPhan,	ISNULL(tb3.TenCongDoan,SPACE(1)) as TenCongDoan, ISNULL(tb1.SoLuongLD, 0) as SoLuongLD, '
+					+ ' ISNULL( tb1.NangSuat , 0 ) as NangSuat,			ISNULL( tb1.GioLamViec, 0 ) as GioLamViec,		ISNULL( tb1.KeHoachGio, 0 ) as KeHoachGio, '
+					+ '	ISNULL( tb1.KeHoachNgay, 0 ) as KeHoachNgay,	ISNULL( tb1.ThucHienNgay, 0 ) as ThucHienNgay,	ISNULL( tb1.ChenhLech, 0 ) as ChenhLech, '
+					+ '	ISNULL( tb1.DatKeHoach, 0 ) as DatKeHoach,		ISNULL((tb1.Gio01 + tb1.Gio02 + tb1.Gio03 + tb1.Gio04 + tb1.Gio05 + tb1.Gio06 + tb1.Gio07 ),0) As Truoc8h, ' 
+					+ ' ISNULL(tb1.Gio08, 0 ) as Gio08,					ISNULL( tb1.Gio09, 0 ) as Gio09,				ISNULL( tb1.Gio10, 0 ) as Gio10, '
+					+ ' ISNULL(tb1.Gio11, 0 ) as Gio11,					ISNULL(tb1.Gio12, 0 ) as Gio12,					ISNULL(tb1.Gio13, 0 ) as Gio13, '
+					+ ' ISNULL(tb1.Gio14, 0 ) as Gio14,					ISNULL(tb1.Gio15, 0 ) as Gio15,					ISNULL(tb1.Gio16, 0 ) as Gio16, ' 
+					+ ' ISNULL(tb1.Gio17, 0 ) as Gio17,					ISNULL(tb1.Gio18, 0 ) as Gio18, '
+					+ ' ISNULL( (tb1.Gio19 + tb1.Gio20 + tb1.Gio21 + tb1.Gio22 + tb1.Gio23),0) As Sau18h,				SPACE(1) as IsNoColor' +
+					+ ' FROM dbo.ZEMP_SL_NG AS tb1 INNER JOIN dbo.ZEMP_NG AS tb2 ON tb1.Nganh = tb2.Nganh AND tb1.SystemId = tb2.SystemId '
+					+ ' INNER JOIN dbo.ZEMP_CONGDOAN AS tb3 ON tb1.CongDoan = tb3.CongDoan AND tb1.SystemId = tb3.SystemId '	
 --define condition
 IF @capdo = 'WRKCT'
 	SET @where = ' tb1.SystemId = ' + '''' + @SystemId + '''' + ' AND  tb2.Wrkct = ';
@@ -91,9 +103,7 @@ EXECUTE sys.sp_executesql @command
 END
 GO
 --TEST
-EXEC GetSanLuongOnline '900P01', 'WRKCT', 'KHVUC', 'KV01', 'ALL', '2017-06-15'
-
-select * from zemp_sl_wc
+--EXEC GetSanLuongOnline '900P01', 'WRKCT', 'KHVUC', 'KV01', 'ALL', '2017-06-15'
 
 -- ================================================
 -- GET LIST CAP DO

@@ -1,6 +1,36 @@
 ﻿@using ZEMP.Models;
 @using ZEMP.Header;
 @model ZEMP.Models.FilterCondition
+
+<script type="text/javascript">
+    (function (window) {
+
+        /* A full compatability script from MDN: */
+        var supportPageOffset = window.pageXOffset !== undefined;
+        var isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
+
+        /* Set up some variables  */
+        var headerDiv = document.getElementById("sanluong-thead");
+        var bodyDiv = document.getElementById("sanluong-tbody");
+        var navBar = document.getElementById("nav-bar-header");
+        //var demoItem3 = document.getElementById("fix-col");
+        /* Add an event to the window.onscroll event */
+        window.addEventListener("scroll", function (e) {
+
+            /* A full compatability script from MDN for gathering the x and y values of scroll: */
+            var x = supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft;
+            //var y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
+
+            navBar.style.left       = -x + "px";
+            headerDiv.style.left    = -x + "px";
+            bodyDiv.style.left      = -x + "px";
+            //demoItem3.style.top = -y + 50 + "px";
+        });
+
+    })(window);
+
+</script>
+
 <table class="responsive-table table-striped table-hover table">
     <colgroup>
         <col class="col-chuyen" style="min-width:300px;" />
@@ -28,7 +58,7 @@
         <col class="col-num-short" />
         <col class="col-num-short" />
     </colgroup>
-    <thead>
+    <thead id="sanluong-thead">
         <tr>
             @if (Model.SelectedMode == "NGANH")
             {
@@ -71,20 +101,19 @@
             <th class="col-num-short" style="text-align:center;">Sau 19h</th>
         </tr>
     </thead>
-    <tbody style="margin-top:120px;">
+    <tbody id="sanluong-tbody" style="margin-top:120px;">
         @if (ViewData["SL_Online"] != null)
             {
                 foreach (SanLuongOnline slsx in (List<SanLuongOnline>)ViewData[CommonHeader.VIEWDATA_SL_ONLINE])
                 {
                 <tr>
-
                     <td class="col-chuyen">@slsx.BoPhan</td>                   
                     <td class="col-congdoan" style="text-align:center">@slsx.CongDoan</td>
                     <td class="col-slld " style="text-align:right">@slsx.SoLuongLaoDong.ToString("#,#")</td>
-                    <td class="col-num-long" style="text-align:right">@slsx.NangSuat.ToString("#,#.##")</td>
-                    <td class="col-num-long" style="text-align:right">@slsx.GioLamViec.ToString("#,#.##")</td>
-                    <td class="col-num-long" style="text-align:right">@slsx.KeHoachGio.ToString("#,#")</td>
-                    <td class="col-num-long" style="text-align:right"> @slsx.KeHoachNgay.ToString("#,#")</td>
+                    <td class="col-num-long @slsx.sColorText" style="text-align:right">@slsx.NangSuat.ToString("#,#.##")</td>
+                    <td class="col-num-long @slsx.sColorText" style="text-align:right">@slsx.GioLamViec.ToString("#,#.##")</td>
+                    <td class="col-num-long @slsx.sColorText" style="text-align:right">@slsx.KeHoachGio.ToString("#,#")</td>
+                    <td class="col-num-long @slsx.sColorText" style="text-align:right"> @slsx.KeHoachNgay.ToString("#,#")</td>
                     <td class="col-num-long @slsx.sColorText" style="text-align:right">@slsx.ThucHien.ToString("#,#")</td>
                     <td class="col-num-long @slsx.sColorText " style="text-align:right">@slsx.ChenhLech.ToString("#,#")</td>
                     @if (@slsx.DatSanLuong > 0)
@@ -96,8 +125,8 @@
                         <td class="col-num-long @slsx.sColorText" style="text-align:right">0 %</td>
                     }
                     <td class="col-num-short col-num-short @slsx.sColorText @slsx.sColoTruoc8h" style="text-align:right">@slsx.Truoc8h.ToString("#,#")</td>
-                    <td class="col-num-short @slsx.sColorText " style="text-align:right">@slsx.Gio08.ToString("#,#")</td>
-                    <td class="col-num-short @slsx.sColorText " style="text-align:right">@slsx.Gio09.ToString("#,#")</td>
+                    <td class="col-num-short @slsx.sColorText" style="text-align:right">@slsx.Gio08.ToString("#,#")</td>
+                    <td class="col-num-short @slsx.sColorText" style="text-align:right">@slsx.Gio09.ToString("#,#")</td>
                     <td class="col-num-short @slsx.sColorText" style="text-align:right">@slsx.Gio10.ToString("#,#")</td>
                     <td class="col-num-short @slsx.sColorText" style="text-align:right">@slsx.Gio11.ToString("#,#")</td>
                     <td class="col-num-short @slsx.sColorText" style="text-align:right">@slsx.Gio12.ToString("#,#")</td>

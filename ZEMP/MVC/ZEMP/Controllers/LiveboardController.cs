@@ -67,6 +67,14 @@ namespace ZEMP.Controllers
 
         public ActionResult GetListData(string level, string capdo, string giaTriCapdo, string congDoan)
         {
+            //get current account logged
+            ZEMP_USER account = Session[CommonHeader.ssAccount] as ZEMP_USER;
+
+            if (account == null)
+            {
+                return RedirectToAction(CommonHeader.mtdAccountIndex, CommonHeader.ctlAccount);
+            }
+
             FilterCondition filter = new FilterCondition()
             {
                 SystemId        = CommonHeader.defaultSystemId,

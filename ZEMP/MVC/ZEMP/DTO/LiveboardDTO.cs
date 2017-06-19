@@ -100,10 +100,62 @@ namespace ZEMP.DTO
 
             using (TKTDSXEntities dc = new TKTDSXEntities())
             {
-                List<SanLuongOnlineReturn> listRaw = dc.GetSanLuongOnline(CommonHeader.defaultSystemId, sModeView, sCapDo, sGiaTriCapDo, sCongDoan, sNgay);
-            }
+                List<SanLuongOnlineReturn> listRaw = dc.GetSanLuongOnline(CommonHeader.defaultSystemId, sModeView, sCapDo, sGiaTriCapDo, sCongDoan, sNgay).ToList<SanLuongOnlineReturn>();
+                foreach( var item in listRaw)
+                {
+                    var itemSanLuong = new SanLuongOnline()
+                    {
+                        BoPhan      = item.BoPhan,
+                        CongDoan    = item.TenCongDoan,
+                        SoLuongLaoDong = int.Parse(item.SoLuongLD.ToString()),
+                        NangSuat    = double.Parse(item.NangSuat.ToString()),
+                        GioLamViec  = double.Parse(item.GioLamViec.ToString()),
+                        KeHoachGio  = int.Parse(item.KeHoachGio.ToString()),
+                        KeHoachNgay = int.Parse(item.KeHoachNgay.ToString()),
+                        ThucHien    = int.Parse(item.ThucHienNgay.ToString()),
+                        ChenhLech   = int.Parse(item.ChenhLech.ToString()),
+                        DatSanLuong = double.Parse(item.DatKeHoach.ToString()),
+                        Truoc8h     = int.Parse(item.Truoc8h.ToString()),
+                        Gio08       = int.Parse(item.Gio08.ToString()),
+                        Gio09       = int.Parse(item.Gio09.ToString()),
+                        Gio10       = int.Parse(item.Gio10.ToString()),
+                        Gio11       = int.Parse(item.Gio11.ToString()),
+                        Gio12       = int.Parse(item.Gio12.ToString()),
+                        Gio13       = int.Parse(item.Gio13.ToString()),
+                        Gio14       = int.Parse(item.Gio14.ToString()),
+                        Gio15       = int.Parse(item.Gio15.ToString()),
+                        Gio16       = int.Parse(item.Gio16.ToString()),
+                        Gio17       = int.Parse(item.Gio17.ToString()),
+                        Gio18       = int.Parse(item.Gio18.ToString()),
+                        Sau18       = int.Parse(item.Sau18h.ToString())
+                    };
 
-                return ListSanLuong;
+                    if (item.IsNoColor.Trim() == "X"){itemSanLuong.isColor = false;}else{itemSanLuong.isColor = true;}
+
+                    //Set color for text
+                    if (itemSanLuong.isColor) // Co to mau
+                    {
+                        if(itemSanLuong.DatSanLuong < 95)
+                        {
+                            itemSanLuong.sColorText = CommonHeader.CSS_TEXT_RED;
+                        }
+                        else if ((itemSanLuong.DatSanLuong >= 95)&&(itemSanLuong.DatSanLuong < 100))
+                        {
+                            itemSanLuong.sColorText = CommonHeader.CSS_TEXT_YELLOW;
+                        }
+                        else
+                        {
+                            itemSanLuong.sColorText = CommonHeader.CSS_TEXT_GREEN;
+                        }
+                    }
+                    else // Khong to mau
+                    {
+                        itemSanLuong.sColorText = "";
+                    }
+                    ListSanLuong.Add(itemSanLuong);
+                }
+            }
+            return ListSanLuong;
         }
 
     }

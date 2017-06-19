@@ -1,0 +1,22 @@
+window.PRICE_SERVICE_URLS = [
+'https://price-na01.vndirect.com.vn',
+'https://price-as01.vndirect.com.vn',
+'https://price-hcm01.vndirect.com.vn',
+'https://price-hcm02.vndirect.com.vn',
+'https://price-hcm03.vndirect.com.vn',
+'https://price-hcm04.vndirect.com.vn',
+'https://price-hcm05.vndirect.com.vn',
+'https://price-hcm06.vndirect.com.vn',
+'https://price-hcm07.vndirect.com.vn',
+'https://price-hn04.vndirect.com.vn',
+'https://price-hn05.vndirect.com.vn',
+'https://price-hn11.vndirect.com.vn',
+'https://price-hn12.vndirect.com.vn',
+'https://price-hn13.vndirect.com.vn',
+'https://price-hn14.vndirect.com.vn',
+'https://price-hn15.vndirect.com.vn',
+'https://price-hn16.vndirect.com.vn'
+];
+window.PUBLIC_PRICE_SERVICE_URLS = [
+'https://price-na01.vndirect.com.vn'
+];

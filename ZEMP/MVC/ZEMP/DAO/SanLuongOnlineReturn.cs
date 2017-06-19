@@ -13,6 +13,38 @@ namespace ZEMP.DAO
     
     public partial class SanLuongOnlineReturn
     {
+        public SanLuongOnlineReturn()
+        {
+            this.TenCongDoan = " ";
+            this.ChenhLech = 0m;
+            this.DatKeHoach = 0m;
+            this.Gio08 = 0m;
+            this.IsNoColor = " ";
+        }
+    
         public string BoPhan { get; set; }
+        public string TenCongDoan { get; set; }
+        public decimal SoLuongLD { get; set; }
+        public decimal NangSuat { get; set; }
+        public decimal GioLamViec { get; set; }
+        public decimal KeHoachGio { get; set; }
+        public decimal KeHoachNgay { get; set; }
+        public decimal ThucHienNgay { get; set; }
+        public decimal ChenhLech { get; set; }
+        public decimal DatKeHoach { get; set; }
+        public decimal Truoc8h { get; set; }
+        public decimal Gio08 { get; set; }
+        public decimal Gio09 { get; set; }
+        public decimal Gio10 { get; set; }
+        public decimal Gio11 { get; set; }
+        public decimal Gio12 { get; set; }
+        public decimal Gio13 { get; set; }
+        public decimal Gio14 { get; set; }
+        public decimal Gio15 { get; set; }
+        public decimal Gio16 { get; set; }
+        public decimal Gio17 { get; set; }
+        public decimal Gio18 { get; set; }
+        public decimal Sau18h { get; set; }
+        public string IsNoColor { get; set; }
     }
 }
