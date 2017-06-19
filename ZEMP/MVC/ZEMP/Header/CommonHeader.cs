@@ -10,6 +10,8 @@ namespace ZEMP.Header
         public const string defaultSystemId = "900P01";
         public const string ssAccount = "ACCOUNT";
 
+        public const string VIEWDATA_SL_ONLINE = "SL_ONLINE";
+
 
 
 
@@ -20,6 +22,18 @@ namespace ZEMP.Header
 
         //result function 
         public const string ResultOK = "OK";
+
+
+        //Cong doan
+        public const string CongDoanAllValue = "ALL";
+        public const string CongDoanAllText = "Tất Cả";
+
+
+        public const string CHUYEN  = "CHUYEN";
+        public const string WRKCT   = "WRKCT";
+        public const string KHVUC   = "KHVUC";
+        public const string NGANH   = "NGANH";
+
 
     }
 }

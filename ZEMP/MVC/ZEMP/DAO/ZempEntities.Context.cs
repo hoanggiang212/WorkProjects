@@ -47,8 +47,12 @@ namespace ZEMP.DAO
         public virtual DbSet<ZEMP_CF_MODE> ZEMP_CF_MODE { get; set; }
         public virtual DbSet<ZEMP_LOG> ZEMP_LOG { get; set; }
     
-        public virtual int GetSanLuongOnline(string mode, string capdo, string giatricapdo, string congdoan, string ngay)
+        public virtual ObjectResult<SanLuongOnlineReturn> GetSanLuongOnline(string systemId, string mode, string capdo, string giatricapdo, string congdoan, string ngay)
         {
+            var systemIdParameter = systemId != null ?
+                new ObjectParameter("SystemId", systemId) :
+                new ObjectParameter("SystemId", typeof(string));
+    
             var modeParameter = mode != null ?
                 new ObjectParameter("mode", mode) :
                 new ObjectParameter("mode", typeof(string));
@@ -69,20 +73,28 @@ namespace ZEMP.DAO
                 new ObjectParameter("ngay", ngay) :
                 new ObjectParameter("ngay", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetSanLuongOnline", modeParameter, capdoParameter, giatricapdoParameter, congdoanParameter, ngayParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SanLuongOnlineReturn>("GetSanLuongOnline", systemIdParameter, modeParameter, capdoParameter, giatricapdoParameter, congdoanParameter, ngayParameter);
         }
     
-        public virtual ObjectResult<SelectListReturn> GetListCapDo(string username)
+        public virtual ObjectResult<SelectListReturn> GetListCapDo(string systemId, string username)
         {
+            var systemIdParameter = systemId != null ?
+                new ObjectParameter("SystemId", systemId) :
+                new ObjectParameter("SystemId", typeof(string));
+    
             var usernameParameter = username != null ?
                 new ObjectParameter("username", username) :
                 new ObjectParameter("username", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectListReturn>("GetListCapDo", usernameParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectListReturn>("GetListCapDo", systemIdParameter, usernameParameter);
         }
     
-        public virtual ObjectResult<SelectListReturn> GetListGiaTriCapDo(string username, string capdo)
+        public virtual ObjectResult<SelectListReturn> GetListGiaTriCapDo(string systemId, string username, string capdo)
         {
+            var systemIdParameter = systemId != null ?
+                new ObjectParameter("SystemId", systemId) :
+                new ObjectParameter("SystemId", typeof(string));
+    
             var usernameParameter = username != null ?
                 new ObjectParameter("username", username) :
                 new ObjectParameter("username", typeof(string));
@@ -91,7 +103,25 @@ namespace ZEMP.DAO
                 new ObjectParameter("capdo", capdo) :
                 new ObjectParameter("capdo", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectListReturn>("GetListGiaTriCapDo", usernameParameter, capdoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectListReturn>("GetListGiaTriCapDo", systemIdParameter, usernameParameter, capdoParameter);
+        }
+    
+        public virtual ObjectResult<SelectListReturn> GetCongDoanLiveboard(string systemId)
+        {
+            var systemIdParameter = systemId != null ?
+                new ObjectParameter("SystemId", systemId) :
+                new ObjectParameter("SystemId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectListReturn>("GetCongDoanLiveboard", systemIdParameter);
+        }
+    
+        public virtual ObjectResult<SelectListReturn> GetModeView(string systemId)
+        {
+            var systemIdParameter = systemId != null ?
+                new ObjectParameter("SystemId", systemId) :
+                new ObjectParameter("SystemId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectListReturn>("GetModeView", systemIdParameter);
         }
     }
 }

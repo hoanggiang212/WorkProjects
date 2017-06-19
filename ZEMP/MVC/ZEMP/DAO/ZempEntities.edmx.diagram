@@ -12,10 +12,10 @@
         <EntityTypeShape EntityType="TKTDSXModel.ZEMP_DAURA_WC" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TKTDSXModel.ZEMP_KV" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TKTDSXModel.ZEMP_NG" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TKTDSXModel.ZEMP_PQ" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TKTDSXModel.ZEMP_PQ" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="false" />
         <EntityTypeShape EntityType="TKTDSXModel.ZEMP_SL_CH" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TKTDSXModel.ZEMP_SL_KV" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TKTDSXModel.ZEMP_SL_NG" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TKTDSXModel.ZEMP_SL_NG" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="false" />
         <EntityTypeShape EntityType="TKTDSXModel.ZEMP_SL_WC" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="false" />
         <EntityTypeShape EntityType="TKTDSXModel.ZEMP_TK_KV" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TKTDSXModel.ZEMP_TK_NG" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />

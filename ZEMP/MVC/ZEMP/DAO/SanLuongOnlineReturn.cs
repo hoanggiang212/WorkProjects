@@ -10,13 +10,9 @@
 namespace ZEMP.DAO
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class ZEMP_CF_MODE
+    public partial class SanLuongOnlineReturn
     {
-        public string SystemId { get; set; }
-        public string Mode { get; set; }
-        public string DienGiai { get; set; }
-        public int STT { get; set; }
+        public string BoPhan { get; set; }
     }
 }

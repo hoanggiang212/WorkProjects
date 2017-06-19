@@ -1,0 +1,116 @@
+﻿@using ZEMP.Models;
+@using ZEMP.Header;
+@model ZEMP.Models.FilterCondition
+<table class="responsive-table table-striped table-hover table">
+    <colgroup>
+        <col class="col-chuyen" style="min-width:300px;" />
+        <col class="col-congdoan" />
+        <col class="col-slld" />
+        <col class="col-num-long" />
+        <col class="col-num-long" />
+        <col class="col-num-long" />
+        <col class="col-num-long" />
+        <col class="col-num-long" />
+        <col class="col-num-long" />
+        <col class="col-num-long" />
+        <col class="col-num-short" />
+        <col class="col-num-short" />
+        <col class="col-num-short" />
+        <col class="col-num-short" />
+        <col class="col-num-short" />
+        <col class="col-num-short" />
+        <col class="col-num-short" />
+        <col class="col-num-short" />
+        <col class="col-num-short" />
+        <col class="col-num-short" />
+        <col class="col-num-short" />
+        <col class="col-num-short" />
+        <col class="col-num-short" />
+        <col class="col-num-short" />
+    </colgroup>
+    <thead>
+        <tr>
+            @if (Model.SelectedMode == "NGANH")
+            {
+                <th style="text-align:center;" class="col-chuyen">Ngành</th>
+            }
+            else if (Model.SelectedMode == "KHVUC")
+            {
+                <th style="text-align:center;" class="col-chuyen">Khu Vực</th>
+            }
+            else if (Model.SelectedMode == "WRKCT")
+            {
+                <th style="text-align:center;" class="col-chuyen">Work Center</th>
+            }
+            else
+            {
+                <th style="text-align:center;" class="col-chuyen">Chuyền</th>
+            }
+            <th style="text-align:center;" class="col-congdoan">Công Đoạn</th>
+            <th class="col-slld" style="text-align:center;">SL LĐ</th>
+            <th class="col-num-long" style="text-align:center;">N.Suất</th>
+            <th class="col-num-long" style="text-align:center;">Giờ LV</th>
+            <th class="col-num-long" style="text-align:center;">KH Giờ</th>
+            <th class="col-num-long" style="text-align:center;">KH Ngày</th>
+            <th class="col-num-long" style="text-align:center;">Thực Hiện</th>
+            <th class="col-num-long" style="text-align:center;">+/-</th>
+            <th class="col-num-long" style="text-align:center;">% TH/KH</th>
+            <th class="col-num-short" style="text-align:center;">Trc.08h</th>
+            <th class="col-num-short" style="text-align:center;">08h</th>
+            <th class="col-num-short" style="text-align:center;">09h</th>
+            <th class="col-num-short" style="text-align:center;">10h</th>
+            <th class="col-num-short" style="text-align:center;">11h</th>
+            <th class="col-num-short" style="text-align:center;">12h</th>
+            <th class="col-num-short" style="text-align:center;">13h</th>
+            <th class="col-num-short" style="text-align:center;">14h</th>
+            <th class="col-num-short" style="text-align:center;">15h</th>
+            <th class="col-num-short" style="text-align:center;">16h</th>
+            <th class="col-num-short" style="text-align:center;">17h</th>
+            <th class="col-num-short" style="text-align:center;">18h</th>
+            <th class="col-num-short" style="text-align:center;">19h</th>
+            <th class="col-num-short" style="text-align:center;">Sau 19h</th>
+        </tr>
+    </thead>
+    <tbody style="margin-top:120px;">
+        @if (ViewData["SL_Online"] != null)
+            {
+                foreach (SanLuongOnline slsx in (List<SanLuongOnline>)ViewData[CommonHeader.VIEWDATA_SL_ONLINE])
+                {
+                <tr>
+
+                    <td class="col-chuyen">@slsx.BoPhan</td>                   
+                    <td class="col-congdoan" style="text-align:center">@slsx.CongDoan</td>
+                    <td class="col-slld " style="text-align:right">@slsx.SoLuongLaoDong.ToString("#,#")</td>
+                    <td class="col-num-long" style="text-align:right">@slsx.NangSuat.ToString("#,#.##")</td>
+                    <td class="col-num-long" style="text-align:right">@slsx.GioLamViec.ToString("#,#.##")</td>
+                    <td class="col-num-long" style="text-align:right">@slsx.KeHoachGio.ToString("#,#")</td>
+                    <td class="col-num-long" style="text-align:right"> @slsx.KeHoachNgay.ToString("#,#")</td>
+                    <td class="col-num-long @slsx.sColorText" style="text-align:right">@slsx.ThucHien.ToString("#,#")</td>
+                    <td class="col-num-long @slsx.sColorText " style="text-align:right">@slsx.ChenhLech.ToString("#,#")</td>
+                    @if (@slsx.DatSanLuong > 0)
+                    {
+                        <td class="col-num-long @slsx.sColorText" style="text-align:right">@slsx.DatSanLuong.ToString("#,#.##") %</td>
+                    }
+                    else
+                    {
+                        <td class="col-num-long @slsx.sColorText" style="text-align:right">0 %</td>
+                    }
+                    <td class="col-num-short col-num-short @slsx.sColorText @slsx.sColoTruoc8h" style="text-align:right">@slsx.Truoc8h.ToString("#,#")</td>
+                    <td class="col-num-short @slsx.sColorText " style="text-align:right">@slsx.Gio08.ToString("#,#")</td>
+                    <td class="col-num-short @slsx.sColorText " style="text-align:right">@slsx.Gio09.ToString("#,#")</td>
+                    <td class="col-num-short @slsx.sColorText" style="text-align:right">@slsx.Gio10.ToString("#,#")</td>
+                    <td class="col-num-short @slsx.sColorText" style="text-align:right">@slsx.Gio11.ToString("#,#")</td>
+                    <td class="col-num-short @slsx.sColorText" style="text-align:right">@slsx.Gio12.ToString("#,#")</td>
+                    <td class="col-num-short @slsx.sColorText" style="text-align:right">@slsx.Gio13.ToString("#,#")</td>
+                    <td class="col-num-short @slsx.sColorText" style="text-align:right">@slsx.Gio14.ToString("#,#")</td>
+                    <td class="col-num-short @slsx.sColorText" style="text-align:right">@slsx.Gio15.ToString("#,#")</td>
+                    <td class="col-num-short @slsx.sColorText" style="text-align:right">@slsx.Gio16.ToString("#,#")</td>
+                    <td class="col-num-short @slsx.sColorText" style="text-align:right">@slsx.Gio17.ToString("#,#")</td>
+                    <td class="col-num-short @slsx.sColorText" style="text-align:right">@slsx.Gio18.ToString("#,#")</td>
+                    <td class="col-num-short @slsx.sColorText" style="text-align:right">@slsx.Sau18.ToString("#,#")</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+

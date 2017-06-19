@@ -13,7 +13,7 @@ namespace ZEMP.DAO
     
     public partial class SelectListReturn
     {
-        public string Value { get; set; }
-        public string Text { get; set; }
+        public string value { get; set; }
+        public string text { get; set; }
     }
 }

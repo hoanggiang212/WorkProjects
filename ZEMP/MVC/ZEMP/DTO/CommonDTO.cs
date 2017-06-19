@@ -18,13 +18,13 @@ namespace ZEMP.DTO
             using (TKTDSXEntities dc = new TKTDSXEntities())
             {
 
-                filter.ListCapDo = accDto.GetListCapDoByUsername(account.Username, account.LastCapDo);
+                filter.ListCapDo = accDto.GetListCapDoByUsername(account);
 
-                for(int i = 0; i < filter.ListCapDo.Count; i++)
+                foreach(var item in  filter.ListCapDo)
                 {
-                    if (filter.ListCapDo[i].Selected)
+                    if (item.Selected)
                     {
-                        filter.SelectedCapDo = filter.ListCapDo[i].Value;
+                        filter.SelectedCapDo = item.Value;
                         break;
                     }
                 }
@@ -34,19 +34,38 @@ namespace ZEMP.DTO
                 }
 
                 //Get list gia tri cap do theo selected cap do
-                filter.ListGiaTriCapDo = accDto.GetListGiaTriCapDo(account.Username, 
-                                                filter.SelectedCapDo, account.LastGiaTriCapDo);
-                for (int i = 0; i < filter.ListGiaTriCapDo.Count; i++)
+                filter.ListGiaTriCapDo = accDto.GetListGiaTriCapDo(account, filter.SelectedCapDo);
+                foreach (var item in  filter.ListGiaTriCapDo)
                 {
-                    if (filter.ListGiaTriCapDo[i].Selected)
+                    if (item.Selected)
                     {
-                        filter.SelectedGiaTriCapDo = filter.ListGiaTriCapDo[i].Value;
+                        filter.SelectedGiaTriCapDo = item.Value;
                         break;
+                    }
+                }
+
+                LiveboardDTO liveboard = new LiveboardDTO();
+                //Get list cong doan
+                filter.ListCongDoan = liveboard.GetListCongDoan(account.SystemId, account.LastCongDoan);
+                foreach(var item in filter.ListCongDoan)
+                {
+                    if (item.Selected)
+                    {
+                        filter.SelectedCongDoan = item.Value;
+                    }
+                }
+                filter.ListModeView = liveboard.GetModeView(account);
+                foreach (var item in filter.ListModeView)
+                {
+                    if (item.Selected)
+                    {
+                        filter.SelectedMode = item.Value;
                     }
                 }
                 return strResult;
             }
         }
 
+        
     }
 }

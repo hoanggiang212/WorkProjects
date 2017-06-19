@@ -10,7 +10,7 @@ namespace ZEMP.DTO
 {
     public class AccountDTO
     {
-        public List<SelectListItem> GetListCapDoByUsername(string sUsername, string sLastCapDo)
+        public List<SelectListItem> GetListCapDoByUsername(ZEMP_USER account)
         {
             bool isSelect = false;
             List<SelectListItem> selectList = new List<SelectListItem>();
@@ -19,33 +19,21 @@ namespace ZEMP.DTO
             {
                 try
                 {
-                    var listRaw = dc.GetListCapDo(sUsername).ToList<SelectListReturn>();
+                    var listRaw = dc.GetListCapDo(account.SystemId,account.Username).ToList<SelectListReturn>();
 
                     for (int i = 0; i < listRaw.Count; i++)
                     {
-                        if (sLastCapDo != "")
+                        if (account.LastCapDo != "")
                         {
-                            if (listRaw[i].Value == sLastCapDo)
-                            {
-                                isSelect = true;
-                            }
-                            else
-                            {
-                                isSelect = false;
-                            }
+                            if (listRaw[i].value == account.LastCapDo) {isSelect = true; }
+                            else {isSelect = false; }
                         }
                         else
                         {
-                            if (i == 0)  //select first
-                            {
-                                isSelect = true;
-                            }
-                            else
-                            {
-                                isSelect = false;
-                            }
+                            if (i == 0) {isSelect = true; }
+                            else {isSelect = false;}
                         }
-                        selectList.Add(new SelectListItem() { Text = listRaw[i].Text, Value = listRaw[i].Value, Selected = isSelect });
+                        selectList.Add(new SelectListItem() { Text = listRaw[i].text, Value = listRaw[i].value, Selected = isSelect });
                     }
                 }
                 catch (Exception ex)
@@ -55,46 +43,50 @@ namespace ZEMP.DTO
                         Ngay = DateTime.Now,
                         LogKey = "GetListCapDoByUsername",
                         LogDescription = string.Format("Exeption Msg: {0} , Username: {1} , LastCapDo: {2}", 
-                                                        ex.Message, sUsername, sLastCapDo)
+                                                        ex.Message, account.Username, account.LastCapDo)
                     };
-
+                    dc.ZEMP_LOG.Add(zlog);
+                    dc.SaveChanges();
                 }
             }
             return selectList;
         }
 
-        public List<SelectListItem> GetListGiaTriCapDo(string sUserName, string sCapDo, string sLastGiaTriCapDo)
+        public List<SelectListItem> GetListGiaTriCapDo(ZEMP_USER account, string sCapDo)
         {
             bool isSelect = false;
             List<SelectListItem> selectList = new List<SelectListItem>();
             using (TKTDSXEntities dc = new TKTDSXEntities())
             {
-                var listRaw = dc.GetListGiaTriCapDo(sUserName, sCapDo).ToList<SelectListReturn>();
-                for (int i= 0; i < listRaw.Count; i++)
+                try
                 {
-                    if (sLastGiaTriCapDo != "")
+                    var listRaw = dc.GetListGiaTriCapDo(account.SystemId, account.Username, sCapDo).ToList<SelectListReturn>();
+                    for (int i = 0; i < listRaw.Count; i++)
                     {
-                        if (listRaw[i].Value == sLastGiaTriCapDo)
+                        if (account.LastGiaTriCapDo != "")
                         {
-                            isSelect = true;
+                            if (listRaw[i].value == account.LastGiaTriCapDo) { isSelect = true; }
+                            else { isSelect = false; }
                         }
                         else
                         {
-                            isSelect = false;
+                            if (i == 0) { isSelect = true; }
+                            else { isSelect = false; }
                         }
+                        selectList.Add(new SelectListItem() { Text = listRaw[i].text, Value = listRaw[i].value, Selected = isSelect });
                     }
-                    else
+                }
+                catch (Exception ex)
+                {
+                    ZEMP_LOG zlog = new ZEMP_LOG()
                     {
-                        if (i == 0)  //select first
-                        {
-                            isSelect = true;
-                        }
-                        else
-                        {
-                            isSelect = false;
-                        }
-                    }
-                    selectList.Add(new SelectListItem() { Text = listRaw[i].Text, Value = listRaw[i].Value, Selected = isSelect });
+                        Ngay = DateTime.Now,
+                        LogKey = "GetListGiaTriCapDo",
+                        LogDescription = string.Format("Exeption Msg: {0} , Username: {1} , LastCapDo: {2}",
+                                                       ex.Message, account.Username,sCapDo)
+                    };
+                    dc.ZEMP_LOG.Add(zlog);
+                    dc.SaveChanges();
                 }
             }
             return selectList;

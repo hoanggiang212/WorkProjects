@@ -12,17 +12,17 @@ namespace ZEMP.Models
         public string SystemId { get; set; }
 
         //Mode view: Nganh / Khu vuc / Work Center / Chuyen
-        public List<SelectListItem> ListModeView { get; set; }
+        public IEnumerable<SelectListItem> ListModeView { get; set; }
         public string SelectedMode { get; set; }
 
-        public List<SelectListItem> ListCongDoan { get; set; }
+        public IEnumerable<SelectListItem> ListCongDoan { get; set; }
         public string SelectedCongDoan { get; set; }
 
-        public List<SelectListItem> ListCapDo { get; set; }
+        public IEnumerable<SelectListItem> ListCapDo { get; set; }
 
         public string SelectedCapDo { set; get; }
 
-        public List<SelectListItem> ListGiaTriCapDo { set; get; }
+        public IEnumerable<SelectListItem> ListGiaTriCapDo { set; get; }
 
         public string SelectedGiaTriCapDo { set; get; }
 

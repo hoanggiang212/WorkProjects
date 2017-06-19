@@ -1,18 +1,108 @@
-﻿
+﻿@model ZEMP.Models.FilterCondition
 @{
     Layout = null;
+
 }
+@*Giang Style*@
+<link href="~/Content/bootstrap.min.3.3.6.css" rel="stylesheet" />
+@*<link rel="stylesheet" type="text/css" href="~/Content/CommonStyle.css" />*@
+<link rel="stylesheet" type="text/css" href="~/Content/LiveboardStyle.css" />
 
-<!DOCTYPE html>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btn-getdata').click(function (e) {
+            var level = $('#level-view').val();
+            var capdo = $('#capdo').val();
+            var giatricapdo = $('#giatricapdo').val();
+            var congdoan = $('#congdoan').val();
+            $.ajax({
+                url: '@Url.Action("GetListData", "Liveboard")',
+                data: {
+                    level: level,
+                    capdo: capdo,
+                    giatricapdo: giatricapdo,
+                    congdoan: congdoan
+                },
+                dataType: "html",
+                type: "GET",
+                contentType: 'application/html; charset=utf-8',
+                success: function (data) {
+                    $('#partial_data').html(data);
+                },
+                error: function (e) {
+                    alert("Vui lòng tải lại trang.");
+                }
+            });
+        });
+    });
+</script>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>    
-</head>
-<body>
-    <div> 
-        Hello liveboard
+<!---JavaScript Cascade Dropdownlist-->
+<script type="text/javascript" src="~/Scripts/jquery.1.7.2.min.js"></script>
+<script type="text/javascript">
+            $(function () {
+                $("#capdo").change(function () {
+                    var val = $(this).val();
+                    var subItems = "";
+                    $.getJSON("@Url.Action("GetSub", "Liveboard")", { CapDoID: val }, function (data) {
+                        $.each(data, function (index, item) {
+                            subItems += "<option value='" + item.Value + "'>" + item.Text + "</option>"
+                        });
+                        $("#giatricapdo").html(subItems)
+                    });
+                });
+            });
+</script>
+
+
+<!--refresh data-->
+<script>
+    //window.onload = function () {
+    //    $("#btn-getdata").click();
+    //}
+    //setInterval(function refresh() { $("#btn-getdata").click() }, 5000);
+</script>
+<nav class="navbar" style="background-color:white;width:100%;padding:0px;min-height:55PX;">    
+    <div style="margin-top:10px; margin-bottom:10px;">
+        <table class="table-selection " style="margin:auto;">
+            <tr>
+                <td class="label-default" style="background-color: white;min-width:70px">
+                    Mode:
+                </td>
+                <td class="cell-control" style="background-color: white;min-width:120px">
+                    @Html.DropDownList("SelectedMode", (IEnumerable<SelectListItem>)ViewBag.SelectedMode,
+                    new { @class = "dropdown-toggle", @id = "level-view" })
+                </td>
+                <td class="label-default" style="background-color: white;min-width:70px">
+                    Level:
+                </td>
+                <td class="cell-control" style="background-color: white;min-width:120px">
+                    @Html.DropDownList("SelectedCapDo", (IEnumerable<SelectListItem>)ViewBag.SelectedCapDo,
+                    new { @class = "dropdown-toggle", @id = "capdo" })
+                </td>
+                <td class="label-default" style="background-color: white;min-width:70px">
+                    Value:
+                </td>
+                <td class="cell-control" style="background-color: white;min-width:120px">
+                    @Html.DropDownList("SelectedGiaTriCapDo", (IEnumerable<SelectListItem>)ViewBag.SelectedGiaTriCapDo,
+                        new { @class = "dropdown-toggle", @id = "giatricapdo" })
+                </td>
+                <td class="cell-control" style="background-color: white;min-width:70px">
+                    Công Đoạn:
+                </td>
+                <td class="cell-control" style="background-color: white;min-width:120px">
+                    @Html.DropDownList("SelectedCongDoan", (IEnumerable<SelectListItem>)ViewBag.SelectedCongDoan,
+                    new { @class = "dropdown-toggle", @id = "congdoan" })
+                </td>
+                <td class="cell-control" style="background-color: white;min-width:100px">
+                    <button id="btn-getdata" type="button" class="btn-control btn-primary" onclick="">Get Data</button>
+                </td>
+            </tr>
+        </table>
     </div>
-</body>
-</html>
+</nav>
+<section class="content-area">
+    <div id="partial_data" class="table-area">
+    </div>
+</section>

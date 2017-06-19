@@ -133,6 +133,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\LiveboardController.cs" />
+    <Compile Include="DAO\SanLuongOnlineReturn.cs">
+      <DependentUpon>ZempEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAO\SelectListReturn.cs">
       <DependentUpon>ZempEntities.tt</DependentUpon>
     </Compile>
@@ -211,12 +214,14 @@
     <Compile Include="DTO\AccountDTO.cs" />
     <Compile Include="DTO\CommonDTO.cs" />
     <Compile Include="DTO\CryptorEngine.cs" />
+    <Compile Include="DTO\LiveboardDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Header\CommonHeader.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\FilterCondition.cs" />
+    <Compile Include="Models\SanLuongOnline.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -231,6 +236,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Liveboard\Index.cshtml" />
+    <Content Include="Views\Liveboard\GetListData.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
