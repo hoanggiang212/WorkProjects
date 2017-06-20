@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<div id="sticky-table-header" class="pullable sticky-table-header-wrapper">
+			<table id="fixHeader0" class="banggia fixed-header tab-3" data-clone-for="hoseStock" style="display: table;">
+				<colgroup>
+							<col class="show-on-mobile col-symbol">
+					
+							<!-- Ref/Ceiling/Floor -->
+							<col class="show-on-mobile col-price">
+							<col class="show-on-mobile col-price">
+							<col class="show-on-mobile col-price">
+							<col class="col-vol col-vol-lg">
+					
+							<!-- Bid Side -->
+							<col class="col-price">
+							<col class="col-vol">
+							<col class="col-price">
+							<col class="col-vol">
+							<col class="col-price">
+							<col class="col-vol">
+					
+							<!-- Match Section -->
+							<col class="col-price">
+							<col class="col-vol col-vol-sm">
+							<col class="col-diff">
+					
+							<!-- Offer Side -->
+							<col class="col-price">
+							<col class="col-vol">
+							<col class="col-price">
+							<col class="col-vol">
+							<col class="col-price">
+							<col class="col-vol">
+					
+							<!-- High/Low/Average -->
+							<col class="col-price">
+							<col class="col-price">
+							<col class="col-price">
+					
+							<!-- Total Vol -->
+							<col class="col-vol col-vol-lg">
+					
+							<!-- Foreign -->
+							<col class="col-vol">
+							<col class="col-vol">
+						</colgroup><thead>
+							<tr>
+								<th rowspan="2" class="show-on-mobile sortable" data-sort-by="code" data-i18n="priceboard:table.symbol">Mã CK</th>
+								<th rowspan="2" class="cell-highlight sortable" data-sort-by="basicPrice" data-i18n="priceboard:table.price-ref">TC</th>
+								<th rowspan="2" class="cell-highlight sortable" data-sort-by="ceilingPrice" data-i18n="priceboard:table.price-ceiling">Tr?n</th>
+								<th rowspan="2" class="cell-highlight sortable" data-sort-by="floorPrice" data-i18n="priceboard:table.price-floor">Sàn</th>
+								<th rowspan="2" class="sortable has-toggle" data-slider-group="accumulated">
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link btn-sm toggle-left" data-slider-steps="1"><i class="fa fa-caret-left"></i></a>
+									<span data-slider-field="accumulatedVol" class="slidable">
+										<span class="has-content" data-sort-by="accumulatedVol" data-i18n="priceboard:table.acc-vol">T?ng KL</span>
+									</span>
+									<span data-slider-field="accumulatedVal" class="slidable hidden">
+										<span class="has-content" data-sort-by="accumulatedVal" data-i18n="priceboard:table.acc-val">Giá tr?</span>
+									</span>
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link btn-sm toggle-right" data-slider-steps="-1"><i class="fa fa-caret-right"></i></a>
+								</th>
+					
+								<th colspan="6" data-i18n="priceboard:table.bid">Mua</th>
+								<th colspan="3" class="cell-highlight" data-i18n="priceboard:table.match">Kh?p l?nh</th>
+								<th colspan="6" data-i18n="priceboard:table.offer">Bán</th>
+					
+								<th colspan="3" class="cell-highlight" data-i18n="priceboard:table.prices">Giá</th>
+					
+								<th colspan="2" data-i18n="priceboard:table.remainder">Du</th>
+					
+								<th colspan="2" data-i18n="priceboard:table.foreign">ÐTNN</th>
+							</tr>
+							<tr>
+								<th class="sortable" data-sort-by="bidPrice03" data-i18n="priceboard:table.price-3">Giá 3</th>
+								<th class="sortable" data-sort-by="bidQtty03" data-i18n="priceboard:table.vol-3">KL 3</th>
+								<th class="sortable" data-sort-by="bidPrice02" data-i18n="priceboard:table.price-2">Giá 2</th>
+								<th class="sortable" data-sort-by="bidQtty02" data-i18n="priceboard:table.vol-2">KL 2</th>
+								<th class="sortable" data-sort-by="bidPrice01" data-i18n="priceboard:table.price-1">Giá 1</th>
+								<th class="sortable" data-sort-by="bidQtty01" data-i18n="priceboard:table.vol-1">KL 1</th>
+					
+								<th class="cell-highlight sortable" data-sort-by="matchPrice" data-i18n="priceboard:table.price">Giá</th>
+								<th class="cell-highlight sortable" data-sort-by="matchQtty" data-i18n="priceboard:table.vol">KL</th>
+								<th class="cell-highlight sortable has-toggle" data-slider-group="priceDiff">
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link btn-sm toggle-left" data-slider-steps="1"><i class="fa fa-caret-left"></i></a>
+									<span data-slider-field="changeRaw" class="slidable">
+										<span class="has-content" data-sort-by="changeRaw">+/-</span>
+									</span>
+									<span data-slider-field="changePercent" class="slidable hidden">
+										<span class="has-content" data-sort-by="changePercent">%</span>
+									</span>
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link btn-sm toggle-right" data-slider-steps="-1"><i class="fa fa-caret-right"></i></a>
+								</th>
+					
+								<th class="sortable" data-sort-by="offerPrice01" data-i18n="priceboard:table.price-1">Giá 1</th>
+								<th class="sortable" data-sort-by="offerQtty01" data-i18n="priceboard:table.vol-1">KL 1</th>
+								<th class="sortable" data-sort-by="offerPrice02" data-i18n="priceboard:table.price-2">Giá 2</th>
+								<th class="sortable" data-sort-by="offerQtty02" data-i18n="priceboard:table.vol-2">KL 2</th>
+								<th class="sortable" data-sort-by="offerPrice03" data-i18n="priceboard:table.price-3">Giá 3</th>
+								<th class="sortable" data-sort-by="offerQtty03" data-i18n="priceboard:table.vol-3">KL 3</th>
+					
+								<th class="cell-highlight sortable" data-sort-by="highestPrice" data-i18n="priceboard:table.price-high">Cao</th>
+								<th class="cell-highlight sortable" data-sort-by="averagePrice" data-i18n="priceboard:table.price-avg">TB</th>
+								<th class="cell-highlight sortable" data-sort-by="lowestPrice" data-i18n="priceboard:table.price-low">Th?p</th>
+					
+								<th class="sortable" data-sort-by="bV4" data-i18n="priceboard:table.bid">Mua</th>
+								<th class="sortable" data-sort-by="sV4" data-i18n="priceboard:table.offer">Bán</th>
+					
+								<th colspan="2" class="sortable has-toggle" data-slider-group="foreign">
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link toggle-left" data-slider-steps="1"><i class="fa fa-caret-left"></i></a>
+									<span data-slider-field="buySellForeignQtty" class="slidable">
+										<span class="cell-1-2 has-content" data-sort-by="buyForeignQtty" data-i18n="priceboard:table.bought">Mua</span>
+										<span class="cell-1-2 has-content" data-sort-by="sellForeignQtty" data-i18n="priceboard:table.sold">Bán</span>
+									</span>
+									<span data-slider-field="currentRoom" class="slidable hidden">
+										<span class="has-content" data-sort-by="currentRoom" data-i18n="priceboard:table.room">Du</span>
+									</span>
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link toggle-right" data-slider-steps="-1"><i class="fa fa-caret-right"></i></a>
+								</th>
+							</tr>
+						</thead></table><table id="fixHeader1" class="banggia fixed-header tab-14" data-clone-for="vn30Stock"><colgroup>
+							<col class="show-on-mobile col-symbol">
+					
+							<!-- Ref/Ceiling/Floor -->
+							<col class="show-on-mobile col-price">
+							<col class="show-on-mobile col-price">
+							<col class="show-on-mobile col-price">
+							<col class="col-vol col-vol-lg">
+					
+							<!-- Bid Side -->
+							<col class="col-price">
+							<col class="col-vol">
+							<col class="col-price">
+							<col class="col-vol">
+							<col class="col-price">
+							<col class="col-vol">
+					
+							<!-- Match Section -->
+							<col class="col-price">
+							<col class="col-vol col-vol-sm">
+							<col class="col-diff">
+					
+							<!-- Offer Side -->
+							<col class="col-price">
+							<col class="col-vol">
+							<col class="col-price">
+							<col class="col-vol">
+							<col class="col-price">
+							<col class="col-vol">
+					
+							<!-- High/Low/Average -->
+							<col class="col-price">
+							<col class="col-price">
+							<col class="col-price">
+					
+							<!-- Total Vol -->
+							<col class="col-vol col-vol-lg">
+					
+							<!-- Foreign -->
+							<col class="col-vol">
+							<col class="col-vol">
+						</colgroup><thead>
+							<tr>
+								<th rowspan="2" class="show-on-mobile sortable" data-sort-by="code" data-i18n="priceboard:table.symbol">Mã CK</th>
+								<th rowspan="2" class="cell-highlight sortable" data-sort-by="basicPrice" data-i18n="priceboard:table.price-ref">TC</th>
+								<th rowspan="2" class="cell-highlight sortable" data-sort-by="ceilingPrice" data-i18n="priceboard:table.price-ceiling">Tr?n</th>
+								<th rowspan="2" class="cell-highlight sortable" data-sort-by="floorPrice" data-i18n="priceboard:table.price-floor">Sàn</th>
+								<th rowspan="2" class="sortable has-toggle" data-slider-group="accumulated">
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link btn-sm toggle-left" data-slider-steps="1"><i class="fa fa-caret-left"></i></a>
+									<span data-slider-field="accumulatedVol">
+										<span class="has-content" data-sort-by="accumulatedVol" data-i18n="priceboard:table.acc-vol">T?ng KL</span>
+									</span>
+									<span data-slider-field="accumulatedVal">
+										<span class="has-content" data-sort-by="accumulatedVal" data-i18n="priceboard:table.acc-val">Giá tr?</span>
+									</span>
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link btn-sm toggle-right" data-slider-steps="-1"><i class="fa fa-caret-right"></i></a>
+								</th>
+					
+								<th colspan="6" data-i18n="priceboard:table.bid">Mua</th>
+								<th colspan="3" class="cell-highlight" data-i18n="priceboard:table.match">Kh?p l?nh</th>
+								<th colspan="6" data-i18n="priceboard:table.offer">Bán</th>
+					
+								<th colspan="3" class="cell-highlight" data-i18n="priceboard:table.prices">Giá</th>
+					
+								<th colspan="2" data-i18n="priceboard:table.remainder">Du</th>
+					
+								<th colspan="2" data-i18n="priceboard:table.foreign">ÐTNN</th>
+							</tr>
+							<tr>
+								<th class="sortable" data-sort-by="bidPrice03" data-i18n="priceboard:table.price-3">Giá 3</th>
+								<th class="sortable" data-sort-by="bidQtty03" data-i18n="priceboard:table.vol-3">KL 3</th>
+								<th class="sortable" data-sort-by="bidPrice02" data-i18n="priceboard:table.price-2">Giá 2</th>
+								<th class="sortable" data-sort-by="bidQtty02" data-i18n="priceboard:table.vol-2">KL 2</th>
+								<th class="sortable" data-sort-by="bidPrice01" data-i18n="priceboard:table.price-1">Giá 1</th>
+								<th class="sortable" data-sort-by="bidQtty01" data-i18n="priceboard:table.vol-1">KL 1</th>
+					
+								<th class="cell-highlight sortable" data-sort-by="matchPrice" data-i18n="priceboard:table.price">Giá</th>
+								<th class="cell-highlight sortable" data-sort-by="matchQtty" data-i18n="priceboard:table.vol">KL</th>
+								<th class="cell-highlight sortable has-toggle" data-slider-group="priceDiff">
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link btn-sm toggle-left" data-slider-steps="1"><i class="fa fa-caret-left"></i></a>
+									<span data-slider-field="changeRaw">
+										<span class="has-content" data-sort-by="changeRaw">+/-</span>
+									</span>
+									<span data-slider-field="changePercent">
+										<span class="has-content" data-sort-by="changePercent">%</span>
+									</span>
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link btn-sm toggle-right" data-slider-steps="-1"><i class="fa fa-caret-right"></i></a>
+								</th>
+					
+								<th class="sortable" data-sort-by="offerPrice01" data-i18n="priceboard:table.price-1">Giá 1</th>
+								<th class="sortable" data-sort-by="offerQtty01" data-i18n="priceboard:table.vol-1">KL 1</th>
+								<th class="sortable" data-sort-by="offerPrice02" data-i18n="priceboard:table.price-2">Giá 2</th>
+								<th class="sortable" data-sort-by="offerQtty02" data-i18n="priceboard:table.vol-2">KL 2</th>
+								<th class="sortable" data-sort-by="offerPrice03" data-i18n="priceboard:table.price-3">Giá 3</th>
+								<th class="sortable" data-sort-by="offerQtty03" data-i18n="priceboard:table.vol-3">KL 3</th>
+					
+								<th class="cell-highlight sortable" data-sort-by="highestPrice" data-i18n="priceboard:table.price-high">Cao</th>
+								<th class="cell-highlight sortable" data-sort-by="averagePrice" data-i18n="priceboard:table.price-avg">TB</th>
+								<th class="cell-highlight sortable" data-sort-by="lowestPrice" data-i18n="priceboard:table.price-low">Th?p</th>
+					
+								<th class="sortable" data-sort-by="bV4" data-i18n="priceboard:table.bid">Mua</th>
+								<th class="sortable" data-sort-by="sV4" data-i18n="priceboard:table.offer">Bán</th>
+					
+								<th colspan="2" class="sortable has-toggle" data-slider-group="foreign">
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link toggle-left" data-slider-steps="1"><i class="fa fa-caret-left"></i></a>
+									<span data-slider-field="buySellForeignQtty">
+										<span class="cell-1-2 has-content" data-sort-by="buyForeignQtty" data-i18n="priceboard:table.bought">Mua</span>
+										<span class="cell-1-2 has-content" data-sort-by="sellForeignQtty" data-i18n="priceboard:table.sold">Bán</span>
+									</span>
+									<span data-slider-field="currentRoom">
+										<span class="has-content" data-sort-by="currentRoom" data-i18n="priceboard:table.room">Du</span>
+									</span>
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link toggle-right" data-slider-steps="-1"><i class="fa fa-caret-right"></i></a>
+								</th>
+							</tr>
+						</thead></table><table id="fixHeader2" class="banggia fixed-header tab-5" data-clone-for="hnxStock"><colgroup>
+							<col class="show-on-mobile col-symbol">
+					
+							<!-- Ref/Ceiling/Floor -->
+							<col class="show-on-mobile col-price">
+							<col class="show-on-mobile col-price">
+							<col class="show-on-mobile col-price">
+							<col class="col-vol col-vol-lg">
+					
+							<!-- Bid Side -->
+							<col class="col-price">
+							<col class="col-vol">
+							<col class="col-price">
+							<col class="col-vol">
+							<col class="col-price">
+							<col class="col-vol">
+					
+							<!-- Match Section -->
+							<col class="col-price">
+							<col class="col-vol col-vol-sm">
+							<col class="col-diff">
+					
+							<!-- Offer Side -->
+							<col class="col-price">
+							<col class="col-vol">
+							<col class="col-price">
+							<col class="col-vol">
+							<col class="col-price">
+							<col class="col-vol">
+					
+							<!-- High/Low/Average -->
+							<col class="col-price">
+							<col class="col-price">
+							<col class="col-price">
+					
+							<!-- Total Vol -->
+							<col class="col-vol col-vol-lg">
+					
+							<!-- Foreign -->
+							<col class="col-vol">
+							<col class="col-vol">
+						</colgroup><thead>
+							<tr>
+								<th rowspan="2" class="show-on-mobile sortable" data-sort-by="code" data-i18n="priceboard:table.symbol">Mã CK</th>
+								<th rowspan="2" class="cell-highlight sortable" data-sort-by="basicPrice" data-i18n="priceboard:table.price-ref">TC</th>
+								<th rowspan="2" class="cell-highlight sortable" data-sort-by="ceilingPrice" data-i18n="priceboard:table.price-ceiling">Tr?n</th>
+								<th rowspan="2" class="cell-highlight sortable" data-sort-by="floorPrice" data-i18n="priceboard:table.price-floor">Sàn</th>
+								<th rowspan="2" class="sortable has-toggle" data-slider-group="accumulated">
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link btn-sm toggle-left" data-slider-steps="1"><i class="fa fa-caret-left"></i></a>
+									<span data-slider-field="accumulatedVol">
+										<span class="has-content" data-sort-by="accumulatedVol" data-i18n="priceboard:table.acc-vol">T?ng KL</span>
+									</span>
+									<span data-slider-field="accumulatedVal">
+										<span class="has-content" data-sort-by="accumulatedVal" data-i18n="priceboard:table.acc-val">Giá tr?</span>
+									</span>
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link btn-sm toggle-right" data-slider-steps="-1"><i class="fa fa-caret-right"></i></a>
+								</th>
+					
+								<th colspan="6" data-i18n="priceboard:table.bid">Mua</th>
+								<th colspan="3" class="cell-highlight" data-i18n="priceboard:table.match">Kh?p l?nh</th>
+								<th colspan="6" data-i18n="priceboard:table.offer">Bán</th>
+					
+								<th colspan="3" class="cell-highlight" data-i18n="priceboard:table.prices">Giá</th>
+					
+								<th colspan="2" data-i18n="priceboard:table.remainder">Du</th>
+					
+								<th colspan="2" data-i18n="priceboard:table.foreign">ÐTNN</th>
+							</tr>
+							<tr>
+								<th class="sortable" data-sort-by="bidPrice03" data-i18n="priceboard:table.price-3">Giá 3</th>
+								<th class="sortable" data-sort-by="bidQtty03" data-i18n="priceboard:table.vol-3">KL 3</th>
+								<th class="sortable" data-sort-by="bidPrice02" data-i18n="priceboard:table.price-2">Giá 2</th>
+								<th class="sortable" data-sort-by="bidQtty02" data-i18n="priceboard:table.vol-2">KL 2</th>
+								<th class="sortable" data-sort-by="bidPrice01" data-i18n="priceboard:table.price-1">Giá 1</th>
+								<th class="sortable" data-sort-by="bidQtty01" data-i18n="priceboard:table.vol-1">KL 1</th>
+					
+								<th class="cell-highlight sortable" data-sort-by="matchPrice" data-i18n="priceboard:table.price">Giá</th>
+								<th class="cell-highlight sortable" data-sort-by="matchQtty" data-i18n="priceboard:table.vol">KL</th>
+								<th class="cell-highlight sortable has-toggle" data-slider-group="priceDiff">
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link btn-sm toggle-left" data-slider-steps="1"><i class="fa fa-caret-left"></i></a>
+									<span data-slider-field="changeRaw">
+										<span class="has-content" data-sort-by="changeRaw">+/-</span>
+									</span>
+									<span data-slider-field="changePercent">
+										<span class="has-content" data-sort-by="changePercent">%</span>
+									</span>
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link btn-sm toggle-right" data-slider-steps="-1"><i class="fa fa-caret-right"></i></a>
+								</th>
+					
+								<th class="sortable" data-sort-by="offerPrice01" data-i18n="priceboard:table.price-1">Giá 1</th>
+								<th class="sortable" data-sort-by="offerQtty01" data-i18n="priceboard:table.vol-1">KL 1</th>
+								<th class="sortable" data-sort-by="offerPrice02" data-i18n="priceboard:table.price-2">Giá 2</th>
+								<th class="sortable" data-sort-by="offerQtty02" data-i18n="priceboard:table.vol-2">KL 2</th>
+								<th class="sortable" data-sort-by="offerPrice03" data-i18n="priceboard:table.price-3">Giá 3</th>
+								<th class="sortable" data-sort-by="offerQtty03" data-i18n="priceboard:table.vol-3">KL 3</th>
+					
+								<th class="cell-highlight sortable" data-sort-by="highestPrice" data-i18n="priceboard:table.price-high">Cao</th>
+								<th class="cell-highlight sortable" data-sort-by="averagePrice" data-i18n="priceboard:table.price-avg">TB</th>
+								<th class="cell-highlight sortable" data-sort-by="lowestPrice" data-i18n="priceboard:table.price-low">Th?p</th>
+					
+								<th class="sortable" data-sort-by="bV4" data-i18n="priceboard:table.bid">Mua</th>
+								<th class="sortable" data-sort-by="sV4" data-i18n="priceboard:table.offer">Bán</th>
+					
+								<th colspan="2" class="sortable has-toggle" data-slider-group="foreign">
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link toggle-left" data-slider-steps="1"><i class="fa fa-caret-left"></i></a>
+									<span data-slider-field="buySellForeignQtty">
+										<span class="cell-1-2 has-content" data-sort-by="buyForeignQtty" data-i18n="priceboard:table.bought">Mua</span>
+										<span class="cell-1-2 has-content" data-sort-by="sellForeignQtty" data-i18n="priceboard:table.sold">Bán</span>
+									</span>
+									<span data-slider-field="currentRoom">
+										<span class="has-content" data-sort-by="currentRoom" data-i18n="priceboard:table.room">Du</span>
+									</span>
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link toggle-right" data-slider-steps="-1"><i class="fa fa-caret-right"></i></a>
+								</th>
+							</tr>
+						</thead></table><table id="fixHeader3" class="banggia fixed-header tab-15" data-clone-for="hnx30Stock"><colgroup>
+							<col class="show-on-mobile col-symbol">
+					
+							<!-- Ref/Ceiling/Floor -->
+							<col class="show-on-mobile col-price">
+							<col class="show-on-mobile col-price">
+							<col class="show-on-mobile col-price">
+							<col class="col-vol col-vol-lg">
+					
+							<!-- Bid Side -->
+							<col class="col-price">
+							<col class="col-vol">
+							<col class="col-price">
+							<col class="col-vol">
+							<col class="col-price">
+							<col class="col-vol">
+					
+							<!-- Match Section -->
+							<col class="col-price">
+							<col class="col-vol col-vol-sm">
+							<col class="col-diff">
+					
+							<!-- Offer Side -->
+							<col class="col-price">
+							<col class="col-vol">
+							<col class="col-price">
+							<col class="col-vol">
+							<col class="col-price">
+							<col class="col-vol">
+					
+							<!-- High/Low/Average -->
+							<col class="col-price">
+							<col class="col-price">
+							<col class="col-price">
+					
+							<!-- Total Vol -->
+							<col class="col-vol col-vol-lg">
+					
+							<!-- Foreign -->
+							<col class="col-vol">
+							<col class="col-vol">
+						</colgroup><thead>
+							<tr>
+								<th rowspan="2" class="show-on-mobile sortable" data-sort-by="code" data-i18n="priceboard:table.symbol">Mã CK</th>
+								<th rowspan="2" class="cell-highlight sortable" data-sort-by="basicPrice" data-i18n="priceboard:table.price-ref">TC</th>
+								<th rowspan="2" class="cell-highlight sortable" data-sort-by="ceilingPrice" data-i18n="priceboard:table.price-ceiling">Tr?n</th>
+								<th rowspan="2" class="cell-highlight sortable" data-sort-by="floorPrice" data-i18n="priceboard:table.price-floor">Sàn</th>
+								<th rowspan="2" class="sortable has-toggle" data-slider-group="accumulated">
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link btn-sm toggle-left" data-slider-steps="1"><i class="fa fa-caret-left"></i></a>
+									<span data-slider-field="accumulatedVol">
+										<span class="has-content" data-sort-by="accumulatedVol" data-i18n="priceboard:table.acc-vol">T?ng KL</span>
+									</span>
+									<span data-slider-field="accumulatedVal">
+										<span class="has-content" data-sort-by="accumulatedVal" data-i18n="priceboard:table.acc-val">Giá tr?</span>
+									</span>
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link btn-sm toggle-right" data-slider-steps="-1"><i class="fa fa-caret-right"></i></a>
+								</th>
+					
+								<th colspan="6" data-i18n="priceboard:table.bid">Mua</th>
+								<th colspan="3" class="cell-highlight" data-i18n="priceboard:table.match">Kh?p l?nh</th>
+								<th colspan="6" data-i18n="priceboard:table.offer">Bán</th>
+					
+								<th colspan="3" class="cell-highlight" data-i18n="priceboard:table.prices">Giá</th>
+					
+								<th colspan="2" data-i18n="priceboard:table.remainder">Du</th>
+					
+								<th colspan="2" data-i18n="priceboard:table.foreign">ÐTNN</th>
+							</tr>
+							<tr>
+								<th class="sortable" data-sort-by="bidPrice03" data-i18n="priceboard:table.price-3">Giá 3</th>
+								<th class="sortable" data-sort-by="bidQtty03" data-i18n="priceboard:table.vol-3">KL 3</th>
+								<th class="sortable" data-sort-by="bidPrice02" data-i18n="priceboard:table.price-2">Giá 2</th>
+								<th class="sortable" data-sort-by="bidQtty02" data-i18n="priceboard:table.vol-2">KL 2</th>
+								<th class="sortable" data-sort-by="bidPrice01" data-i18n="priceboard:table.price-1">Giá 1</th>
+								<th class="sortable" data-sort-by="bidQtty01" data-i18n="priceboard:table.vol-1">KL 1</th>
+					
+								<th class="cell-highlight sortable" data-sort-by="matchPrice" data-i18n="priceboard:table.price">Giá</th>
+								<th class="cell-highlight sortable" data-sort-by="matchQtty" data-i18n="priceboard:table.vol">KL</th>
+								<th class="cell-highlight sortable has-toggle" data-slider-group="priceDiff">
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link btn-sm toggle-left" data-slider-steps="1"><i class="fa fa-caret-left"></i></a>
+									<span data-slider-field="changeRaw">
+										<span class="has-content" data-sort-by="changeRaw">+/-</span>
+									</span>
+									<span data-slider-field="changePercent">
+										<span class="has-content" data-sort-by="changePercent">%</span>
+									</span>
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link btn-sm toggle-right" data-slider-steps="-1"><i class="fa fa-caret-right"></i></a>
+								</th>
+					
+								<th class="sortable" data-sort-by="offerPrice01" data-i18n="priceboard:table.price-1">Giá 1</th>
+								<th class="sortable" data-sort-by="offerQtty01" data-i18n="priceboard:table.vol-1">KL 1</th>
+								<th class="sortable" data-sort-by="offerPrice02" data-i18n="priceboard:table.price-2">Giá 2</th>
+								<th class="sortable" data-sort-by="offerQtty02" data-i18n="priceboard:table.vol-2">KL 2</th>
+								<th class="sortable" data-sort-by="offerPrice03" data-i18n="priceboard:table.price-3">Giá 3</th>
+								<th class="sortable" data-sort-by="offerQtty03" data-i18n="priceboard:table.vol-3">KL 3</th>
+					
+								<th class="cell-highlight sortable" data-sort-by="highestPrice" data-i18n="priceboard:table.price-high">Cao</th>
+								<th class="cell-highlight sortable" data-sort-by="averagePrice" data-i18n="priceboard:table.price-avg">TB</th>
+								<th class="cell-highlight sortable" data-sort-by="lowestPrice" data-i18n="priceboard:table.price-low">Th?p</th>
+					
+								<th class="sortable" data-sort-by="bV4" data-i18n="priceboard:table.bid">Mua</th>
+								<th class="sortable" data-sort-by="sV4" data-i18n="priceboard:table.offer">Bán</th>
+					
+								<th colspan="2" class="sortable has-toggle" data-slider-group="foreign">
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link toggle-left" data-slider-steps="1"><i class="fa fa-caret-left"></i></a>
+									<span data-slider-field="buySellForeignQtty">
+										<span class="cell-1-2 has-content" data-sort-by="buyForeignQtty" data-i18n="priceboard:table.bought">Mua</span>
+										<span class="cell-1-2 has-content" data-sort-by="sellForeignQtty" data-i18n="priceboard:table.sold">Bán</span>
+									</span>
+									<span data-slider-field="currentRoom">
+										<span class="has-content" data-sort-by="currentRoom" data-i18n="priceboard:table.room">Du</span>
+									</span>
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link toggle-right" data-slider-steps="-1"><i class="fa fa-caret-right"></i></a>
+								</th>
+							</tr>
+						</thead></table><table id="fixHeader4" class="banggia fixed-header tab-7" data-clone-for="upcStock"><colgroup>
+							<col class="show-on-mobile col-symbol">
+					
+							<!-- Ref/Ceiling/Floor -->
+							<col class="show-on-mobile col-price">
+							<col class="show-on-mobile col-price">
+							<col class="show-on-mobile col-price">
+							<col class="col-vol col-vol-lg">
+					
+							<!-- Bid Side -->
+							<col class="col-price">
+							<col class="col-vol">
+							<col class="col-price">
+							<col class="col-vol">
+							<col class="col-price">
+							<col class="col-vol">
+					
+							<!-- Match Section -->
+							<col class="col-price">
+							<col class="col-vol col-vol-sm">
+							<col class="col-diff">
+					
+							<!-- Offer Side -->
+							<col class="col-price">
+							<col class="col-vol">
+							<col class="col-price">
+							<col class="col-vol">
+							<col class="col-price">
+							<col class="col-vol">
+					
+							<!-- High/Low/Average -->
+							<col class="col-price">
+							<col class="col-price">
+							<col class="col-price">
+					
+							<!-- Total Vol -->
+							<col class="col-vol col-vol-lg">
+					
+							<!-- Foreign -->
+							<col class="col-vol">
+							<col class="col-vol">
+						</colgroup><thead>
+							<tr>
+								<th rowspan="2" class="show-on-mobile sortable" data-sort-by="code" data-i18n="priceboard:table.symbol">Mã CK</th>
+								<th rowspan="2" class="cell-highlight sortable" data-sort-by="basicPrice" data-i18n="priceboard:table.price-ref">TC</th>
+								<th rowspan="2" class="cell-highlight sortable" data-sort-by="ceilingPrice" data-i18n="priceboard:table.price-ceiling">Tr?n</th>
+								<th rowspan="2" class="cell-highlight sortable" data-sort-by="floorPrice" data-i18n="priceboard:table.price-floor">Sàn</th>
+								<th rowspan="2" class="sortable has-toggle" data-slider-group="accumulated">
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link btn-sm toggle-left" data-slider-steps="1"><i class="fa fa-caret-left"></i></a>
+									<span data-slider-field="accumulatedVol">
+										<span class="has-content" data-sort-by="accumulatedVol" data-i18n="priceboard:table.acc-vol">T?ng KL</span>
+									</span>
+									<span data-slider-field="accumulatedVal">
+										<span class="has-content" data-sort-by="accumulatedVal" data-i18n="priceboard:table.acc-val">Giá tr?</span>
+									</span>
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link btn-sm toggle-right" data-slider-steps="-1"><i class="fa fa-caret-right"></i></a>
+								</th>
+					
+								<th colspan="6" data-i18n="priceboard:table.bid">Mua</th>
+								<th colspan="3" class="cell-highlight" data-i18n="priceboard:table.match">Kh?p l?nh</th>
+								<th colspan="6" data-i18n="priceboard:table.offer">Bán</th>
+					
+								<th colspan="3" class="cell-highlight" data-i18n="priceboard:table.prices">Giá</th>
+					
+								<th colspan="2" data-i18n="priceboard:table.remainder">Du</th>
+					
+								<th colspan="2" data-i18n="priceboard:table.foreign">ÐTNN</th>
+							</tr>
+							<tr>
+								<th class="sortable" data-sort-by="bidPrice03" data-i18n="priceboard:table.price-3">Giá 3</th>
+								<th class="sortable" data-sort-by="bidQtty03" data-i18n="priceboard:table.vol-3">KL 3</th>
+								<th class="sortable" data-sort-by="bidPrice02" data-i18n="priceboard:table.price-2">Giá 2</th>
+								<th class="sortable" data-sort-by="bidQtty02" data-i18n="priceboard:table.vol-2">KL 2</th>
+								<th class="sortable" data-sort-by="bidPrice01" data-i18n="priceboard:table.price-1">Giá 1</th>
+								<th class="sortable" data-sort-by="bidQtty01" data-i18n="priceboard:table.vol-1">KL 1</th>
+					
+								<th class="cell-highlight sortable" data-sort-by="matchPrice" data-i18n="priceboard:table.price">Giá</th>
+								<th class="cell-highlight sortable" data-sort-by="matchQtty" data-i18n="priceboard:table.vol">KL</th>
+								<th class="cell-highlight sortable has-toggle" data-slider-group="priceDiff">
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link btn-sm toggle-left" data-slider-steps="1"><i class="fa fa-caret-left"></i></a>
+									<span data-slider-field="changeRaw">
+										<span class="has-content" data-sort-by="changeRaw">+/-</span>
+									</span>
+									<span data-slider-field="changePercent">
+										<span class="has-content" data-sort-by="changePercent">%</span>
+									</span>
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link btn-sm toggle-right" data-slider-steps="-1"><i class="fa fa-caret-right"></i></a>
+								</th>
+					
+								<th class="sortable" data-sort-by="offerPrice01" data-i18n="priceboard:table.price-1">Giá 1</th>
+								<th class="sortable" data-sort-by="offerQtty01" data-i18n="priceboard:table.vol-1">KL 1</th>
+								<th class="sortable" data-sort-by="offerPrice02" data-i18n="priceboard:table.price-2">Giá 2</th>
+								<th class="sortable" data-sort-by="offerQtty02" data-i18n="priceboard:table.vol-2">KL 2</th>
+								<th class="sortable" data-sort-by="offerPrice03" data-i18n="priceboard:table.price-3">Giá 3</th>
+								<th class="sortable" data-sort-by="offerQtty03" data-i18n="priceboard:table.vol-3">KL 3</th>
+					
+								<th class="cell-highlight sortable" data-sort-by="highestPrice" data-i18n="priceboard:table.price-high">Cao</th>
+								<th class="cell-highlight sortable" data-sort-by="averagePrice" data-i18n="priceboard:table.price-avg">TB</th>
+								<th class="cell-highlight sortable" data-sort-by="lowestPrice" data-i18n="priceboard:table.price-low">Th?p</th>
+					
+								<th class="sortable" data-sort-by="bV4" data-i18n="priceboard:table.bid">Mua</th>
+								<th class="sortable" data-sort-by="sV4" data-i18n="priceboard:table.offer">Bán</th>
+					
+								<th colspan="2" class="sortable has-toggle" data-slider-group="foreign">
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link toggle-left" data-slider-steps="1"><i class="fa fa-caret-left"></i></a>
+									<span data-slider-field="buySellForeignQtty">
+										<span class="cell-1-2 has-content" data-sort-by="buyForeignQtty" data-i18n="priceboard:table.bought">Mua</span>
+										<span class="cell-1-2 has-content" data-sort-by="sellForeignQtty" data-i18n="priceboard:table.sold">Bán</span>
+									</span>
+									<span data-slider-field="currentRoom">
+										<span class="has-content" data-sort-by="currentRoom" data-i18n="priceboard:table.room">Du</span>
+									</span>
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link toggle-right" data-slider-steps="-1"><i class="fa fa-caret-right"></i></a>
+								</th>
+							</tr>
+						</thead></table><table id="fixHeader5" class="banggia fixed-header tab-1" data-clone-for="userCateBox" style="display: none;"><colgroup>
+								<col class="show-on-mobile col-symbol">
+						
+								<!-- Ref/Ceiling/Floor -->
+								<col class="show-on-mobile col-price">
+								<col class="show-on-mobile col-price">
+								<col class="show-on-mobile col-price">
+								<col class="col-vol col-vol-lg">
+						
+								<!-- Bid Side -->
+								<col class="col-price">
+								<col class="col-vol">
+								<col class="col-price">
+								<col class="col-vol">
+								<col class="col-price">
+								<col class="col-vol">
+						
+								<!-- Match Section -->
+								<col class="col-price">
+								<col class="col-vol col-vol-sm">
+								<col class="col-diff">
+						
+								<!-- Offer Side -->
+								<col class="col-price">
+								<col class="col-vol">
+								<col class="col-price">
+								<col class="col-vol">
+								<col class="col-price">
+								<col class="col-vol">
+						
+								<!-- High/Low/Average -->
+								<col class="col-price">
+								<col class="col-price">
+								<col class="col-price">
+						
+								<!-- Total Vol -->
+								<col class="col-vol col-vol-lg">
+						
+								<!-- Foreign -->
+								<col class="col-vol">
+								<col class="col-vol">
+							</colgroup><thead>
+								<tr>
+									<th rowspan="2" class="show-on-mobile sortable" data-sort-by="code" data-i18n="priceboard:table.symbol">Mã CK</th>
+									<th rowspan="2" class="cell-highlight sortable" data-sort-by="basicPrice" data-i18n="priceboard:table.price-ref">TC</th>
+									<th rowspan="2" class="cell-highlight sortable" data-sort-by="ceilingPrice" data-i18n="priceboard:table.price-ceiling">Tr?n</th>
+									<th rowspan="2" class="cell-highlight sortable" data-sort-by="floorPrice" data-i18n="priceboard:table.price-floor">Sàn</th>
+									<th rowspan="2" class="sortable has-toggle" data-slider-group="accumulated">
+										<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link btn-sm toggle-left" data-slider-steps="1"><i class="fa fa-caret-left"></i></a>
+										<span data-slider-field="accumulatedVol" class="slidable">
+											<span class="has-content" data-sort-by="accumulatedVol" data-i18n="priceboard:table.acc-vol">T?ng KL</span>
+										</span>
+										<span data-slider-field="accumulatedVal" class="slidable hidden">
+											<span class="has-content" data-sort-by="accumulatedVal" data-i18n="priceboard:table.acc-val">Giá tr?</span>
+										</span>
+										<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link btn-sm toggle-right" data-slider-steps="-1"><i class="fa fa-caret-right"></i></a>
+									</th>
+						
+									<th colspan="6" data-i18n="priceboard:table.bid">Mua</th>
+									<th colspan="3" class="cell-highlight" data-i18n="priceboard:table.match">Kh?p l?nh</th>
+									<th colspan="6" data-i18n="priceboard:table.offer">Bán</th>
+						
+									<th colspan="3" class="cell-highlight" data-i18n="priceboard:table.prices">Giá</th>
+						
+									<th colspan="2" data-i18n="priceboard:table.remainder">Du</th>
+						
+									<th colspan="2" data-i18n="priceboard:table.foreign">ÐTNN</th>
+								</tr>
+								<tr>
+									<th class="sortable" data-sort-by="bidPrice03" data-i18n="priceboard:table.price-3">Giá 3</th>
+									<th class="sortable" data-sort-by="bidQtty03" data-i18n="priceboard:table.vol-3">KL 3</th>
+									<th class="sortable" data-sort-by="bidPrice02" data-i18n="priceboard:table.price-2">Giá 2</th>
+									<th class="sortable" data-sort-by="bidQtty02" data-i18n="priceboard:table.vol-2">KL 2</th>
+									<th class="sortable" data-sort-by="bidPrice01" data-i18n="priceboard:table.price-1">Giá 1</th>
+									<th class="sortable" data-sort-by="bidQtty01" data-i18n="priceboard:table.vol-1">KL 1</th>
+						
+									<th class="cell-highlight sortable" data-sort-by="matchPrice" data-i18n="priceboard:table.price">Giá</th>
+									<th class="cell-highlight sortable" data-sort-by="matchQtty" data-i18n="priceboard:table.vol">KL</th>
+									<th class="cell-highlight sortable has-toggle" data-slider-group="priceDiff">
+										<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link btn-sm toggle-left" data-slider-steps="1"><i class="fa fa-caret-left"></i></a>
+										<span data-slider-field="changeRaw" class="slidable">
+											<span class="has-content" data-sort-by="changeRaw">+/-</span>
+										</span>
+										<span data-slider-field="changePercent" class="slidable hidden">
+											<span class="has-content" data-sort-by="changePercent">%</span>
+										</span>
+										<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link btn-sm toggle-right" data-slider-steps="-1"><i class="fa fa-caret-right"></i></a>
+									</th>
+						
+									<th class="sortable" data-sort-by="offerPrice01" data-i18n="priceboard:table.price-1">Giá 1</th>
+									<th class="sortable" data-sort-by="offerQtty01" data-i18n="priceboard:table.vol-1">KL 1</th>
+									<th class="sortable" data-sort-by="offerPrice02" data-i18n="priceboard:table.price-2">Giá 2</th>
+									<th class="sortable" data-sort-by="offerQtty02" data-i18n="priceboard:table.vol-2">KL 2</th>
+									<th class="sortable" data-sort-by="offerPrice03" data-i18n="priceboard:table.price-3">Giá 3</th>
+									<th class="sortable" data-sort-by="offerQtty03" data-i18n="priceboard:table.vol-3">KL 3</th>
+						
+									<th class="cell-highlight sortable" data-sort-by="highestPrice" data-i18n="priceboard:table.price-high">Cao</th>
+									<th class="cell-highlight sortable" data-sort-by="averagePrice" data-i18n="priceboard:table.price-avg">TB</th>
+									<th class="cell-highlight sortable" data-sort-by="lowestPrice" data-i18n="priceboard:table.price-low">Th?p</th>
+						
+									<th class="sortable" data-sort-by="bV4" data-i18n="priceboard:table.bid">Mua</th>
+									<th class="sortable" data-sort-by="sV4" data-i18n="priceboard:table.offer">Bán</th>
+						
+									<th colspan="2" class="sortable has-toggle" data-slider-group="foreign">
+										<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link toggle-left" data-slider-steps="1"><i class="fa fa-caret-left"></i></a>
+										<span data-slider-field="buySellForeignQtty" class="slidable">
+											<span class="cell-1-2 has-content" data-sort-by="buyForeignQtty" data-i18n="priceboard:table.bought">Mua</span>
+											<span class="cell-1-2 has-content" data-sort-by="sellForeignQtty" data-i18n="priceboard:table.sold">Bán</span>
+										</span>
+										<span data-slider-field="currentRoom" class="slidable hidden">
+											<span class="has-content" data-sort-by="currentRoom" data-i18n="priceboard:table.room">Du</span>
+										</span>
+										<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link toggle-right" data-slider-steps="-1"><i class="fa fa-caret-right"></i></a>
+									</th>
+								</tr>
+							</thead></table><table id="fixHeader6" class="banggia fixed-header tab-2" data-clone-for="mcsTable"><colgroup>
+							<col class="show-on-mobile col-symbol">
+					
+							<!-- Ref/Ceiling/Floor -->
+							<col class="show-on-mobile col-price">
+							<col class="show-on-mobile col-price">
+							<col class="show-on-mobile col-price">
+							<col class="col-vol col-vol-lg">
+					
+							<!-- Bid Side -->
+							<col class="col-price">
+							<col class="col-vol">
+							<col class="col-price">
+							<col class="col-vol">
+							<col class="col-price">
+							<col class="col-vol">
+					
+							<!-- Match Section -->
+							<col class="col-price">
+							<col class="col-vol col-vol-sm">
+							<col class="col-diff">
+					
+							<!-- Offer Side -->
+							<col class="col-price">
+							<col class="col-vol">
+							<col class="col-price">
+							<col class="col-vol">
+							<col class="col-price">
+							<col class="col-vol">
+					
+							<!-- High/Low/Average -->
+							<col class="col-price">
+							<col class="col-price">
+							<col class="col-price">
+					
+							<!-- Total Vol -->
+							<col class="col-vol col-vol-lg">
+					
+							<!-- Foreign -->
+							<col class="col-vol">
+							<col class="col-vol">
+						</colgroup><thead>
+							<tr>
+								<th rowspan="2" class="show-on-mobile sortable" data-sort-by="code" data-i18n="priceboard:table.symbol">Mã CK</th>
+								<th rowspan="2" class="cell-highlight sortable" data-sort-by="basicPrice" data-i18n="priceboard:table.price-ref">TC</th>
+								<th rowspan="2" class="cell-highlight sortable" data-sort-by="ceilingPrice" data-i18n="priceboard:table.price-ceiling">Tr?n</th>
+								<th rowspan="2" class="cell-highlight sortable" data-sort-by="floorPrice" data-i18n="priceboard:table.price-floor">Sàn</th>
+								<th rowspan="2" class="sortable has-toggle" data-slider-group="accumulated">
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link btn-sm toggle-left" data-slider-steps="1"><i class="fa fa-caret-left"></i></a>
+									<span data-slider-field="accumulatedVol" class="slidable">
+										<span class="has-content" data-sort-by="accumulatedVol" data-i18n="priceboard:table.acc-vol">T?ng KL</span>
+									</span>
+									<span data-slider-field="accumulatedVal" class="slidable hidden">
+										<span class="has-content" data-sort-by="accumulatedVal" data-i18n="priceboard:table.acc-val">Giá tr?</span>
+									</span>
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link btn-sm toggle-right" data-slider-steps="-1"><i class="fa fa-caret-right"></i></a>
+								</th>
+					
+								<th colspan="6" data-i18n="priceboard:table.bid">Mua</th>
+								<th colspan="3" class="cell-highlight" data-i18n="priceboard:table.match">Kh?p l?nh</th>
+								<th colspan="6" data-i18n="priceboard:table.offer">Bán</th>
+					
+								<th colspan="3" class="cell-highlight" data-i18n="priceboard:table.prices">Giá</th>
+					
+								<th colspan="2" data-i18n="priceboard:table.remainder">Du</th>
+					
+								<th colspan="2" data-i18n="priceboard:table.foreign">ÐTNN</th>
+							</tr>
+							<tr>
+								<th class="sortable" data-sort-by="bidPrice03" data-i18n="priceboard:table.price-3">Giá 3</th>
+								<th class="sortable" data-sort-by="bidQtty03" data-i18n="priceboard:table.vol-3">KL 3</th>
+								<th class="sortable" data-sort-by="bidPrice02" data-i18n="priceboard:table.price-2">Giá 2</th>
+								<th class="sortable" data-sort-by="bidQtty02" data-i18n="priceboard:table.vol-2">KL 2</th>
+								<th class="sortable" data-sort-by="bidPrice01" data-i18n="priceboard:table.price-1">Giá 1</th>
+								<th class="sortable" data-sort-by="bidQtty01" data-i18n="priceboard:table.vol-1">KL 1</th>
+					
+								<th class="cell-highlight sortable" data-sort-by="matchPrice" data-i18n="priceboard:table.price">Giá</th>
+								<th class="cell-highlight sortable" data-sort-by="matchQtty" data-i18n="priceboard:table.vol">KL</th>
+								<th class="cell-highlight sortable has-toggle" data-slider-group="priceDiff">
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link btn-sm toggle-left" data-slider-steps="1"><i class="fa fa-caret-left"></i></a>
+									<span data-slider-field="changeRaw" class="slidable">
+										<span class="has-content" data-sort-by="changeRaw">+/-</span>
+									</span>
+									<span data-slider-field="changePercent" class="slidable hidden">
+										<span class="has-content" data-sort-by="changePercent">%</span>
+									</span>
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link btn-sm toggle-right" data-slider-steps="-1"><i class="fa fa-caret-right"></i></a>
+								</th>
+					
+								<th class="sortable" data-sort-by="offerPrice01" data-i18n="priceboard:table.price-1">Giá 1</th>
+								<th class="sortable" data-sort-by="offerQtty01" data-i18n="priceboard:table.vol-1">KL 1</th>
+								<th class="sortable" data-sort-by="offerPrice02" data-i18n="priceboard:table.price-2">Giá 2</th>
+								<th class="sortable" data-sort-by="offerQtty02" data-i18n="priceboard:table.vol-2">KL 2</th>
+								<th class="sortable" data-sort-by="offerPrice03" data-i18n="priceboard:table.price-3">Giá 3</th>
+								<th class="sortable" data-sort-by="offerQtty03" data-i18n="priceboard:table.vol-3">KL 3</th>
+					
+								<th class="cell-highlight sortable" data-sort-by="highestPrice" data-i18n="priceboard:table.price-high">Cao</th>
+								<th class="cell-highlight sortable" data-sort-by="averagePrice" data-i18n="priceboard:table.price-avg">TB</th>
+								<th class="cell-highlight sortable" data-sort-by="lowestPrice" data-i18n="priceboard:table.price-low">Th?p</th>
+					
+								<th class="sortable" data-sort-by="bV4" data-i18n="priceboard:table.bid">Mua</th>
+								<th class="sortable" data-sort-by="sV4" data-i18n="priceboard:table.offer">Bán</th>
+					
+								<th colspan="2" class="sortable has-toggle" data-slider-group="foreign">
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link toggle-left" data-slider-steps="1"><i class="fa fa-caret-left"></i></a>
+									<span data-slider-field="buySellForeignQtty" class="slidable">
+										<span class="cell-1-2 has-content" data-sort-by="buyForeignQtty" data-i18n="priceboard:table.bought">Mua</span>
+										<span class="cell-1-2 has-content" data-sort-by="sellForeignQtty" data-i18n="priceboard:table.sold">Bán</span>
+									</span>
+									<span data-slider-field="currentRoom" class="slidable hidden">
+										<span class="has-content" data-sort-by="currentRoom" data-i18n="priceboard:table.room">Du</span>
+									</span>
+									<a href="https://banggia-hn.vndirect.com.vn/chung-khoan/#" class="btn-link toggle-right" data-slider-steps="-1"><i class="fa fa-caret-right"></i></a>
+								</th>
+							</tr>
+						</thead></table></div>
