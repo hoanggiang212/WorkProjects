@@ -7,6 +7,7 @@ using ZEMP.Models;
 using ZEMP.DAO;
 using ZEMP.DTO;
 using ZEMP.Header;
+using System.Collections;
 
 namespace ZEMP.Controllers
 {
@@ -92,6 +93,8 @@ namespace ZEMP.Controllers
 
             ViewData[CommonHeader.VIEWDATA_SL_ONLINE] = listSanLuong;
 
+
+            //asign style for table
             switch(sStyle)
             {
                 case "Default":
@@ -104,6 +107,9 @@ namespace ZEMP.Controllers
                     ViewBag.ClassName = "tablesorter-dark";
                     break;
             }
+
+            //Create array store data for charts
+            ArrayList dataChart = new ArrayList
 
             return PartialView(filter);
         }
