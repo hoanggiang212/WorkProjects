@@ -2,103 +2,44 @@
 @using ZEMP.Header;
 @model ZEMP.Models.FilterCondition
 
-<!--------------------------Format table---------------------------------------------->
-<!-- jQuery -->
-<script src="~/Content/tablesort/js/jquery-latest.min.js"></script>
-<script src="~/Content/tablesort/js/jquery-ui.min.js"></script>
-
-<!-- Demo stuff -->
-<link rel="stylesheet" href="~/Content/tablesort/css/jquery-ui.min.css">
-<link rel="stylesheet" href="~/Content/tablesort/css/jq.css">
-<link rel="stylesheet" href="~/Content/tablesort/css/prettify.css">
-<link rel="stylesheet" href="~/Content/tablesort/css/magnific-popup.css">
-
-<script src="~/Content/tablesort/js/prettify.js"></script>
-<script src="~/Content/tablesort/js/docs.js"></script>
-<script src="~/Content/tablesort/js/jquery.magnific-popup.min.js"></script>
-
-<!-- Tablesorter: theme -->
-<link class="theme" rel="stylesheet" href="~/Content/tablesort/theme/theme.default.css">
-<link class="theme" rel="stylesheet" href="~/Content/tablesort/theme/theme.blue.css">
-<link class="theme" rel="stylesheet" href="~/Content/tablesort/theme/theme.green.css">
-<link class="theme" rel="stylesheet" href="~/Content/tablesort/theme/theme.grey.css">
-<link class="theme" rel="stylesheet" href="~/Content/tablesort/theme/theme.ice.css">
-<link class="theme" rel="stylesheet" href="~/Content/tablesort/theme/theme.black-ice.css">
-<link class="theme" rel="stylesheet" href="~/Content/tablesort/theme/theme.dark.css">
-<link class="theme" rel="stylesheet" href="~/Content/tablesort/theme/theme.dropbox.css">
-<link class="theme" rel="stylesheet" href="~/Content/tablesort/theme/theme.metro-dark.css">
-
-<style id="css">
-    /* wrapper of table 2 */
-    .wrapper {
-        position: relative;
-        top: 50px;
-        height: 250px;
-        overflow-x: auto;
-    }
-</style>
-<!-- Tablesorter script: required -->
-	<!-- Tablesorter script: required -->
-<script src="~/Content/tablesort/js/jquery.tablesorter.js"></script>
-<script src="~/Content/tablesort/js/jquery.tablesorter.widgets.js"></script>
-<script src="~/Content/tablesort/js/widget-cssStickyHeaders.js"></script>
 <script id="js">
-        $(function () {
-            $('#table1').tablesorter({
-                widthFixed: true,
-                headerTemplate: '{content} {icon}', // Add icon for jui theme; new in v2.7!
+    $(function () {
+        $('#table1').tablesorter({
+            widthFixed: true,
+            headerTemplate: '{content} {icon}', // Add icon for jui theme; new in v2.7!
 
-                widgets: ['zebra', 'cssStickyHeaders', 'filter'],
+            widgets: ['zebra', 'cssStickyHeaders', 'filter'],
 
-                widgetOptions: {
-                    cssStickyHeaders_offset: 0,
-                    cssStickyHeaders_addCaption: true,
-                    // jQuery selector or object to attach sticky header to
-                    cssStickyHeaders_attachTo: null,
-                    cssStickyHeaders_filteredToTop: true,
-                    cssStickyHeaders_zIndex: 10
-                }
+            widgetOptions: {
+                cssStickyHeaders_offset: 0,
+                cssStickyHeaders_addCaption: false,
+                // jQuery selector or object to attach sticky header to
+                cssStickyHeaders_attachTo: null,
+                cssStickyHeaders_filteredToTop: true,
+                cssStickyHeaders_zIndex: 10
+            }
 
-            });
-        });</script>
-<script>
-    //$(function () {
-    //        $('link.theme').each(function () { this.disabled = true; });           
-    //        var themes = 'default blue green grey ice black-ice dark dropbox',
-    //            i, o = '', t = themes.split(' ');
-    //        for (i = 0; i < t.length; i++) {
-    //            o += '<option value="' + t[i] + '">' + t[i] + '</option>';
-    //        }
-
-    //        $('select:first')
-    //            .append(o)
-    //            .change(function () {
-    //                var theme = $(this).val().toLowerCase(),
-    //                    files = $('link.theme').each(function () {
-    //                        this.disabled = true;
-    //                    })
-    //                files.filter('[href$="theme.' + theme + '.css"]').each(function () {
-    //                    this.disabled = false;
-    //                });
-    //                $('table')
-    //                    .removeClass('tablesorter-' + t.join(' tablesorter-') + ' tablesorter-jui')
-    //                    .addClass('tablesorter-' + (theme === 'black-ice' ? 'blackice' : theme));
-    //            }).change();
-
-            window.addCaption = true;
-            $('.caption').on('click', function () {
-                addCaption = !addCaption;
-                $(this).html('' + addCaption);
-                $('#table1').each(function () {
-                    if (this.config) {
-                        this.config.widgetOptions.cssStickyHeaders_addCaption = addCaption;
-                    }
-                });
-            });
-
-    //    });
+        });
+    });
 </script>
-<table id="table1" class="tablesorter hasFilters tablesorter-default">
+<script>
+    $(function () {
+
+        window.addCaption = true;
+        $('.caption').on('click', function () {
+            addCaption = !addCaption;
+            $(this).html('' + addCaption);
+            $('#table1').each(function () {
+                if (this.config) {
+                    this.config.widgetOptions.cssStickyHeaders_addCaption = addCaption;
+                }
+            });
+        });
+
+    });
+</script>
+
+<table id="table1" class="tablesorter hasFilters @ViewBag.ClassName">
     <thead>
         <tr>
             @if (Model.SelectedMode == "NGANH")
@@ -141,7 +82,7 @@
             <th class="col-num-long">Sau 19h</th>
         </tr>
     </thead>
-    <tbody id="sanluong-tbody" style="margin-top:120px;">
+    <tbody>
         @if (ViewData["SL_Online"] != null)
             {
                 foreach (SanLuongOnline slsx in (List<SanLuongOnline>)ViewData[CommonHeader.VIEWDATA_SL_ONLINE])

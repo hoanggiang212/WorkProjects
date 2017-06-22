@@ -65,7 +65,7 @@ namespace ZEMP.Controllers
         }
 
 
-        public ActionResult GetListData(string level, string capdo, string giaTriCapdo, string congDoan)
+        public ActionResult GetListData(string level, string capdo, string giaTriCapdo, string congDoan, string sStyle)
         {
             //get current account logged
             ZEMP_USER account = Session[CommonHeader.ssAccount] as ZEMP_USER;
@@ -91,6 +91,19 @@ namespace ZEMP.Controllers
             List<SanLuongOnline> listSanLuong = lvDto.GetSanLuongOnline(level, capdo, giaTriCapdo, congDoan, sToDay);
 
             ViewData[CommonHeader.VIEWDATA_SL_ONLINE] = listSanLuong;
+
+            switch(sStyle)
+            {
+                case "Default":
+                    ViewBag.ClassName = "tablesorter-default";
+                    break;
+                case "Blue":
+                    ViewBag.ClassName = "tablesorter-blue";
+                    break;
+                case "Dark":
+                    ViewBag.ClassName = "tablesorter-dark";
+                    break;
+            }
 
             return PartialView(filter);
         }

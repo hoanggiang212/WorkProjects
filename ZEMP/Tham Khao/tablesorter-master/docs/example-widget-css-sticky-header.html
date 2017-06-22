@@ -121,11 +121,12 @@ $(function() {
 	for (i = 0; i < t.length; i++) {
 		o += '<option value="' + t[i] + '">' + t[i] + '</option>';
 	}
+	
 
 	$('select:first')
 		.append(o)
 		.change(function(){
-			var theme = $(this).val().toLowerCase(),
+			var theme = $(this).val().toLowerCase(),		
 				files = $('link.theme').each(function(){
 					this.disabled = true;
 				})

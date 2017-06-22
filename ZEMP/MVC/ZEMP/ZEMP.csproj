@@ -147,6 +147,7 @@
     <Content Include="DAO\ZempEntities.edmx.diagram">
       <DependentUpon>ZempEntities.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\tablesort\theme\theme.common.css" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

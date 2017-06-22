@@ -12,47 +12,6 @@ Default Theme
 	text-align: left;
 }
 
-.tablesorter-default tr{
-    height: 35px;
-}
-
-.tablesorter-default thead{
-    text-align: center;
-}
-
-
-.tablesorter-default .col-chuyen{
-    min-width: 200px;
-    width: 8%;
-    white-space: nowrap;
-}
-
-
-.tablesorter-default .col-congdoan{
-    width: 6%;
-    min-width: 120px;
-    text-align: center;
-    white-space: nowrap;
-}
-.tablesorter-default .col-slld{
-    width: 3%;
-    min-width: 80px;
-    text-align: right;
-    white-space: nowrap;
-}
-.tablesorter-default .col-num-long{
-    width: 4%;
-    min-width: 95px;
-    text-align: right;
-    white-space: nowrap;
-}
-.tablesorter-default .col-num-short{
-    width: 3%;
-    min-width: 70px;
-    text-align: right;
-    white-space: nowrap;
-}
-
 /* header */
 .tablesorter-default th,
 .tablesorter-default thead td {
@@ -62,7 +21,6 @@ Default Theme
 	border-collapse: collapse;
 	border-bottom: #ccc 2px solid;
 	padding: 0;
-    border: 0.5px solid #bfbfbf;
 }
 .tablesorter-default tfoot th,
 .tablesorter-default tfoot td {
