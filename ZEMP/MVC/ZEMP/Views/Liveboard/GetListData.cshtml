@@ -1,34 +1,15 @@
 ﻿@using ZEMP.Models;
 @using ZEMP.Header;
 @model ZEMP.Models.FilterCondition
-
-<!---LINK FOR GOOGLE CHARTS-->
-@*<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" />
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" defer async></script>
-<script src="//www.google.com/jsapi"></script>*@
-
 <script id="js">
     $(function () {
         $('#table1').tablesorter({
             widthFixed: true,
-            headerTemplate: '{content} {icon}', // Add icon for jui theme; new in v2.7!
-
-            widgets: ['zebra', 'cssStickyHeaders', 'filter'],
-
-            widgetOptions: {
-                cssStickyHeaders_offset: 0,
-                cssStickyHeaders_addCaption: true,
-                // jQuery selector or object to attach sticky header to
-                cssStickyHeaders_attachTo: null,
-                cssStickyHeaders_filteredToTop: false,
-                //cssStickyHeaders_zIndex: 10
-            }
-
+            widgets: ['zebra', 'cssStickyHeaders'],          
         });
     });
 </script>
-<script>
+@*<script>
     $(function () {
 
         window.addCaption = true;
@@ -43,7 +24,7 @@
         });
 
     });
-</script>
+</script>*@
 
 <table id="table1" class="tablesorter hasFilters @ViewBag.ClassName">
     <thead>
@@ -97,33 +78,33 @@
                     <td class="col-chuyen">@slsx.BoPhan</td>
                     <td class="col-congdoan">@slsx.CongDoan</td>
                     <td class="col-slld">@slsx.SoLuongLaoDong.ToString("#,#")</td>
-                    <td class="col-num-short">@slsx.NangSuat.ToString("#,#.##")</td>
-                    <td class="col-num-short">@slsx.GioLamViec.ToString("#,#.##")</td>
-                    <td class="col-num-short">@slsx.KeHoachGio.ToString("#,#")</td>
-                    <td class="col-num-long"> @slsx.KeHoachNgay.ToString("#,#")</td>
-                    <td class="col-num-long">@slsx.ThucHien.ToString("#,#")</td>
-                    <td class="col-num-long">@slsx.ChenhLech.ToString("#,#")</td>
+                    <td class="col-nsuat">@slsx.NangSuat.ToString("#,#.##")</td>
+                    <td class="col-giolv">@slsx.GioLamViec.ToString("#,#.##")</td>
+                    <td class="col-khgio">@slsx.KeHoachGio.ToString("#,#")</td>
+                    <td class="col-khth"> @slsx.KeHoachNgay.ToString("#,#")</td>
+                    <td class="col-khth">@slsx.ThucHien.ToString("#,#")</td>
+                    <td class="col-khth">@slsx.ChenhLech.ToString("#,#")</td>
                     @if (@slsx.DatSanLuong > 0)
                     {
-                        <td class="col-num-long @slsx.sColorText" style="text-align:right">@slsx.DatSanLuong.ToString("#,#.##") %</td>
+                        <td class="col-khth @slsx.sColorText" style="text-align:right">@slsx.DatSanLuong.ToString("#,#.##") %</td>
                     }
                     else
                     {
-                        <td class="col-num-long @slsx.sColorText" style="text-align:right">0 %</td>
+                        <td class="col-khth @slsx.sColorText" style="text-align:right">0 %</td>
                     }
-                    <td class="col-num-long">@slsx.Truoc8h.ToString("#,#")</td>
-                    <td class="col-num-short">@slsx.Gio08.ToString("#,#")</td>
-                    <td class="col-num-short">@slsx.Gio09.ToString("#,#")</td>
-                    <td class="col-num-short">@slsx.Gio10.ToString("#,#")</td>
-                    <td class="col-num-short">@slsx.Gio11.ToString("#,#")</td>
-                    <td class="col-num-short">@slsx.Gio12.ToString("#,#")</td>
-                    <td class="col-num-short">@slsx.Gio13.ToString("#,#")</td>
-                    <td class="col-num-short">@slsx.Gio14.ToString("#,#")</td>
-                    <td class="col-num-short">@slsx.Gio15.ToString("#,#")</td>
-                    <td class="col-num-short">@slsx.Gio16.ToString("#,#")</td>
-                    <td class="col-num-short">@slsx.Gio17.ToString("#,#")</td>
-                    <td class="col-num-short">@slsx.Gio18.ToString("#,#")</td>
-                    <td class="col-num-long">@slsx.Sau18.ToString("#,#")</td>
+                    <td class="col-truoc-sau">@slsx.Truoc8h.ToString("#,#")</td>
+                    <td class="col-gio">@slsx.Gio08.ToString("#,#")</td>
+                    <td class="col-gio">@slsx.Gio09.ToString("#,#")</td>
+                    <td class="col-gio">@slsx.Gio10.ToString("#,#")</td>
+                    <td class="col-gio">@slsx.Gio11.ToString("#,#")</td>
+                    <td class="col-gio">@slsx.Gio12.ToString("#,#")</td>
+                    <td class="col-gio">@slsx.Gio13.ToString("#,#")</td>
+                    <td class="col-gio">@slsx.Gio14.ToString("#,#")</td>
+                    <td class="col-gio">@slsx.Gio15.ToString("#,#")</td>
+                    <td class="col-gio">@slsx.Gio16.ToString("#,#")</td>
+                    <td class="col-gio">@slsx.Gio17.ToString("#,#")</td>
+                    <td class="col-gio">@slsx.Gio18.ToString("#,#")</td>
+                    <td class="col-truoc-sau">@slsx.Sau18.ToString("#,#")</td>
                 </tr>
             }
         }

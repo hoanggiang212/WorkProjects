@@ -15,7 +15,7 @@ Default Theme
 /* header */
 .tablesorter-default th,
 .tablesorter-default thead td {
-	font-weight: bold;
+	/*font-weight: bold;*/
 	color: #000;
 	background-color: #fff;
 	border-collapse: collapse;
@@ -32,7 +32,7 @@ Default Theme
 	background-position: center right;
 	background-repeat: no-repeat;
 	cursor: pointer;
-	white-space: normal;
+	white-space: nowrap;
 	padding: 4px 20px 4px 4px;
 }
 .tablesorter-default thead .headerSortUp,

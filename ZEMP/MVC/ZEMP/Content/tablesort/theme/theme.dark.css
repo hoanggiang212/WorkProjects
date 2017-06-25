@@ -21,7 +21,13 @@
 	color: #fff;
 	background-color: #000;
 	border-collapse: collapse;
+    border-right: 0.5px dashed #333333;
 }
+
+.tablesorter-dark tr td{
+   border-right: 0.5px dashed #333333;
+}
+
 .tablesorter-dark thead th {
 	border-bottom: #333 2px solid;
 }
