@@ -7,46 +7,9 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" defer async></script>
 <script src="//www.google.com/jsapi"></script>
-    
+ 
 
-<script id="js">
-    $(function () {
-        $('#table1').tablesorter({
-            widthFixed: true,
-            headerTemplate: '{content} {icon}', // Add icon for jui theme; new in v2.7!
-
-            widgets: ['zebra', 'cssStickyHeaders', 'filter'],
-
-            widgetOptions: {
-                cssStickyHeaders_offset: 0,
-                cssStickyHeaders_addCaption: false,
-                // jQuery selector or object to attach sticky header to
-                cssStickyHeaders_attachTo: null,
-                cssStickyHeaders_filteredToTop: true,
-                cssStickyHeaders_zIndex: 10
-            }
-
-        });
-    });
-</script>
-<script>
-    $(function () {
-
-        window.addCaption = true;
-        $('.caption').on('click', function () {
-            addCaption = !addCaption;
-            $(this).html('' + addCaption);
-            $('#table1').each(function () {
-                if (this.config) {
-                    this.config.widgetOptions.cssStickyHeaders_addCaption = addCaption;
-                }
-            });
-        });
-
-    });
-</script>
-
-<table id="table1" class="tablesorter hasFilters @ViewBag.ClassName">
+<table id="table1" class="tablesorter hasFilters @ViewBag.ClassName" role="grid">
     <thead>
         <tr>
             @if (Model.SelectedMode == "NGANH")

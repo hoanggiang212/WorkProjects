@@ -104,9 +104,42 @@
     <script src="~/Content/tablesort/js/jquery.tablesorter.js"></script>
     <script src="~/Content/tablesort/js/jquery.tablesorter.widgets.js"></script>
     <script src="~/Content/tablesort/js/widget-cssStickyHeaders.js"></script>
-    <style>
-        
-    </style>
+
+    <script id="js">
+    $(function () {
+        $('#table1').tablesorter({
+            widthFixed: true,
+            headerTemplate: '{content} {icon}', // Add icon for jui theme; new in v2.7!
+
+            widgets: ['zebra', 'cssStickyHeaders', 'filter'],
+
+            widgetOptions: {
+                cssStickyHeaders_offset: 0,
+                cssStickyHeaders_addCaption: true,
+                // jQuery selector or object to attach sticky header to
+                cssStickyHeaders_attachTo: null,
+                cssStickyHeaders_filteredToTop: true,
+                cssStickyHeaders_zIndex: 10
+            }
+
+        });
+    });
+    </script>
+    <script>
+    $(function () {
+        window.addCaption = true;
+        $('.caption').on('click', function () {
+            addCaption = !addCaption;
+            $(this).html('' + addCaption);
+            $('#table1').each(function () {
+                if (this.config) {
+                    this.config.widgetOptions.cssStickyHeaders_addCaption = addCaption;
+                }
+            });
+        });
+
+    });
+    </script>
 
 </head>
 <body>
@@ -149,74 +182,121 @@
             </table>
         </div>
     </nav>
-    <!-------------------------------------------DATA PARTIAL VIEW--------------------------------------->
-    <div id="partial_data" class="table-area"></div>
+    
+    
 
-    <!---------------------------------------------SELECT STYLE------------------------------------------>
-    <div style="width:100%;">
-    <div class="dropdown" style="width:20%; margin:auto;">
-        Style:
-        <input type="button" id="btnStyle" onclick="myFunction()" class="dropbtn" value="Default"></input>
-        <div id="myDropdown" class="dropdown-content">
-            <a href="#" onclick="SetCss(0)">Default</a>
-            <a href="#" onclick="SetCss(1)">Blue</a>
-            <a href="#" onclick="SetCss(2)">Dark</a>
-        </div>
-    </div>
-    </div>
-
-    <script>
-        /* When the user clicks on the button,
-        toggle between hiding and showing the dropdown content */
-        function myFunction() {            
-            document.getElementById("myDropdown").classList.toggle("show");
-        }
-
-        function SetCss(idxCss) {
-            var head = document.getElementsByTagName('head')[0];
-            var link = document.createElement('link');
-
-            link.rel = 'stylesheet';
-            link.type = 'text/css';
-            link.media = 'all';
-            if (idxCss === 0) {
-                link.href = '../../Content/tablesort/theme/theme.default.css';
-                var d = document.getElementById("table1");
-                d.className = "tablesorter hasFilters tablesorter-default";
-                document.getElementById("btnStyle").value = "Default";
-
-            }
-            else if (idxCss === 1) {
-                link.href = '~/Content/tablesort/theme/theme.blue.css';
-                var d = document.getElementById("table1");
-                d.className = "tablesorter hasFilters tablesorter-blue";
-                
-                var b = document.getElementById("btnStyle");
-                b.value = "Blue";
-            }
-            else if (idxCss === 2) {
-                link.href = '~/Content/tablesort/theme/theme.dark.css';
-                var d = document.getElementById("table1");
-                d.className = "tablesorter hasFilters tablesorter-dark";
-                document.getElementById("btnStyle").value = "Dark";
-            }
-            //head.appendChild(link);
-        }
-
-        // Close the dropdown if the user clicks outside of it
-        window.onclick = function (event) {
-            if (!event.target.matches('#btnStyle'))
+    <table id="table1" class="tablesorter" role="grid">
+        <thead>
+            <tr>
+                @if (Model.SelectedMode == "NGANH")
             {
-                var dropdowns = document.getElementsByClassName("dropdown-content");
-                var i;
-                for (i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
+                    <th>Ngành</th>
+                }
+                else if (Model.SelectedMode == "KHVUC")
+                {
+                    <th>Khu Vực</th>
+                }
+                else if (Model.SelectedMode == "WRKCT")
+                {
+                    <th>Work Center</th>
+                }
+                else
+                {
+                    <th class="col-chuyen">Chuyền</th>
+                }
+                <th class="col-congdoan">Công Đoạn</th>
+                <th class="col-slld">SL LĐ</th>
+                <th class="col-num-short">N.Suất</th>
+                <th class="col-num-short">Giờ LV</th>
+                <th class="col-num-short">KH Giờ</th>
+                <th class="col-num-long">KH Ngày</th>
+                <th class="col-num-long">Thực Hiện</th>
+                <th class="col-num-long">+/-</th>
+                <th class="col-num-short">% TH/KH</th>
+                <th class="col-num-long">Trc.08h</th>
+                <th class="col-num-short">08h</th>
+                <th class="col-num-short">09h</th>
+                <th class="col-num-short">10h</th>
+                <th class="col-num-short">11h</th>
+                <th class="col-num-short">12h</th>
+                <th class="col-num-short">13h</th>
+                <th class="col-num-short">14h</th>
+                <th class="col-num-short">15h</th>
+                <th class="col-num-short">16h</th>
+                <th class="col-num-short">17h</th>
+                <th class="col-num-short">18h</th>
+                <th class="col-num-long">Sau 19h</th>
+            </tr>
+        </thead>
+        </table>
+
+        <!-------------------------------------------DATA PARTIAL VIEW--------------------------------------->
+        <div id="partial_data" class="table-area"></div>
+
+        <!---------------------------------------------SELECT STYLE------------------------------------------>
+        <div style="width:100%;">
+            <div class="dropdown" style="width:20%; margin:auto;">
+                Style:
+                <input type="button" id="btnStyle" onclick="myFunction()" class="dropbtn" value="Default"></input>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="#" onclick="SetCss(0)">Default</a>
+                    <a href="#" onclick="SetCss(1)">Blue</a>
+                    <a href="#" onclick="SetCss(2)">Dark</a>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            /* When the user clicks on the button,
+            toggle between hiding and showing the dropdown content */
+            function myFunction() {
+                document.getElementById("myDropdown").classList.toggle("show");
+            }
+
+            function SetCss(idxCss) {
+                var head = document.getElementsByTagName('head')[0];
+                var link = document.createElement('link');
+
+                link.rel = 'stylesheet';
+                link.type = 'text/css';
+                link.media = 'all';
+                if (idxCss === 0) {
+                    link.href = '../../Content/tablesort/theme/theme.default.css';
+                    var d = document.getElementById("table1");
+                    d.className = "tablesorter hasFilters tablesorter-default";
+                    document.getElementById("btnStyle").value = "Default";
+
+                }
+                else if (idxCss === 1) {
+                    link.href = '~/Content/tablesort/theme/theme.blue.css';
+                    var d = document.getElementById("table1");
+                    d.className = "tablesorter hasFilters tablesorter-blue";
+
+                    var b = document.getElementById("btnStyle");
+                    b.value = "Blue";
+                }
+                else if (idxCss === 2) {
+                    link.href = '~/Content/tablesort/theme/theme.dark.css';
+                    var d = document.getElementById("table1");
+                    d.className = "tablesorter hasFilters tablesorter-dark";
+                    document.getElementById("btnStyle").value = "Dark";
+                }
+                //head.appendChild(link);
+            }
+
+            // Close the dropdown if the user clicks outside of it
+            window.onclick = function (event) {
+                if (!event.target.matches('#btnStyle')) {
+                    var dropdowns = document.getElementsByClassName("dropdown-content");
+                    var i;
+                    for (i = 0; i < dropdowns.length; i++) {
+                        var openDropdown = dropdowns[i];
+                        if (openDropdown.classList.contains('show')) {
+                            openDropdown.classList.remove('show');
+                        }
                     }
                 }
             }
-        }
-    </script>
+        </script>
 </body>
 </html>
