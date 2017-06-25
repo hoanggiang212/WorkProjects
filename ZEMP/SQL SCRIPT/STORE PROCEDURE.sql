@@ -308,11 +308,70 @@ END
 exec CountTrangThaiChuyen '900P01','KHUVUC','KV01', 'SDBCHAT','2017-06-22','2017-06-22'
 
 
+-- ================================================
+-- GET KE HOACH THUC HIEN THEO CAP DO / CONG DOAN
+-- ================================================
+IF EXISTS ( SELECT * FROM SYSOBJECTS WHERE id = OBJECT_ID(N'GetKeHoachThucHien') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+BEGIN
+	DROP PROCEDURE GetKeHoachThucHien
+END
+GO
+--When SET ANSI_NULLS is ON, 
+-- a SELECT statement that uses WHERE column_name = NULL returns zero rows 
+-- even if there are null values in column_name
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE GetKeHoachThucHien
+	@systemId		VARCHAR(20),
+	@capDo			VARCHAR(20),
+	@giaTriCapDo	VARCHAR(20),
+	@congDoan		VARCHAR(20),
+	@fromDate		VARCHAR(10),
+	@toDate			VARCHAR(10)
+AS
+BEGIN
+	DECLARE @command		nvarchar(max);
+	DECLARE @whereCongDoan	varchar(100);
+	DECLARE @whereCapDo		varchar(100);
+	DECLARE @tableSource	varchar(100);
 
-SELECT COUNT(tb1.status) [SLCH] , tb1.STATUS  FROM (  
-	SELECT tb_master.IdChuyen, tb_master.Wrkct, tb_master.KhuVuc, tb_master.Nganh, 
-		'STATUS' =  CASE	WHEN tb_sl.DatKeHoach < 95 then 'RED' 
-		WHEN tb_sl.DatKeHoach >= 95 and tb_sl.DatKeHoach < 100 THEN 'YELLOW' 
-		ELSE'GREEN' 
-		END 
-		FROM zemp_sl_ch AS tb_sl INNER JOIN ZEMP_CH AS tb_master ON tb_sl.SystemId = tb_master.SystemId   AND tb_sl.IdChuyen = tb_master.IdChuyen  WHERE Ngay between '2017-06-22'  AND '2017-06-22' AND tb_sl.CongDoan = 'SDBCHAT' AND (tb_master.IsNoColor IS NULL OR tb_master.IsNoColor = '' ) ) AS tb1  WHERE tb1.KhuVuc = 'KV01' GROUP BY STATUS 
+	SET FMTONLY OFF
+
+	IF @congDoan = 'ALL'
+		SET @whereCongDoan = ' ';
+	ELSE
+		SET @whereCongDoan = ' AND CongDoan = ' + '''' + @congDoan  + ''''  ;
+
+	
+	
+
+	if @capDo = 'WRKCT'
+		BEGIN
+			SET @tableSource	= 'ZEMP_SL_WC'
+			SET @whereCapDo		= ' AND  Wrkct = ' + '''' + @giaTriCapDo + '''';
+		END
+	else if @capDo = 'KHUVUC'
+		BEGIN
+			SET @tableSource	= 'ZEMP_SL_KV'
+			SET @whereCapDo		= ' AND  KhuVuc = ' + '''' + @giaTriCapDo + '''';
+		END
+	else if  @capDo = 'NGANH'
+		BEGIN
+			SET @tableSource	= 'ZEMP_SL_NG'
+			SET @whereCapDo		= ' AND  Nganh = ' + '''' + @giaTriCapDo + '''';
+		END
+
+		SET @command  =		' SELECT Ngay as' + '''' + 'Ngay' + '''' + ', CongDoan as ' + '''' + 'CongDoan' + '''' + ', KeHoachNgay as '	+ '''' + 'KeHoach'		+ '''' +
+						+	' , ThucHienNgay  AS ' + ''''	+	'ThucHien'	+ '''' + 'FROM '	+ @tableSource
+						+	' WHERE Ngay BETWEEN '	+ ''''	+	@fromDate	+ '''' + ' AND '	+ '''' + @toDate + ''''
+						+	@whereCapDo
+						+	@whereCongDoan 
+						+	' Order by Ngay ASC'
+	--print @command
+EXEC sys.sp_executesql @command
+END
+GO
+--TEST
+GetKeHoachThucHien '900P01', 'WRKCT', 'WC01', 'ALL', '2017-06-16', '2017-06-23'

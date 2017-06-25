@@ -14,7 +14,6 @@ namespace ZEMP.Controllers
         // GET: Account
         public ActionResult Index()
         {
-            return View();
             Session[CommonHeader.ssAccount] = null;
             ZEMP_USER account = new ZEMP_USER
             {

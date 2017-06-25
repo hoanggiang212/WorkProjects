@@ -32,7 +32,7 @@
 .tablesorter-blue tfoot th,
 .tablesorter-blue tfoot td {
 	padding: 4px;
-	vertical-align: top;
+	vertical-align: middle;
 }
 .tablesorter-blue .header,
 .tablesorter-blue .tablesorter-header {

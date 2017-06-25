@@ -109,7 +109,7 @@ namespace ZEMP.Controllers
             }
 
             //Create array store data for charts
-            ArrayList dataChart = new ArrayList();
+            //ArrayList dataChart = new ArrayList
 
             return PartialView(filter);
         }

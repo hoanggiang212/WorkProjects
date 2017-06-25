@@ -3,20 +3,56 @@
 @model ZEMP.Models.FilterCondition
 
 <!---LINK FOR GOOGLE CHARTS-->
-<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" />
+@*<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" defer async></script>
-<script src="//www.google.com/jsapi"></script>
- 
+<script src="//www.google.com/jsapi"></script>*@
 
-<table id="table1" class="tablesorter hasFilters @ViewBag.ClassName" role="grid">
+<script id="js">
+    $(function () {
+        $('#table1').tablesorter({
+            widthFixed: true,
+            headerTemplate: '{content} {icon}', // Add icon for jui theme; new in v2.7!
+
+            widgets: ['zebra', 'cssStickyHeaders', 'filter'],
+
+            widgetOptions: {
+                cssStickyHeaders_offset: 0,
+                cssStickyHeaders_addCaption: true,
+                // jQuery selector or object to attach sticky header to
+                cssStickyHeaders_attachTo: null,
+                cssStickyHeaders_filteredToTop: false,
+                //cssStickyHeaders_zIndex: 10
+            }
+
+        });
+    });
+</script>
+<script>
+    $(function () {
+
+        window.addCaption = true;
+        $('.caption').on('click', function () {
+            addCaption = !addCaption;
+            $(this).html('' + addCaption);
+            $('#table1').each(function () {
+                if (this.config) {
+                    this.config.widgetOptions.cssStickyHeaders_addCaption = addCaption;
+                }
+            });
+        });
+
+    });
+</script>
+
+<table id="table1" class="tablesorter hasFilters @ViewBag.ClassName">
     <thead>
         <tr>
             @if (Model.SelectedMode == "NGANH")
             {
                 <th>Ngành</th>
             }
-            else if (Model.SelectedMode == "KHVUC")
+            else if (Model.SelectedMode == "KHUVUC")
             {
                 <th>Khu Vực</th>
             }
@@ -28,28 +64,28 @@
             {
                 <th class="col-chuyen">Chuyền</th>
             }
-            <th class="col-congdoan">Công Đoạn</th>
-            <th class="col-slld">SL LĐ</th>
-            <th class="col-num-short">N.Suất</th>
-            <th class="col-num-short">Giờ LV</th>
-            <th class="col-num-short">KH Giờ</th>
-            <th class="col-num-long">KH Ngày</th>
-            <th class="col-num-long">Thực Hiện</th>
-            <th class="col-num-long">+/-</th>
-            <th class="col-num-short">% TH/KH</th>
-            <th class="col-num-long">Trc.08h</th>
-            <th class="col-num-short">08h</th>
-            <th class="col-num-short">09h</th>
-            <th class="col-num-short">10h</th>
-            <th class="col-num-short">11h</th>
-            <th class="col-num-short">12h</th>
-            <th class="col-num-short">13h</th>
-            <th class="col-num-short">14h</th>
-            <th class="col-num-short">15h</th>
-            <th class="col-num-short">16h</th>
-            <th class="col-num-short">17h</th>
-            <th class="col-num-short">18h</th>
-            <th class="col-num-long">Sau 19h</th>
+            <th>Công Đoạn</th>
+            <th>SL LĐ</th>
+            <th>N.Suất</th>
+            <th>Giờ LV</th>
+            <th>KH Giờ</th>
+            <th>KH Ngày</th>
+            <th>Thực Hiện</th>
+            <th>+/-</th>
+            <th>% TH/KH</th>
+            <th>Trc.08h</th>
+            <th>08h</th>
+            <th>09h</th>
+            <th>10h</th>
+            <th>11h</th>
+            <th>12h</th>
+            <th>13h</th>
+            <th>14h</th>
+            <th>15h</th>
+            <th>16h</th>
+            <th>17h</th>
+            <th>18h</th>
+            <th>Sau 19h</th>
         </tr>
     </thead>
     <tbody>

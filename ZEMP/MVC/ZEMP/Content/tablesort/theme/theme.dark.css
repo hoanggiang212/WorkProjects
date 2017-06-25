@@ -4,18 +4,19 @@
 /* overall */
 .tablesorter-dark {
 	width: 100%;
-	font: 11px/18px Arial, Sans-serif;
+	font: 12px/16px Arial, Sans-serif;
 	color: #ccc;
 	text-align: left;
 	background-color: #000;
 	border-spacing: 0;
+    margin: 10px 0 15px;
 }
 
 /* header */
 .tablesorter-dark th,
 .tablesorter-dark thead td {
 	padding: 4px;
-	font: 12px/20px Arial, Sans-serif;
+	font: 12px/16px Arial, Sans-serif;
 	font-weight: bold;
 	color: #fff;
 	background-color: #000;
