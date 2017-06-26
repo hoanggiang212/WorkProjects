@@ -123,5 +123,34 @@ namespace ZEMP.DAO
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectListReturn>("GetModeView", systemIdParameter);
         }
+    
+        public virtual ObjectResult<KHTHReturn> GetKeHoachThucHien(string systemId, string capDo, string giaTriCapDo, string congDoan, string fromDate, string toDate)
+        {
+            var systemIdParameter = systemId != null ?
+                new ObjectParameter("systemId", systemId) :
+                new ObjectParameter("systemId", typeof(string));
+    
+            var capDoParameter = capDo != null ?
+                new ObjectParameter("capDo", capDo) :
+                new ObjectParameter("capDo", typeof(string));
+    
+            var giaTriCapDoParameter = giaTriCapDo != null ?
+                new ObjectParameter("giaTriCapDo", giaTriCapDo) :
+                new ObjectParameter("giaTriCapDo", typeof(string));
+    
+            var congDoanParameter = congDoan != null ?
+                new ObjectParameter("congDoan", congDoan) :
+                new ObjectParameter("congDoan", typeof(string));
+    
+            var fromDateParameter = fromDate != null ?
+                new ObjectParameter("fromDate", fromDate) :
+                new ObjectParameter("fromDate", typeof(string));
+    
+            var toDateParameter = toDate != null ?
+                new ObjectParameter("toDate", toDate) :
+                new ObjectParameter("toDate", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<KHTHReturn>("GetKeHoachThucHien", systemIdParameter, capDoParameter, giaTriCapDoParameter, congDoanParameter, fromDateParameter, toDateParameter);
+        }
     }
 }

@@ -56,6 +56,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -118,6 +122,7 @@
     <Content Include="Content\tablesort\js\jquery.tablesorter.widgets.js" />
     <Content Include="Content\tablesort\js\prettify.js" />
     <Content Include="Content\tablesort\js\widget-cssStickyHeaders.js" />
+    <Content Include="Content\tablesort\js\widget-filter.js" />
     <Content Include="Content\tablesort\theme\Images\black-asc.gif" />
     <Content Include="Content\tablesort\theme\Images\black-desc.gif" />
     <Content Include="Content\tablesort\theme\Images\black-unsorted.gif" />
@@ -184,7 +189,11 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Dashboard1dayController.cs" />
     <Compile Include="Controllers\LiveboardController.cs" />
+    <Compile Include="DAO\KHTHReturn.cs">
+      <DependentUpon>ZempEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAO\SanLuongOnlineReturn.cs">
       <DependentUpon>ZempEntities.tt</DependentUpon>
     </Compile>
@@ -289,6 +298,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Liveboard\Index.cshtml" />
     <Content Include="Views\Liveboard\GetListData.cshtml" />
+    <Content Include="Views\Liveboard\GetCharts.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -298,6 +308,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Dashboard1day\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

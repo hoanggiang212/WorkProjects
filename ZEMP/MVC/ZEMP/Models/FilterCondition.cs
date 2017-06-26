@@ -19,11 +19,9 @@ namespace ZEMP.Models
         public string SelectedCongDoan { get; set; }
 
         public IEnumerable<SelectListItem> ListCapDo { get; set; }
-
         public string SelectedCapDo { set; get; }
 
         public IEnumerable<SelectListItem> ListGiaTriCapDo { set; get; }
-
         public string SelectedGiaTriCapDo { set; get; }
 
 

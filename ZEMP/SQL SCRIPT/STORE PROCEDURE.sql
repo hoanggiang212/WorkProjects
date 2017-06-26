@@ -332,12 +332,12 @@ CREATE PROCEDURE GetKeHoachThucHien
 	@toDate			VARCHAR(10)
 AS
 BEGIN
+	SET FMTONLY OFF
+	SET NOCOUNT ON;
 	DECLARE @command		nvarchar(max);
 	DECLARE @whereCongDoan	varchar(100);
 	DECLARE @whereCapDo		varchar(100);
 	DECLARE @tableSource	varchar(100);
-
-	SET FMTONLY OFF
 
 	IF @congDoan = 'ALL'
 		SET @whereCongDoan = ' ';
@@ -374,4 +374,4 @@ EXEC sys.sp_executesql @command
 END
 GO
 --TEST
-GetKeHoachThucHien '900P01', 'WRKCT', 'WC01', 'ALL', '2017-06-16', '2017-06-23'
+GetKeHoachThucHien '900P01', 'WRKCT', 'WC01', 'ALL', '2017-06-25', '2017-06-25'

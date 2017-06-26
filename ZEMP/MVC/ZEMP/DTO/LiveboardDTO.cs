@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,54 @@ namespace ZEMP.DTO
 {
     public class LiveboardDTO
     {
+
+        public ArrayList GetKeHoachThucHien(FilterCondition filter)
+        {
+            ArrayList listKhTh = new ArrayList();
+
+            using (TKTDSXEntities dc = new TKTDSXEntities())
+            {
+                string dtFrom = string.Format("{0}-{1}-{2}", filter.DateFrom.Year, filter.DateFrom.Month, filter.DateFrom.Day);
+                string dtTo = string.Format("{0}-{1}-{2}", filter.DateFrom.Year, filter.DateFrom.Month, filter.DateFrom.Day);
+                try
+                {
+                    var listRaw = dc.GetKeHoachThucHien(filter.SystemId, filter.SelectedCapDo, filter.SelectedGiaTriCapDo, 
+                                            filter.SelectedCongDoan, dtFrom, dtTo).ToList<KHTHReturn>();
+                    //Header
+                    ArrayList lineHeader = new ArrayList();
+                    lineHeader.Add("Data");
+                    for (int i = 0; i < listRaw.Count; i++)
+                    {
+                        lineHeader.Add(listRaw[i].CongDoan.ToString());
+                    }
+                    listKhTh.Add(lineHeader);
+
+                    //KeHoach
+                    ArrayList lineKeHoach = new ArrayList();
+                    lineKeHoach.Add("KeHoach");
+                    for (int y = 0; y < listRaw.Count; y++)
+                    {
+                        lineKeHoach.Add(listRaw[y].KeHoach.ToString());
+                    }
+                    listKhTh.Add(lineKeHoach);
+
+                    //ThucHien
+                    ArrayList lineThucHien = new ArrayList();
+                    lineThucHien.Add("ThucHien");
+                    for (int y = 0; y < listRaw.Count; y++)
+                    {
+                        lineThucHien.Add(listRaw[y].ThucHien.ToString());
+                    }
+                    listKhTh.Add(lineThucHien);
+                }
+                catch (Exception ex)
+                {
+                    //do nothing
+                }
+
+            }
+            return listKhTh;
+        }
 
         public List<SelectListItem> GetListCongDoan(string sSystemId, string sLastCongDoan)
         {
@@ -39,7 +88,7 @@ namespace ZEMP.DTO
                         listCongDoan.Add(new SelectListItem() { Text = listRaw[i].text, Value = listRaw[i].value, Selected = isSelect });
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     ZEMP_LOG zlog = new ZEMP_LOG()
                     {
@@ -55,7 +104,7 @@ namespace ZEMP.DTO
             return listCongDoan;
         }
 
-        public List<SelectListItem> GetModeView (ZEMP_USER account)
+        public List<SelectListItem> GetModeView(ZEMP_USER account)
         {
             List<SelectListItem> listMode = new List<SelectListItem>();
             using (TKTDSXEntities dc = new TKTDSXEntities())
@@ -64,7 +113,7 @@ namespace ZEMP.DTO
                 {
                     var listRaw = dc.GetModeView(account.SystemId).ToList<SelectListReturn>();
                     bool isSelect = false;
-                    for (int i = 0; i< listRaw.Count; i++)
+                    for (int i = 0; i < listRaw.Count; i++)
                     {
                         isSelect = false;
                         if (account.LastMode == null)
@@ -79,7 +128,7 @@ namespace ZEMP.DTO
                         listMode.Add(new SelectListItem() { Value = listRaw[i].value, Text = listRaw[i].text, Selected = isSelect });
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     ZEMP_LOG zlog = new ZEMP_LOG()
                     {
@@ -96,50 +145,50 @@ namespace ZEMP.DTO
 
         public List<SanLuongOnline> GetSanLuongOnline(string sModeView, string sCapDo, string sGiaTriCapDo, string sCongDoan, string sNgay)
         {
-            var ListSanLuong = new List<SanLuongOnline>( );
+            var ListSanLuong = new List<SanLuongOnline>();
 
             using (TKTDSXEntities dc = new TKTDSXEntities())
             {
                 List<SanLuongOnlineReturn> listRaw = dc.GetSanLuongOnline(CommonHeader.defaultSystemId, sModeView, sCapDo, sGiaTriCapDo, sCongDoan, sNgay).ToList<SanLuongOnlineReturn>();
-                foreach( var item in listRaw)
+                foreach (var item in listRaw)
                 {
                     var itemSanLuong = new SanLuongOnline()
                     {
-                        BoPhan      = item.BoPhan,
-                        CongDoan    = item.TenCongDoan,
+                        BoPhan = item.BoPhan,
+                        CongDoan = item.TenCongDoan,
                         SoLuongLaoDong = int.Parse(item.SoLuongLD.ToString()),
-                        NangSuat    = double.Parse(item.NangSuat.ToString()),
-                        GioLamViec  = double.Parse(item.GioLamViec.ToString()),
-                        KeHoachGio  = int.Parse(item.KeHoachGio.ToString()),
+                        NangSuat = double.Parse(item.NangSuat.ToString()),
+                        GioLamViec = double.Parse(item.GioLamViec.ToString()),
+                        KeHoachGio = int.Parse(item.KeHoachGio.ToString()),
                         KeHoachNgay = int.Parse(item.KeHoachNgay.ToString()),
-                        ThucHien    = int.Parse(item.ThucHienNgay.ToString()),
-                        ChenhLech   = int.Parse(item.ChenhLech.ToString()),
+                        ThucHien = int.Parse(item.ThucHienNgay.ToString()),
+                        ChenhLech = int.Parse(item.ChenhLech.ToString()),
                         DatSanLuong = double.Parse(item.DatKeHoach.ToString()),
-                        Truoc8h     = int.Parse(item.Truoc8h.ToString()),
-                        Gio08       = int.Parse(item.Gio08.ToString()),
-                        Gio09       = int.Parse(item.Gio09.ToString()),
-                        Gio10       = int.Parse(item.Gio10.ToString()),
-                        Gio11       = int.Parse(item.Gio11.ToString()),
-                        Gio12       = int.Parse(item.Gio12.ToString()),
-                        Gio13       = int.Parse(item.Gio13.ToString()),
-                        Gio14       = int.Parse(item.Gio14.ToString()),
-                        Gio15       = int.Parse(item.Gio15.ToString()),
-                        Gio16       = int.Parse(item.Gio16.ToString()),
-                        Gio17       = int.Parse(item.Gio17.ToString()),
-                        Gio18       = int.Parse(item.Gio18.ToString()),
-                        Sau18       = int.Parse(item.Sau18h.ToString())
+                        Truoc8h = int.Parse(item.Truoc8h.ToString()),
+                        Gio08 = int.Parse(item.Gio08.ToString()),
+                        Gio09 = int.Parse(item.Gio09.ToString()),
+                        Gio10 = int.Parse(item.Gio10.ToString()),
+                        Gio11 = int.Parse(item.Gio11.ToString()),
+                        Gio12 = int.Parse(item.Gio12.ToString()),
+                        Gio13 = int.Parse(item.Gio13.ToString()),
+                        Gio14 = int.Parse(item.Gio14.ToString()),
+                        Gio15 = int.Parse(item.Gio15.ToString()),
+                        Gio16 = int.Parse(item.Gio16.ToString()),
+                        Gio17 = int.Parse(item.Gio17.ToString()),
+                        Gio18 = int.Parse(item.Gio18.ToString()),
+                        Sau18 = int.Parse(item.Sau18h.ToString())
                     };
 
-                    if (item.IsNoColor.Trim() == "X"){itemSanLuong.isColor = false;}else{itemSanLuong.isColor = true;}
+                    if (item.IsNoColor.Trim() == "X") { itemSanLuong.isColor = false; } else { itemSanLuong.isColor = true; }
 
                     //Set color for text
                     if (itemSanLuong.isColor) // Co to mau
                     {
-                        if(itemSanLuong.DatSanLuong < 95)
+                        if (itemSanLuong.DatSanLuong < 95)
                         {
                             itemSanLuong.sColorText = CommonHeader.CSS_TEXT_RED;
                         }
-                        else if ((itemSanLuong.DatSanLuong >= 95)&&(itemSanLuong.DatSanLuong < 100))
+                        else if ((itemSanLuong.DatSanLuong >= 95) && (itemSanLuong.DatSanLuong < 100))
                         {
                             itemSanLuong.sColorText = CommonHeader.CSS_TEXT_YELLOW;
                         }

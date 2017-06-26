@@ -1,0 +1,85 @@
+﻿<script src='http://code.jquery.com/jquery-1.7.2.js'></script>
+<script src='http://www.google.com/jsapi'></script>
+<script src='http://rawgithub.com/Mottie/tablesorter/master/js/jquery.tablesorter.js'></script>
+<script src='http://rawgithub.com/Mottie/tablesorter/master/js/jquery.tablesorter.widgets.js'></script>
+<script src='http://rawgithub.com/Mottie/tablesorter/master/js/widgets/widget-cssStickyHeaders.js'></script>
+<script src='http://rawgithub.com/Mottie/tablesorter/master/js/widgets/widget-columnSelector.js'></script>
+<script src='http://rawgithub.com/Mottie/tablesorter/master/js/widgets/widget-pager.js'></script>
+<script src='http://rawgithub.com/Mottie/tablesorter/master/js/widgets/widget-chart.js'></script>
+<script src='http://rawgithub.com/Mottie/tablesorter/master/js/widgets/widget-filter.js'></script>
+
+
+<!--DRAWING CHARTS-->
+<script type="text/javascript">
+    //Load api & data
+    //google.load('visualization', '1.1', { 'packages': ['corechart', 'controls'] });
+    google.setOnLoadCallback(apiLoaded);
+    debugger;
+    var dataKhTh = JSON.parse('@ViewBag.DataKhTh');
+    function apiLoaded() {
+        var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_khth'));
+        //load data from json to datatable
+        var tbKhTh = new google.visualization.DataTable();
+
+        //add columns
+        tbKhTh.addColumn('string', "Data");
+        for (c = 1; c < dataKhTh[0].length; c++) {
+            var colName = dataKhTh[0][c];
+            tbKhTh.addColumn('number', colName);
+        }
+
+        //add data
+
+        for (i = 1 ; i < dataKhTh.length ; i++) {
+            var lineRow = [];
+            for (c = 0; c < dataKhTh[0].length; c++)
+            {
+                lineRow.push(dataKhTh[i][c]);
+            }
+            tbKhTh.addRow(lineRow);
+        }
+
+        var chartKhTh = new google.visualization.ChartWrapper({
+            chartType: 'ColumnChart',
+            containerId: 'chart_KhTh',
+            options: {
+                focusTarget: 'category',
+                width: '100%',
+                height: 170,
+                crosshair: { trigger: 'both' },
+                chartArea: { top: 10, bottom: 50, left: 50, right: 50 },
+                series: {
+                    0: { color: '#66C088', pointShape: 'circle' },
+                    1: { color: '#4A5B69', pointShape: 'triangle' },
+                    2: { color: '#F06362', pointShape: 'square' },
+                    3: { color: '#43C5F1', pointShape: 'diamond' },
+                },
+                legend: 'bottom',
+                //hAxis: {
+                //    format: 'd/M'
+                //},
+                vAxis: {
+                    minValue: 0,
+                    format: 'decimal',
+                    label: "Sản lượng"
+                },
+                animation: {
+                    duration: 500,
+                    easing: 'out',
+                },
+                tooltip: { isHtml: true },
+                displayAnnotations: true
+
+            },
+            view: {
+                columns: viewColSl
+            }
+        });
+        dashboard.draw(tbKhTh);
+    }
+
+ </script>
+
+<div id="dashboard_common">
+    <div id="chart_KhTh"></div>
+</div>

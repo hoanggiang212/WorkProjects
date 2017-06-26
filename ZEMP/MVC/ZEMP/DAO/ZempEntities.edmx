@@ -15,16 +15,6 @@
           <Property Name="DienGiai" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="STT" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="ZEMP_CONGDOAN">
-          <Key>
-            <PropertyRef Name="SystemId" />
-            <PropertyRef Name="CongDoan" />
-          </Key>
-          <Property Name="SystemId" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="CongDoan" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="TenCongDoan" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Stt" Type="numeric" Precision="18" Scale="0" Nullable="false" />
-        </EntityType>
         <EntityType Name="ZEMP_CH">
           <Key>
             <PropertyRef Name="SystemId" />
@@ -42,6 +32,16 @@
           <Property Name="CongDoan" Type="varchar" MaxLength="20" />
           <Property Name="ZIACT" Type="nvarchar" MaxLength="1" />
           <Property Name="IsNoColor" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="ZEMP_CONGDOAN">
+          <Key>
+            <PropertyRef Name="SystemId" />
+            <PropertyRef Name="CongDoan" />
+          </Key>
+          <Property Name="SystemId" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="CongDoan" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TenCongDoan" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Stt" Type="numeric" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="ZEMP_DAURA_KV">
           <Key>
@@ -423,6 +423,14 @@
         <Function Name="GetCongDoanLiveboard" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SystemId" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="GetKeHoachThucHien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="systemId" Type="varchar" Mode="In" />
+          <Parameter Name="capDo" Type="varchar" Mode="In" />
+          <Parameter Name="giaTriCapDo" Type="varchar" Mode="In" />
+          <Parameter Name="congDoan" Type="varchar" Mode="In" />
+          <Parameter Name="fromDate" Type="varchar" Mode="In" />
+          <Parameter Name="toDate" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="GetListCapDo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SystemId" Type="varchar" Mode="In" />
           <Parameter Name="username" Type="varchar" Mode="In" />
@@ -445,8 +453,8 @@
         </Function>
         <EntityContainer Name="TKTDSXModelStoreContainer">
           <EntitySet Name="ZEMP_CF_MODE" EntityType="Self.ZEMP_CF_MODE" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ZEMP_CONGDOAN" EntityType="Self.ZEMP_CONGDOAN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ZEMP_CH" EntityType="Self.ZEMP_CH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZEMP_CONGDOAN" EntityType="Self.ZEMP_CONGDOAN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ZEMP_DAURA_KV" EntityType="Self.ZEMP_DAURA_KV" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ZEMP_DAURA_NG" EntityType="Self.ZEMP_DAURA_NG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ZEMP_DAURA_WC" EntityType="Self.ZEMP_DAURA_WC" Schema="dbo" store:Type="Tables" />
@@ -906,6 +914,14 @@
           <FunctionImport Name="GetModeView" ReturnType="Collection(TKTDSXModel.SelectListReturn)">
           <Parameter Name="SystemId" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="GetKeHoachThucHien" ReturnType="Collection(TKTDSXModel.KHTHReturn)">
+            <Parameter Name="systemId" Mode="In" Type="String" />
+            <Parameter Name="capDo" Mode="In" Type="String" />
+            <Parameter Name="giaTriCapDo" Mode="In" Type="String" />
+            <Parameter Name="congDoan" Mode="In" Type="String" />
+            <Parameter Name="fromDate" Mode="In" Type="String" />
+            <Parameter Name="toDate" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="ZEMP_CF_MODE">
           <Key>
@@ -956,6 +972,12 @@
           <Property Type="Decimal" Name="Gio18" Nullable="false" />
           <Property Type="Decimal" Name="Sau18h" Nullable="false" />
           <Property Type="String" Name="IsNoColor" Nullable="true" DefaultValue=" " />
+        </ComplexType>
+        <ComplexType Name="KHTHReturn" >
+          <Property Type="DateTime" Name="Ngay" />
+          <Property Type="String" Name="CongDoan" Nullable="false" />
+          <Property Type="Decimal" Name="KeHoach" DefaultValue="0" />
+          <Property Type="Decimal" Name="ThucHien" DefaultValue="0" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1390,6 +1412,16 @@
               <ComplexTypeMapping TypeName="TKTDSXModel.SelectListReturn">
                 <ScalarProperty Name="value" ColumnName="value" />
                 <ScalarProperty Name="text" ColumnName="text" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetKeHoachThucHien" FunctionName="TKTDSXModel.Store.GetKeHoachThucHien">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TKTDSXModel.KHTHReturn">
+                <ScalarProperty Name="Ngay" ColumnName="Ngay" />
+                <ScalarProperty Name="CongDoan" ColumnName="CongDoan" />
+                <ScalarProperty Name="KeHoach" ColumnName="KeHoach" />
+                <ScalarProperty Name="ThucHien" ColumnName="ThucHien" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

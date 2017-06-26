@@ -4,27 +4,16 @@
 <script id="js">
     $(function () {
         $('#table1').tablesorter({
-            widthFixed: true,
-            widgets: ['zebra', 'cssStickyHeaders'],          
+            widthFixed: true,           
+            widgets: ['zebra','cssStickyHeaders']            
         });
     });
+
 </script>
-@*<script>
-    $(function () {
 
-        window.addCaption = true;
-        $('.caption').on('click', function () {
-            addCaption = !addCaption;
-            $(this).html('' + addCaption);
-            $('#table1').each(function () {
-                if (this.config) {
-                    this.config.widgetOptions.cssStickyHeaders_addCaption = addCaption;
-                }
-            });
-        });
-
-    });
-</script>*@
+<div id="dashboard_common">
+    <div id="chart_KhTh"></div>
+</div>
 
 <table id="table1" class="tablesorter hasFilters @ViewBag.ClassName">
     <thead>

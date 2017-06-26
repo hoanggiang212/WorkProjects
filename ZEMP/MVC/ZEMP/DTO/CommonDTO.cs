@@ -35,7 +35,7 @@ namespace ZEMP.DTO
 
                 //Get list gia tri cap do theo selected cap do
                 filter.ListGiaTriCapDo = accDto.GetListGiaTriCapDo(account, filter.SelectedCapDo);
-                foreach (var item in  filter.ListGiaTriCapDo)
+                foreach (var item in filter.ListGiaTriCapDo)
                 {
                     if (item.Selected)
                     {

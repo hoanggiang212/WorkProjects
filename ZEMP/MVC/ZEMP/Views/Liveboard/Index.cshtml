@@ -12,7 +12,6 @@
 <html>
 <head>
 
-
     <!---LINK FOR GOOGLE CHARTS-->
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -29,26 +28,113 @@
                 var giatricapdo = $('#giatricapdo').val();
                 var congdoan = $('#congdoan').val();
                 var className = $('#btnStyle').val();
+                if (capdo != '') {
+                    $.ajax({
+                        url: '@Url.Action("GetListData", "Liveboard")',
+                        data: {
+                            level: level,
+                            capdo: capdo,
+                            giatricapdo: giatricapdo,
+                            congdoan: congdoan,
+                            sStyle: className
+                        },
+                        dataType: "html",
+                        type: "GET",
+                        contentType: 'application/html; charset=utf-8',
+                        success: function (data) {
+                            $('#partial_data').html(data);
+                        },
+                        error: function (e) {
+                            alert("Vui lòng tải lại trang.");
+                        }
+                    });
+                    $.ajax({
+                        url: '@Url.Action("GetCharts", "Liveboard")',
+                        data: {
+                            capdo: capdo,
+                            giatricapdo: giatricapdo,
+                            congdoan: congdoan
+                        },
+                        dataType: "html",
+                        type: "GET",
+                        contentType: 'application/html; charset=utf-8',
+                        success: function (data) {
+                            debugger;
+                            var dataKhTh = JSON.parse('@ViewBag.DataKhTh');
+                            //Load api & data
+                            google.load('visualization', '1.1', { 'packages': ['corechart', 'controls'] });
+                            google.setOnLoadCallback(apiLoaded);
+                            var dataKhTh = JSON.parse('@ViewBag.DataKhTh');
+                            function apiLoaded() {
+                                var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_khth'));
+                                //load data from json to datatable
+                                var tbKhTh = new google.visualization.DataTable();
 
-                $.ajax({
-                    url: '@Url.Action("GetListData", "Liveboard")',
-                    data: {
-                        level       : level,
-                        capdo       : capdo,
-                        giatricapdo : giatricapdo,
-                        congdoan    : congdoan,
-                        sStyle      : className
-                    },
-                    dataType: "html",
-                    type: "GET",
-                    contentType: 'application/html; charset=utf-8',
-                    success: function (data) {
-                        $('#partial_data').html(data);
-                    },
-                    error: function (e) {
-                        alert("Vui lòng tải lại trang.");
-                    }
-                });
+                                //add columns
+                                tbKhTh.addColumn('string', "Data");
+                                for (c = 1; c < dataKhTh[0].length; c++) {
+                                    var colName = dataKhTh[0][c];
+                                    tbKhTh.addColumn('number', colName);
+                                }
+
+                                //add data
+
+                                for (i = 1 ; i < dataKhTh.length ; i++) {
+                                    var lineRow = [];
+                                    for (c = 0; c < dataKhTh[0].length; c++) {
+                                        lineRow.push(dataKhTh[i][c]);
+                                    }
+                                    tbKhTh.addRow(lineRow);
+                                }
+
+                                var chartKhTh = new google.visualization.ChartWrapper({
+                                    chartType: 'ColumnChart',
+                                    containerId: 'chart_KhTh',
+                                    options: {
+                                        focusTarget: 'category',
+                                        width: '100%',
+                                        height: 170,
+                                        crosshair: { trigger: 'both' },
+                                        chartArea: { top: 10, bottom: 50, left: 50, right: 50 },
+                                        series: {
+                                            0: { color: '#66C088', pointShape: 'circle' },
+                                            1: { color: '#4A5B69', pointShape: 'triangle' },
+                                            2: { color: '#F06362', pointShape: 'square' },
+                                            3: { color: '#43C5F1', pointShape: 'diamond' },
+                                        },
+                                        legend: 'bottom',
+                                        //hAxis: {
+                                        //    format: 'd/M'
+                                        //},
+                                        vAxis: {
+                                            minValue: 0,
+                                            format: 'decimal',
+                                            label: "Sản lượng"
+                                        },
+                                        animation: {
+                                            duration: 500,
+                                            easing: 'out',
+                                        },
+                                        tooltip: { isHtml: true },
+                                        displayAnnotations: true
+
+                                    },
+                                    view: {
+                                        columns: viewColSl
+                                    }
+                                });
+                                dashboard.draw(tbKhTh);
+                            }
+                        },
+                        error: function (e) {
+                            alert("Vui lòng tải lại trang charts.");
+                        }
+                    });                 
+                }
+                else {
+                    alert("Vui lòng chọn điều kiện để lấy dữ liệu.");
+                }
+
             });
         });
     </script>
@@ -67,16 +153,39 @@
                     $("#giatricapdo").html(subItems)
                 });
             });
+
+            $("#btn-getdata").click(function () {
+                var capdo = $('#capdo').val();
+                var giatricapdo = $('#giatricapdo').val();
+                var congdoan = $('#congdoan').val();
+                var otable = $("#datatable").dataTable();
+                otable.fnClearTable();
+
+                $.getJSON("@Url.Action("GetCharts", "Liveboard")",
+                        {
+                            capdo: capdo,
+                            giaTriCapDo: giatricapdo,
+                            congDoan: congdoan
+                        },
+                        function (data) {
+                            $.each(parsedJson[0], function (key, value) {
+                                otable.dataTable().fnAddData([key, value]);
+                                $("#giatricapdo").html(subItems)
+                            });
+                            debugger;
+                        });
+            });
+
         });
     </script>
 
 
     <!--refresh data-->
     <script>
-        window.onload = function () {
-            $("#btn-getdata").click();
-        }
-        setInterval(function refresh() { $("#btn-getdata").click() }, 120000);
+        //window.onload = function () {
+        //    $("#btn-getdata").click();
+        //}
+        setInterval(function refresh() { $("#btn-getdata").click() }, 30000);
     </script>
 
 
@@ -111,6 +220,7 @@
     <script src="~/Content/tablesort/js/jquery.tablesorter.js"></script>
     <script src="~/Content/tablesort/js/jquery.tablesorter.widgets.js"></script>
     <script src="~/Content/tablesort/js/widget-cssStickyHeaders.js"></script>
+    <script src="~/Content/tablesort/js/widget-filter.js"></script>
 </head>
 <body>
     <!------------------------------------------SELECTION CONDITION ------------------------------------->
@@ -129,15 +239,14 @@
                         Level:
                     </td>
                     <td class="cell-control" style="background-color: white;min-width:120px">
-                        @Html.DropDownList("SelectedCapDo", (IEnumerable<SelectListItem>)ViewBag.SelectedCapDo,
-                    new { @class = "dropdown-toggle", @id = "capdo" })
+                        @Html.DropDownList("SelectedCapDo", (IEnumerable<SelectListItem>)ViewBag.SelectedCapDo, string.Empty, new { @class = "dropdown-toggle", @id = "capdo" })
                     </td>
                     <td class="label-default" style="background-color: white;min-width:70px">
                         Value:
                     </td>
                     <td class="cell-control" style="background-color: white;min-width:120px">
-                        @Html.DropDownList("SelectedGiaTriCapDo", (IEnumerable<SelectListItem>)ViewBag.SelectedGiaTriCapDo,
-                        new { @class = "dropdown-toggle", @id = "giatricapdo" })
+                        @Html.DropDownList("SelectedGiaTriCapDo", (IEnumerable<SelectListItem>)ViewBag.SelectedGiaTriCapDo, string.Empty,
+                        new { @class = "dropdown-toggle", @id = "giatricapdo", @value = Model.SelectedGiaTriCapDo })
                     </td>
                     <td class="cell-control" style="background-color: white;min-width:70px">
                         Công Đoạn:
@@ -152,66 +261,68 @@
                 </tr>
             </table>
         </div>
-    </nav>       
+    </nav>
+
+    <!-------------------------------------------CHARTS PARTIAL VIEW--------------------------------------->
+    <div id="partial_charts"></div>
 
     <!-------------------------------------------DATA PARTIAL VIEW--------------------------------------->
     <div id="partial_data"></div>
 
     <!---------------------------------------------SELECT STYLE------------------------------------------>
     <div style="width:100%;">
-    <div class="dropdown" style="width:20%; margin:auto;">
-        Style:
-        <input type="button" id="btnStyle" onclick="myFunction()" class="dropbtn" value="Default"/>
-        <div id="myDropdown" class="dropdown-content">
-            <a href="#" onclick="SetCss(0)">Default</a>
-            <a href="#" onclick="SetCss(1)">Blue</a>
-            <a href="#" onclick="SetCss(2)">Dark</a>
+        <div class="dropdown" style="width:20%; margin:auto;">
+            Style:
+            <input type="button" id="btnStyle" onclick="myFunction()" class="dropbtn" value="Default" />
+            <div id="myDropdown" class="dropdown-content">
+                <a href="#" onclick="SetCss(0)">Default</a>
+                <a href="#" onclick="SetCss(1)">Blue</a>
+                <a href="#" onclick="SetCss(2)">Dark</a>
+            </div>
         </div>
-    </div>
     </div>
     <!---------------------------DROPDOWN LIST STYLE SELECT------------------------------>
     <script>
         /* When the user clicks on the button,
         toggle between hiding and showing the dropdown content */
-        function myFunction() {            
+        function myFunction() {
             document.getElementById("myDropdown").classList.toggle("show");
         }
 
-            function SetCss(idxCss) {
-                var head = document.getElementsByTagName('head')[0];
-                var link = document.createElement('link');
+        function SetCss(idxCss) {
+            var head = document.getElementsByTagName('head')[0];
+            var link = document.createElement('link');
 
-                link.rel = 'stylesheet';
-                link.type = 'text/css';
-                link.media = 'all';
-                if (idxCss === 0) {
-                    link.href = '../../Content/tablesort/theme/theme.default.css';
-                    var d = document.getElementById("table1");
-                    d.className = "tablesorter hasFilters tablesorter-default";
-                    document.getElementById("btnStyle").value = "Default";
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.media = 'all';
+            if (idxCss === 0) {
+                link.href = '../../Content/tablesort/theme/theme.default.css';
+                var d = document.getElementById("table1");
+                d.className = "tablesorter hasFilters tablesorter-default";
+                document.getElementById("btnStyle").value = "Default";
 
-                }
-                else if (idxCss === 1) {
-                    link.href = '~/Content/tablesort/theme/theme.blue.css';
-                    var d = document.getElementById("table1");
-                    d.className = "tablesorter hasFilters tablesorter-blue";
-
-                    var b = document.getElementById("btnStyle");
-                    b.value = "Blue";
-                }
-                else if (idxCss === 2) {
-                    link.href = '~/Content/tablesort/theme/theme.dark.css';
-                    var d = document.getElementById("table1");
-                    d.className = "tablesorter hasFilters tablesorter-dark";
-                    document.getElementById("btnStyle").value = "Dark";
-                }
-                //head.appendChild(link);
             }
+            else if (idxCss === 1) {
+                link.href = '~/Content/tablesort/theme/theme.blue.css';
+                var d = document.getElementById("table1");
+                d.className = "tablesorter hasFilters tablesorter-blue";
+
+                var b = document.getElementById("btnStyle");
+                b.value = "Blue";
+            }
+            else if (idxCss === 2) {
+                link.href = '~/Content/tablesort/theme/theme.dark.css';
+                var d = document.getElementById("table1");
+                d.className = "tablesorter hasFilters tablesorter-dark";
+                document.getElementById("btnStyle").value = "Dark";
+            }
+            //head.appendChild(link);
+        }
 
         // Close the dropdown if the user clicks outside of it
         window.onclick = function (event) {
-            if (!event.target.matches('#btnStyle'))
-            {
+            if (!event.target.matches('#btnStyle')) {
                 var dropdowns = document.getElementsByClassName("dropdown-content");
                 var i;
                 for (i = 0; i < dropdowns.length; i++) {

@@ -8,7 +8,7 @@
         <EntityTypeShape EntityType="TKTDSXModel.ZEMP_CONGDOAN" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TKTDSXModel.ZEMP_CH" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TKTDSXModel.ZEMP_DAURA_KV" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TKTDSXModel.ZEMP_DAURA_NG" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TKTDSXModel.ZEMP_DAURA_NG" Width="1.375" PointX="4.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TKTDSXModel.ZEMP_DAURA_WC" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TKTDSXModel.ZEMP_KV" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TKTDSXModel.ZEMP_NG" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />

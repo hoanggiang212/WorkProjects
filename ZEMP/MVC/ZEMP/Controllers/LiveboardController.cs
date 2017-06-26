@@ -8,6 +8,7 @@ using ZEMP.DAO;
 using ZEMP.DTO;
 using ZEMP.Header;
 using System.Collections;
+using Newtonsoft.Json;
 
 namespace ZEMP.Controllers
 {
@@ -39,10 +40,11 @@ namespace ZEMP.Controllers
                 ViewBag.Result = strResult;
                 return View("Index", filter);
             }
-
+           
             ViewBag.SelectedMode        = filter.ListModeView;
             ViewBag.SelectedCapDo       = filter.ListCapDo;
-            ViewBag.SelectedGiaTriCapDo = filter.ListGiaTriCapDo;
+            IEnumerable<SelectListItem> initList = new List<SelectListItem>();
+            ViewBag.SelectedGiaTriCapDo = initList;
             ViewBag.SelectedCongDoan    = filter.ListCongDoan;
 
             ViewBag.Result = strResult;
@@ -51,21 +53,42 @@ namespace ZEMP.Controllers
 
 
         public ActionResult GetSub(string CapDoID)
-        {            
+        {
             var account = Session[CommonHeader.ssAccount] as ZEMP_USER;
 
             List<SelectListItem> items = new List<SelectListItem>();
 
-            AccountDTO accDO = new AccountDTO();
+            if (CapDoID != "")
+            { 
+                AccountDTO accDO = new AccountDTO();
 
-            items = accDO.GetListGiaTriCapDo(account, CapDoID);
+                items = accDO.GetListGiaTriCapDo(account, CapDoID);
+            }
             
             // you may replace the above code with data reading from database based on the id
 
             return Json(items, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult GetCharts(string capdo, string giaTriCapdo, string congDoan)
+        {
+            FilterCondition filter = new FilterCondition()
+            {
+                SystemId        = CommonHeader.defaultSystemId,
+                SelectedCapDo   = capdo,
+                SelectedGiaTriCapDo = giaTriCapdo,
+                SelectedCongDoan    = congDoan,
+                DateFrom = DateTime.Now
+            };
 
+            LiveboardDTO lbDto = new LiveboardDTO();
+            ArrayList dataChartKhTh = lbDto.GetKeHoachThucHien(filter);
+
+            string strData = JsonConvert.SerializeObject(dataChartKhTh, Formatting.None);
+            ViewBag.DataKhTh = new HtmlString(strData);
+            //return Json(dataChartKhTh, JsonRequestBehavior.AllowGet);
+            return View("Index");
+        }
         public ActionResult GetListData(string level, string capdo, string giaTriCapdo, string congDoan, string sStyle)
         {
             //get current account logged
@@ -82,10 +105,19 @@ namespace ZEMP.Controllers
                 SelectedMode    = level,
                 SelectedCapDo   = capdo,
                 SelectedGiaTriCapDo = giaTriCapdo,
-                SelectedCongDoan    = congDoan
+                SelectedCongDoan    = congDoan,
+                DateFrom = DateTime.Now,
+                DateTo = DateTime.Now
             };
 
             LiveboardDTO lvDto = new LiveboardDTO();
+
+
+            ArrayList dataChartKhTh = lvDto.GetKeHoachThucHien(filter);
+
+            string strData = JsonConvert.SerializeObject(dataChartKhTh, Formatting.None);
+            ViewBag.DataKhTh = new HtmlString(strData);
+
 
             string sToDay = string.Format("{0}-{1}-{2}", DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
 

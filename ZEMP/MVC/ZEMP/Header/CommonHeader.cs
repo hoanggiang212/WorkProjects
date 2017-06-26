@@ -31,10 +31,8 @@ namespace ZEMP.Header
 
         public const string CHUYEN  = "CHUYEN";
         public const string WRKCT   = "WRKCT";
-        public const string KHVUC   = "KHVUC";
+        public const string KHUVUC  = "KHUVUC";
         public const string NGANH   = "NGANH";
-
-
 
         //CSS
         public const string CSS_TEXT_RED    = "ten-bo-phan-red";
