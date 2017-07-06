@@ -82,6 +82,9 @@ namespace UploadFtp
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Send file failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    StreamWriter logFile = new StreamWriter(@"LogUpload.txt");
+                    logFile.WriteLine(DateTime.Now.ToString() + " : " + ex.Message);
+                    logFile.Close();
                 }
             }
         }
@@ -89,6 +92,9 @@ namespace UploadFtp
         private void timer1_Tick(object sender, EventArgs e)
         {
             SendFile2Ftp();
+
+            
+
             timer1.Start();
         }
     }
