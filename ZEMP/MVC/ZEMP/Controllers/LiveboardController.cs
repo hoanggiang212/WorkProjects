@@ -101,9 +101,9 @@ namespace ZEMP.Controllers
 
             FilterCondition filter = new FilterCondition()
             {
-                SystemId        = CommonHeader.defaultSystemId,
-                SelectedMode    = level,
-                SelectedCapDo   = capdo,
+                SystemId            = CommonHeader.defaultSystemId,
+                SelectedMode        = level,
+                SelectedCapDo       = capdo,
                 SelectedGiaTriCapDo = giaTriCapdo,
                 SelectedCongDoan    = congDoan,
                 DateFrom = DateTime.Now,
@@ -113,10 +113,10 @@ namespace ZEMP.Controllers
             LiveboardDTO lvDto = new LiveboardDTO();
 
 
-            ArrayList dataChartKhTh = lvDto.GetKeHoachThucHien(filter);
+            //ArrayList dataChartKhTh = lvDto.GetKeHoachThucHien(filter);
 
-            string strData = JsonConvert.SerializeObject(dataChartKhTh, Formatting.None);
-            ViewBag.DataKhTh = new HtmlString(strData);
+            //string strData = JsonConvert.SerializeObject(dataChartKhTh, Formatting.None);
+            //ViewBag.DataKhTh = new HtmlString(strData);
 
 
             string sToDay = string.Format("{0}-{1}-{2}", DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);

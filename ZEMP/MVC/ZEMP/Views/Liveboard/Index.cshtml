@@ -45,10 +45,10 @@
                             $('#partial_data').html(data);
                         },
                         error: function (e) {
-                            alert("Vui lòng tải lại trang.");
+                            //alert("Vui lòng tải lại trang.");
                         }
                     });
-                    $.ajax({
+                    @*$.ajax({
                         url: '@Url.Action("GetCharts", "Liveboard")',
                         data: {
                             capdo: capdo,
@@ -129,7 +129,7 @@
                         error: function (e) {
                             alert("Vui lòng tải lại trang charts.");
                         }
-                    });                 
+                    });*@                 
                 }
                 else {
                     alert("Vui lòng chọn điều kiện để lấy dữ liệu.");
@@ -262,10 +262,6 @@
             </table>
         </div>
     </nav>
-
-    <!-------------------------------------------CHARTS PARTIAL VIEW--------------------------------------->
-    <div id="partial_charts"></div>
-
     <!-------------------------------------------DATA PARTIAL VIEW--------------------------------------->
     <div id="partial_data"></div>
 
