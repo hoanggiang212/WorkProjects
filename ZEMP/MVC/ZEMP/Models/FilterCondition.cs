@@ -38,5 +38,15 @@ namespace ZEMP.Models
 
         public List<DateTime> listDate { set; get; }
 
+
+        public string sDateFrom;
+        public string sDateTo;
+
+        public void ConvertDate2Sql()
+        {
+            sDateFrom = string.Format("{0}-{1}-{2}", DateFrom.Year, DateFrom.Month, DateFrom.Day);
+            sDateTo = string.Format("{0}-{1}-{2}", DateTo.Year, DateTo.Month, DateTo.Day);
+        }
+
     }
 }

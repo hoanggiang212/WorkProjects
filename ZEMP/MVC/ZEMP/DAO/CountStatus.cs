@@ -11,17 +11,10 @@ namespace ZEMP.DAO
 {
     using System;
     
-    public partial class KHTHReturn
+    public partial class CountStatus
     {
-        public KHTHReturn()
-        {
-            this.KEHOACH = 0m;
-            this.THUCHIEN = 0m;
-        }
-    
         public Nullable<System.DateTime> NGAY { get; set; }
-        public string CONGDOAN { get; set; }
-        public Nullable<decimal> KEHOACH { get; set; }
-        public decimal THUCHIEN { get; set; }
+        public Nullable<int> SLCH { get; set; }
+        public string STATUS { get; set; }
     }
 }

@@ -69,26 +69,7 @@ namespace ZEMP.Controllers
 
             return Json(items, JsonRequestBehavior.AllowGet);
         }
-
-        public ActionResult GetCharts(string capdo, string giaTriCapdo, string congDoan)
-        {
-            FilterCondition filter = new FilterCondition()
-            {
-                SystemId        = CommonHeader.defaultSystemId,
-                SelectedCapDo   = capdo,
-                SelectedGiaTriCapDo = giaTriCapdo,
-                SelectedCongDoan    = congDoan,
-                DateFrom = DateTime.Now
-            };
-
-            LiveboardDTO lbDto = new LiveboardDTO();
-            ArrayList dataChartKhTh = lbDto.GetKeHoachThucHien(filter);
-
-            string strData = JsonConvert.SerializeObject(dataChartKhTh, Formatting.None);
-            ViewBag.DataKhTh = new HtmlString(strData);
-            //return Json(dataChartKhTh, JsonRequestBehavior.AllowGet);
-            return View("Index");
-        }
+       
         public ActionResult GetListData(string level, string capdo, string giaTriCapdo, string congDoan, string sStyle)
         {
             //get current account logged

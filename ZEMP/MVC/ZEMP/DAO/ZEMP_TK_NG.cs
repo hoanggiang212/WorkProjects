@@ -32,5 +32,6 @@ namespace ZEMP.DAO
         public Nullable<decimal> Thang { get; set; }
         public Nullable<decimal> Quy { get; set; }
         public Nullable<decimal> Nam { get; set; }
+        public Nullable<decimal> TyGia { get; set; }
     }
 }

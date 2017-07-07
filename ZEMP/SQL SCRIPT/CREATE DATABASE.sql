@@ -545,6 +545,7 @@ CREATE TABLE ZEMP_TK_WC (
 	[ChuyenXanh]	[numeric](18, 0) NULL,
 	[ChuyenVang]	[numeric](18, 0) NULL,
 	[ChuyenDo]		[numeric](18, 0) NULL,
+	[TyGia]			[numeric](18, 2) NULL,
 	[VatTuKeHoach]	[numeric](18, 2) NULL,
 	[VatTuThucHien]	[numeric](18, 2) NULL,
 	[TaiSanKeHoach]	[numeric](18, 2) NULL,
@@ -591,6 +592,7 @@ CREATE TABLE ZEMP_TK_KV (
 	[ChuyenXanh]	[numeric](18, 0) NULL,
 	[ChuyenVang]	[numeric](18, 0) NULL,
 	[ChuyenDo]		[numeric](18, 0) NULL,
+	[TyGia]			[numeric](18, 2) NULL,
 	[VatTuKeHoach]	[numeric](18, 2) NULL,
 	[VatTuThucHien]	[numeric](18, 2) NULL,
 	[TaiSanKeHoach]	[numeric](18, 2) NULL,
@@ -625,8 +627,6 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-
-
 CREATE TABLE ZEMP_TK_NG (
 	[SystemId]			[varchar](15)	NOT NULL,
 	[Ngay]				[smalldatetime] NOT NULL,
@@ -636,6 +636,7 @@ CREATE TABLE ZEMP_TK_NG (
 	[ChuyenXanh]		[numeric](18, 0) NULL,
 	[ChuyenVang]		[numeric](18, 0) NULL,
 	[ChuyenDo]			[numeric](18, 0) NULL,
+	[TyGia]			[numeric](18, 2) NULL,
 	[VatTuKeHoach]		[numeric](18, 2) NULL,
 	[VatTuThucHien]		[numeric](18, 2) NULL,
 	[TaiSanKeHoach]		[numeric](18, 2) NULL,

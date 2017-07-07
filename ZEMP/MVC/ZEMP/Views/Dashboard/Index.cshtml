@@ -1,0 +1,124 @@
+﻿@model ZEMP.Models.FilterCondition
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <!---LINK FOR GOOGLE CHARTS-->
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" defer async></script>
+    <script src="//www.google.com/jsapi"></script>
+
+    <!---JavaScript Cascade Dropdownlist-->
+    @*<script type="text/javascript" src="~/Scripts/jquery.1.7.2.min.js"></script>*@
+    <script type="text/javascript">
+        $(function () {
+            $("#capdo").change(function () {
+                var val = $(this).val();
+                var subItems = "";
+                $.getJSON("@Url.Action("GetSub", "Dashboard")", { CapDoID: val }, function (data) {
+                    $.each(data, function (index, item) {
+                        subItems += "<option value='" + item.Value + "'>" + item.Text + "</option>"
+                    });
+                    $("#giatricapdo").html(subItems)
+                });
+            });
+        });
+    </script>
+
+    <!--Get Data for Charts-->
+    <script>
+        $(function () {
+            $('#btn-getdata').click(function (e) {
+                debugger;
+                var capdo = $('#capdo').val();
+                var giatricapdo = $('#giatricapdo').val();
+                var congdoan = $('#congdoan').val();
+                var dateFrom = $('#date-from').val();
+                var dateTo = $('#date-to').val();
+                if (capdo != '') {
+                    $.ajax({
+                        url: '@Url.Action("LoadDataCharts", "Dashboard")',
+                        data: {
+                            sCapDo: capdo,
+                            sGiaTriCapDo: giatricapdo,
+                            sCongDoan: congdoan,
+                            sDateFrom: dateFrom,
+                            sDateTo: dateTo
+                        },
+                        dataType: "html",
+                        type: "GET",
+                        contentType: 'application/html; charset=utf-8',
+                        success: function (data) {
+                            $('#partial_chart').html(data);
+                        },
+                        error: function (e) {
+                            //alert("Vui lòng tải lại trang.");
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
+
+    <!--refresh data-->
+    <script>
+        //window.onload = function () {
+        //    $("#btn-getdata").click();
+        //}
+        setInterval(function refresh() { $("#btn-getdata").click() }, 30000);
+    </script>
+</head>
+<body>
+    <nav class="navbar" style="background-color:white;width:100%;padding:0px;min-height:40px;">
+        <div style="margin-top:10px; margin-bottom:10px;">
+            <table class="table-selection " style="margin:auto;">
+                <tr>                    
+                    <td class="label-default" style="background-color: white;min-width:70px">
+                        Level:
+                    </td>
+                    <td class="cell-control" style="background-color: white;min-width:120px">
+                        @Html.DropDownList("SelectedCapDo", (IEnumerable<SelectListItem>)ViewBag.SelectedCapDo, string.Empty, 
+                                                            new { @class = "dropdown-toggle", @id = "capdo" })
+                    </td>
+                    <td class="label-default" style="background-color: white;min-width:70px">
+                        Value:
+                    </td>
+                    <td class="cell-control" style="background-color: white;min-width:120px">
+                        @Html.DropDownList("SelectedGiaTriCapDo", (IEnumerable<SelectListItem>)ViewBag.SelectedGiaTriCapDo, string.Empty,
+                                             new { @class = "dropdown-toggle", @id = "giatricapdo", @value = Model.SelectedGiaTriCapDo })
+                    </td>
+                    <td class="cell-control" style="background-color: white;min-width:70px">
+                        Công Đoạn:
+                    </td>
+                    <td class="cell-control" style="background-color: white;min-width:120px">
+                        @Html.DropDownList("SelectedCongDoan", (IEnumerable<SelectListItem>)ViewBag.SelectedCongDoan,
+                    new { @class = "dropdown-toggle", @id = "congdoan" })
+                    </td>
+                    <td class="cell-control" style="background-color: white;min-width:70px">
+                        Từ Ngày:
+                    </td>
+                    <td>
+                        @Html.EditorFor(Model => Model.DateFrom , 
+                        new { htmlAttributes = new { @placeholder = "dd-MM-yyyy", @id = "date-from" } }) 
+                    </td>
+                    <td class="cell-control" style="background-color: white;min-width:70px">
+                        Đến Ngày:
+                    </td>
+                    <td>
+                        @Html.EditorFor(Model => Model.DateTo, 
+                        new { htmlAttributes = new { @placeholder = "dd-MM-yyyy", @id = "date-to" } })
+                    </td>
+                    <td class="cell-control" style="background-color: white;min-width:100px">
+                        <button id="btn-getdata" type="button" class="btn-control btn-primary" onclick="">Get Data</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </nav>
+    <div id="partial_chart"></div>
+</body>
+</html>

@@ -152,5 +152,63 @@ namespace ZEMP.DAO
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<KHTHReturn>("GetKeHoachThucHien", systemIdParameter, capDoParameter, giaTriCapDoParameter, congDoanParameter, fromDateParameter, toDateParameter);
         }
+    
+        public virtual ObjectResult<CountStatus> CountTrangThaiChuyen(string systemId, string capDo, string giaTriCapDo, string congDoan, string fromDate, string toDate)
+        {
+            var systemIdParameter = systemId != null ?
+                new ObjectParameter("systemId", systemId) :
+                new ObjectParameter("systemId", typeof(string));
+    
+            var capDoParameter = capDo != null ?
+                new ObjectParameter("capDo", capDo) :
+                new ObjectParameter("capDo", typeof(string));
+    
+            var giaTriCapDoParameter = giaTriCapDo != null ?
+                new ObjectParameter("giaTriCapDo", giaTriCapDo) :
+                new ObjectParameter("giaTriCapDo", typeof(string));
+    
+            var congDoanParameter = congDoan != null ?
+                new ObjectParameter("congDoan", congDoan) :
+                new ObjectParameter("congDoan", typeof(string));
+    
+            var fromDateParameter = fromDate != null ?
+                new ObjectParameter("fromDate", fromDate) :
+                new ObjectParameter("fromDate", typeof(string));
+    
+            var toDateParameter = toDate != null ?
+                new ObjectParameter("toDate", toDate) :
+                new ObjectParameter("toDate", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CountStatus>("CountTrangThaiChuyen", systemIdParameter, capDoParameter, giaTriCapDoParameter, congDoanParameter, fromDateParameter, toDateParameter);
+        }
+    
+        public virtual ObjectResult<ChiPhiSanXuat> GETCHIPHISANXUAT(string sYSTEMID, string cAPDO, string gIATRICAPDO, string cONGDOAN, string fROMDATE, string tODATE)
+        {
+            var sYSTEMIDParameter = sYSTEMID != null ?
+                new ObjectParameter("SYSTEMID", sYSTEMID) :
+                new ObjectParameter("SYSTEMID", typeof(string));
+    
+            var cAPDOParameter = cAPDO != null ?
+                new ObjectParameter("CAPDO", cAPDO) :
+                new ObjectParameter("CAPDO", typeof(string));
+    
+            var gIATRICAPDOParameter = gIATRICAPDO != null ?
+                new ObjectParameter("GIATRICAPDO", gIATRICAPDO) :
+                new ObjectParameter("GIATRICAPDO", typeof(string));
+    
+            var cONGDOANParameter = cONGDOAN != null ?
+                new ObjectParameter("CONGDOAN", cONGDOAN) :
+                new ObjectParameter("CONGDOAN", typeof(string));
+    
+            var fROMDATEParameter = fROMDATE != null ?
+                new ObjectParameter("FROMDATE", fROMDATE) :
+                new ObjectParameter("FROMDATE", typeof(string));
+    
+            var tODATEParameter = tODATE != null ?
+                new ObjectParameter("TODATE", tODATE) :
+                new ObjectParameter("TODATE", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ChiPhiSanXuat>("GETCHIPHISANXUAT", sYSTEMIDParameter, cAPDOParameter, gIATRICAPDOParameter, cONGDOANParameter, fROMDATEParameter, tODATEParameter);
+        }
     }
 }

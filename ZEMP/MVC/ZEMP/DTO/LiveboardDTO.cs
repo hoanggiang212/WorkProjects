@@ -30,7 +30,7 @@ namespace ZEMP.DTO
                     lineHeader.Add("Data");
                     for (int i = 0; i < listRaw.Count; i++)
                     {
-                        lineHeader.Add(listRaw[i].CongDoan.ToString());
+                        lineHeader.Add(listRaw[i].CONGDOAN.ToString());
                     }
                     listKhTh.Add(lineHeader);
 
@@ -39,7 +39,7 @@ namespace ZEMP.DTO
                     lineKeHoach.Add("KeHoach");
                     for (int y = 0; y < listRaw.Count; y++)
                     {
-                        lineKeHoach.Add(listRaw[y].KeHoach.ToString());
+                        lineKeHoach.Add(listRaw[y].KEHOACH.ToString());
                     }
                     listKhTh.Add(lineKeHoach);
 
@@ -48,11 +48,11 @@ namespace ZEMP.DTO
                     lineThucHien.Add("ThucHien");
                     for (int y = 0; y < listRaw.Count; y++)
                     {
-                        lineThucHien.Add(listRaw[y].ThucHien.ToString());
+                        lineThucHien.Add(listRaw[y].THUCHIEN.ToString());
                     }
                     listKhTh.Add(lineThucHien);
                 }
-                catch (Exception ex)
+                catch
                 {
                     //do nothing
                 }

@@ -103,7 +103,7 @@ EXECUTE sys.sp_executesql @command
 END
 GO
 --TEST
---EXEC GetSanLuongOnline '900P01', 'WRKCT', 'KHVUC', 'KV01', 'ALL', '2017-06-15'
+EXEC GetSanLuongOnline '900P01', 'KHVUC', 'KHVUC', 'KV01', 'ALL', '2017-07-07'
 
 -- ================================================
 -- GET LIST CAP DO
@@ -250,6 +250,11 @@ GO
 --exec GetModeView '900P01'
 
 
+-- =============================================
+-- Author:		<Nguyen Hoang Giang>
+-- Create date: <16 / 06 / 2017>
+-- Description:	<Dem So luong chuyen theo trang thai>
+-- =============================================
 IF EXISTS ( SELECT * FROM   sysobjects WHERE  id = object_id(N'[dbo].[CountTrangThaiChuyen]') and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
 BEGIN
     DROP PROCEDURE [dbo].[CountTrangThaiChuyen]
@@ -258,54 +263,40 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
--- =============================================
--- Author:		<Nguyen Hoang Giang>
--- Create date: <16 / 06 / 2017>
--- Description:	<Dem So luong chuyen theo trang thai>
--- =============================================
 CREATE PROCEDURE CountTrangThaiChuyen
 	@systemId		VARCHAR(20),
-	@capDo			VARCHAR(20),
-	@giaTriCapDo	VARCHAR(20),
-	@congDoan		VARCHAR(20),
-	@fromDate		VARCHAR(10),
-	@toDate		VARCHAR(10)
+	@capDo			VARCHAR(20), @giaTriCapDo	VARCHAR(20), @congDoan		VARCHAR(20),
+	@fromDate		VARCHAR(10), @toDate		VARCHAR(10)
 AS
 BEGIN
 DECLARE @command nvarchar(max);
 DECLARE @whereCongDoan nvarchar(max);
 DECLARE @whereCapDo nvarchar(max);
-
-
 IF @congDoan = 'ALL'
 	SET @whereCongDoan = ''
 ELSE
 	SET @whereCongDoan =  ' AND tb_sl.CongDoan = '	+ ''''	+ @congDoan		+ ''''
 
-
-
 IF @capDo = 'WRKCT'
 	SET  @whereCapDo = ' WHERE tb1.Wrkct = '		+ ''''	+ @giaTriCapDo		+ ''''
 ELSE IF @capDo = 'KHUVUC'
-	SET  @whereCapDo = ' WHERE tb1.KhuVuc = '		+ ''''	 + @giaTriCapDo		+ ''''
+	SET  @whereCapDo = ' WHERE tb1.KhuVuc = '		+ ''''	+ @giaTriCapDo		+ ''''
 ELSE
 	SET  @whereCapDo = ' WHERE tb1.Nganh = '		+ ''''	+ @giaTriCapDo		+ ''''
 
-
-
-SET @command =	' SELECT COUNT(tb1.status) [SLCH] , tb1.STATUS '
+SET @command =	' SELECT tb1.Ngay, COUNT(tb1.status) [SLCH] , tb1.STATUS '
 			+	' FROM ( '
-			+	' SELECT tb_master.IdChuyen, tb_master.Wrkct, tb_master.KhuVuc, tb_master.Nganh, ' + '''' + 'STATUS' + '''' + ' =  CASE	WHEN tb_sl.DatKeHoach < 95 then ' + '''' + 'RED' + '''' +
+			+	' SELECT tb_sl.Ngay, tb_master.IdChuyen, tb_master.Wrkct, tb_master.KhuVuc, tb_master.Nganh, ' + '''' + 'Status' + '''' + ' =  CASE	WHEN tb_sl.DatKeHoach < 95 then ' + '''' + 'RED' + '''' +
 			+	' WHEN tb_sl.DatKeHoach >= 95 and tb_sl.DatKeHoach < 100 THEN ' + '''' + 'YELLOW' + '''' +
 			+	' ELSE' + '''' + 'GREEN' + '''' + ' END FROM zemp_sl_ch AS tb_sl INNER JOIN ZEMP_CH AS tb_master ON tb_sl.SystemId = tb_master.SystemId  '
 			+	' AND tb_sl.IdChuyen = tb_master.IdChuyen  WHERE Ngay between ' + '''' + @fromDate + '''' + '  AND ' + '''' +  @toDate + '''' +
-			+	@whereCongDoan + ' AND (tb_master.IsNoColor IS NULL OR tb_master.IsNoColor = ' + '''' + '''' + ' ) ) AS tb1 ' + @whereCapDo + ' GROUP BY STATUS '
-print @command
+			+	@whereCongDoan + ' AND (tb_master.IsNoColor IS NULL OR tb_master.IsNoColor = ' + '''' + '''' + ' ) ) AS tb1 ' + @whereCapDo + ' GROUP BY STATUS, Ngay '
+--print @command
 EXECUTE sys.sp_executesql @command
 END
 
 --TEST
-exec CountTrangThaiChuyen '900P01','KHUVUC','KV01', 'SDBCHAT','2017-06-22','2017-06-22'
+exec CountTrangThaiChuyen '900P01','WRKCT','WC01', 'ALL','2017-06-01','2017-07-07'
 
 
 -- ================================================
@@ -342,11 +333,7 @@ BEGIN
 	IF @congDoan = 'ALL'
 		SET @whereCongDoan = ' ';
 	ELSE
-		SET @whereCongDoan = ' AND CongDoan = ' + '''' + @congDoan  + ''''  ;
-
-	
-	
-
+		SET @whereCongDoan = ' AND CongDoan = ' + '''' + @congDoan  + ''''  ;		
 	if @capDo = 'WRKCT'
 		BEGIN
 			SET @tableSource	= 'ZEMP_SL_WC'
@@ -363,15 +350,91 @@ BEGIN
 			SET @whereCapDo		= ' AND  Nganh = ' + '''' + @giaTriCapDo + '''';
 		END
 
-		SET @command  =		' SELECT Ngay as' + '''' + 'Ngay' + '''' + ', CongDoan as ' + '''' + 'CongDoan' + '''' + ', KeHoachNgay as '	+ '''' + 'KeHoach'		+ '''' +
-						+	' , ThucHienNgay  AS ' + ''''	+	'ThucHien'	+ '''' + 'FROM '	+ @tableSource
+		SET @command  =		' SELECT Ngay as' + '''' + 'NGAY' + '''' + ', CongDoan as ' + '''' + 'CONGDOAN' + '''' + ', KeHoachNgay as '	+ '''' + 'KEHOACH'		+ '''' +
+						+	' , ThucHienNgay  AS ' + ''''	+	'THUCHIEN'	+ '''' + 'FROM '	+ @tableSource
 						+	' WHERE Ngay BETWEEN '	+ ''''	+	@fromDate	+ '''' + ' AND '	+ '''' + @toDate + ''''
 						+	@whereCapDo
 						+	@whereCongDoan 
 						+	' Order by Ngay ASC'
-	--print @command
+--print @command
 EXEC sys.sp_executesql @command
 END
 GO
 --TEST
-GetKeHoachThucHien '900P01', 'WRKCT', 'WC01', 'ALL', '2017-06-25', '2017-06-25'
+--GetKeHoachThucHien '900P01', 'WRKCT', 'WC01', 'ALL', '2017-06-30', '2017-07-07'
+
+-- ================================================
+-- GET KE HOACH THUC HIEN THEO CAP DO / CONG DOAN
+--exec GetChiPhiSanXuat '900P01', 'WRKCT', 'WC01', 'ALL', '2017-06-01', '2017-06-30'
+--exec GetChiPhiSanXuat '900P01', 'KHUVUV', 'KV01', 'ALL', '2017-06-01', '2017-06-30'
+--exec GetChiPhiSanXuat '900P01', 'NGANH', 'GIAY', 'SMAY', '2017-06-01', '2017-06-30'
+-- ================================================
+IF EXISTS ( SELECT * FROM SYSOBJECTS WHERE id = OBJECT_ID(N'GetChiPhiSanXuat') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+BEGIN
+	DROP PROCEDURE GetChiPhiSanXuat
+END
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE GETCHIPHISANXUAT
+@SYSTEMID		VARCHAR(20),
+	@CAPDO			VARCHAR(20),
+	@GIATRICAPDO	VARCHAR(20),
+	@CONGDOAN		VARCHAR(20),
+	@FROMDATE		VARCHAR(10),
+	@TODATE			VARCHAR(10)
+AS 
+BEGIN
+	DECLARE @COMMAND NVARCHAR(MAX);
+	DECLARE @WHERECONGDOAN	VARCHAR(100);
+	DECLARE @WHERECAPDO		VARCHAR(100);
+	DECLARE @TABLESOURCE	VARCHAR(100);
+
+	IF @CONGDOAN = 'ALL'
+	BEGIN
+		SET @WHERECONGDOAN = ''
+	END
+	ELSE
+	BEGIN
+		SET @WHERECONGDOAN = ' AND CONGDOAN = ' + '''' + @CONGDOAN + '''';
+	END
+
+	IF @CAPDO = 'WRKCT'
+		BEGIN
+			SET @TABLESOURCE	= 'ZEMP_TK_WC'
+			SET @WHERECAPDO		= ' AND  WRKCT = ' + '''' + @GIATRICAPDO + '''';
+		END
+	ELSE IF @CAPDO = 'KHUVUC'
+		BEGIN
+			SET @TABLESOURCE	= 'ZEMP_TK_KV'
+			SET @WHERECAPDO		= ' AND  KHUVUC = ' + '''' + @GIATRICAPDO + '''';
+		END
+	ELSE IF  @CAPDO = 'NGANH'
+		BEGIN
+			SET @TABLESOURCE	= 'ZEMP_TK_NG'
+			SET @WHERECAPDO		= ' AND  NGANH = ' + '''' + @GIATRICAPDO + '''';
+		END
+
+	SET @COMMAND =	'SELECT	TB1.NGAY, TB1.CONGDOAN, ' +
+					' (TB1.VATTUKEHOACH	/ TONGKEHOACH * 100)		AS [PTVATTUKEHOACH], '		+
+					' (TB1.TAISANKEHOACH	/ TONGKEHOACH * 100)	AS [PTTAISANKEHOACH], '		+
+					' (TB1.NHANCONGKEHOACH / TONGKEHOACH * 100)		AS [PTNHANCONGKEHOACH], '	+
+					' (TB1.VATTUTHUCHIEN	/ TONGTHUCHIEN * 100)	AS [PTVATTUTHUCHIEN], '		+
+					' (TB1.TAISANTHUCHIEN / TONGTHUCHIEN * 100)		AS [PTTAISANTHUCHIEN], '	+
+					' (TB1.NHANCONGTHUCHIEN / TONGTHUCHIEN * 100)	AS [PTNHANCONGTHUCHIEN] '	+
+					' FROM ( ' +
+					' SELECT NGAY, CONGDOAN, VATTUKEHOACH, TAISANKEHOACH, NHANCONGKEHOACH, '				+
+					' (VATTUKEHOACH + TAISANKEHOACH + NHANCONGKEHOACH) AS [TONGKEHOACH], '		+
+					' VATTUTHUCHIEN, TAISANTHUCHIEN, NHANCONGTHUCHIEN, '						+
+					' (VATTUTHUCHIEN + TAISANTHUCHIEN + NHANCONGTHUCHIEN) AS [TONGTHUCHIEN] '	+
+					' FROM ' + @TABLESOURCE +
+					' WHERE SYSTEMID = ' + '''' + @SYSTEMID + '''' + ' ' + @WHERECAPDO + ' '	+
+					' ' + @WHERECONGDOAN +
+					' AND NGAY BETWEEN ' + '''' + @FROMDATE + '''' + ' AND ' + '''' + @TODATE + '''' +
+					' ) AS TB1'
+	--PRINT @COMMAND
+	EXEC SYS.SP_EXECUTESQL @COMMAND
+END
+GO

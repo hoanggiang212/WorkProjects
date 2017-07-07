@@ -190,7 +190,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Dashboard1dayController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\LiveboardController.cs" />
+    <Compile Include="DAO\ChiPhiSanXuat.cs">
+      <DependentUpon>ZempEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAO\CountStatus.cs">
+      <DependentUpon>ZempEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAO\KHTHReturn.cs">
       <DependentUpon>ZempEntities.tt</DependentUpon>
     </Compile>
@@ -275,6 +282,7 @@
     <Compile Include="DTO\AccountDTO.cs" />
     <Compile Include="DTO\CommonDTO.cs" />
     <Compile Include="DTO\CryptorEngine.cs" />
+    <Compile Include="DTO\DashboardDTO.cs" />
     <Compile Include="DTO\LiveboardDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -299,6 +307,8 @@
     <Content Include="Views\Liveboard\Index.cshtml" />
     <Content Include="Views\Liveboard\GetListData.cshtml" />
     <Content Include="Views\Liveboard\GetCharts.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Dashboard\PartialCharts.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

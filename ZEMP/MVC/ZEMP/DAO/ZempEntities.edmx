@@ -329,6 +329,7 @@
           <Property Name="ChuyenXanh" Type="numeric" Precision="18" Scale="0" />
           <Property Name="ChuyenVang" Type="numeric" Precision="18" Scale="0" />
           <Property Name="ChuyenDo" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="TyGia" Type="numeric" Precision="18" Scale="2" />
           <Property Name="VatTuKeHoach" Type="numeric" Precision="18" Scale="2" />
           <Property Name="VatTuThucHien" Type="numeric" Precision="18" Scale="2" />
           <Property Name="TaiSanKeHoach" Type="numeric" Precision="18" Scale="2" />
@@ -355,6 +356,7 @@
           <Property Name="ChuyenXanh" Type="numeric" Precision="18" Scale="0" />
           <Property Name="ChuyenVang" Type="numeric" Precision="18" Scale="0" />
           <Property Name="ChuyenDo" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="TyGia" Type="numeric" Precision="18" Scale="2" />
           <Property Name="VatTuKeHoach" Type="numeric" Precision="18" Scale="2" />
           <Property Name="VatTuThucHien" Type="numeric" Precision="18" Scale="2" />
           <Property Name="TaiSanKeHoach" Type="numeric" Precision="18" Scale="2" />
@@ -381,6 +383,7 @@
           <Property Name="ChuyenXanh" Type="numeric" Precision="18" Scale="0" />
           <Property Name="ChuyenVang" Type="numeric" Precision="18" Scale="0" />
           <Property Name="ChuyenDo" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="TyGia" Type="numeric" Precision="18" Scale="2" />
           <Property Name="VatTuKeHoach" Type="numeric" Precision="18" Scale="2" />
           <Property Name="VatTuThucHien" Type="numeric" Precision="18" Scale="2" />
           <Property Name="TaiSanKeHoach" Type="numeric" Precision="18" Scale="2" />
@@ -420,6 +423,22 @@
           <Property Name="Nganh" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="QlWrkct" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <Function Name="CountTrangThaiChuyen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="systemId" Type="varchar" Mode="In" />
+          <Parameter Name="capDo" Type="varchar" Mode="In" />
+          <Parameter Name="giaTriCapDo" Type="varchar" Mode="In" />
+          <Parameter Name="congDoan" Type="varchar" Mode="In" />
+          <Parameter Name="fromDate" Type="varchar" Mode="In" />
+          <Parameter Name="toDate" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GETCHIPHISANXUAT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SYSTEMID" Type="varchar" Mode="In" />
+          <Parameter Name="CAPDO" Type="varchar" Mode="In" />
+          <Parameter Name="GIATRICAPDO" Type="varchar" Mode="In" />
+          <Parameter Name="CONGDOAN" Type="varchar" Mode="In" />
+          <Parameter Name="FROMDATE" Type="varchar" Mode="In" />
+          <Parameter Name="TODATE" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="GetCongDoanLiveboard" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SystemId" Type="varchar" Mode="In" />
         </Function>
@@ -790,6 +809,7 @@
           <Property Name="Thang" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Quy" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Nam" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TyGia" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="ZEMP_TK_NG">
           <Key>
@@ -816,6 +836,7 @@
           <Property Name="Thang" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Quy" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Nam" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TyGia" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="ZEMP_TK_WC">
           <Key>
@@ -842,6 +863,7 @@
           <Property Name="Thang" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Quy" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Nam" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TyGia" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="ZEMP_USER">
           <Key>
@@ -922,6 +944,22 @@
             <Parameter Name="fromDate" Mode="In" Type="String" />
             <Parameter Name="toDate" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="CountTrangThaiChuyen" ReturnType="Collection(TKTDSXModel.CountStatus)">
+            <Parameter Name="systemId" Mode="In" Type="String" />
+            <Parameter Name="capDo" Mode="In" Type="String" />
+            <Parameter Name="giaTriCapDo" Mode="In" Type="String" />
+            <Parameter Name="congDoan" Mode="In" Type="String" />
+            <Parameter Name="fromDate" Mode="In" Type="String" />
+            <Parameter Name="toDate" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GETCHIPHISANXUAT" ReturnType="Collection(TKTDSXModel.ChiPhiSanXuat)">
+            <Parameter Name="SYSTEMID" Mode="In" Type="String" />
+            <Parameter Name="CAPDO" Mode="In" Type="String" />
+            <Parameter Name="GIATRICAPDO" Mode="In" Type="String" />
+            <Parameter Name="CONGDOAN" Mode="In" Type="String" />
+            <Parameter Name="FROMDATE" Mode="In" Type="String" />
+            <Parameter Name="TODATE" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="ZEMP_CF_MODE">
           <Key>
@@ -974,10 +1012,25 @@
           <Property Type="String" Name="IsNoColor" Nullable="true" DefaultValue=" " />
         </ComplexType>
         <ComplexType Name="KHTHReturn" >
-          <Property Type="DateTime" Name="Ngay" />
-          <Property Type="String" Name="CongDoan" Nullable="false" />
-          <Property Type="Decimal" Name="KeHoach" DefaultValue="0" />
-          <Property Type="Decimal" Name="ThucHien" DefaultValue="0" Nullable="false" />
+          <Property Type="DateTime" Name="NGAY" />
+          <Property Type="String" Name="CONGDOAN" Nullable="false" />
+          <Property Type="Decimal" Name="KEHOACH" DefaultValue="0" />
+          <Property Type="Decimal" Name="THUCHIEN" DefaultValue="0" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="CountStatus" >
+          <Property Type="DateTime" Name="NGAY" />
+          <Property Type="Int32" Name="SLCH" />
+          <Property Type="String" Name="STATUS" />
+        </ComplexType>
+        <ComplexType Name="ChiPhiSanXuat" >
+          <Property Type="DateTime" Name="NGAY" />
+          <Property Type="String" Name="CONGDOAN" />
+          <Property Type="Decimal" Name="PTVATTUKEHOACH" DefaultValue="0" />
+          <Property Type="Decimal" Name="PTTAISANKEHOACH" DefaultValue="0" />
+          <Property Type="Decimal" Name="PTNHANCONGKEHOACH" DefaultValue="0" />
+          <Property Type="Decimal" Name="PTVATTUTHUCHIEN" DefaultValue="0" />
+          <Property Type="Decimal" Name="PTTAISANTHUCHIEN" DefaultValue="0" />
+          <Property Type="Decimal" Name="PTNHANCONGTHUCHIEN" DefaultValue="0" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1261,6 +1314,7 @@
           <EntitySetMapping Name="ZEMP_TK_KV">
             <EntityTypeMapping TypeName="TKTDSXModel.ZEMP_TK_KV">
               <MappingFragment StoreEntitySet="ZEMP_TK_KV">
+                <ScalarProperty Name="TyGia" ColumnName="TyGia" />
                 <ScalarProperty Name="SystemId" ColumnName="SystemId" />
                 <ScalarProperty Name="Ngay" ColumnName="Ngay" />
                 <ScalarProperty Name="KhuVuc" ColumnName="KhuVuc" />
@@ -1285,6 +1339,7 @@
           <EntitySetMapping Name="ZEMP_TK_NG">
             <EntityTypeMapping TypeName="TKTDSXModel.ZEMP_TK_NG">
               <MappingFragment StoreEntitySet="ZEMP_TK_NG">
+                <ScalarProperty Name="TyGia" ColumnName="TyGia" />
                 <ScalarProperty Name="SystemId" ColumnName="SystemId" />
                 <ScalarProperty Name="Ngay" ColumnName="Ngay" />
                 <ScalarProperty Name="Nganh" ColumnName="Nganh" />
@@ -1309,6 +1364,7 @@
           <EntitySetMapping Name="ZEMP_TK_WC">
             <EntityTypeMapping TypeName="TKTDSXModel.ZEMP_TK_WC">
               <MappingFragment StoreEntitySet="ZEMP_TK_WC">
+                <ScalarProperty Name="TyGia" ColumnName="TyGia" />
                 <ScalarProperty Name="SystemId" ColumnName="SystemId" />
                 <ScalarProperty Name="Ngay" ColumnName="Ngay" />
                 <ScalarProperty Name="Wrkct" ColumnName="Wrkct" />
@@ -1418,10 +1474,33 @@
           <FunctionImportMapping FunctionImportName="GetKeHoachThucHien" FunctionName="TKTDSXModel.Store.GetKeHoachThucHien">
             <ResultMapping>
               <ComplexTypeMapping TypeName="TKTDSXModel.KHTHReturn">
-                <ScalarProperty Name="Ngay" ColumnName="Ngay" />
-                <ScalarProperty Name="CongDoan" ColumnName="CongDoan" />
-                <ScalarProperty Name="KeHoach" ColumnName="KeHoach" />
-                <ScalarProperty Name="ThucHien" ColumnName="ThucHien" />
+                <ScalarProperty Name="NGAY" ColumnName="Ngay" />
+                <ScalarProperty Name="CONGDOAN" ColumnName="CongDoan" />
+                <ScalarProperty Name="KEHOACH" ColumnName="KeHoach" />
+                <ScalarProperty Name="THUCHIEN" ColumnName="ThucHien" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CountTrangThaiChuyen" FunctionName="TKTDSXModel.Store.CountTrangThaiChuyen" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TKTDSXModel.CountStatus">
+                <ScalarProperty Name="NGAY" ColumnName="NGAY" />
+                <ScalarProperty Name="SLCH" ColumnName="SLCH" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GETCHIPHISANXUAT" FunctionName="TKTDSXModel.Store.GETCHIPHISANXUAT" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TKTDSXModel.ChiPhiSanXuat">
+                <ScalarProperty Name="NGAY" ColumnName="NGAY" />
+                <ScalarProperty Name="CONGDOAN" ColumnName="CONGDOAN" />
+                <ScalarProperty Name="PTVATTUKEHOACH" ColumnName="PTVATTUKEHOACH" />
+                <ScalarProperty Name="PTTAISANKEHOACH" ColumnName="PTTAISANKEHOACH" />
+                <ScalarProperty Name="PTNHANCONGKEHOACH" ColumnName="PTNHANCONGKEHOACH" />
+                <ScalarProperty Name="PTVATTUTHUCHIEN" ColumnName="PTVATTUTHUCHIEN" />
+                <ScalarProperty Name="PTTAISANTHUCHIEN" ColumnName="PTTAISANTHUCHIEN" />
+                <ScalarProperty Name="PTNHANCONGTHUCHIEN" ColumnName="PTNHANCONGTHUCHIEN" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
