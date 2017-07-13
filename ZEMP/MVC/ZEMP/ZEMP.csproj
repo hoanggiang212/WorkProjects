@@ -207,6 +207,9 @@
     <Compile Include="DAO\SelectListReturn.cs">
       <DependentUpon>ZempEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAO\ThongKeLaoDong.cs">
+      <DependentUpon>ZempEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAO\ZempEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

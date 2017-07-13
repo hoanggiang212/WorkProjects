@@ -1,0 +1,8 @@
+--LAY THONG TIN CHI PHI SAN XUAT
+--exec GetChiPhiSanXuat '900P01', 'WRKCT', 'WC01', 'ALL', '2017-06-01', '2017-06-30'
+--exec GetChiPhiSanXuat '900P01', 'KHUVUV', 'KV01', 'ALL', '2017-06-01', '2017-06-30'
+--exec GetChiPhiSanXuat '900P01', 'NGANH', 'GIAY', 'SMAY', '2017-06-01', '2017-06-30'
+
+
+-- GET KE HOACH THUC HIEN THEO CAP DO / CONG DOAN
+--GetKeHoachThucHien '900P01', 'WRKCT', 'WC01', 'ALL', '2017-06-30', '2017-07-07'
