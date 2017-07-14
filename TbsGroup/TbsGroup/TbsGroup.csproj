@@ -226,6 +226,7 @@
     <Compile Include="Models\BI_ZQLSX.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CryptorEngine.cs" />
     <Compile Include="Models\DatabaseModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -268,9 +269,9 @@
     <Content Include="Content\CommonStyle.css" />
     <Content Include="Content\DashboardStyle.css" />
     <Content Include="Content\LiveboardStyle.css" />
-    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Images\logo.png" />
+    <Content Include="logoTBS.ico" />
     <Content Include="Models\DatabaseModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DatabaseModel.edmx</DependentUpon>

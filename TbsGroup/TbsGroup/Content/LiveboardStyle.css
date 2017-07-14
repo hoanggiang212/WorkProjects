@@ -3,6 +3,7 @@
 }
 
 .navbar {
+  min-width:1500px;
   height: 35px;
   padding: 0px 0px;
   width: 100%;
@@ -13,7 +14,7 @@
 
 .navbar a {
   color: white;
-  line-height: 3em;
+  line-height: 1em;
 }
 
 table.table-selection td{
@@ -22,11 +23,12 @@ table.table-selection td{
 }
 
 table.responsive-table {
-  display: table;
+  display: table; 
   /* required for table-layout to be used (not normally necessary; included for completeness) */
   table-layout:  fixed;
   /* this keeps your columns with fixed with exactly the right width */
   width: 100%;
+  min-width: 1500px;
   /* table must have width set for fixed layout to work as expected */
   /*height: 100%;*/
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -34,12 +36,13 @@ table.responsive-table {
 }
 
 table.responsive-table .col-chuyen{
-    min-width: 800px;
+    min-width: 350px;
     width: 12%;
 }
 
+
 table.responsive-table .col-congdoan{
-    width: 5%;
+    width: 7%;
 }
 table.responsive-table .col-slld{
     width: 4%;
@@ -54,14 +57,15 @@ table.responsive-table .col-num-short{
 .table-area {
   position: relative;
   z-index: 0;
-  min-width: 1200px;
+  min-width: 1500px;
   margin-top: 40px;
 }
 
 
 table.responsive-table thead {  
-  min-width: 1200px;
+  min-width: 1500px;
   position: fixed;
+  
   table-layout: fixed;
   display: table;
 
@@ -70,9 +74,11 @@ table.responsive-table thead {
   right: 0;
   width: 100%;
 
+  white-space: nowrap;
 
 
   height: 35px;
+  max-height:35px;
   line-height: 2em;
 
 
@@ -88,13 +94,16 @@ table.responsive-table th {
 }
 
 table.responsive-table td {
-    line-height: 35px;;
+    line-height: 35px;
 }
 
 table.responsive-table tr > td,
-table.responsive-table th {
+table.responsive-table th {  
   text-align: left;  
-  border: 0.5px solid #B1B1B1;
+  border-left: 0.5px solid #CFCFCF;
+  border-right: 0.5px solid #CFCFCF;
+  border-top: none;
+  border-bottom: none;
 }
 
 /*nhom 1*/
@@ -103,7 +112,7 @@ table.responsive-table tr:nth-of-type(even) td:nth-of-type(4) ,
 table.responsive-table tr:nth-of-type(even) td:nth-of-type(5) ,
 table.responsive-table tr:nth-of-type(even) td:nth-of-type(6) 
 {
-    background: #E7D9C6;
+    background: #DFE3EE;
 }
 
 /*nhom 2*/
@@ -129,11 +138,11 @@ table.responsive-table > tbody > tr:hover > th
 }
 
 .ten-bo-phan-yellow {    
-    color: #DEC200;   
+    color: #e69900;   
 }
 
 .ten-bo-phan-green {    
-    color: #008A00;    
+    color: #2eb82e;    
 }
 
 .cell-control{
@@ -142,27 +151,44 @@ table.responsive-table > tbody > tr:hover > th
 }
 
 @-webkit-keyframes ChangeValue {
-  from { background-color: red; }
-  to { background-color: inherit; }
+0%      { background-color: #FF9900; }
+50%     { background-color: #FFDB42; }
+100%   { background-color: #FFFF66; }
+
+  /*from { background-color: #ffa64d; }*/
+  /*to { background-color: inherit; }*/
 }
 @-moz-keyframes ChangeValue {
-  from { background-color: red; }
-  to { background-color: inherit; }
+0%  { background-color: #FF9900; }
+50% { background-color: #FFDB42; }
+100%{ background-color: #FFFF66; }
+
+  /*from { background-color: #ffa64d; }*/
+  /*to { background-color: inherit; }*/
 }
 @-o-keyframes ChangeValue {
-  from { background-color: red; }
-  to { background-color: inherit; }
+0%  { background-color: #FF9900; }
+50% { background-color: #FFDB42; }
+100%{ background-color: #FFFF66; }
+
+  /*from { background-color: #ffa64d; }*/
+  /*to { background-color: inherit; }*/
 }
 /*Highlight change data*/
 @keyframes ChangeValue {
-  from { background-color: #F1FF7B; }
-  to { background-color: inherit; }
+0%  { background-color: #FF9900; }
+50% { background-color: #FFDB42; }
+100%{ background-color: #FFFF66; }
+
+  /*from { background-color: #ffa64d; }*/
+  /*to { background-color: inherit; }*/
 }
 .ChangeValue {
-  -webkit-animation: ChangeValue 1s infinite; /* Safari 4+ */
-  -moz-animation:    ChangeValue 1s infinite; /* Fx 5+ */
-  -o-animation:      ChangeValue 1s infinite; /* Opera 12+ */
-  animation: ChangeValue 1s infinite;
+   background-image:none !important;
+  -webkit-animation:    ChangeValue 5s ease-in-out ; /* Safari 4+ */
+  -moz-animation:       ChangeValue 5s ease-in-out ; /* Fx 5+ */
+  -o-animation:         ChangeValue 5s ease-in-out ; /* Opera 12+ */
+  animation:            ChangeValue 5s ease-in-out ;
 }
 
 /*td {

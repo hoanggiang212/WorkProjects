@@ -8,17 +8,18 @@
     <title>TBS Group</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="SHORTCUT ICON" href="~/logoTBS.ico" />
 </head>
-<body>
+<body style="margin:0px;">
     <div class="container-navbar" style="margin-top:0px;">
         <a href="/GridView">Dashboard</a>
         <a href="/Liveboard">Sản Lượng Online</a>
-        <a onclick="myFunction()">Hide Top</a>
+        @*<a onclick="myFunction()">Hide Top</a>*@
             @if (Session["UserName"] != null)
             {
                 var loguser = Session["UserName"] as BI_USER;
                 <div class="dropdown">
-                    <button class="dropbtn">Welcome: @loguser.Username!</button>
+                    <button class="dropbtn">Welcome: @loguser.GhiChu</button>
                     <div class="dropdown-content">
                         <a href="/Login/ChangePassword">Change Password</a>
                         <a href="/Login">Log Out</a>

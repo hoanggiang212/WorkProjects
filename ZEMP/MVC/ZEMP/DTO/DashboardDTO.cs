@@ -16,11 +16,13 @@ namespace ZEMP.DTO
         {
             var listTong = new ArrayList();
             //DELCARATION
+            var listCd = new List<ListCongDoan>();
             var listKhTh = new List<KHTHReturn>();
             var listCountStatus = new List<CountStatus>();
             var listChiPhi = new List<ChiPhiSanXuat>();
             var listLaoDong = new List<ThongKeLaoDong>();
 
+            
             //get data ke hoach / thuc hien
             listKhTh = GetKeHoachThucHien(f);
 
@@ -31,7 +33,50 @@ namespace ZEMP.DTO
 
             listLaoDong = GetThongKeLaoDong(f);
 
+
+            //Add header rows for array list
+            ArrayList lineHeader = new ArrayList();
+            lineHeader.Add("Ngay");
+
+            listCd = getCongDoanKeHoachThucHien(f);
+            for(int i = 0; i < listCd.Count; i++)
+            {
+                lineHeader.Add(string.Format("KeHoach-{0}", listCd[i].ToString()));
+                lineHeader.Add(string.Format("ThucHien-{0}", listCd[i].ToString()));
+            }
+            
+
+            //add body data
+            for (int i = 0; i < f.listDate.Count; i++)
+            {   
+                //add day
+                ArrayList arrLine = new ArrayList();
+                arrLine.Add(f.listDate[i].ToShortDateString());
+
+                //add san luong ke hoach / thuc hien
+                for (int irSl = 0; irSl < listKhTh.Count; irSl++)
+                {
+                    if (f.listDate[i] != listKhTh[irSl].NGAY)
+                    {
+                        continue;
+                    }
+                    arrLine.Add
+                }
+
+            }
+
             return listTong;
+        }
+
+        private List<ListCongDoan> getCongDoanKeHoachThucHien(FilterCondition f)
+        {
+            List<ListCongDoan> listCd = new List<ListCongDoan>();
+            using(TKTDSXEntities dc = new TKTDSXEntities() )
+            {
+                listCd = dc.GetCongDoanKhTh(f.SystemId, f.SelectedCapDo, f.SelectedGiaTriCapDo,
+                                f.SelectedCongDoan, f.sDateFrom, f.sDateTo).ToList<ListCongDoan>();
+            }
+            return listCd;
         }
 
         private List<KHTHReturn> GetKeHoachThucHien(FilterCondition filter)

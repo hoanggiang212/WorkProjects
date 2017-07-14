@@ -5,6 +5,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<title>TBS Group - Dashboard</title>
 
 <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -310,9 +311,9 @@
                     //slantedText: true,
                     //slantedTextAngle: 45
                 },
-                vAxis: {                    
+                vAxis: {
                     format: 'decimal',
-                    minValue: 0                    
+                    minValue: 0
                 },
                 animation: {
                     duration: 500,
@@ -422,7 +423,7 @@
 @if (ViewData["SanLuongNgay"] != null)
 {
     <!--Selection controls-->
-    <div>
+    <div style="margin-left:20px; margin-right:20px;">
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
@@ -493,18 +494,18 @@ else
     </div>
 }
 <!--Title data-->
-<div id="dashboard_common">
+<div id="dashboard_common" style="margin-left:30px; margin-right:30px;">
     <table style="width:100%">
         <tbody>
-            <tr style="height:30px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;">
+            <tr style="height:30px;font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;">
                 <td no-wrap style="min-width:120px;max-width:120px;">
-                    From @Model.DateFrom.ToShortDateString()            
+                    From @Model.DateFrom.ToShortDateString()
                 </td>
                 <td no-wrap style="width:90%; min-width:800px;">
                     <div id="filter_common" style="height:30px;"></div>
                 </td>
                 <td no-wrap style="min-width:120px;max-width:120px;">
-                    To @Model.DateTo.ToShortDateString()        
+                    To @Model.DateTo.ToShortDateString()
                 </td>
             </tr>
         </tbody>
@@ -517,7 +518,7 @@ else
                 <table style="width:100%">
                     <tr>
                         <td style="border:none; text-align:left;">
-                            <div class="title-chart">SẢN LƯỢNG @ViewBag.CapDo: @ViewBag.GiatriCapDo</div>
+                            <div class="title-chart">SẢN LƯỢNG NGÀY</div>
                         </td>
                         <td style="border:none;text-align:right; padding-right:2px;">
                             <button id="btn1">Xem Dữ Liệu</button>
@@ -530,7 +531,7 @@ else
                 <table style="width:100%">
                     <tr>
                         <td style="border:none;">
-                            <div class="title-chart">TRẠNG THÁI CHUYỀN @ViewBag.CapDo: @ViewBag.GiatriCapDo</div>
+                            <div class="title-chart">TRẠNG THÁI CHUYỀN</div>
                         </td>
                         <td style="border:none;text-align:right; padding-right:2px;">
                             <button id="btn2">Xem Dữ Liệu</button>
@@ -673,7 +674,7 @@ else
                 <table style="width:100%">
                     <tr>
                         <td style="border:none;">
-                            <div class="title-chart">NĂNG SUẤT @ViewBag.CapDo: @ViewBag.GiatriCapDo</div>
+                            <div class="title-chart">NĂNG SUẤT</div>
                         </td>
                         <td style="border:none;text-align:right; padding-right:2px;">
                             <button id="btn4">Xem Dữ Liệu</button>
@@ -686,7 +687,7 @@ else
                 <table style="width:100%">
                     <tr>
                         <td style="border:none;">
-                            <div class="title-chart">THỐNG KÊ LAO ĐỘNG @ViewBag.CapDo: @ViewBag.GiatriCapDo</div>
+                            <div class="title-chart">THỐNG KÊ LAO ĐỘNG</div>
                         </td>
                         <td style="border:none;text-align:right; padding-right:2px;">
                             <button id="btn3">Xem Dữ Liệu</button>
@@ -816,27 +817,27 @@ else
         <tr style="background-color:#034f84;color:white;">
             <!--Row 3 - Header-->
             <td style="width:50%">
-                <table >
+                <table>
                     <tr>
                         <td style="border:none;">
-                            <div class="title-chart">CƠ CẤU GIÁ THÀNH PHÂN XƯỞNG @ViewBag.CapDo: @ViewBag.GiatriCapDo</div>
+                            <div class="title-chart">CƠ CẤU GIÁ THÀNH PHÂN XƯỞNG </div>
                         </td>
                     </tr>
                 </table>
             </td>
-            <td style="width:50%" >
-                <div class="title-chart">SUMMARY @ViewBag.CapDo: @ViewBag.GiatriCapDo FROM @Model.DateFrom.ToShortDateString() TO @Model.DateTo.ToShortDateString()</div>                
-            </tr>
+            <td style="width:50%">
+                <div class="title-chart">SUMMARY </div>
+        </tr>
         <tr>
             <!--Row 3 - Chart-->
             <td>
-                <div id="Chart_Gtpx"></div>                
+                <div id="Chart_Gtpx"></div>
             </td>
-            <td >
+            <td>
                 <table class="table-summanry" style="margin:auto;">
                     <thead>
                         <tr>
-                            <th style="width:8%;text-align:center;">C.Đoạn</th>                            
+                            <th style="width:8%;text-align:center;">C.Đoạn</th>
                             <th style="width:10%;text-align:center;">% CP Vật Tư</th>
                             <th style="width:10%;text-align:center;">% CP Tài Sản</th>
                             <th style="width:10%;text-align:center;">% CP Nhân Công</th>
@@ -844,11 +845,11 @@ else
                             <th style="width:10%;text-align:center;">N.Suất Tổng thể</th>
                         </tr>
                     </thead>
-                    <tbody>                        
-                        @foreach(NangSuatTongThe nstt in (List<NangSuatTongThe>)ViewData["NSTT"])
+                    <tbody>
+                        @foreach (NangSuatTongThe nstt in (List<NangSuatTongThe>)ViewData["NSTT"])
                         {
                             <tr>
-                                <td style="width:8%;text-align:center;padding-right:10px;font-weight:bold;">@nstt.CongDoan</td>                                
+                                <td style="width:8%;text-align:center;padding-right:10px;font-weight:bold;">@nstt.CongDoan</td>
                                 <td style="width:10%;text-align:right;padding-right:10px;">@nstt.ptChiPhiVt.ToString("#,#.##") %</td>
                                 <td style="width:10%;text-align:right;padding-right:10px;">@nstt.ptChiPhiTs.ToString("#,#.##") %</td>
                                 <td style="width:10%;text-align:right;padding-right:10px;">@nstt.ptChiPhiNc.ToString("#,#.##") %</td>
@@ -864,5 +865,5 @@ else
                 </table>
             </td>
         </tr>
-    </table>    
+    </table>
 </div>

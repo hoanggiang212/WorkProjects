@@ -18,16 +18,18 @@ namespace TbsGroup.ViewModels
             dc = new TKTDSXEntities();
         }
 
-        public bool TrackChange(VW_SL_ONLINE slOnline)
+        public bool TrackChange(VW_SL_ONLINE slOnline, string Username)
         {
             dc.Dispose();
+
             var isChange = false;
             BI_SANLUONG_ONLINE_TEMP slTemp;
             using (var getDbContext = new TKTDSXEntities())
             {
                 slTemp = getDbContext.BI_SANLUONG_ONLINE_TEMP
                                 .Where(w => w.MANDT == slOnline.MANDT && w.SYSID == slOnline.SYSID
-                                    && w.ZZCNT == slOnline.ZZCNT && w.CNTCD == slOnline.CNTCD).FirstOrDefault();
+                                    && w.ZZCNT == slOnline.ZZCNT && w.CNTCD == slOnline.CNTCD
+                                    && w.NGAY == slOnline.NGAY && w.USERNAME == Username).FirstOrDefault();
             }
 
             if (slTemp == null)
@@ -42,6 +44,7 @@ namespace TbsGroup.ViewModels
                 slTemp.THNGAY = slOnline.THNGAY;
                 slTemp.SLLD = slOnline.SLLD;
                 slTemp.NSUAT = slOnline.NSUAT;
+                slTemp.USERNAME = Username;
                 using (var dbContext = new TKTDSXEntities())
                 {
                     dbContext.BI_SANLUONG_ONLINE_TEMP.Add(slTemp);
@@ -61,7 +64,6 @@ namespace TbsGroup.ViewModels
                     }
                 }
             }
-
             return isChange;
 
         }
@@ -142,7 +144,7 @@ namespace TbsGroup.ViewModels
                 }
             }
         }
-        public List<SanLuongOnline> GetSanLuongOnline(FilterCoditionModel filter)
+        public List<SanLuongOnline> GetSanLuongOnline(FilterCoditionModel filter, string strUserName)
         {
             bool isChange = false;
             var RawList = new List<VW_SL_ONLINE>();
@@ -389,6 +391,9 @@ namespace TbsGroup.ViewModels
             }
             else //Mode: Chuyen
             {
+                DateTime dtNow = DateTime.Parse(string.Format("{0}-{1}-{2}", DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day));
+                dc.BI_SANLUONG_ONLINE_TEMP.RemoveRange(dc.BI_SANLUONG_ONLINE_TEMP.Where(w => w.NGAY != dtNow));
+                dc.SaveChanges();
                 List<string> listZzcnt = new List<string>();
                 switch(filter.SelectedCapDo)
                 {
@@ -420,7 +425,7 @@ namespace TbsGroup.ViewModels
                             }
                             slOnline.isColor = item.NCOLOR;
                             //Track change data
-                             isChange = TrackChange(item);
+                             isChange = TrackChange(item, strUserName);
                             if (isChange)
                             {
                                 slOnline.classTHNgay = "ChangeValue";
@@ -731,7 +736,7 @@ namespace TbsGroup.ViewModels
                 //Lan dau chua nhap, ngay bat dau bang ngay hien tai - 7
                 if (filter.DateTo == NullDate)
                 {
-                    filter.DateFrom = CurrentDate.AddDays(-7);
+                    filter.DateFrom = CurrentDate.AddDays(-15);
                 }
 
                 // ngay ket thuc la ngay hien tai

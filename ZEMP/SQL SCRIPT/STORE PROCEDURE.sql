@@ -315,25 +315,17 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE GetKeHoachThucHien
-	@systemId		VARCHAR(20),
-	@capDo			VARCHAR(20),
-	@giaTriCapDo	VARCHAR(20),
-	@congDoan		VARCHAR(20),
-	@fromDate		VARCHAR(10),
-	@toDate			VARCHAR(10)
+	@systemId		VARCHAR(20), @capDo			VARCHAR(20), @giaTriCapDo	VARCHAR(20),
+	@congDoan		VARCHAR(20), @fromDate		VARCHAR(10), @toDate			VARCHAR(10)
 AS
 BEGIN
 	SET FMTONLY OFF
 	SET NOCOUNT ON;
-	DECLARE @command		nvarchar(max);
-	DECLARE @whereCongDoan	varchar(100);
-	DECLARE @whereCapDo		varchar(100);
-	DECLARE @tableSource	varchar(100);
+	DECLARE @command		nvarchar(max); DECLARE @whereCongDoan	varchar(100);
+	DECLARE @whereCapDo		varchar(100); DECLARE @tableSource	varchar(100);
 
-	IF @congDoan = 'ALL'
-		SET @whereCongDoan = ' ';
-	ELSE
-		SET @whereCongDoan = ' AND CongDoan = ' + '''' + @congDoan  + ''''  ;		
+	IF @congDoan = 'ALL' SET @whereCongDoan = ' ';
+	ELSE SET @whereCongDoan = ' AND CongDoan = ' + '''' + @congDoan  + ''''  ;		
 	if @capDo = 'WRKCT'
 		BEGIN
 			SET @tableSource	= 'ZEMP_SL_WC'
@@ -349,18 +341,17 @@ BEGIN
 			SET @tableSource	= 'ZEMP_SL_NG'
 			SET @whereCapDo		= ' AND  Nganh = ' + '''' + @giaTriCapDo + '''';
 		END
-
-		SET @command  =		' SELECT Ngay as' + '''' + 'NGAY' + '''' + ', CongDoan as ' + '''' + 'CONGDOAN' + '''' + ', KeHoachNgay as '	+ '''' + 'KEHOACH'		+ '''' +
+	SET @command  =		' SELECT Ngay as' + '''' + 'NGAY' + '''' + ', CongDoan as ' + '''' + 'CONGDOAN' + '''' + ', KeHoachNgay as '	+ '''' + 'KEHOACH'		+ '''' +
 						+	' , ThucHienNgay  AS ' + ''''	+	'THUCHIEN'	+ '''' + 'FROM '	+ @tableSource
-						+	' WHERE Ngay BETWEEN '	+ ''''	+	@fromDate	+ '''' + ' AND '	+ '''' + @toDate + ''''
+						+	' WHERE SystemId = N' + '''' + @systemId + ''''
+						+   ' AND NGAY BETWEEN '	+ ''''	+	@fromDate	+ '''' + ' AND '	+ '''' + @toDate + ''''
 						+	@whereCapDo
 						+	@whereCongDoan 
 						+	' Order by Ngay ASC'
---print @command
+print @command
 EXEC sys.sp_executesql @command
 END
 GO
---TEST
 
 -- ================================================
 -- CHI PHI SAN XUAT
@@ -435,8 +426,6 @@ BEGIN
 END
 GO
 
-EXEC GetThongKeLaoDong '900P01', 'wrkct', 'WC01', 'smay', '2017-07-07', '2017-07-14'
-
 --LAY THONG TIN THONG KE LAO DONG
 IF EXISTS ( SELECT * FROM SYSOBJECTS WHERE id = OBJECT_ID(N'GetThongKeLaoDong') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 BEGIN
@@ -494,7 +483,7 @@ DECLARE @COMMAND NVARCHAR(MAX);
 					' WHERE A.SYSTEMID = '	+	''''	+ @SYSTEMID		+	''''	+
 					' AND A.'				+	@CAPDO	+ ' = '			+	''''	+ @GIATRICAPDO	+	''''	+   @WHERECONGDOAN +
 					' AND A.NGAY BETWEEN '	+	''''	+ @FROMDATE		+	''''	+ ' AND ' +''''	+	@TODATE +	''''
-PRINT @COMMAND;
+--PRINT @COMMAND;
 EXEC SYS.SP_EXECUTESQL @COMMAND;
 END
 GO

@@ -127,12 +127,14 @@
           <Key>
             <PropertyRef Name="MANDT" />
             <PropertyRef Name="SYSID" />
+            <PropertyRef Name="USERNAME" />
             <PropertyRef Name="NGAY" />
             <PropertyRef Name="ZZCNT" />
             <PropertyRef Name="CNTCD" />
           </Key>
           <Property Name="MANDT" Type="nchar" MaxLength="3" Nullable="false" />
           <Property Name="SYSID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="USERNAME" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="NGAY" Type="smalldatetime" Nullable="false" />
           <Property Name="ZZCNT" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="CNTCD" Type="nvarchar" MaxLength="5" Nullable="false" />
@@ -1406,12 +1408,14 @@ warning 6002: The table/view 'TKTDSX.dbo.VW_TKLD' does not have a primary key de
           <Key>
             <PropertyRef Name="MANDT" />
             <PropertyRef Name="SYSID" />
+            <PropertyRef Name="USERNAME" />
             <PropertyRef Name="NGAY" />
             <PropertyRef Name="ZZCNT" />
             <PropertyRef Name="CNTCD" />
           </Key>
           <Property Name="MANDT" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
           <Property Name="SYSID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="USERNAME" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="NGAY" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="ZZCNT" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="CNTCD" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
@@ -2060,6 +2064,7 @@ warning 6002: The table/view 'TKTDSX.dbo.VW_TKLD' does not have a primary key de
                 <ScalarProperty Name="CNTCD" ColumnName="CNTCD" />
                 <ScalarProperty Name="ZZCNT" ColumnName="ZZCNT" />
                 <ScalarProperty Name="NGAY" ColumnName="NGAY" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
                 <ScalarProperty Name="SYSID" ColumnName="SYSID" />
                 <ScalarProperty Name="MANDT" ColumnName="MANDT" />
               </MappingFragment>

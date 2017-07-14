@@ -439,6 +439,14 @@
           <Parameter Name="FROMDATE" Type="varchar" Mode="In" />
           <Parameter Name="TODATE" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="GetCongDoanKhTh" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="systemId" Type="varchar" Mode="In" />
+          <Parameter Name="capDo" Type="varchar" Mode="In" />
+          <Parameter Name="giaTriCapDo" Type="varchar" Mode="In" />
+          <Parameter Name="congDoan" Type="varchar" Mode="In" />
+          <Parameter Name="fromDate" Type="varchar" Mode="In" />
+          <Parameter Name="toDate" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="GetCongDoanLiveboard" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SystemId" Type="varchar" Mode="In" />
         </Function>
@@ -976,6 +984,14 @@
             <Parameter Name="FROMDATE" Mode="In" Type="String" />
             <Parameter Name="TODATE" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="GetCongDoanKhTh" ReturnType="Collection(TKTDSXModel.ListCongDoan)">
+            <Parameter Name="systemId" Mode="In" Type="String" />
+            <Parameter Name="capDo" Mode="In" Type="String" />
+            <Parameter Name="giaTriCapDo" Mode="In" Type="String" />
+            <Parameter Name="congDoan" Mode="In" Type="String" />
+            <Parameter Name="fromDate" Mode="In" Type="String" />
+            <Parameter Name="toDate" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="ZEMP_CF_MODE">
           <Key>
@@ -1054,6 +1070,9 @@
           <Property Type="Decimal" Name="DiLam" Nullable="false" />
           <Property Type="Decimal" Name="Tongld" Nullable="false" />
           <Property Type="Decimal" Name="TyLeVang" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="ListCongDoan" >
+          <Property Type="String" Name="CongDoan" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1535,6 +1554,13 @@
                 <ScalarProperty Name="DiLam" ColumnName="DiLam" />
                 <ScalarProperty Name="Tongld" ColumnName="Tongld" />
                 <ScalarProperty Name="TyLeVang" ColumnName="TyLeVang" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetCongDoanKhTh" FunctionName="TKTDSXModel.Store.GetCongDoanKhTh" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TKTDSXModel.ListCongDoan">
+                <ScalarProperty Name="CongDoan" ColumnName="CongDoan" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

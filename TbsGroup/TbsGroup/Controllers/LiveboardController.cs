@@ -77,13 +77,14 @@ namespace TbsGroup.Controllers
 
             using (TKTDSXEntities dc = new TKTDSXEntities())
             {
+                var CurrentUser = Session["Username"] as BI_USER;
                 CommonModel cm = new CommonModel();
                 //Mode xem
                 if (filter.SelectedMode == null)
                 {
                     filter.SelectedMode = "CHUYEN";
                 }
-                List<SanLuongOnline> slOnline = cm.GetSanLuongOnline(filter);
+                List<SanLuongOnline> slOnline = cm.GetSanLuongOnline(filter, CurrentUser.Username);
                 ViewData["SL_Online"] = slOnline;
             }
             return PartialView(filter);
