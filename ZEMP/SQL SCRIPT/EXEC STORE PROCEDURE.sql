@@ -7,6 +7,8 @@
 -- GET KE HOACH THUC HIEN THEO CAP DO / CONG DOAN
 GetKeHoachThucHien '900P01', 'WRKCT', 'WC01', 'ALL', '2017-06-30', '2017-07-14'
 go
+GetCongDoanKhTh '900P01', 'WRKCT', 'WC01', 'sgo', '2017-06-30', '2017-07-14'
+go
 
 
 --EXEC GetThongKeLaoDong '900P01', 'wrkct', 'WC01', 'smay', '2017-07-07', '2017-07-14'

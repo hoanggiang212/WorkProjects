@@ -269,6 +269,29 @@
     <Content Include="Content\CommonStyle.css" />
     <Content Include="Content\DashboardStyle.css" />
     <Content Include="Content\LiveboardStyle.css" />
+    <Content Include="Content\tablesort\css\jq.css" />
+    <Content Include="Content\tablesort\css\jquery-ui.min.css" />
+    <Content Include="Content\tablesort\css\magnific-popup.css" />
+    <Content Include="Content\tablesort\css\prettify.css" />
+    <Content Include="Content\tablesort\js\docs.js" />
+    <Content Include="Content\tablesort\js\jquery-latest.min.js" />
+    <Content Include="Content\tablesort\js\jquery-ui.min.js" />
+    <Content Include="Content\tablesort\js\jquery.magnific-popup.min.js" />
+    <Content Include="Content\tablesort\js\jquery.tablesorter.js" />
+    <Content Include="Content\tablesort\js\jquery.tablesorter.widgets.js" />
+    <Content Include="Content\tablesort\js\prettify.js" />
+    <Content Include="Content\tablesort\js\widget-cssStickyHeaders.js" />
+    <Content Include="Content\tablesort\js\widget-filter.js" />
+    <Content Include="Content\tablesort\theme\theme.black-ice.css" />
+    <Content Include="Content\tablesort\theme\theme.blue.css" />
+    <Content Include="Content\tablesort\theme\theme.common.css" />
+    <Content Include="Content\tablesort\theme\theme.dark.css" />
+    <Content Include="Content\tablesort\theme\theme.default.css" />
+    <Content Include="Content\tablesort\theme\theme.dropbox.css" />
+    <Content Include="Content\tablesort\theme\theme.green.css" />
+    <Content Include="Content\tablesort\theme\theme.grey.css" />
+    <Content Include="Content\tablesort\theme\theme.ice.css" />
+    <Content Include="Content\tablesort\theme\theme.metro-dark.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\logo.png" />
     <Content Include="logoTBS.ico" />
@@ -352,6 +375,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\tablesort\theme\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

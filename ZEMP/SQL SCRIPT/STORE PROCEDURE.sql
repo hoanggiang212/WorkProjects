@@ -348,7 +348,60 @@ BEGIN
 						+	@whereCapDo
 						+	@whereCongDoan 
 						+	' Order by Ngay ASC'
-print @command
+--print @command
+EXEC sys.sp_executesql @command
+END
+GO
+
+-- ================================================
+-- GET  LIST CONG DOAN KE HOACH THUC HIEN THEO CAP DO / CONG DOAN
+-- ================================================
+IF EXISTS ( SELECT * FROM SYSOBJECTS WHERE id = OBJECT_ID(N'GetCongDoanKhTh') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+BEGIN
+	DROP PROCEDURE GetCongDoanKhTh
+END
+GO
+--When SET ANSI_NULLS is ON, 
+-- a SELECT statement that uses WHERE column_name = NULL returns zero rows 
+-- even if there are null values in column_name
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE GetCongDoanKhTh
+	@systemId		VARCHAR(20), @capDo			VARCHAR(20), @giaTriCapDo	VARCHAR(20),
+	@congDoan		VARCHAR(20), @fromDate		VARCHAR(10), @toDate			VARCHAR(10)
+AS
+BEGIN
+	SET FMTONLY OFF
+	SET NOCOUNT ON;
+	DECLARE @command		nvarchar(max); DECLARE @whereCongDoan	varchar(100);
+	DECLARE @whereCapDo		varchar(100); DECLARE @tableSource	varchar(100);
+
+	IF @congDoan = 'ALL' SET @whereCongDoan = ' ';
+	ELSE SET @whereCongDoan = ' AND CongDoan = ' + '''' + @congDoan  + ''''  ;		
+	if @capDo = 'WRKCT'
+		BEGIN
+			SET @tableSource	= 'ZEMP_SL_WC'
+			SET @whereCapDo		= ' AND  Wrkct = ' + '''' + @giaTriCapDo + '''';
+		END
+	else if @capDo = 'KHUVUC'
+		BEGIN
+			SET @tableSource	= 'ZEMP_SL_KV'
+			SET @whereCapDo		= ' AND  KhuVuc = ' + '''' + @giaTriCapDo + '''';
+		END
+	else if  @capDo = 'NGANH'
+		BEGIN
+			SET @tableSource	= 'ZEMP_SL_NG'
+			SET @whereCapDo		= ' AND  Nganh = ' + '''' + @giaTriCapDo + '''';
+		END
+	SET @command  =		' SELECT DISTINCT CongDoan as ' + '''' + 'CongDoan' + '''' 
+						+ ' FROM '	+ @tableSource
+						+	' WHERE SystemId = N' + '''' + @systemId + ''''
+						+   ' AND NGAY BETWEEN '	+ ''''	+	@fromDate	+ '''' + ' AND '	+ '''' + @toDate + ''''
+						+	@whereCapDo
+						+	@whereCongDoan
+--print @command
 EXEC sys.sp_executesql @command
 END
 GO

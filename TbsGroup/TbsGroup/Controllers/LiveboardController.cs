@@ -63,7 +63,7 @@ namespace TbsGroup.Controllers
             }
         }
 
-        public ActionResult GetListData(string level, string capdo, string giaTriCapdo, string congDoan)
+        public ActionResult GetListData(string level, string capdo, string giaTriCapdo, string congDoan, string sStyle)
         {
             FilterCoditionModel filter = new FilterCoditionModel()
             {
@@ -87,6 +87,21 @@ namespace TbsGroup.Controllers
                 List<SanLuongOnline> slOnline = cm.GetSanLuongOnline(filter, CurrentUser.Username);
                 ViewData["SL_Online"] = slOnline;
             }
+
+            //asign style for table
+            switch (sStyle)
+            {
+                case "Default":
+                    ViewBag.ClassName = "tablesorter-default";
+                    break;
+                case "Blue":
+                    ViewBag.ClassName = "tablesorter-blue";
+                    break;
+                case "Dark":
+                    ViewBag.ClassName = "tablesorter-dark";
+                    break;
+            }
+
             return PartialView(filter);
         }
 

@@ -48,9 +48,10 @@ namespace ZEMP.DTO
 
             //add body data
             for (int i = 0; i < f.listDate.Count; i++)
-            {   
+            {
                 //add day
                 ArrayList arrLine = new ArrayList();
+                lineHeader.CopyTo( arrLine );
                 arrLine.Add(f.listDate[i].ToShortDateString());
 
                 //add san luong ke hoach / thuc hien

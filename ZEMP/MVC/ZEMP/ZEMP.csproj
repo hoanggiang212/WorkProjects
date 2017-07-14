@@ -201,6 +201,9 @@
     <Compile Include="DAO\KHTHReturn.cs">
       <DependentUpon>ZempEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAO\ListCongDoan.cs">
+      <DependentUpon>ZempEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAO\SanLuongOnlineReturn.cs">
       <DependentUpon>ZempEntities.tt</DependentUpon>
     </Compile>
