@@ -68,7 +68,7 @@ namespace TbsGroup.Controllers
                     HeaderStatus.Add((object)string.Format("{0}", "< 95%"));
                     HeaderStatus.Add((object)string.Format("{0}", "95-100%"));
                     HeaderStatus.Add((object)string.Format("{0}", "> 100%"));
-                    HeaderStatus.Add((object)string.Format("{0}", "Khác"));
+                    //HeaderStatus.Add((object)string.Format("{0}", "Khác"));
                     StatusChart.Add(HeaderStatus);
 
                     foreach (TrangThaiChuyen statusCH in ListDataStatus)
@@ -78,7 +78,7 @@ namespace TbsGroup.Controllers
                         dataChart.Add(statusCH.redStatus);
                         dataChart.Add(statusCH.yellowStatus);
                         dataChart.Add(statusCH.greenStatus);
-                        dataChart.Add(statusCH.otherStatus);
+                        //dataChart.Add(statusCH.otherStatus);
                         StatusChart.Add(dataChart);
                     }
 
@@ -112,7 +112,7 @@ namespace TbsGroup.Controllers
                         double ptVang = Math.Round((double)tkItem.SoLuongNghi / (double)tkItem.TongSoLuong * 100, 1);
 
                         item.Add(tkItem.TongSoLuong);
-                        item.Add(ptVang);                        
+                        item.Add(ptVang);
                         TkldChart.Add(item);
                     }
                     ViewData["ThongKeLD"] = listTKLD;
@@ -145,12 +145,12 @@ namespace TbsGroup.Controllers
 
                     //data for chart nang suat lao dong tong the
                     List<NangSuatTongThe> listNSTT = new List<NangSuatTongThe>();
-                                       
+
                     if (FilterCodition.SelectedCongDoan != "ALL")
                     {
                         // Tính tổng giá trị
                         GiaThanhPhanXuong tongGTPX = new GiaThanhPhanXuong();
-                        for(int i = 0; i < listGtpx.Count; i++)
+                        for (int i = 0; i < listGtpx.Count; i++)
                         {
                             tongGTPX.gtNhanCongKeHoach += listGtpx[i].gtNhanCongKeHoach;
                             tongGTPX.gtVatTuKeHoach += listGtpx[i].gtVatTuKeHoach;
@@ -201,7 +201,7 @@ namespace TbsGroup.Controllers
                         double iLDBQ = 0;
                         double dNSTT = 0;
                         double dTongNS = 0;
-                        foreach(NangSuatLaoDong nsld in listNangSuatTheoSL)
+                        foreach (NangSuatLaoDong nsld in listNangSuatTheoSL)
                         {
                             if (nsld.CongDoan != FilterCodition.SelectedCongDoan) continue;
                             iLDBQ += nsld.SoLuongLaoDong;
@@ -228,13 +228,13 @@ namespace TbsGroup.Controllers
                         listNSTT.Add(lineNSTT);
                     }
                     else
-                    {                        
-                        foreach ( SelectListItem cdoan in FilterCodition.ListCongDoan)
+                    {
+                        foreach (SelectListItem cdoan in FilterCodition.ListCongDoan)
                         {
-                            if (cdoan.Value == "ALL") continue;                            
+                            if (cdoan.Value == "ALL") continue;
                             long iCount = 0;
                             GiaThanhPhanXuong tongGTPX = new GiaThanhPhanXuong();
-                            for (int i = 0; i< listGtpx.Count; i++)
+                            for (int i = 0; i < listGtpx.Count; i++)
                             {
                                 if (cdoan.Value != listGtpx[i].CongDoan) continue;
                                 tongGTPX.gtNhanCongKeHoach += listGtpx[i].gtNhanCongKeHoach;
@@ -282,7 +282,7 @@ namespace TbsGroup.Controllers
                             //add line to list
                             chartGiaThanhPhanXuong.Add(lineThucHien);
 
-                          
+
 
                             //tinh nhan cong binh quan
                             int iCountLD = 0;
@@ -307,12 +307,12 @@ namespace TbsGroup.Controllers
 
                             NangSuatTongThe lineNSTT = new NangSuatTongThe();
                             lineNSTT.CongDoan = cdoan.Value;
-                            lineNSTT.SoLuongLaoDong = Math.Round( iLDBQ, 0);
-                            lineNSTT.ptChiPhiNc = Math.Round( tongGTPX.ptNhanCongThucHien , 2);
-                            lineNSTT.ptChiPhiVt = Math.Round(tongGTPX.ptVatTuThucHien,2);
-                            lineNSTT.ptChiPhiTs = Math.Round(tongGTPX.ptTaiSanThucHien,2);
-                            lineNSTT.NangSuatTT = Math.Round(dNSTT,2);
-                            lineNSTT.NangSuatSL = Math.Round(dTongNS,2);
+                            lineNSTT.SoLuongLaoDong = Math.Round(iLDBQ, 0);
+                            lineNSTT.ptChiPhiNc = Math.Round(tongGTPX.ptNhanCongThucHien, 2);
+                            lineNSTT.ptChiPhiVt = Math.Round(tongGTPX.ptVatTuThucHien, 2);
+                            lineNSTT.ptChiPhiTs = Math.Round(tongGTPX.ptTaiSanThucHien, 2);
+                            lineNSTT.NangSuatTT = Math.Round(dNSTT, 2);
+                            lineNSTT.NangSuatSL = Math.Round(dTongNS, 2);
                             listNSTT.Add(lineNSTT);
 
                         }
@@ -320,7 +320,7 @@ namespace TbsGroup.Controllers
 
                     ViewData["NSTT"] = listNSTT;
 
-                    string  strData = JsonConvert.SerializeObject(chartGiaThanhPhanXuong, Formatting.None);
+                    string strData = JsonConvert.SerializeObject(chartGiaThanhPhanXuong, Formatting.None);
                     ViewBag.DataGtpx = new HtmlString(strData);
 
                     ArrayList CommomArray = new ArrayList();
@@ -577,7 +577,7 @@ namespace TbsGroup.Controllers
                     HeaderStatus.Add((object)string.Format("{0}", "< 95%"));
                     HeaderStatus.Add((object)string.Format("{0}", "95-100%"));
                     HeaderStatus.Add((object)string.Format("{0}", "> 100%"));
-                    HeaderStatus.Add((object)string.Format("{0}", "Khác"));
+                    //HeaderStatus.Add((object)string.Format("{0}", "Khác"));
                     StatusChart.Add(HeaderStatus);
 
                     foreach (TrangThaiChuyen statusCH in ListDataStatus)
@@ -587,7 +587,7 @@ namespace TbsGroup.Controllers
                         dataChart.Add(statusCH.redStatus);
                         dataChart.Add(statusCH.yellowStatus);
                         dataChart.Add(statusCH.greenStatus);
-                        dataChart.Add(statusCH.otherStatus);
+                        //dataChart.Add(statusCH.otherStatus);
                         StatusChart.Add(dataChart);
                     }
 
@@ -607,17 +607,11 @@ namespace TbsGroup.Controllers
                     tkldHeader.Add((object)string.Format("{0}", "Ngày"));
                     tkldHeader.Add((object)string.Format("{0}", "Tổng LĐ"));
                     tkldHeader.Add((object)string.Format("{0}", "% Vắng"));
-                    //tkldHeader.Add((object)string.Format("{0}", "SL Đi Làm"));
-                    //tkldHeader.Add((object)string.Format("{0}", "SL Nghỉ"));
-                    //tkldHeader.Add((object)string.Format("{0}", "Tổng SL"));
+
                     TkldChart.Add(tkldHeader);
                     foreach (ThongKeLaoDong tkItem in listTKLD)
                     {
-                        //DayOfWeek dayOfWeek = tkItem.Ngay.DayOfWeek;
-                        //if (dayOfWeek == DayOfWeek.Sunday)
-                        //{
-                        //    continue;
-                        //}
+                     
                         ArrayList item = new ArrayList();
                         item.Add(tkItem.Ngay.ToShortDateString());
 
@@ -625,9 +619,6 @@ namespace TbsGroup.Controllers
 
                         item.Add(tkItem.TongSoLuong);
                         item.Add(ptVang);
-                        //item.Add(tkItem.SoLuongDiLam);
-                        //item.Add(tkItem.SoLuongNghi);
-                        //item.Add(tkItem.TongSoLuong);
                         TkldChart.Add(item);
                     }
                     strData = JsonConvert.SerializeObject(TkldChart, Formatting.None);
@@ -654,7 +645,7 @@ namespace TbsGroup.Controllers
 
                     ArrayList CommomArray = new ArrayList();
                     bool iFound = false;
-                    for (int i= 0; i < chartSanLuong.Count; i++)
+                    for (int i = 0; i < chartSanLuong.Count; i++)
                     {
                         ArrayList lineCommon = new ArrayList();
                         if (i == 0) //Header
@@ -664,9 +655,9 @@ namespace TbsGroup.Controllers
                             ArrayList headerSanLuong = (ArrayList)chartSanLuong[0];
 
                             //add header san luong
-                            for(int s = 1; s < headerSanLuong.Count; s++)
+                            for (int s = 1; s < headerSanLuong.Count; s++)
                             {
-                                lineCommon.Add((object)string.Format("SL-{0}",headerSanLuong[s]));
+                                lineCommon.Add((object)string.Format("SL-{0}", headerSanLuong[s]));
                             }
 
                             //add header thong ke chuyen

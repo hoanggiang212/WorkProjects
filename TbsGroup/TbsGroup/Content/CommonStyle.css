@@ -5,6 +5,7 @@
     overflow: hidden;
     background-color: #235631;
     font-family: Arial;
+    min-width:1500px;
 }
 
 .container-navbar a {
@@ -12,7 +13,7 @@
     font-size: 13px;
     color: white;
     text-align: center;
-    padding: 10px 10px;
+    padding: 15px;
     text-decoration: none;
 }
 

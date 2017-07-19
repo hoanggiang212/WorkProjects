@@ -1,76 +1,59 @@
 ﻿@using TbsGroup.ViewModels;
 @model TbsGroup.Models.FilterCoditionModel
-<table class="responsive-table table-striped table-hover table">
-    <colgroup>
-        <col class="col-chuyen" style="min-width:300px;" />
-        <col class="col-congdoan" />
-        <col class="col-slld" />
-        <col class="col-num-long" />
-        <col class="col-num-long" />
-        <col class="col-num-long" />
-        <col class="col-num-long" />
-        <col class="col-num-long" />
-        <col class="col-num-long" />
-        <col class="col-num-long" />
-        <col class="col-num-short" />
-        <col class="col-num-short" />
-        <col class="col-num-short" />
-        <col class="col-num-short" />
-        <col class="col-num-short" />
-        <col class="col-num-short" />
-        <col class="col-num-short" />
-        <col class="col-num-short" />
-        <col class="col-num-short" />
-        <col class="col-num-short" />
-        <col class="col-num-short" />
-        <col class="col-num-short" />
-        <col class="col-num-short" />
-        <col class="col-num-short" />
-    </colgroup>
+<script id="js">
+    $(function () {
+        $('#table1').tablesorter({
+            widthFixed: true,
+            widgets: ['zebra','cssStickyHeaders']
+        });
+    });
+
+</script>
+<table id="table1" class="tablesorter hasFilters @ViewBag.ClassName">    
     <thead>
         <tr>
             @if (Model.SelectedMode == "NGANH")
             {
-                <th style="text-align:center;" class="col-chuyen">Ngành</th>
+                <th>Ngành</th>
             }
             else if (Model.SelectedMode == "KHVUC")
             {
-                <th style="text-align:center;" class="col-chuyen">Khu Vực</th>
+                <th>Khu Vực</th>
             }
             else if (Model.SelectedMode == "WRKCT")
             {
-                <th style="text-align:center;" class="col-chuyen">Work Center</th>
+                <th>Work Center</th>
             }
             else
             {
-                <th style="text-align:center;" class="col-chuyen">Chuyền</th>
+                <th>Chuyền</th>
             }
-            <th style="text-align:center;" class="col-congdoan">Công Đoạn</th>
-            <th class="col-slld" style="text-align:center;">SL LĐ</th>
-            <th class="col-num-long" style="text-align:center;">N.Suất</th>
-            <th class="col-num-long" style="text-align:center;">Giờ LV</th>
-            <th class="col-num-long" style="text-align:center;">KH Giờ</th>
-            <th class="col-num-long" style="text-align:center;">KH Ngày</th>
-            <th class="col-num-long" style="text-align:center;">Thực Hiện</th>
-            <th class="col-num-long" style="text-align:center;">+/-</th>
-            <th class="col-num-long" style="text-align:center;">% TH/KH</th>
-            <th class="col-num-short" style="text-align:center;">Trc.08h</th>
-            <th class="col-num-short" style="text-align:center;">08h</th>
-            <th class="col-num-short" style="text-align:center;">09h</th>
-            <th class="col-num-short" style="text-align:center;">10h</th>
-            <th class="col-num-short" style="text-align:center;">11h</th>
-            <th class="col-num-short" style="text-align:center;">12h</th>
-            <th class="col-num-short" style="text-align:center;">13h</th>
-            <th class="col-num-short" style="text-align:center;">14h</th>
-            <th class="col-num-short" style="text-align:center;">15h</th>
-            <th class="col-num-short" style="text-align:center;">16h</th>
-            <th class="col-num-short" style="text-align:center;">17h</th>
-            <th class="col-num-short" style="text-align:center;">18h</th>
-            <th class="col-num-short" style="text-align:center;">19h</th>
-            <th class="col-num-short" style="text-align:center;">Sau 19h</th>
+            <th>Công Đoạn</th>
+            <th>SL LĐ</th>
+            <th>N.Suất</th>
+            <th>Giờ LV</th>
+            <th>KH Giờ</th>
+            <th>KH Ngày</th>
+            <th>+/-</th>
+            <th>% TH/KH</th>
+            <th>Thực Hiện</th>
+            <th>Tr.08h</th>
+            <th>08h</th>
+            <th>09h</th>
+            <th>10h</th>
+            <th>11h</th>
+            <th>12h</th>
+            <th>13h</th>
+            <th>14h</th>
+            <th>15h</th>
+            <th>16h</th>
+            <th>17h</th>
+            <th>18h</th>
+            <th>19h</th>
+            <th no-wrap class="col-num-short" style="text-align:center;">Sau 19h</th>
         </tr>
     </thead>
-    <tbody style="margin-top:120px;">
+    <tbody id="sanluong-tbody" style="margin-top:120px;">
         @if (ViewData["SL_Online"] != null)
             {
                 foreach (TbsGroup.ViewModels.SanLuongOnline slsx in (List<TbsGroup.ViewModels.SanLuongOnline>)ViewData["SL_Online"])
@@ -78,36 +61,50 @@
                 <tr>
                     @if (Model.SelectedMode == "NGANH")
                     {
-                        <td class="col-chuyen">@slsx.TenNganh</td>
+                        <td id="fix-col-body" class="col-chuyen">@slsx.TenNganh</td>
                     }
                     else if (Model.SelectedMode == "KHVUC")
                     {
-                        <td class="col-chuyen">@slsx.TenKhuVuc</td>
+                        <td id="fix-col-body" class="col-chuyen">@slsx.TenKhuVuc</td>
                     }
                     else if (Model.SelectedMode == "WRKCT")
                     {
-                        <td class="col-chuyen">@slsx.TenWorkCenter</td>
+                        <td id="fix-col-body" class="col-chuyen">@slsx.TenWorkCenter</td>
                     }
                     else
                     {
-                        <td class="col-chuyen">@slsx.TenChuyen</td>
+                        <td id="fix-col-body" class="col-chuyen">@slsx.TenChuyen</td>
                     }
                     <td class="col-congdoan" style="text-align:center">@slsx.CongDoan</td>
                     <td class="col-slld @slsx.Status" style="text-align:right">@slsx.SoLuongLD.ToString("#,#")</td>
-                    <td class="col-num-long @slsx.Status" style="text-align:right">@slsx.NangSuat.ToString("#,#.##")</td>
-                    <td class="col-num-long @slsx.Status" style="text-align:right">@slsx.GioLamViec.ToString("#,#.##")</td>
-                    <td class="col-num-long @slsx.Status" style="text-align:right">@slsx.KeHoachGio.ToString("#,#")</td>
-                    <td class="col-num-long @slsx.Status" style="text-align:right"> @slsx.SanLuongKH.ToString("#,#")</td>
-                    <td class="col-num-long @slsx.Status @slsx.classTHNgay" style="text-align:right">@slsx.SanLuongTH.ToString("#,#")</td>
-                    <td class="col-num-long @slsx.Status @slsx.classTHNgay" style="text-align:right">@slsx.ChenhLech.ToString("#,#")</td>
-                    @if (@slsx.DatKeHoach > 0)
+                    @if (@slsx.NangSuat > 0 )
                     {
-                        <td class="col-num-long @slsx.Status" style="text-align:right">@slsx.DatKeHoach.ToString("#,#.##") %</td>
+                        <td class="col-num-long @slsx.Status" style="text-align:right">@slsx.NangSuat.ToString("0.00")</td>
                     }
                     else
                     {
-                        <td class="col-num-long @slsx.Status" style="text-align:right">0 %</td>
+                        <td class="col-num-long @slsx.Status" style="text-align:right"></td>
                     }
+                    @if (@slsx.GioLamViec > 0)
+                    {
+                    <td class="col-num-long @slsx.Status" style="text-align:right">@slsx.GioLamViec.ToString("0.00")</td>
+                    }
+                    else
+                    {
+                        <td class="col-num-long @slsx.Status" style="text-align:right"></td>
+                    }
+                    <td class="col-num-long @slsx.Status" style="text-align:right">@slsx.KeHoachGio.ToString("#,#")</td>
+                    <td class="col-num-long @slsx.Status" style="text-align:right"> @slsx.SanLuongKH.ToString("#,#")</td>
+                    <td class="col-num-long @slsx.Status @slsx.classTHNgay" style="text-align:right">@slsx.ChenhLech.ToString("#,#")</td>
+                    @if (@slsx.DatKeHoach > 0)
+                    {
+                        <td class="col-num-long @slsx.Status" style="text-align:right">@slsx.DatKeHoach.ToString("0.00")%</td>
+                    }
+                    else
+                    {
+                        <td class="col-num-long @slsx.Status" style="text-align:right"></td>
+                    }                                    
+                    <td class="col-num-long @slsx.Status @slsx.classTHNgay" style="text-align:right">@slsx.SanLuongTH.ToString("#,#")</td>
                     <td class="col-num-short col-num-short @slsx.Status @slsx.class7h" style="text-align:right">@slsx.Gio07.ToString("#,#")</td>
                     <td class="col-num-short @slsx.Status @slsx.class8h" style="text-align:right">@slsx.Gio08.ToString("#,#")</td>
                     <td class="col-num-short @slsx.Status @slsx.class9h" style="text-align:right">@slsx.Gio09.ToString("#,#")</td>

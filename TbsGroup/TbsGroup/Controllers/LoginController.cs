@@ -33,8 +33,13 @@ namespace TbsGroup.Controllers
 
             using (TKTDSXEntities db = new TKTDSXEntities())
             {
+
+                string strInput = userModel.Password.Trim();                
+
+                string decryptPass = CryptorEngine.Encrypt(strInput, true);
+
                 var userDetails = db.BI_USER.Where(x => x.MANDT == "900" && x.SYSID == "P01"
-                                            && x.Username == userModel.Username && x.Password == userModel.Password).FirstOrDefault();
+                                            && x.Username == userModel.Username && x.Password == decryptPass).FirstOrDefault();
                 if (userDetails == null)
                 {
                     ModelState.AddModelError("", "Sign failed, please check input again.");
@@ -55,6 +60,15 @@ namespace TbsGroup.Controllers
 
             var loggedUser = Session["Username"] as BI_USER;
             user.Username = loggedUser.Username;
+            if (user.JobPosition == null)
+            {
+                user.JobPosition = loggedUser.GhiChu;
+            }
+
+            if (loggedUser == null)
+            {
+                RedirectToAction("Index", "Login");
+            }
 
             if ((user.CurrentPassword == null) && (user.Password == null) 
                 && (user.PasswordCofirm == null))
@@ -69,10 +83,12 @@ namespace TbsGroup.Controllers
             }
             using (TKTDSXEntities dc = new TKTDSXEntities())
             {
+                string strPwd = user.CurrentPassword.Trim();
+                string strEncrypt = CryptorEngine.Encrypt(strPwd, true);
                 //Check exist user
                 BI_USER existUser = dc.BI_USER.Where(x => x.MANDT == "900" && x.SYSID == "P01"
                                     && x.Username == user.Username).FirstOrDefault();
-                if ((user.CurrentPassword != null) &&(user.CurrentPassword != existUser.Password))
+                if ((user.CurrentPassword != null) &&(strEncrypt != existUser.Password))
                 {
                     ModelState.AddModelError("CurrentPassword","Current Password Incorrect");
                     return View("ChangePassword",user);
@@ -97,6 +113,12 @@ namespace TbsGroup.Controllers
                 {
                     existUser.Password = user.Password;
                     existUser.GhiChu = user.JobPosition;
+
+                    string newPwd = existUser.Password.Trim();
+
+                    string strEncryptPwd = CryptorEngine.Encrypt(newPwd, true);
+
+                    existUser.Password = strEncryptPwd;
 
                     dc.BI_USER.Attach(existUser);
                     var entry = dc.Entry(existUser);

@@ -71,11 +71,7 @@ namespace ZEMP.Controllers
         public void LoadDataCharts(string sCapDo, string sGiaTriCapDo, string sCongDoan,
                                            string sDateFrom, string sDateTo)
         {
-            //DELCARATION
-            var listKhTh = new List<KHTHReturn>();
-            var listCountStatus = new List<CountStatus>();
-            var listChiPhi = new List<ChiPhiSanXuat>();
-
+            var listTong = new ArrayList();
             FilterCondition f = new FilterCondition() {
                 SystemId            = CommonHeader.defaultSystemId,
                 SelectedCapDo       = sCapDo,
@@ -86,14 +82,10 @@ namespace ZEMP.Controllers
             f.ConvertDate2Sql();
 
             DashboardDTO dashDto = new DashboardDTO();
-           
-            //get data ke hoach / thuc hien
-            listKhTh = dashDto.GetKeHoachThucHien(f);
 
-            //get so luong chuyen theo status / ngay
-            listCountStatus = dashDto.CountStatusChuyen(f);
+            listTong = dashDto.getDataForCharts(f);
+            
 
-            listChiPhi = dashDto.GetChiPhiSanXuat(f);
 
         }
     }

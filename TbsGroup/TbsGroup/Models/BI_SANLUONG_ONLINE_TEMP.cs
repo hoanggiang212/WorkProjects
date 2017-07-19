@@ -16,6 +16,7 @@ namespace TbsGroup.Models
     {
         public string MANDT { get; set; }
         public string SYSID { get; set; }
+        public string USERNAME { get; set; }
         public System.DateTime NGAY { get; set; }
         public string ZZCNT { get; set; }
         public string CNTCD { get; set; }

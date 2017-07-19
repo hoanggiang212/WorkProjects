@@ -315,25 +315,17 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE GetKeHoachThucHien
-	@systemId		VARCHAR(20),
-	@capDo			VARCHAR(20),
-	@giaTriCapDo	VARCHAR(20),
-	@congDoan		VARCHAR(20),
-	@fromDate		VARCHAR(10),
-	@toDate			VARCHAR(10)
+	@systemId		VARCHAR(20), @capDo			VARCHAR(20), @giaTriCapDo	VARCHAR(20),
+	@congDoan		VARCHAR(20), @fromDate		VARCHAR(10), @toDate			VARCHAR(10)
 AS
 BEGIN
 	SET FMTONLY OFF
 	SET NOCOUNT ON;
-	DECLARE @command		nvarchar(max);
-	DECLARE @whereCongDoan	varchar(100);
-	DECLARE @whereCapDo		varchar(100);
-	DECLARE @tableSource	varchar(100);
+	DECLARE @command		nvarchar(max); DECLARE @whereCongDoan	varchar(100);
+	DECLARE @whereCapDo		varchar(100); DECLARE @tableSource	varchar(100);
 
-	IF @congDoan = 'ALL'
-		SET @whereCongDoan = ' ';
-	ELSE
-		SET @whereCongDoan = ' AND CongDoan = ' + '''' + @congDoan  + ''''  ;		
+	IF @congDoan = 'ALL' SET @whereCongDoan = ' ';
+	ELSE SET @whereCongDoan = ' AND CongDoan = ' + '''' + @congDoan  + ''''  ;		
 	if @capDo = 'WRKCT'
 		BEGIN
 			SET @tableSource	= 'ZEMP_SL_WC'
@@ -349,10 +341,10 @@ BEGIN
 			SET @tableSource	= 'ZEMP_SL_NG'
 			SET @whereCapDo		= ' AND  Nganh = ' + '''' + @giaTriCapDo + '''';
 		END
-
-		SET @command  =		' SELECT Ngay as' + '''' + 'NGAY' + '''' + ', CongDoan as ' + '''' + 'CONGDOAN' + '''' + ', KeHoachNgay as '	+ '''' + 'KEHOACH'		+ '''' +
+	SET @command  =		' SELECT Ngay as' + '''' + 'NGAY' + '''' + ', CongDoan as ' + '''' + 'CONGDOAN' + '''' + ', KeHoachNgay as '	+ '''' + 'KEHOACH'		+ '''' +
 						+	' , ThucHienNgay  AS ' + ''''	+	'THUCHIEN'	+ '''' + 'FROM '	+ @tableSource
-						+	' WHERE Ngay BETWEEN '	+ ''''	+	@fromDate	+ '''' + ' AND '	+ '''' + @toDate + ''''
+						+	' WHERE SystemId = N' + '''' + @systemId + ''''
+						+   ' AND NGAY BETWEEN '	+ ''''	+	@fromDate	+ '''' + ' AND '	+ '''' + @toDate + ''''
 						+	@whereCapDo
 						+	@whereCongDoan 
 						+	' Order by Ngay ASC'
@@ -360,14 +352,62 @@ BEGIN
 EXEC sys.sp_executesql @command
 END
 GO
---TEST
---GetKeHoachThucHien '900P01', 'WRKCT', 'WC01', 'ALL', '2017-06-30', '2017-07-07'
 
 -- ================================================
--- GET KE HOACH THUC HIEN THEO CAP DO / CONG DOAN
---exec GetChiPhiSanXuat '900P01', 'WRKCT', 'WC01', 'ALL', '2017-06-01', '2017-06-30'
---exec GetChiPhiSanXuat '900P01', 'KHUVUV', 'KV01', 'ALL', '2017-06-01', '2017-06-30'
---exec GetChiPhiSanXuat '900P01', 'NGANH', 'GIAY', 'SMAY', '2017-06-01', '2017-06-30'
+-- GET  LIST CONG DOAN KE HOACH THUC HIEN THEO CAP DO / CONG DOAN
+-- ================================================
+IF EXISTS ( SELECT * FROM SYSOBJECTS WHERE id = OBJECT_ID(N'GetCongDoanKhTh') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+BEGIN
+	DROP PROCEDURE GetCongDoanKhTh
+END
+GO
+--When SET ANSI_NULLS is ON, 
+-- a SELECT statement that uses WHERE column_name = NULL returns zero rows 
+-- even if there are null values in column_name
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE GetCongDoanKhTh
+	@systemId		VARCHAR(20), @capDo			VARCHAR(20), @giaTriCapDo	VARCHAR(20),
+	@congDoan		VARCHAR(20), @fromDate		VARCHAR(10), @toDate			VARCHAR(10)
+AS
+BEGIN
+	SET FMTONLY OFF
+	SET NOCOUNT ON;
+	DECLARE @command		nvarchar(max); DECLARE @whereCongDoan	varchar(100);
+	DECLARE @whereCapDo		varchar(100); DECLARE @tableSource	varchar(100);
+
+	IF @congDoan = 'ALL' SET @whereCongDoan = ' ';
+	ELSE SET @whereCongDoan = ' AND CongDoan = ' + '''' + @congDoan  + ''''  ;		
+	if @capDo = 'WRKCT'
+		BEGIN
+			SET @tableSource	= 'ZEMP_SL_WC'
+			SET @whereCapDo		= ' AND  Wrkct = ' + '''' + @giaTriCapDo + '''';
+		END
+	else if @capDo = 'KHUVUC'
+		BEGIN
+			SET @tableSource	= 'ZEMP_SL_KV'
+			SET @whereCapDo		= ' AND  KhuVuc = ' + '''' + @giaTriCapDo + '''';
+		END
+	else if  @capDo = 'NGANH'
+		BEGIN
+			SET @tableSource	= 'ZEMP_SL_NG'
+			SET @whereCapDo		= ' AND  Nganh = ' + '''' + @giaTriCapDo + '''';
+		END
+	SET @command  =		' SELECT DISTINCT CongDoan as ' + '''' + 'CongDoan' + '''' 
+						+ ' FROM '	+ @tableSource
+						+	' WHERE SystemId = N' + '''' + @systemId + ''''
+						+   ' AND NGAY BETWEEN '	+ ''''	+	@fromDate	+ '''' + ' AND '	+ '''' + @toDate + ''''
+						+	@whereCapDo
+						+	@whereCongDoan
+--print @command
+EXEC sys.sp_executesql @command
+END
+GO
+
+-- ================================================
+-- CHI PHI SAN XUAT
 -- ================================================
 IF EXISTS ( SELECT * FROM SYSOBJECTS WHERE id = OBJECT_ID(N'GetChiPhiSanXuat') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 BEGIN
@@ -436,5 +476,67 @@ BEGIN
 					' ) AS TB1'
 	--PRINT @COMMAND
 	EXEC SYS.SP_EXECUTESQL @COMMAND
+END
+GO
+
+--LAY THONG TIN THONG KE LAO DONG
+IF EXISTS ( SELECT * FROM SYSOBJECTS WHERE id = OBJECT_ID(N'GetThongKeLaoDong') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+BEGIN
+	DROP PROCEDURE GetThongKeLaoDong
+END
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE GetThongKeLaoDong
+	@SYSTEMID		VARCHAR(20),
+	@CAPDO			VARCHAR(20),
+	@GIATRICAPDO	VARCHAR(20),
+	@CONGDOAN		VARCHAR(20),
+	@FROMDATE		VARCHAR(10),
+	@TODATE			VARCHAR(10)
+AS 
+BEGIN
+DECLARE @COMMAND NVARCHAR(MAX);
+	DECLARE @WHERECONGDOAN	VARCHAR(100);
+	DECLARE @TABLESOURCE_SL	VARCHAR(100);
+	DECLARE @TABLESOURCE_TK	VARCHAR(100);
+
+	IF @CAPDO = 'WRKCT'
+	BEGIN
+		SET @TABLESOURCE_SL = 'ZEMP_SL_WC';
+		SET @TABLESOURCE_TK = 'ZEMP_TK_WC';
+	END
+	ELSE IF @CAPDO = 'KHUVUC'
+	BEGIN
+		SET @TABLESOURCE_SL = 'ZEMP_SL_KV';
+		SET @TABLESOURCE_TK = 'ZEMP_TK_KV';
+	END
+	ELSE
+	BEGIN
+		SET @TABLESOURCE_SL = 'ZEMP_SL_NG';
+		SET @TABLESOURCE_TK = 'ZEMP_TK_NG';
+	END
+
+	IF @CONGDOAN = 'ALL'
+	BEGIN
+		SET	@WHERECONGDOAN = '';
+	END
+	ELSE
+	BEGIN
+		SET	@WHERECONGDOAN = 'AND A.CONGDOAN = ' + '''' + @CONGDOAN + '''';
+	END
+
+	
+	SET @COMMAND =	'SELECT a.Ngay, a.CongDoan, a.SoLuongLD as [DiLam], b.tonglaodong as [tongld] '		+
+					' FROM ' +  @TABLESOURCE_SL + ' AS A INNER JOIN '+ @TABLESOURCE_TK +' AS B '		+
+					' ON A.SYSTEMID = B.SYSTEMID AND A.'+ @CAPDO + ' = B.'+ @CAPDO						+				 
+					' AND A.NGAY = B.NGAY AND A.CONGDOAN = B.CONGDOAN '		+
+					' WHERE A.SYSTEMID = '	+	''''	+ @SYSTEMID		+	''''	+
+					' AND A.'				+	@CAPDO	+ ' = '			+	''''	+ @GIATRICAPDO	+	''''	+   @WHERECONGDOAN +
+					' AND A.NGAY BETWEEN '	+	''''	+ @FROMDATE		+	''''	+ ' AND ' +''''	+	@TODATE +	''''
+--PRINT @COMMAND;
+EXEC SYS.SP_EXECUTESQL @COMMAND;
 END
 GO
